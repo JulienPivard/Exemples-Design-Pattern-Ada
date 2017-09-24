@@ -1,0 +1,28 @@
+# vim: nofoldenable: list:
+# PIVARD Julien
+# Dernière modification : Jeudi 14 septembre[09] 2017
+
+# Organise les vérification du fichier de configuration
+# On vérifie que DEBUG vaut bien [true|false]
+ifneq ($(DEBUG), true)
+  ifneq ($(DEBUG), false)
+    $(error Dans makefile.conf [DEBUG] doit être true ou false)
+  endif
+endif
+
+# On notifie si le nom de l'app n'est pas changé
+ifeq ($(NOMAPP), nomapplication)
+    $(error Le nom du programme dans makefile.conf [NOMAPP] doit être changé)
+endif
+
+# On notifie si le nom de l'app est vide.
+ifeq ($(NOMAPP), )
+    $(error Le nom du programme dans makefile.conf [NOMAPP] est vide)
+endif
+
+# Vérifie si DEBUG vaut bien [true|false]
+ifeq ($(DEBUG), true)
+    MODE	= debug
+else
+    MODE	= release
+endif
