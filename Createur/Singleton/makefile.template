@@ -1,0 +1,49 @@
+# vim: nofoldenable: list:
+# PIVARD Julien
+# Dernière modification : Jeudi 14 septembre[09] 2017
+
+###################
+# Point d'entrée #
+###################
+.PHONY: all
+all: $(CIBLECOMPILE)
+
+# Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
+# en dépendance.
+ifeq ($(wildcard $(EXECUTABLE)), )
+    DEPEND	= $(CIBLECOMPILE)
+else
+    DEPEND	=
+endif
+
+.PHONY: run
+run: $(DEPEND)
+	$(EXECUTABLE) $(ARGUMENTSAPPLI)
+
+###################
+.PHONY: build
+build:
+	@echo
+	@echo "┌───────────────────────────────────────────────────────────────┐"
+	@echo "│                  Lancement de la compilation                  │"
+	@echo "└───────────────────────────────────────────────────────────────┘"
+	$(CC) -P$(GPR) $(OPTGPR)
+	@echo "─────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: clean
+clean:
+	@echo "┌───────────────────────────────────────────────────────────────┐"
+	@echo "│    Effacement des fichiers temporaire généré pour les tests   │"
+	@echo "└───────────────────────────────────────────────────────────────┘"
+	-$(RM) $(OPTRM) obj
+	@echo "─────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: distclean
+distclean: clean
+	@echo "┌───────────────────────────────────────────────────────────────┐"
+	@echo "│    Effacement des fichiers executable généré pour les tests   │"
+	@echo "└───────────────────────────────────────────────────────────────┘"
+	-$(RM) $(OPTRM) bin
+	@echo "─────────────────────────────────────────────────────────────────"
