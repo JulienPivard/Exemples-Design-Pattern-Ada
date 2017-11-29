@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mercredi 20 septembre[09] 2017
+# Dernière modification : Vendredi 03 novembre[11] 2017
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -19,6 +19,11 @@ $(CIBLECOMPILE): build
 	@echo "───────────────────────────────"
 	@echo "[OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo
+
+###################
+.PHONY: doc
+doc:
+	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
 .PHONY: help
