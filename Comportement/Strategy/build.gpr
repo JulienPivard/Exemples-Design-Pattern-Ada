@@ -1,4 +1,4 @@
---  Dernière modification : Mardi 28 novembre[11] 2017
+--  Dernière modification : Jeudi 30 novembre[11] 2017
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -116,7 +116,8 @@ project Build is
          when "oui" =>
             null;
          when "non" =>
-            for Doc_Pattern use "^<";
+            --  for Doc_Pattern use "^<";
+            null;
       end case;
 
    end Documentation;

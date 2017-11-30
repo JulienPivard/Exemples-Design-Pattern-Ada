@@ -11,6 +11,9 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Command_Line;
 with Ada.Directories;
 
+with Calcul_Distance_P.Strategie_P;
+with Distance_P.Probleme_P;
+
 procedure Client is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
@@ -30,6 +33,10 @@ procedure Client is
       Put_Line (Standard_Error, "");
    end Afficher_Aide;
    ---------------------------------------------------------------------------
+
+   s : constant access Calcul_Distance_P.Strategie_P.Strategie_T :=
+      new Calcul_Distance_P.Strategie_P.Strategie_T;
+   p : Distance_P.Probleme_P.Probleme_T;
 
 begin
 
@@ -54,7 +61,12 @@ begin
 
    end if;
 
-   --  Mettez votre code ici
+   p.Initialiser (3, 3, 6, 6, s);
+
+   p.Resoudre;
+
+   Ada.Text_IO.Put ("La distance entre les deux points est : ");
+   Ada.Text_IO.Put_Line (p.Lire_Distance'Img);
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
