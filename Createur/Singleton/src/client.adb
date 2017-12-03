@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : jeudi 30 novembre[11] 2017
+--           Dernière modification : Dimanche 03 décembre[12] 2017
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -10,6 +10,9 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Ada.Command_Line;
 with Ada.Directories;
+
+with Singleton_P;
+with Ada.Strings.Unbounded;
 
 procedure Client is
 
@@ -30,6 +33,11 @@ procedure Client is
       Put_Line (Standard_Error, "");
    end Afficher_Aide;
    ---------------------------------------------------------------------------
+
+   s1 : constant Singleton_P.Singleton_Access_T :=
+      Singleton_P.Recuperer_Singleton;
+   s2 : constant Singleton_P.Singleton_Access_T :=
+      Singleton_P.Recuperer_Singleton;
 
 begin
 
@@ -54,7 +62,23 @@ begin
 
    end if;
 
-   --  Mettez votre code ici
+   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put_Line ("====  Après modification de S1  ====");
+   Ada.Text_IO.New_Line (1);
+
+   s1.all.Changer_Nom
+      (Ada.Strings.Unbounded.To_Unbounded_String ("Roulecouele"));
+   s1.all.Afficher;
+   s2.all.Afficher;
+
+   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put_Line ("====  Après modification de S2  ====");
+   Ada.Text_IO.New_Line (1);
+
+   s2.all.Changer_Nom
+      (Ada.Strings.Unbounded.To_Unbounded_String ("Hey poivros"));
+   s1.all.Afficher;
+   s2.all.Afficher;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
