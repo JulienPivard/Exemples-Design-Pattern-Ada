@@ -1,4 +1,4 @@
-with Calcul_Distance_P;
+limited with Calcul_Distance_P;
 
 --  @summary
 --  Représentation concrète du problème de la distance entre deux points.
@@ -12,7 +12,6 @@ with Calcul_Distance_P;
 package Distance_P.Probleme_P is
 
    pragma Pure;
-   use Calcul_Distance_P;
 
    --  Le problème de distance entre deux points à résoudre.
    type Probleme_T is new Probleme_Distance_T with private;
@@ -34,7 +33,7 @@ package Distance_P.Probleme_P is
    (
       Probleme : out Probleme_T;
       X1, Y1, X2, Y2 : Coordonnee_T;
-      Strategie : access Calcul_Distance_T'Class
+      Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class
    );
 
    overriding
@@ -94,7 +93,7 @@ private
       record
          X1, Y1, X2, Y2 : Coordonnee_T;
          Distance : Distance_T;
-         Strategie : access Calcul_Distance_T'Class;
+         Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class;
       end record;
 
 end Distance_P.Probleme_P;

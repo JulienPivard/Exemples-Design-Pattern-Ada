@@ -1,3 +1,5 @@
+with Calcul_Distance_P;
+
 package body Distance_P.Probleme_P is
 
    ---------------------------------------------------------------------------
@@ -5,7 +7,7 @@ package body Distance_P.Probleme_P is
       (
          Probleme : out Probleme_T;
          X1, Y1, X2, Y2 : Coordonnee_T;
-         Strategie : access Calcul_Distance_T'Class
+         Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class
       )
    is
    begin
