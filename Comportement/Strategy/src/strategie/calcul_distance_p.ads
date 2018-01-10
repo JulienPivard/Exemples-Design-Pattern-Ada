@@ -23,7 +23,7 @@ package Calcul_Distance_P is
    procedure Resoudre
    (
       Strategie : Calcul_Distance_T;
-      Probleme : in out Probleme_Distance_T'Class
+      Probleme : in out Probleme_T
    )
    is abstract;
 

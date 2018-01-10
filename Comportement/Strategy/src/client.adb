@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : jeudi 30 novembre[11] 2017
+--           Dernière modification : Mercredi 10 janvier[01] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ with Ada.Command_Line;
 with Ada.Directories;
 
 with Calcul_Distance_P.Strategie_P;
-with Distance_P.Probleme_P;
+with Distance_P;
 
 procedure Client is
 
@@ -36,7 +36,7 @@ procedure Client is
 
    s : constant access Calcul_Distance_P.Strategie_P.Strategie_T :=
       new Calcul_Distance_P.Strategie_P.Strategie_T;
-   p : Distance_P.Probleme_P.Probleme_T;
+   p : Distance_P.Probleme_T;
 
 begin
 

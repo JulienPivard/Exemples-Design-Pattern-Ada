@@ -5,7 +5,7 @@ package body Calcul_Distance_P.Strategie_P is
    procedure Resoudre
       (
          Strategie : Strategie_T;
-         Probleme : in out Probleme_Distance_T'Class
+         Probleme : in out Probleme_T
       )
    is
       pragma Unreferenced (Strategie);
