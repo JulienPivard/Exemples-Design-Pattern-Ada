@@ -9,7 +9,6 @@ with Distance_P;
 package Calcul_Distance_P is
 
    pragma Pure;
-   use Distance_P;
 
    --  Stratégie abstraite de calcul du problème
    --  de distance entre deux points.
@@ -23,7 +22,7 @@ package Calcul_Distance_P is
    procedure Resoudre
    (
       Strategie : Calcul_Distance_T;
-      Probleme : in out Probleme_T
+      Probleme : in out Distance_P.Probleme_T
    )
    is abstract;
 

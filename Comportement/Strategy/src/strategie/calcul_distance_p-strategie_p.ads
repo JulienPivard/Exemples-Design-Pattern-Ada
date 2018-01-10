@@ -18,7 +18,7 @@ package Calcul_Distance_P.Strategie_P is
    procedure Resoudre
    (
       Strategie : Strategie_T;
-      Probleme : in out Probleme_T
+      Probleme : in out Distance_P.Probleme_T
    );
 
 private
