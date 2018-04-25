@@ -14,8 +14,8 @@ use  Fabrique_Abstraite.Fabrique_Concrete_Deux;
 procedure Client is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
-   fabrique_1 : constant access Fab_Conc_Un := new Fab_Conc_Un;
-   fabrique_2 : constant access Fab_Conc_Deux := new Fab_Conc_Deux;
+   fabrique_1 : Fab_Conc_Un;
+   fabrique_2 : Fab_Conc_Deux;
 
    procedure Afficher_Aide;
 
