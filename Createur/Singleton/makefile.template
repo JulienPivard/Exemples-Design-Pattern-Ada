@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : jeudi 30 novembre[11] 2017
+# Dernière modification : Lundi 14 mai[05] 2018
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,18 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	= 1.4.0
+MAKEFILE_V	:= 1.6.3
+
+# Ajout du chemin du compilateur gnat dans le path
+GNAT_BIN_LINUX			:= /usr/gnat/bin
+
+GNAT_BIN_MACOS			:= /usr/local/gnat/bin
+
+ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
+    PATH		:= $(GNAT_BIN_MACOS):$(PATH)
+else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
+    PATH		:= $(GNAT_BIN_LINUX):$(PATH)
+endif
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
@@ -55,3 +66,13 @@ distclean: clean
 	@echo "└───────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) bin
 	@echo "─────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: compter
+compter:
+	find $(DOSSIERSRC) -type f | xargs cat | wc $(OPTCOMPTAGE)
+
+###################
+.PHONY: compterdetail
+compterdetail:
+	find $(DOSSIERSRC) -type f | xargs wc $(OPTCOMPTAGE)
