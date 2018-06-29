@@ -1,13 +1,13 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : jeudi 30 novembre[11] 2017
+# Dernière modification : samedi 05 mai[05] 2018
 
-SHELL		= /bin/sh
+SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
 # Les suffixes des fichiers dont on va tenir compte
 .SUFFIXES:
 
-srcdir		= .
+srcdir		:= .
 
 include ./makefile.conf
 include ./makefile.checks
@@ -24,6 +24,11 @@ $(CIBLECOMPILE): build
 .PHONY: doc
 doc:
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
+
+###################
+.PHONY: prove
+prove:
+	gnatprove -P$(GPR)
 
 ###################
 .PHONY: cleandoc
