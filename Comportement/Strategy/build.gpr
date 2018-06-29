@@ -1,27 +1,29 @@
---  Dernière modification : Jeudi 30 novembre[11] 2017
+--  Dernière modification : Vendredi 29 juin[06] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
 
    --  Les énumérations sont des types accepté.
-   type T_Mode_Compilation    is ("debug", "release");
-   type T_Verbeux             is ("non", "oui");
-   type T_Strict              is ("non", "oui");
+   type Mode_Compilation_T    is ("debug", "release");
+   type Verbeux_T             is ("non", "oui");
+   type Strict_T              is ("non", "oui");
+   type Personnalisee_T       is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
    --  À utiliser avec
    --  -d pour afficher la progression et -p pour créer les dossier
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
-   Mode_Compilation  : T_Mode_Compilation    := External ("mode", "debug");
-   Verbeux           : T_Verbeux             := External ("verb", "non");
-   Strict            : T_Strict              := External ("stri", "non");
+   Mode_Compilation  : Mode_Compilation_T    := External ("mode", "debug");
+   Verbeux           : Verbeux_T             := External ("verb", "non");
+   Strict            : Strict_T              := External ("stri", "non");
+   Personnalisee     : Personnalisee_T       := External ("peso", "non");
 
-   Procedure_Principal        := "client";
-   Nom_Executable             := "executable";
+   Fichier_Principal             := "client.adb";
+   Nom_Executable                := "executable";
 
    --  Le nom du fichier qui contient la procédure principale.
-   for Main                      use (Procedure_Principal);
+   for Main                      use (Fichier_Principal);
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
@@ -32,16 +34,6 @@ project Build is
    for Exec_Dir                  use "bin/" & Mode_Compilation;
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
-   --  gnatef est la pour afficher le chemin complet des fichiers dans les
-   --  messages erreurs et avertissements.
-   --  gnatU : Permet de marquer les messages erreurs avec le tag error:
-   --  gnatif pour pouvoir utiliser les accents dans les noms de variables.
-   --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
-   --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
-   --  gnateE : Génère des informations supplémentaires dans les exceptions
-   --  gnatw.Y désactive le message qui dit que la spec nécessite un corps.
-   --  gnatw.e active les avertissements pour les variables non utilisé.
-   --  gnatyy équivaut à 3aAbcefhiklmnprst
    --  gnaty : les options
    --  3 : taille indentation
    --  a : vérifie la casse
@@ -69,16 +61,32 @@ project Build is
    --  x : vérifie les parenthèses inutile
    Options :=
       (
-         "-gnata",
+         --  gnatef est la pour afficher le chemin complet des
+         --  fichiers dans les messages erreurs et avertissements.
          "-gnatef",
+         --  gnatf Affiche toutes les erreurs.
+         "-gnatf",
+         --  gnatU : Permet de marquer les messages erreurs
+         --  avec le tag error:
          "-gnatU",
          "-gnat2012",
+         --  gnatyy équivaut à 3aAbcefhiklmnprst
          "-gnatyy",
          "-gnatyBdOSux",
+         --  gnatw.e active les avertissements pour les
+         --  variables non utilisé.
          "-gnatw.e",
+         --  gnatw.Y désactive le message qui dit que la
+         --  spec nécessite un corps.
          "-gnatw.Y",
+         --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
+         --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
          "-gnatW8",
+         --  gnateE : Génère des informations supplémentaires
+         --  dans les exceptions
          "-gnateE",
+         --  gnatif pour pouvoir utiliser les accents dans
+         --  les noms de variables.
          "-gnatif"
       );
 
@@ -112,12 +120,16 @@ project Build is
 
       for Documentation_Dir use "doc";
 
-      case strict is
+      case Strict is
          when "oui" =>
             null;
          when "non" =>
-            --  for Doc_Pattern use "^<";
-            null;
+            case Personnalisee is
+               when "oui" =>
+                  for Doc_Pattern use "^<";
+               when "non" =>
+                  null;
+            end case;
       end case;
 
    end Documentation;
@@ -152,7 +164,7 @@ project Build is
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
          when "debug" | "release" =>
-            for Executable ("client") use Nom_Executable;
+            for Executable ("client.adb") use Nom_Executable;
       end case;
 
    end Builder;
@@ -162,7 +174,9 @@ project Build is
 
       case Mode_Compilation is
          when "debug" =>
-            for Default_Switches ("Ada") use Options & ("-g");
+            --  -gnata active les assertions. Pragma : assert, debug,
+            --  Check, Precondition, et Postcondition
+            for Default_Switches ("Ada") use Options & ("-g", "-gnata");
          when "release" =>
             for Default_Switches ("Ada") use Options & ("-O3");
       end case;
@@ -181,6 +195,16 @@ project Build is
          );
 
    end Cross_Reference;
+
+   --  Les options pour gnatprove
+   --  report mode
+   --  fail          - Report failures to prove checks (default)
+   --  all           - Report all results of proving checks
+   --  provers       - Same as all, plus prover usage information
+   --  statistics    - Same as provers, plus timing and steps information
+   package Prove is
+      for Switches use ("--report=fail");
+   end Prove;
 
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
