@@ -1,4 +1,4 @@
-package Produit_Abstrait_B is
+package Produit_B_P is
 
    type Prod_Abs_B is abstract tagged private;
    type Pointeur_Prod_Abs_B is access Prod_Abs_B'Class;
@@ -10,4 +10,4 @@ private
 
    type Prod_Abs_B is abstract tagged null record;
 
-end Produit_Abstrait_B;
+end Produit_B_P;

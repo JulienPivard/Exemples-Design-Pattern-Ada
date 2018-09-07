@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body Produit_Abstrait_B.Produit_Concret_B_Un is
+package body Produit_B_P.Produit_Un_P is
 
    --  La classe se présente elle même.
    overriding
@@ -10,4 +10,4 @@ package body Produit_Abstrait_B.Produit_Concret_B_Un is
       Ada.Text_IO.Put_Line ("# Classe B 1 ! Pour vous servir.");
    end Presente;
 
-end Produit_Abstrait_B.Produit_Concret_B_Un;
+end Produit_B_P.Produit_Un_P;

@@ -1,11 +1,11 @@
-with Produit_Abstrait_A;
-with Produit_Abstrait_B;
+with Produit_A_P;
+with Produit_B_P;
 
-package body Executeur is
+package body Executeur_P is
 
    procedure Construire (Fabrique : Fab_Abs'Class) is
-      produit_a : Produit_Abstrait_A.Pointeur_Prod_Abs_A;
-      produit_b : Produit_Abstrait_B.Pointeur_Prod_Abs_B;
+      produit_a : Produit_A_P.Pointeur_Prod_Abs_A;
+      produit_b : Produit_B_P.Pointeur_Prod_Abs_B;
    begin
       produit_a := Fabrique.Creer_Produit_A;
       produit_a.all.Annonce;
@@ -14,4 +14,4 @@ package body Executeur is
       produit_b.all.Presente;
    end Construire;
 
-end Executeur;
+end Executeur_P;

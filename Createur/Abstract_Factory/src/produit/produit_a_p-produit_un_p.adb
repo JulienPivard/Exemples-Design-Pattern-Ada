@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body Produit_Abstrait_A.Produit_Concret_A_Un is
+package body Produit_A_P.Produit_Un_P is
 
    --  La classe s'annonce elle même.
    overriding
@@ -10,4 +10,4 @@ package body Produit_Abstrait_A.Produit_Concret_A_Un is
       Ada.Text_IO.Put_Line ("# Je suis la classe A 1");
    end Annonce;
 
-end Produit_Abstrait_A.Produit_Concret_A_Un;
+end Produit_A_P.Produit_Un_P;

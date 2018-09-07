@@ -1,4 +1,4 @@
-package Produit_Abstrait_A.Produit_Concret_A_Un is
+package Produit_A_P.Produit_Un_P is
 
    type Prod_A_Un is new Prod_Abs_A with private;
 
@@ -10,4 +10,4 @@ private
 
    type Prod_A_Un is new Prod_Abs_A with null record;
 
-end Produit_Abstrait_A.Produit_Concret_A_Un;
+end Produit_A_P.Produit_Un_P;

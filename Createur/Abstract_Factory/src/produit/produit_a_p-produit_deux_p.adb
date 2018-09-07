@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body Produit_Abstrait_A.Produit_Concret_A_Deux is
+package body Produit_A_P.Produit_Deux_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -10,4 +10,4 @@ package body Produit_Abstrait_A.Produit_Concret_A_Deux is
       Ada.Text_IO.Put_Line ("<h1>Je suis la classe A 2</h1>");
    end Annonce;
 
-end Produit_Abstrait_A.Produit_Concret_A_Deux;
+end Produit_A_P.Produit_Deux_P;

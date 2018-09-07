@@ -1,4 +1,4 @@
-package Produit_Abstrait_A is
+package Produit_A_P is
 
    --  Produit abstrait de type A.
    type Prod_Abs_A is abstract tagged private;
@@ -12,4 +12,4 @@ private
 
    type Prod_Abs_A is abstract tagged null record;
 
-end Produit_Abstrait_A;
+end Produit_A_P;

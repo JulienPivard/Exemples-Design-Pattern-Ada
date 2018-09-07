@@ -1,9 +1,9 @@
-with Fabrique_Abstraite;
-use  Fabrique_Abstraite;
+with Fabrique_P;
+use  Fabrique_P;
 
-package Executeur is
+package Executeur_P is
 
    --  Construit et exécute un objet A et un objet B.
    procedure Construire (Fabrique : Fab_Abs'Class);
 
-end Executeur;
+end Executeur_P;
