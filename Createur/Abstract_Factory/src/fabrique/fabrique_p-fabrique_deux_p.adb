@@ -1,9 +1,6 @@
 with Produit_A_P.Produit_Deux_P;
 with Produit_B_P.Produit_Deux_P;
 
-use  Produit_A_P.Produit_Deux_P;
-use  Produit_B_P.Produit_Deux_P;
-
 package body Fabrique_P.Fabrique_Deux_P is
 
    ---------------------------------------------------------------------------
@@ -13,7 +10,7 @@ package body Fabrique_P.Fabrique_Deux_P is
    is
       pragma Unreferenced (Fabrique);
    begin
-      return new Prod_A_Deux;
+      return new Produit_A_P.Produit_Deux_P.Prod_A_Deux;
    end Creer_Produit_A;
 
    ---------------------------------------------------------------------------
@@ -23,7 +20,7 @@ package body Fabrique_P.Fabrique_Deux_P is
    is
       pragma Unreferenced (Fabrique);
    begin
-      return new Prod_B_Deux;
+      return new Produit_B_P.Produit_Deux_P.Prod_B_Deux;
    end Creer_Produit_B;
 
 end Fabrique_P.Fabrique_Deux_P;
