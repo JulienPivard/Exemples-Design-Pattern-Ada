@@ -1,12 +1,10 @@
 with Ada.Text_IO;
 
-with P_Prototype.Mur;
-with P_Prototype.P_Porte;
-with P_Prototype;
+with Prototype_P.Mur_P;
+with Prototype_P.Porte_P;
+with Prototype_P;
 
 procedure Client is
-
-   package Prototype_P renames P_Prototype;
 
    procedure Test_De_L_Age (P : in Prototype_P.T_Prototype'Class);
 
@@ -32,8 +30,8 @@ procedure Client is
    end Test_De_L_Age;
    ---------------------------------------------------------------------------
 
-   package Mur_P     renames P_Prototype.Mur;
-   package Porte_P   renames P_Prototype.P_Porte;
+   package Mur_P     renames Prototype_P.Mur_P;
+   package Porte_P   renames Prototype_P.Porte_P;
 
    p1 : Mur_P.T_Mur;
    p2 : Mur_P.T_Mur;

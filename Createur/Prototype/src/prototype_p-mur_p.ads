@@ -1,4 +1,4 @@
-package P_Prototype.Mur is
+package Prototype_P.Mur_P is
 
    type T_Mur is new T_Prototype with private;
 
@@ -34,4 +34,4 @@ private
          Cara : T_Caracteristique;
       end record;
 
-end P_Prototype.Mur;
+end Prototype_P.Mur_P;

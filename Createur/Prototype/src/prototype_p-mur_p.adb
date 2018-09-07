@@ -1,4 +1,4 @@
-package body P_Prototype.Mur is
+package body Prototype_P.Mur_P is
 
    ---------------------------------------------------------------------------
    procedure Creer_Mur (Le_Mur : in out T_Mur) is
@@ -42,4 +42,4 @@ package body P_Prototype.Mur is
       return Le_Mur.Age;
    end Lire_Age;
 
-end P_Prototype.Mur;
+end Prototype_P.Mur_P;

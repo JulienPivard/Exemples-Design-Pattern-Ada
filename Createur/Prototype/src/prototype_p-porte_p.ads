@@ -1,4 +1,4 @@
-package P_Prototype.P_Porte is
+package Prototype_P.Porte_P is
 
    --  Le type porte
    type T_Porte is new T_Prototype with private;
@@ -30,4 +30,4 @@ private
          Age : Integer;
       end record;
 
-end P_Prototype.P_Porte;
+end Prototype_P.Porte_P;

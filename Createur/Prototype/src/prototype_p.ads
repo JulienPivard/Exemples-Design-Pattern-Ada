@@ -1,4 +1,4 @@
-package P_Prototype is
+package Prototype_P is
 
    --  Le type abstrait dont vont descendre tous les type prototypé
    type T_Prototype is abstract tagged private;
@@ -23,4 +23,4 @@ private
 
    type T_Prototype is abstract tagged null record;
 
-end P_Prototype;
+end Prototype_P;

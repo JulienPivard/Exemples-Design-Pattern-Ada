@@ -1,4 +1,4 @@
-package body P_Prototype.P_Porte is
+package body Prototype_P.Porte_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -36,4 +36,4 @@ package body P_Prototype.P_Porte is
       Porte.Age := 0;
    end Creer_Porte;
 
-end P_Prototype.P_Porte;
+end Prototype_P.Porte_P;
