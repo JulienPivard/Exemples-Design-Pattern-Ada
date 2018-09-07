@@ -2,8 +2,11 @@ package body Prototype_P.Porte_P is
 
    ---------------------------------------------------------------------------
    overriding
-   function Clone (Porte : in T_Porte) return T_Porte is
-      p : T_Porte;
+   function Clone
+      (Porte : in Porte_T)
+      return Porte_T
+   is
+      p : Porte_T;
    begin
       p.Age := Porte.Age;
       return p;
@@ -11,27 +14,40 @@ package body Prototype_P.Porte_P is
 
    ---------------------------------------------------------------------------
    overriding
-   function Est_Trop_Vieux (Porte : in T_Porte) return Boolean is
+   function Est_Trop_Vieux
+      (Porte : in Porte_T)
+      return Boolean
+   is
    begin
       return Porte.Age > 30;
    end Est_Trop_Vieux;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Changer_Age (Porte : out T_Porte; Age : in Integer) is
+   procedure Changer_Age
+      (
+         Porte : out Porte_T;
+         Age : in Age_T
+      )
+   is
    begin
       Porte.Age := Age;
    end Changer_Age;
 
    ---------------------------------------------------------------------------
    overriding
-   function Lire_Age (Porte : in T_Porte) return Integer is
+   function Lire_Age
+      (Porte : in Porte_T)
+      return Age_T
+   is
    begin
       return Porte.Age;
    end Lire_Age;
 
    ---------------------------------------------------------------------------
-   procedure Creer_Porte (Porte : out T_Porte) is
+   procedure Creer_Porte
+      (Porte : out Porte_T)
+   is
    begin
       Porte.Age := 0;
    end Creer_Porte;

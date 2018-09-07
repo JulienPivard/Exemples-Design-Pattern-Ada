@@ -1,36 +1,45 @@
 package Prototype_P.Mur_P is
 
-   type T_Mur is new T_Prototype with private;
+   type Mur_T is new Prototype_T with private;
 
    --  Permet de cloner l'instance de mur actuelle
    overriding
-   function Clone (Le_Mur : in T_Mur) return T_Mur;
+   function Clone
+      (Le_Mur : in Mur_T)
+      return Mur_T;
 
    --  Permet de savoir si le prototype est trop vieux
    overriding
-   function Est_Trop_Vieux (Le_Mur : in T_Mur) return Boolean;
+   function Est_Trop_Vieux
+      (Le_Mur : in Mur_T)
+      return Boolean;
 
    --  Permet de changer l'age du mur.
    overriding
-   procedure Changer_Age (Le_Mur : out T_Mur; Age : in Integer);
+   procedure Changer_Age
+      (
+         Le_Mur : out Mur_T;
+         Age : in Age_T
+      );
 
    --  Permet de lire l'age du mur.
    overriding
-   function Lire_Age (Le_Mur : in T_Mur)
-      return Integer;
+   function Lire_Age
+      (Le_Mur : in Mur_T)
+      return Age_T;
 
    --  Permet d'initialiser un mur vide
-   procedure Creer_Mur (Le_Mur : in out T_Mur);
+   procedure Creer_Mur
+      (Le_Mur : in out Mur_T);
 
 private
 
    type T_Caracteristique is (Normal, Magique, Bois, Papier);
 
-   type T_Mur is new T_Prototype with
+   type Mur_T is new Prototype_T with
       record
          Nom : String (1 .. 30);
-         Age : Integer;
-         Taille : Integer;
+         Age : Age_T;
          Cara : T_Caracteristique;
       end record;
 

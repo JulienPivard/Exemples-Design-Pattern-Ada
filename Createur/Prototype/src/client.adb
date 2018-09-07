@@ -6,12 +6,16 @@ with Prototype_P;
 
 procedure Client is
 
-   procedure Test_De_L_Age (P : in Prototype_P.T_Prototype'Class);
+   procedure Test_De_L_Age
+      (P : in Prototype_P.Prototype_T'Class);
 
    ---------------------------------------------------------------------------
-   procedure Test_De_L_Age (P : in Prototype_P.T_Prototype'Class) is
-      a : Integer := P.Lire_Age;
-      p_test : Prototype_P.T_Prototype'Class := P.Clone;
+   procedure Test_De_L_Age
+      (P : in Prototype_P.Prototype_T'Class)
+   is
+      a : Prototype_P.Age_T := P.Lire_Age;
+      p_test : Prototype_P.Prototype_T'Class := P.Clone;
+      use type Prototype_P.Age_T;
    begin
       Ages :
       loop
@@ -33,11 +37,11 @@ procedure Client is
    package Mur_P     renames Prototype_P.Mur_P;
    package Porte_P   renames Prototype_P.Porte_P;
 
-   p1 : Mur_P.T_Mur;
-   p2 : Mur_P.T_Mur;
+   p1 : Mur_P.Mur_T;
+   p2 : Mur_P.Mur_T;
 
-   po1 : Porte_P.T_Porte;
-   po2 : Porte_P.T_Porte;
+   po1 : Porte_P.Porte_T;
+   po2 : Porte_P.Porte_T;
 
 begin
 

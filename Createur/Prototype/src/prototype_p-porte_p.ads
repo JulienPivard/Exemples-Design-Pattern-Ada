@@ -1,33 +1,43 @@
 package Prototype_P.Porte_P is
 
    --  Le type porte
-   type T_Porte is new T_Prototype with private;
+   type Porte_T is new Prototype_T with private;
 
    --  Permet de cloner la porte.
    overriding
-   function Clone (Porte : in T_Porte) return T_Porte;
+   function Clone
+      (Porte : in Porte_T)
+      return Porte_T;
 
    --  Permet de savoir si la porte est trop vieille.
    overriding
-   function Est_Trop_Vieux (Porte : in T_Porte) return Boolean;
+   function Est_Trop_Vieux
+      (Porte : in Porte_T)
+      return Boolean;
 
    --  Permet de changer l'age de la porte.
    overriding
-   procedure Changer_Age (Porte : out T_Porte; Age : in Integer);
+   procedure Changer_Age
+      (
+         Porte : out Porte_T;
+         Age : in Age_T
+      );
 
    --  Permet de lire l'age de la porte.
    overriding
-   function Lire_Age (Porte : in T_Porte)
-      return Integer;
+   function Lire_Age
+      (Porte : in Porte_T)
+      return Age_T;
 
    --  Permet de créer une porte à partir de rien.
-   procedure Creer_Porte (Porte : out T_Porte);
+   procedure Creer_Porte
+      (Porte : out Porte_T);
 
 private
 
-   type T_Porte is new T_Prototype with
+   type Porte_T is new Prototype_T with
       record
-         Age : Integer;
+         Age : Age_T;
       end record;
 
 end Prototype_P.Porte_P;
