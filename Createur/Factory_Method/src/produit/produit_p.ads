@@ -1,18 +1,18 @@
 package Produit_P is
 
    --  Produit abstrait
-   type T_Produit is abstract tagged private;
+   type Produit_T is abstract tagged private;
    --  Pointeur de classe vers un produit.
-   type T_Pointeur_Prod is access T_Produit'Class;
+   type Pointeur_Produit_T is access Produit_T'Class;
 
    --  Permet de créer un produit.
-   procedure Creer_Produit (Prod : out T_Produit) is abstract;
+   procedure Creer_Produit (Produit : out Produit_T) is abstract;
 
    --  Affiche le produit.
-   procedure Afficher (Prod : in T_Produit) is abstract;
+   procedure Afficher (Produit : in Produit_T) is abstract;
 
 private
 
-   type T_Produit is abstract tagged null record;
+   type Produit_T is abstract tagged null record;
 
 end Produit_P;

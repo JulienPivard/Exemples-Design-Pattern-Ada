@@ -3,16 +3,16 @@ with Produit_P;
 package Fabrique_P.Concret_P is
 
    --  Fabrique concrète
-   type T_Fab_Conc is new T_Fabrique with private;
+   type Concret_T is new Fabrique_T with private;
 
    --  Permet de construire un nouveau produit.
    overriding
    function Fabriquer
-      (Fab : in T_Fab_Conc)
-      return Produit_P.T_Pointeur_Prod;
+      (Fabrique : in Concret_T)
+      return Produit_P.Produit_T'Class;
 
 private
 
-   type T_Fab_Conc is new T_Fabrique with null record;
+   type Concret_T is new Fabrique_T with null record;
 
 end Fabrique_P.Concret_P;
