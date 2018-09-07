@@ -1,7 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded;
-use  Ada.Strings.Wide_Wide_Unbounded;
 
 package Produit_Html_P is
+
+   package Contenu_P renames Ada.Strings.Wide_Wide_Unbounded;
 
    --  Permet de contenir du texte formaté en html.
    type T_Texte_Html is tagged private;
@@ -13,7 +14,7 @@ package Produit_Html_P is
    procedure Ajouter_Texte
    (
       Texte : in out T_Texte_Html;
-      Contenu : in Unbounded_Wide_Wide_String
+      Contenu : in Contenu_P.Unbounded_Wide_Wide_String
    );
 
    --  Ajout d'un début de titre.
@@ -35,7 +36,7 @@ private
 
    type T_Texte_Html is tagged
       record
-         Contenu : Unbounded_Wide_Wide_String;
+         Contenu : Contenu_P.Unbounded_Wide_Wide_String;
       end record;
 
 end Produit_Html_P;

@@ -13,7 +13,7 @@ package body Builder_P.Builder_Html_P is
    procedure Ajouter_Titre
       (
          Monteur : in out T_Monteur_Html;
-         Texte : in Unbounded_Wide_Wide_String
+         Texte : in Contenu_P.Unbounded_Wide_Wide_String
       )
    is
    begin
@@ -27,7 +27,7 @@ package body Builder_P.Builder_Html_P is
    procedure Ajouter_Paragraphe
       (
          Monteur : in out T_Monteur_Html;
-         Texte : in Unbounded_Wide_Wide_String
+         Texte : in Contenu_P.Unbounded_Wide_Wide_String
       )
    is
    begin
@@ -37,8 +37,9 @@ package body Builder_P.Builder_Html_P is
    end Ajouter_Paragraphe;
 
    ---------------------------------------------------------------------------
-   function Recuperer_Resultat (Monteur : in T_Monteur_Html)
-      return T_Texte_Html
+   function Recuperer_Resultat
+      (Monteur : in T_Monteur_Html)
+      return Produit_Html_P.T_Texte_Html
    is
    begin
       return Monteur.Texte_En_Construction;
