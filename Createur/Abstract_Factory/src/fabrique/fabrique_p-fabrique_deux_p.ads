@@ -5,12 +5,12 @@ package Fabrique_P.Fabrique_Deux_P is
    --  Permet de créer un produit de type A deux.
    overriding
    function Creer_Produit_A (Fabrique : in Fabrique_Deux_T)
-      return Produit_A_P.Pointeur_Prod_A_T;
+      return Produit_A_P.Produit_T'Class;
 
    --  Permet de créer un produit de type B deux.
    overriding
    function Creer_Produit_B (Fabrique : in Fabrique_Deux_T)
-      return Produit_B_P.Pointeur_Prod_B_T;
+      return Produit_B_P.Produit_T'Class;
 
 private
 

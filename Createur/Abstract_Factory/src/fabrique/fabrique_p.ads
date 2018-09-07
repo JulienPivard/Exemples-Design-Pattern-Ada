@@ -8,11 +8,11 @@ package Fabrique_P is
 
    --  Permet de créer un produit de type A.
    function Creer_Produit_A (Fabrique : in Fabrique_T)
-      return Produit_A_P.Pointeur_Prod_A_T is abstract;
+      return Produit_A_P.Produit_T'Class is abstract;
 
    --  Permet de créer un produit de type B.
    function Creer_Produit_B (Fabrique : in Fabrique_T)
-      return Produit_B_P.Pointeur_Prod_B_T is abstract;
+      return Produit_B_P.Produit_T'Class is abstract;
 
 private
 
