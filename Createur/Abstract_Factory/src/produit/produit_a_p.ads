@@ -1,15 +1,15 @@
 package Produit_A_P is
 
    --  Produit abstrait de type A.
-   type Prod_Abs_A is abstract tagged private;
+   type Produit_T is abstract tagged private;
    --  Pointeur vers un produit de type A
-   type Pointeur_Prod_Abs_A is access Prod_Abs_A'Class;
+   type Pointeur_Prod_A_T is access Produit_T'Class;
 
    --  Le produit A s'annonce.
-   procedure Annonce (Produit : in Prod_Abs_A) is abstract;
+   procedure Annonce (Produit : in Produit_T) is abstract;
 
 private
 
-   type Prod_Abs_A is abstract tagged null record;
+   type Produit_T is abstract tagged null record;
 
 end Produit_A_P;

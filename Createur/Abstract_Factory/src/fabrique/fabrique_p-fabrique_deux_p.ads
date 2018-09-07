@@ -1,19 +1,19 @@
 package Fabrique_P.Fabrique_Deux_P is
 
-   type Fab_Conc_Deux is new Fab_Abs with private;
+   type Fabrique_Deux_T is new Fabrique_T with private;
 
    --  Permet de créer un produit de type A deux.
    overriding
-   function Creer_Produit_A (Fabrique : in Fab_Conc_Deux)
-      return Produit_A_P.Pointeur_Prod_Abs_A;
+   function Creer_Produit_A (Fabrique : in Fabrique_Deux_T)
+      return Produit_A_P.Pointeur_Prod_A_T;
 
    --  Permet de créer un produit de type B deux.
    overriding
-   function Creer_Produit_B (Fabrique : in Fab_Conc_Deux)
-      return Produit_B_P.Pointeur_Prod_Abs_B;
+   function Creer_Produit_B (Fabrique : in Fabrique_Deux_T)
+      return Produit_B_P.Pointeur_Prod_B_T;
 
 private
 
-   type Fab_Conc_Deux is new Fab_Abs with null record;
+   type Fabrique_Deux_T is new Fabrique_T with null record;
 
 end Fabrique_P.Fabrique_Deux_P;

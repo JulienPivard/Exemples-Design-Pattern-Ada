@@ -4,7 +4,7 @@ package body Produit_A_P.Produit_Un_P is
 
    --  La classe s'annonce elle même.
    overriding
-   procedure Annonce (Produit : in Prod_A_Un) is
+   procedure Annonce (Produit : in Produit_Un_T) is
       pragma Unreferenced (Produit);
    begin
       Ada.Text_IO.Put_Line ("# Je suis la classe A 1");

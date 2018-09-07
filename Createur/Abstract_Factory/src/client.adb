@@ -6,10 +6,10 @@ with Fabrique_P.Fabrique_Deux_P;
 
 procedure Client is
 
-   package Fab_Un   renames Fabrique_P.Fabrique_Un_P;
-   package Fab_Deux renames Fabrique_P.Fabrique_Deux_P;
-   fabrique_1 : Fab_Un.Fab_Conc_Un;
-   fabrique_2 : Fab_Deux.Fab_Conc_Deux;
+   package Fab_Un_P   renames Fabrique_P.Fabrique_Un_P;
+   package Fab_Deux_P renames Fabrique_P.Fabrique_Deux_P;
+   fabrique_1 : Fab_Un_P.Fabrique_Un_T;
+   fabrique_2 : Fab_Deux_P.Fabrique_Deux_T;
 
 begin
 
