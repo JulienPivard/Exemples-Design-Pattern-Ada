@@ -1,4 +1,4 @@
-package body P_Builder.P_Builder_Markdown is
+package body Builder_P.Builder_Markdown_P is
 
    ---------------------------------------------------------------------------
    procedure Nouveau_Texte_Markdown
@@ -6,7 +6,7 @@ package body P_Builder.P_Builder_Markdown is
    is
    begin
       Monteur.Texte_En_Construction :=
-         P_Produit_Markdown.Creer_Produit_Markdown;
+         Produit_Markdown_P.Creer_Produit_Markdown;
    end Nouveau_Texte_Markdown;
 
    ---------------------------------------------------------------------------
@@ -45,4 +45,4 @@ package body P_Builder.P_Builder_Markdown is
       return Monteur.Texte_En_Construction;
    end Recuperer_Resultat;
 
-end P_Builder.P_Builder_Markdown;
+end Builder_P.Builder_Markdown_P;

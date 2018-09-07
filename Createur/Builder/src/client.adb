@@ -1,18 +1,15 @@
 with Ada.Text_IO;
 
-with P_Directeur;
-with P_Builder.P_Builder_Html;
-with P_Produit_Html;
-with P_Builder.P_Builder_Markdown;
-with P_Produit_Markdown;
+with Directeur_P;
+with Builder_P.Builder_Html_P;
+with Produit_Html_P;
+with Builder_P.Builder_Markdown_P;
+with Produit_Markdown_P;
 
 procedure Client is
 
-   package Directeur_P        renames P_Directeur;
-   package Html_B_P           renames P_Builder.P_Builder_Html;
-   package Produit_Html_P     renames P_Produit_Html;
-   package Mark_B_P           renames P_Builder.P_Builder_Markdown;
-   package Produit_Markdown_P renames P_Produit_Markdown;
+   package Html_B_P           renames Builder_P.Builder_Html_P;
+   package Mark_B_P           renames Builder_P.Builder_Markdown_P;
 
    dir  : Directeur_P.T_Directeur;
    monH : Html_B_P.T_Monteur_Html;

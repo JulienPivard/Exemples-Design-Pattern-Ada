@@ -1,17 +1,17 @@
-with P_Builder;
+with Builder_P;
 
-package P_Directeur is
+package Directeur_P is
 
    type T_Directeur is tagged private;
 
    procedure Construire
    (
       Directeur : in T_Directeur;
-      Monteur : in out P_Builder.T_Monteur'Class
+      Monteur : in out Builder_P.T_Monteur'Class
    );
 
 private
 
    type T_Directeur is tagged null record;
 
-end P_Directeur;
+end Directeur_P;

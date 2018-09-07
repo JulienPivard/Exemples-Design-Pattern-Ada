@@ -1,13 +1,13 @@
 with Ada.Strings.Wide_Wide_Unbounded;
 use  Ada.Strings.Wide_Wide_Unbounded;
 
-package body P_Directeur is
+package body Directeur_P is
 
    ---------------------------------------------------------------------------
    procedure Construire
       (
          Directeur : in T_Directeur;
-         Monteur : in out P_Builder.T_Monteur'Class
+         Monteur : in out Builder_P.T_Monteur'Class
       )
    is
       pragma Unreferenced (Directeur);
@@ -31,4 +31,4 @@ package body P_Directeur is
       Monteur.Ajouter_Paragraphe (para3);
    end Construire;
 
-end P_Directeur;
+end Directeur_P;

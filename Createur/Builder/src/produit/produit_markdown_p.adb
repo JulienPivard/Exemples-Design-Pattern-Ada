@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
 use  Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
 
-package body P_Produit_Markdown is
+package body Produit_Markdown_P is
 
    ---------------------------------------------------------------------------
    function Creer_Produit_Markdown return T_Texte_Markdown is
@@ -54,4 +54,4 @@ package body P_Produit_Markdown is
       Put_Line (Texte.Contenu);
    end Rendu;
 
-end P_Produit_Markdown;
+end Produit_Markdown_P;

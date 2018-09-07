@@ -1,11 +1,11 @@
-package body P_Builder.P_Builder_Html is
+package body Builder_P.Builder_Html_P is
 
    ---------------------------------------------------------------------------
    procedure Nouveau_Texte_Html
       (Monteur : in out T_Monteur_Html)
    is
    begin
-      Monteur.Texte_En_Construction := P_Produit_Html.Creer_Produit_Html;
+      Monteur.Texte_En_Construction := Produit_Html_P.Creer_Produit_Html;
    end Nouveau_Texte_Html;
 
    ---------------------------------------------------------------------------
@@ -44,4 +44,4 @@ package body P_Builder.P_Builder_Html is
       return Monteur.Texte_En_Construction;
    end Recuperer_Resultat;
 
-end P_Builder.P_Builder_Html;
+end Builder_P.Builder_Html_P;

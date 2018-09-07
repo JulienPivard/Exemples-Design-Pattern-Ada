@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded;
 use  Ada.Strings.Wide_Wide_Unbounded;
 
-package P_Produit_Html is
+package Produit_Html_P is
 
    --  Permet de contenir du texte formaté en html.
    type T_Texte_Html is tagged private;
@@ -38,4 +38,4 @@ private
          Contenu : Unbounded_Wide_Wide_String;
       end record;
 
-end P_Produit_Html;
+end Produit_Html_P;

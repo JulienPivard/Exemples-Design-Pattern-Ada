@@ -1,4 +1,4 @@
-package body P_Builder is
+package body Builder_P is
 
    ---------------------------------------------------------------------------
    procedure Ajouter_Titre
@@ -20,4 +20,4 @@ package body P_Builder is
       null;
    end Ajouter_Paragraphe;
 
-end P_Builder;
+end Builder_P;

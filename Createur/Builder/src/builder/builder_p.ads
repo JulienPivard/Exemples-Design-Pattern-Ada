@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded;
 use  Ada.Strings.Wide_Wide_Unbounded;
 
-package P_Builder is
+package Builder_P is
 
    --  Le monteur abstrait.
    type T_Monteur is abstract tagged private;
@@ -18,4 +18,4 @@ private
 
    type T_Monteur is abstract tagged null record;
 
-end P_Builder;
+end Builder_P;

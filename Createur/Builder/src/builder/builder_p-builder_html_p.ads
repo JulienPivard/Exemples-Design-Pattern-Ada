@@ -1,7 +1,7 @@
-with P_Produit_Html;
-use  P_Produit_Html;
+with Produit_Html_P;
+use  Produit_Html_P;
 
-package P_Builder.P_Builder_Html is
+package Builder_P.Builder_Html_P is
 
    --  Un monteur pour du texte formaté en html
    type T_Monteur_Html is new T_Monteur with private;
@@ -36,4 +36,4 @@ private
          Texte_En_Construction : T_Texte_Html;
       end record;
 
-end P_Builder.P_Builder_Html;
+end Builder_P.Builder_Html_P;

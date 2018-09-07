@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
 use  Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
 
-package body P_Produit_Html is
+package body Produit_Html_P is
 
    ---------------------------------------------------------------------------
    function Creer_Produit_Html return T_Texte_Html is
@@ -59,4 +59,4 @@ package body P_Produit_Html is
       Put_Line (Texte.Contenu);
    end Rendu;
 
-end P_Produit_Html;
+end Produit_Html_P;
