@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 24 septembre[09] 2017
+# Dernière modification : Vendredi 07 septembre[09] 2018
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -12,31 +12,48 @@ srcdir		= .
 Makefiles		= $(wildcard */makefile)
 Makefiles_Cleans	= $(Makefiles:%=%_clean)
 Makefiles_DistClean	= $(Makefiles:%=%_distclean)
+Makefiles_Version	= $(Makefiles:%=%_version)
 
 
+###################
 .PHONY: all
 all: build
 
 
+###################
 .PHONY: build
 build: $(Makefiles)
 
+###################
 $(Makefiles): force
 	$(MAKE) -C $(dir $@)
 
+###################
 .PHONY: clean
 clean: $(Makefiles_Cleans)
 
+###################
 $(Makefiles_Cleans): force
 	$(MAKE) -C $(dir $(@:%_clean=%)) clean
 
+###################
 .PHONY: distclean
 distclean: $(Makefiles_DistClean)
 
+###################
 $(Makefiles_DistClean) : force
 	$(MAKE) -C $(dir $(@:%_distclean=%)) distclean
 
+###################
+.PHONY: version_makefile
+version_makefile: $(Makefiles_Version)
+
+###################
+$(Makefiles_Version) : force
+	$(MAKE) -C $(dir $(@:%_version=%)) version_makefile
+
 
 # Pour lancer les cibles des règles implicites
+###################
 .PHONY: force
 force:
