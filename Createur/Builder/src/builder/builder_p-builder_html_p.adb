@@ -2,7 +2,7 @@ package body Builder_P.Builder_Html_P is
 
    ---------------------------------------------------------------------------
    procedure Nouveau_Texte_Html
-      (Monteur : in out T_Monteur_Html)
+      (Monteur : in out Monteur_Html_T)
    is
    begin
       Monteur.Texte_En_Construction := Produit_Html_P.Creer_Produit_Html;
@@ -12,7 +12,7 @@ package body Builder_P.Builder_Html_P is
    overriding
    procedure Ajouter_Titre
       (
-         Monteur : in out T_Monteur_Html;
+         Monteur : in out Monteur_Html_T;
          Texte : in Contenu_P.Unbounded_Wide_Wide_String
       )
    is
@@ -26,7 +26,7 @@ package body Builder_P.Builder_Html_P is
    overriding
    procedure Ajouter_Paragraphe
       (
-         Monteur : in out T_Monteur_Html;
+         Monteur : in out Monteur_Html_T;
          Texte : in Contenu_P.Unbounded_Wide_Wide_String
       )
    is
@@ -38,8 +38,8 @@ package body Builder_P.Builder_Html_P is
 
    ---------------------------------------------------------------------------
    function Recuperer_Resultat
-      (Monteur : in T_Monteur_Html)
-      return Produit_Html_P.T_Texte_Html
+      (Monteur : in Monteur_Html_T)
+      return Produit_Html_P.Texte_Html_T
    is
    begin
       return Monteur.Texte_En_Construction;

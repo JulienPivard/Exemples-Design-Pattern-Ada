@@ -7,8 +7,8 @@ package body Directeur_P is
    ---------------------------------------------------------------------------
    procedure Construire
       (
-         Directeur : in T_Directeur;
-         Monteur : in out Builder_P.T_Monteur'Class
+         Directeur : in Directeur_T;
+         Monteur : in out Builder_P.Monteur_T'Class
       )
    is
       pragma Unreferenced (Directeur);

@@ -11,11 +11,11 @@ procedure Client is
    package Html_B_P           renames Builder_P.Builder_Html_P;
    package Mark_B_P           renames Builder_P.Builder_Markdown_P;
 
-   dir  : Directeur_P.T_Directeur;
-   monH : Html_B_P.T_Monteur_Html;
-   texH : Produit_Html_P.T_Texte_Html;
-   monM : Mark_B_P.T_Monteur_Markdown;
-   texM : Produit_Markdown_P.T_Texte_Markdown;
+   dir  : Directeur_P.Directeur_T;
+   monH : Html_B_P.Monteur_Html_T;
+   texH : Produit_Html_P.Texte_Html_T;
+   monM : Mark_B_P.Monteur_Markdown_T;
+   texM : Produit_Markdown_P.Texte_Markdown_T;
 
 begin
 

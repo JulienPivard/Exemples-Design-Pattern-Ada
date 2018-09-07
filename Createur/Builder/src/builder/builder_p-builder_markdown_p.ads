@@ -3,16 +3,16 @@ with Produit_Markdown_P;
 package Builder_P.Builder_Markdown_P is
 
    --  Un monteur pour du texte formaté en markdown.
-   type T_Monteur_Markdown is new T_Monteur with private;
+   type Monteur_Markdown_T is new Monteur_T with private;
 
    --  Permet d'initialiser un texte vide au format markdown.
-   procedure Nouveau_Texte_Markdown (Monteur : in out T_Monteur_Markdown);
+   procedure Nouveau_Texte_Markdown (Monteur : in out Monteur_Markdown_T);
 
    --  Permet d'ajouter un titre au texte markdown
    overriding
    procedure Ajouter_Titre
    (
-      Monteur : in out T_Monteur_Markdown;
+      Monteur : in out Monteur_Markdown_T;
       Texte : in Contenu_P.Unbounded_Wide_Wide_String
    );
 
@@ -20,20 +20,20 @@ package Builder_P.Builder_Markdown_P is
    overriding
    procedure Ajouter_Paragraphe
    (
-      Monteur : in out T_Monteur_Markdown;
+      Monteur : in out Monteur_Markdown_T;
       Texte : in Contenu_P.Unbounded_Wide_Wide_String
    );
 
    --  Permet de récupérer le texte construit par le monteur.
    function Recuperer_Resultat
-      (Monteur : in T_Monteur_Markdown)
-      return Produit_Markdown_P.T_Texte_Markdown;
+      (Monteur : in Monteur_Markdown_T)
+      return Produit_Markdown_P.Texte_Markdown_T;
 
 private
 
-   type T_Monteur_Markdown is new T_Monteur with
+   type Monteur_Markdown_T is new Monteur_T with
       record
-         Texte_En_Construction : Produit_Markdown_P.T_Texte_Markdown;
+         Texte_En_Construction : Produit_Markdown_P.Texte_Markdown_T;
       end record;
 
 end Builder_P.Builder_Markdown_P;

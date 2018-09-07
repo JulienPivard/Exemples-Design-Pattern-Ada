@@ -6,9 +6,9 @@ package body Produit_Html_P is
 
    ---------------------------------------------------------------------------
    function Creer_Produit_Html
-      return T_Texte_Html
+      return Texte_Html_T
    is
-      T : T_Texte_Html;
+      T : Texte_Html_T;
    begin
       T.Contenu := Contenu_P.To_Unbounded_Wide_Wide_String ("");
       return T;
@@ -17,7 +17,7 @@ package body Produit_Html_P is
    ---------------------------------------------------------------------------
    procedure Ajouter_Texte
       (
-         Texte : in out T_Texte_Html;
+         Texte : in out Texte_Html_T;
          Contenu : in Contenu_P.Unbounded_Wide_Wide_String
       )
    is
@@ -26,7 +26,9 @@ package body Produit_Html_P is
    end Ajouter_Texte;
 
    ---------------------------------------------------------------------------
-   procedure Commencer_Titre (Texte : in out T_Texte_Html) is
+   procedure Commencer_Titre
+      (Texte : in out Texte_Html_T)
+   is
       balise_debut : constant Contenu_P.Unbounded_Wide_Wide_String :=
          Contenu_P.To_Unbounded_Wide_Wide_String ("<h1>");
    begin
@@ -34,7 +36,9 @@ package body Produit_Html_P is
    end Commencer_Titre;
 
    ---------------------------------------------------------------------------
-   procedure Finir_Titre (Texte : in out T_Texte_Html) is
+   procedure Finir_Titre
+      (Texte : in out Texte_Html_T)
+   is
       balise_fin : constant Contenu_P.Unbounded_Wide_Wide_String :=
          Contenu_P.To_Unbounded_Wide_Wide_String ("</h1>");
    begin
@@ -43,7 +47,9 @@ package body Produit_Html_P is
    end Finir_Titre;
 
    ---------------------------------------------------------------------------
-   procedure Commencer_Paragraphe (Texte : in out T_Texte_Html) is
+   procedure Commencer_Paragraphe
+      (Texte : in out Texte_Html_T)
+   is
       balise_debut : constant Contenu_P.Unbounded_Wide_Wide_String :=
          Contenu_P.To_Unbounded_Wide_Wide_String ("<p>");
    begin
@@ -51,7 +57,9 @@ package body Produit_Html_P is
    end Commencer_Paragraphe;
 
    ---------------------------------------------------------------------------
-   procedure Finir_Paragraphe (Texte : in out T_Texte_Html) is
+   procedure Finir_Paragraphe
+      (Texte : in out Texte_Html_T)
+   is
       balise_fin : constant Contenu_P.Unbounded_Wide_Wide_String :=
          Contenu_P.To_Unbounded_Wide_Wide_String ("</p>");
    begin
@@ -60,7 +68,9 @@ package body Produit_Html_P is
    end Finir_Paragraphe;
 
    ---------------------------------------------------------------------------
-   procedure Rendu (Texte : in T_Texte_Html) is
+   procedure Rendu
+      (Texte : in Texte_Html_T)
+   is
    begin
       Contenu_IO.Put_Line (Texte.Contenu);
    end Rendu;

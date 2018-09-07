@@ -5,8 +5,10 @@ package body Produit_Markdown_P is
    package Contenu_IO renames Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
 
    ---------------------------------------------------------------------------
-   function Creer_Produit_Markdown return T_Texte_Markdown is
-      T : T_Texte_Markdown;
+   function Creer_Produit_Markdown
+      return Texte_Markdown_T
+   is
+      T : Texte_Markdown_T;
    begin
       T.Contenu := Contenu_P.To_Unbounded_Wide_Wide_String ("");
       return T;
@@ -15,7 +17,7 @@ package body Produit_Markdown_P is
    ---------------------------------------------------------------------------
    procedure Ajouter_Texte
       (
-         Texte : in out T_Texte_Markdown;
+         Texte : in out Texte_Markdown_T;
          Contenu : in Contenu_P.Unbounded_Wide_Wide_String
       )
    is
@@ -24,33 +26,43 @@ package body Produit_Markdown_P is
    end Ajouter_Texte;
 
    ---------------------------------------------------------------------------
-   procedure Commencer_Titre (Texte : in out T_Texte_Markdown) is
+   procedure Commencer_Titre
+      (Texte : in out Texte_Markdown_T)
+   is
    begin
       Contenu_P.Append (Texte.Contenu, "# ");
    end Commencer_Titre;
 
    ---------------------------------------------------------------------------
-   procedure Finir_Titre (Texte : in out T_Texte_Markdown) is
+   procedure Finir_Titre
+      (Texte : in out Texte_Markdown_T)
+   is
    begin
       Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
       Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
    end Finir_Titre;
 
    ---------------------------------------------------------------------------
-   procedure Commencer_Paragraphe (Texte : in out T_Texte_Markdown) is
+   procedure Commencer_Paragraphe
+      (Texte : in out Texte_Markdown_T)
+   is
       pragma Unreferenced (Texte);
    begin
       null;
    end Commencer_Paragraphe;
 
    ---------------------------------------------------------------------------
-   procedure Finir_Paragraphe (Texte : in out T_Texte_Markdown) is
+   procedure Finir_Paragraphe
+      (Texte : in out Texte_Markdown_T)
+   is
    begin
       Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
       Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
    end Finir_Paragraphe;
 
-   procedure Rendu (Texte : in T_Texte_Markdown) is
+   procedure Rendu
+      (Texte : in Texte_Markdown_T)
+   is
    begin
       Contenu_IO.Put_Line (Texte.Contenu);
    end Rendu;
