@@ -25,7 +25,9 @@ begin
 
    s1.all.Changer_Nom
       (Ada.Strings.Unbounded.To_Unbounded_String ("Roulecouele"));
+   Ada.Text_IO.Put ("S1 : ");
    s1.all.Afficher;
+   Ada.Text_IO.Put ("S2 : ");
    s2.all.Afficher;
 
    Ada.Text_IO.New_Line (1);
@@ -34,7 +36,9 @@ begin
 
    s2.all.Changer_Nom
       (Ada.Strings.Unbounded.To_Unbounded_String ("Hey poivros"));
+   Ada.Text_IO.Put ("S1 : ");
    s1.all.Afficher;
+   Ada.Text_IO.Put ("S2 : ");
    s2.all.Afficher;
 
 end Client;
