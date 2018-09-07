@@ -12,8 +12,9 @@ with Distance_P;
 
 procedure Client is
 
-   s : constant access Calcul_Distance_P.Strategie_P.Strategie_T :=
-      new Calcul_Distance_P.Strategie_P.Strategie_T;
+   package Strat_P renames Calcul_Distance_P.Strategie_P;
+
+   s : constant access Strat_P.Strategie_T := new Strat_P.Strategie_T;
    p : Distance_P.Probleme_T;
 
 begin
