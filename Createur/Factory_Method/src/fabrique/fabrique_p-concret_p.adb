@@ -1,15 +1,15 @@
-with P_Produit.Concret;
+with Produit_P.Concret_P;
 
-package body P_Fabrique.Concret is
+package body Fabrique_P.Concret_P is
 
    ---------------------------------------------------------------------------
    overriding
    function Fabriquer (Fab : in T_Fab_Conc)
-      return P_Produit.T_Pointeur_Prod
+      return Produit_P.T_Pointeur_Prod
    is
       pragma Unreferenced (Fab);
    begin
-      return new P_Produit.Concret.T_Prod_Conc;
+      return new Produit_P.Concret_P.T_Prod_Conc;
    end Fabriquer;
 
-end P_Fabrique.Concret;
+end Fabrique_P.Concret_P;

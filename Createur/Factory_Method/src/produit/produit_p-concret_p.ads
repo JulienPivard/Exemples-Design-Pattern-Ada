@@ -1,9 +1,7 @@
-with P_Produit;
-
-package P_Produit.Concret is
+package Produit_P.Concret_P is
 
    --  Un produit de type concret.
-   type T_Prod_Conc is new P_Produit.T_Produit with private;
+   type T_Prod_Conc is new T_Produit with private;
 
    --  Crée un produit concret.
    overriding
@@ -15,9 +13,9 @@ package P_Produit.Concret is
 
 private
 
-   type T_Prod_Conc is new P_Produit.T_Produit with
+   type T_Prod_Conc is new T_Produit with
       record
          Contenu : String (1 .. 10);
       end record;
 
-end P_Produit.Concret;
+end Produit_P.Concret_P;

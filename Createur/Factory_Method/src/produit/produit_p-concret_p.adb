@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body P_Produit.Concret is
+package body Produit_P.Concret_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -16,4 +16,4 @@ package body P_Produit.Concret is
       Ada.Text_IO.Put_Line (Prod.Contenu);
    end Afficher;
 
-end P_Produit.Concret;
+end Produit_P.Concret_P;
