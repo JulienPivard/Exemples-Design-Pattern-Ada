@@ -1,29 +1,36 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Vendredi 07 septembre[09] 2018
+--           Dernière modification : Samedi 16 février[02] 2019
 --                                                                          --
 ------------------------------------------------------------------------------
 
 with Ada.Text_IO;
-
-with Calcul_Distance_P.Strategie_P;
-with Distance_P;
+with Executeur_G;
 
 procedure Client is
 
-   package Strat_P renames Calcul_Distance_P.Strategie_P;
-
-   s : constant access Strat_P.Strategie_T := new Strat_P.Strategie_T;
-   p : Distance_P.Probleme_T;
+   package Executeur_P is new Executeur_G
+      (
+         Nombre_D_Arguments_Min => 0,
+         Nombre_D_Arguments_Max => 0
+      );
 
 begin
 
-   p.Initialiser (3, 3, 6, 6, s);
+   Ada.Text_IO.New_Line (1);
 
-   p.Resoudre;
+   Executeur_P.Verifier_Nombre_D_Arguments;
+   Executeur_P.Executer;
 
-   Ada.Text_IO.Put ("La distance entre les deux points est : ");
-   Ada.Text_IO.Put_Line (p.Lire_Distance'Img);
+exception
+   when Executeur_P.Trop_D_Arguments_E =>
+      null;
+   when Executeur_P.Pas_Assez_D_Arguments_E =>
+      null;
+   when Executeur_P.Option_Incorrect_E =>
+      null;
+   when Executeur_P.Valeur_Option_Incorrect_E =>
+      null;
 
 end Client;
