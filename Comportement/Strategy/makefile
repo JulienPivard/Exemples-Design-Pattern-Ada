@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : samedi 05 mai[05] 2018
+# Dernière modification : Samedi 13 octobre[10] 2018
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -16,9 +16,9 @@ include ./makefile.template
 ###################
 .PHONY: $(CIBLECOMPILE)
 $(CIBLECOMPILE): build
-	@echo "───────────────────────────────"
-	@echo "[OK] Compilation du programme : [ $(NOMAPP) ] terminé"
-	@echo
+	@echo " ───────────────────────────────"
+	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
+	@echo "  "
 
 ###################
 .PHONY: doc
@@ -28,7 +28,12 @@ doc:
 ###################
 .PHONY: prove
 prove:
-	gnatprove -P$(GPR)
+	gnatprove -P$(GPR) $(OPTGPR)
+
+###################
+.PHONY: check
+check:
+	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: cleandoc
