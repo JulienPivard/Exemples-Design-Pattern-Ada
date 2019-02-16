@@ -21,8 +21,8 @@ package Calcul_Distance_P is
    --  Le problème à résoudre.
    procedure Resoudre
    (
-      Strategie : Calcul_Distance_T;
-      Probleme : in out Distance_P.Probleme_T
+      Strategie   : in Calcul_Distance_T;
+      Probleme    : in out Distance_P.Probleme_T
    )
    is abstract;
 

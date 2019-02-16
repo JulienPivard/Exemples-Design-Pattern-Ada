@@ -4,8 +4,8 @@ package body Calcul_Distance_P.Strategie_P is
    overriding
    procedure Resoudre
       (
-         Strategie : Strategie_T;
-         Probleme : in out Distance_P.Probleme_T
+         Strategie   : in Strategie_T;
+         Probleme    : in out Distance_P.Probleme_T
       )
    is
       pragma Unreferenced (Strategie);
