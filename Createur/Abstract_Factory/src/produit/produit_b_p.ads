@@ -1,10 +1,17 @@
 package Produit_B_P is
 
    type Produit_T is abstract tagged private;
-   type Pointeur_Prod_B_T is access Produit_T'Class;
+   --  Produit abstrait de type B.
 
+   type Pointeur_Prod_B is access Produit_T'Class;
+   --  Pointeur vers un produit de type B.
+
+   procedure Presente
+      (Produit : in Produit_T)
+   is abstract;
    --  Le produit B se présente.
-   procedure Presente (Produit : in Produit_T) is abstract;
+   --  @param Produit
+   --  Le produit.
 
 private
 

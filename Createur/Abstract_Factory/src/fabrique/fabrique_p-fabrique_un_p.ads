@@ -1,16 +1,25 @@
 package Fabrique_P.Fabrique_Un_P is
 
    type Fabrique_Un_T is new Fabrique_T with private;
+   --  Une fabrique de produit en version un.
 
-   --  Permet de créer un produit de type A un.
    overriding
-   function Creer_Produit_A (Fabrique : in Fabrique_Un_T)
+   function Creer_Produit_A
+      (Fabrique : in Fabrique_Un_T)
       return Produit_A_P.Produit_T'Class;
+   --  Permet de créer un produit de type A version 1.
+   --  @param Fabrique
+   --  La fabrique.
+   --  @return Le produit concret.
 
-   --  Permet de créer un produit de type B un.
    overriding
-   function Creer_Produit_B (Fabrique : in Fabrique_Un_T)
+   function Creer_Produit_B
+      (Fabrique : in Fabrique_Un_T)
       return Produit_B_P.Produit_T'Class;
+   --  Permet de créer un produit de type B version 1.
+   --  @param Fabrique
+   --  La fabrique.
+   --  @return Le produit concret.
 
 private
 

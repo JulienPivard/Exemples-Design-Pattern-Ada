@@ -1,10 +1,14 @@
 package Produit_A_P.Produit_Deux_P is
 
    type Produit_Deux_T is new Produit_T with private;
+   --  Un produit de type A en version 2.
 
-   --  Le produit concret a 2 s'annonce lui même.
    overriding
-   procedure Annonce (Produit : in Produit_Deux_T);
+   procedure Annonce
+      (Produit : in Produit_Deux_T);
+   --  Le produit concret A2 s'annonce lui même.
+   --  @param Produit
+   --  Le produit.
 
 private
 

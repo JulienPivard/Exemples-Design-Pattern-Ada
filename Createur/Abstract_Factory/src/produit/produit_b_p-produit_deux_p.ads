@@ -1,10 +1,14 @@
 package Produit_B_P.Produit_Deux_P is
 
    type Produit_Deux_T is new Produit_T with private;
+   --  Un produit de type B en version 2.
 
-   --  Le produit concret b 2 se présente lui même.
    overriding
-   procedure Presente (Produit : in Produit_Deux_T);
+   procedure Presente
+      (Produit : in Produit_Deux_T);
+   --  Le produit concret B2 se présente lui même.
+   --  @param Produit
+   --  Le produit.
 
 private
 

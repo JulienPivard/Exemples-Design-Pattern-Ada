@@ -12,13 +12,13 @@ procedure Executer
 is
    ---------------------------------------------------------------------------
    procedure Construire
-      (Fabrique : Fabrique_P.Fabrique_T'Class);
+      (Fabrique : in Fabrique_P.Fabrique_T'Class);
    --  Construit les produits à partir de la fabrique.
    --  @param Fabrique
    --  La fabrique.
 
    procedure Construire
-      (Fabrique : Fabrique_P.Fabrique_T'Class)
+      (Fabrique : in Fabrique_P.Fabrique_T'Class)
    is
       Produit_A : constant Produit_A_P.Produit_T'Class :=
          Fabrique.Creer_Produit_A;
