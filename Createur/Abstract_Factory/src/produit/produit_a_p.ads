@@ -3,7 +3,7 @@ package Produit_A_P is
    type Produit_T is abstract tagged private;
    --  Produit abstrait de type A.
 
-   type Pointeur_Prod_A is access Produit_T'Class;
+   type Produit_A is access Produit_T'Class;
    --  Pointeur vers un produit de type A.
 
    procedure Annonce
