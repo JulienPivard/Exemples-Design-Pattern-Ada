@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 02 septembre[09] 2018
+--  Dernière modification : Vendredi 08 février[02] 2019
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -207,6 +207,12 @@ project Build is
          );
 
    end Cross_Reference;
+
+   --  Pour vérifier que les règles de codage sont bien suivis :
+   ----------------------------------------------------------------------------
+   package Check is
+      for Default_Switches ("ada") use ("-rules", "-from=regles_de_codage");
+   end Check;
 
    --  Les options pour gnatprove
    --  report mode
