@@ -1,23 +1,36 @@
-with Ada.Text_IO;
+------------------------------------------------------------------------------
+--                                                                          --
+--                          Auteur : PIVARD Julien                          --
+--           Dernière modification : Dimanche 17 février[02] 2019
+--                                                                          --
+------------------------------------------------------------------------------
 
-with Executeur_P;
-with Fabrique_P.Fabrique_Un_P;
-with Fabrique_P.Fabrique_Deux_P;
+with Ada.Text_IO;
+with Executeur_G;
 
 procedure Client is
 
-   package Fab_Un_P   renames Fabrique_P.Fabrique_Un_P;
-   package Fab_Deux_P renames Fabrique_P.Fabrique_Deux_P;
-   fabrique_1 : Fab_Un_P.Fabrique_Un_T;
-   fabrique_2 : Fab_Deux_P.Fabrique_Deux_T;
+   package Executeur_P is new Executeur_G
+      (
+         Nombre_D_Arguments_Min => 0,
+         Nombre_D_Arguments_Max => 0
+      );
 
 begin
 
    Ada.Text_IO.New_Line (1);
-   Ada.Text_IO.Put_Line ("En markdown : ");
-   Executeur_P.Construire (fabrique_1);
-   Ada.Text_IO.New_Line (1);
-   Ada.Text_IO.Put_Line ("En html : ");
-   Executeur_P.Construire (fabrique_2);
+
+   Executeur_P.Verifier_Nombre_D_Arguments;
+   Executeur_P.Executer;
+
+exception
+   when Executeur_P.Trop_D_Arguments_E =>
+      null;
+   when Executeur_P.Pas_Assez_D_Arguments_E =>
+      null;
+   when Executeur_P.Option_Incorrect_E =>
+      null;
+   when Executeur_P.Valeur_Option_Incorrect_E =>
+      null;
 
 end Client;
