@@ -13,7 +13,7 @@ is
    P : Distance_P.Probleme_T;
 begin
 
-   P.Initialiser (3, 3, 6, 6, S);
+   P := Distance_P.Initialiser (3, 3, 6, 6, S);
 
    P.Resoudre;
 

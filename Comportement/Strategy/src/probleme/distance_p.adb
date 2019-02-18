@@ -3,20 +3,22 @@ with Calcul_Distance_P;
 package body Distance_P is
 
    ---------------------------------------------------------------------------
-   procedure Initialiser
+   function Initialiser
       (
-         Probleme       : out Probleme_T;
          X1, Y1, X2, Y2 : in Coordonnee_T;
          Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class
       )
+      return Probleme_T
    is
+      Resultat : Probleme_T;
    begin
-      Probleme.X1        := X1;
-      Probleme.Y1        := Y1;
-      Probleme.X2        := X2;
-      Probleme.Y2        := Y2;
-      Probleme.Distance  := 0;
-      Probleme.Strategie := Strategie;
+      Resultat.X1        := X1;
+      Resultat.Y1        := Y1;
+      Resultat.X2        := X2;
+      Resultat.Y2        := Y2;
+      Resultat.Distance  := 0;
+      Resultat.Strategie := Strategie;
+      return Resultat;
    end Initialiser;
 
    ---------------------------------------------------------------------------

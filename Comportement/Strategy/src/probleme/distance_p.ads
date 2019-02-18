@@ -23,8 +23,6 @@ package Distance_P is
    type Distance_T is new Integer;
 
    --  Initialise le problème avec les données et la stratégie adéquate.
-   --  @param Probleme
-   --  Le problème de distance.
    --  @param X1
    --  La coordonnée X du premier point.
    --  @param Y1
@@ -35,9 +33,9 @@ package Distance_P is
    --  La coordonnée Y du deuxième point.
    --  @param Strategie
    --  La stratégie pour résoudre le calcul de la distance entre deux points.
-   procedure Initialiser
+   --  @return Le problème initialisé.
+   function Initialiser
    (
-      Probleme       : out Probleme_T;
       X1, Y1, X2, Y2 : in Coordonnee_T;
       Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class
    );
