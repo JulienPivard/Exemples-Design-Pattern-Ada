@@ -4,10 +4,7 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function Initialiser
-      (
-         X1, Y1, X2, Y2 : in Coordonnee_T;
-         Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class
-      )
+      (X1, Y1, X2, Y2 : in Coordonnee_T)
       return Probleme_T
    is
       Resultat : Probleme_T;
@@ -17,7 +14,6 @@ package body Distance_P is
       Resultat.X2        := X2;
       Resultat.Y2        := Y2;
       Resultat.Distance  := 0;
-      Resultat.Strategie := Strategie;
       return Resultat;
    end Initialiser;
 
@@ -78,9 +74,14 @@ package body Distance_P is
    end Lire_Distance;
 
    ---------------------------------------------------------------------------
-   procedure Resoudre (Probleme : in out Probleme_T) is
+   procedure Resoudre
+      (
+         Probleme  : in out Probleme_T;
+         Strategie : in Calcul_Distance_P.Calcul_Distance_T'Class
+      )
+   is
    begin
-      Probleme.Strategie.all.Resoudre (Probleme);
+      Strategie.Resoudre (Probleme);
    end Resoudre;
 
    ---------------------------------------------------------------------------

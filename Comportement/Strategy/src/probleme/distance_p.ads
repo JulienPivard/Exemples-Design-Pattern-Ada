@@ -31,14 +31,10 @@ package Distance_P is
    --  La coordonnée X du deuxième point.
    --  @param Y2
    --  La coordonnée Y du deuxième point.
-   --  @param Strategie
-   --  La stratégie pour résoudre le calcul de la distance entre deux points.
    --  @return Le problème initialisé.
    function Initialiser
-   (
-      X1, Y1, X2, Y2 : in Coordonnee_T;
-      Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class
-   );
+   (X1, Y1, X2, Y2 : in Coordonnee_T)
+   return Probleme_T;
 
    --  Lit la coordonnée X du premier point.
    --  @param Probleme
@@ -95,7 +91,11 @@ package Distance_P is
    --  la stratégie adéquate.
    --  @param Probleme
    --  Le problème de distance à résoudre.
-   procedure Resoudre (Probleme : in out Probleme_T);
+   procedure Resoudre
+      (
+         Probleme  : in out Probleme_T;
+         Strategie : in Calcul_Distance_P.Calcul_Distance_T'Class
+      );
 
    --  Soustraction entre deux coordonnées donne une distance.
    --  @param Right
@@ -113,7 +113,6 @@ private
       record
          X1, Y1, X2, Y2 : Coordonnee_T;
          Distance : Distance_T;
-         Strategie : access Calcul_Distance_P.Calcul_Distance_T'Class;
       end record;
 
 end Distance_P;
