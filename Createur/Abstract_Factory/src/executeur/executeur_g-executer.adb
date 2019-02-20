@@ -12,19 +12,27 @@ procedure Executer
 is
    ---------------------------------------------------------------------------
    procedure Construire
-      (Fabrique : in Fabrique_P.Fabrique_T'Class);
+      (
+         Fabrique : in Fabrique_P.Fabrique_T'Class;
+         Titre    : in String
+      );
    --  Construit les produits à partir de la fabrique.
    --  @param Fabrique
    --  La fabrique.
 
    procedure Construire
-      (Fabrique : in Fabrique_P.Fabrique_T'Class)
+      (
+         Fabrique : in Fabrique_P.Fabrique_T'Class;
+         Titre    : in String
+      )
    is
       Produit_A : constant Produit_A_P.Produit_T'Class :=
          Fabrique.Creer_Produit_A;
       Produit_B : constant Produit_B_P.Produit_T'Class :=
          Fabrique.Creer_Produit_B;
    begin
+      Ada.Text_IO.Put_Line (Titre);
+      Ada.Text_IO.New_Line (1);
       Produit_A.Annonce;
       Produit_B.Presente;
    end Construire;
@@ -35,11 +43,11 @@ is
    Fabrique_1 : Fab_1_R.Fabrique_Markdown_T;
    Fabrique_2 : Fab_2_R.Fabrique_Html_T;
 begin
-   Ada.Text_IO.New_Line (1);
-   Ada.Text_IO.Put_Line ("En markdown : ");
-   Construire (Fabrique_1);
+   Ada.Text_IO.Put_Line ("----------------------------");
+   Construire (Fabrique_1, "En markdown : ");
 
-   Ada.Text_IO.New_Line (1);
-   Ada.Text_IO.Put_Line ("En html : ");
-   Construire (Fabrique_2);
+   Ada.Text_IO.Put_Line ("----------------------------");
+
+   Construire (Fabrique_2, "En html : ");
+   Ada.Text_IO.Put_Line ("----------------------------");
 end Executer;
