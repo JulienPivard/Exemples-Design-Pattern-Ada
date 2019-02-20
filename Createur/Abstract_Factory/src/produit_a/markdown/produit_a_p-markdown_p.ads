@@ -1,3 +1,8 @@
+--  @summary
+--  Un produit markdown.
+--  @description
+--  Un produit markdown de type A.
+--  @group Produit markdown
 package Produit_A_P.Markdown_P is
 
    type Produit_Un_T is new Produit_T with private;

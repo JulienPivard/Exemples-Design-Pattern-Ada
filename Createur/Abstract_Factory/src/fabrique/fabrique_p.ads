@@ -1,6 +1,11 @@
 with Produit_A_P;
 with Produit_B_P;
 
+--  @summary
+--  Représentation d'un fabrique abstraite.
+--  @description
+--  Abstraction d'une fabrique de plusieurs produits.
+--  @group Fabrique
 package Fabrique_P is
 
    type Fabrique_T is abstract tagged private;

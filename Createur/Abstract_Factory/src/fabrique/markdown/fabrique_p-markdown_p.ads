@@ -1,3 +1,8 @@
+--  @summary
+--  Une fabrique de produits markdown.
+--  @description
+--  Fabrique plusieurs produits markdown.
+--  @group Fabrique markdown
 package Fabrique_P.Markdown_P is
 
    type Fabrique_Un_T is new Fabrique_T with private;

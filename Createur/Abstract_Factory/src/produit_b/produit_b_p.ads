@@ -1,3 +1,8 @@
+--  @summary
+--  Un produit abstrait de type B.
+--  @description
+--  Une représentation de produit abstrait de type B.
+--  @group Produit B
 package Produit_B_P is
 
    type Produit_T is abstract tagged private;

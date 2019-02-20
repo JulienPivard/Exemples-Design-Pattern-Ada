@@ -1,3 +1,8 @@
+--  @summary
+--  Un produit html.
+--  @description
+--  Un produit B d'html
+--  @group Produit html
 package Produit_B_P.Html_P is
 
    type Produit_Deux_T is new Produit_T with private;

@@ -38,6 +38,7 @@ begin
    Ada.Text_IO.New_Line (1);
    Ada.Text_IO.Put_Line ("En markdown : ");
    Construire (Fabrique_1);
+
    Ada.Text_IO.New_Line (1);
    Ada.Text_IO.Put_Line ("En html : ");
    Construire (Fabrique_2);

@@ -1,3 +1,8 @@
+--  @summary
+--  Une fabrique de produits html.
+--  @description
+--  Fabrique plusieurs produits html.
+--  @group Fabrique html
 package Fabrique_P.Html_P is
 
    type Fabrique_Deux_T is new Fabrique_T with private;
