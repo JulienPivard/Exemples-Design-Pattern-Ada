@@ -6,20 +6,20 @@
 --  @group Stratégie
 package Calcul_Distance_P.Strategie_P is
 
-   --  La stratégie concrète de résolution du problème.
    type Strategie_T is new Calcul_Distance_T with private;
+   --  La stratégie concrète de résolution du problème.
 
    overriding
+   procedure Resoudre
+      (
+         Strategie   : in Strategie_T;
+         Probleme    : in out Distance_P.Probleme_T
+      );
    --  Résout le problème de la distance entre deux points.
    --  @param Strategie
    --  La stratégie qui va résoudre le problème.
    --  @param Probleme
    --  Le problème à résoudre.
-   procedure Resoudre
-   (
-      Strategie   : in Strategie_T;
-      Probleme    : in out Distance_P.Probleme_T
-   );
 
 private
 

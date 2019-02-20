@@ -13,15 +13,18 @@ package Distance_P is
 
    pragma Pure;
 
-   --  Le problème de distance entre deux points à résoudre.
    type Probleme_T is tagged private;
+   --  Le problème de distance entre deux points à résoudre.
 
-   --  Une coordonnée x, y ou z d'un point.
    type Coordonnee_T is new Integer;
+   --  Une coordonnée x, y ou z d'un point.
 
-   --  La distance entre deux points.
    type Distance_T is new Integer;
+   --  La distance entre deux points.
 
+   function Initialiser
+      (X1, Y1, X2, Y2 : in Coordonnee_T)
+      return Probleme_T;
    --  Initialise le problème avec les données et la stratégie adéquate.
    --  @param X1
    --  La coordonnée X du premier point.
@@ -32,80 +35,79 @@ package Distance_P is
    --  @param Y2
    --  La coordonnée Y du deuxième point.
    --  @return Le problème initialisé.
-   function Initialiser
-   (X1, Y1, X2, Y2 : in Coordonnee_T)
-   return Probleme_T;
 
+   function Lire_X1
+      (Probleme : in Probleme_T)
+      return Coordonnee_T;
    --  Lit la coordonnée X du premier point.
    --  @param Probleme
    --  Le problème de distance.
    --  @return La coordonnée X du premier point.
-   function Lire_X1
+
+   function Lire_Y1
       (Probleme : in Probleme_T)
       return Coordonnee_T;
-
    --  Lit la coordonnée Y du premier point.
    --  @param Probleme
    --  Le problème de distance.
    --  @return La coordonnée Y du premier point.
-   function Lire_Y1
+
+   function Lire_X2
       (Probleme : in Probleme_T)
       return Coordonnee_T;
-
    --  Lit la coordonnée X du deuxième point.
    --  @param Probleme
    --  Le problème de distance.
    --  @return La coordonnée X du deuxième point.
-   function Lire_X2
+
+   function Lire_Y2
       (Probleme : in Probleme_T)
       return Coordonnee_T;
-
    --  Lit la coordonnée Y du deuxième point.
    --  @param Probleme
    --  Le problème de distance.
    --  @return La coordonnée Y du deuxième point.
-   function Lire_Y2
-      (Probleme : in Probleme_T)
-      return Coordonnee_T;
 
-   --  Écrit la distance entre les deux points.
-   --  @param Probleme
-   --  Le problème de distance.
-   --  @param Distance
-   --  La distance entre les deux points.
    procedure Ecrire_Distance
       (
          Probleme : in out Probleme_T;
          Distance : in Distance_T
       );
+   --  Écrit la distance entre les deux points.
+   --  @param Probleme
+   --  Le problème de distance.
+   --  @param Distance
+   --  La distance entre les deux points.
 
+   function Lire_Distance
+      (Probleme : in Probleme_T)
+      return Distance_T;
    --  Lit la distance entre les deux points.
    --  @param Probleme
    --  Le problème de distance.
    --  @return La distance entre les deux points.
-   function Lire_Distance
-      (Probleme : in Probleme_T)
-      return Distance_T;
 
-   --  Lance la résolution de la distance entre les deux points avec
-   --  la stratégie adéquate.
-   --  @param Probleme
-   --  Le problème de distance à résoudre.
    procedure Resoudre
       (
          Probleme  : in out Probleme_T;
          Strategie : in Calcul_Distance_P.Calcul_Distance_T'Class
       );
+   --  Lance la résolution de la distance entre les deux points avec
+   --  la stratégie adéquate.
+   --  @param Strategie
+   --  La stratégie.
+   --  @param Probleme
+   --  Le problème de distance à résoudre.
 
+   function "-"
+      (Right, Left : in Coordonnee_T)
+      return Distance_T;
    --  Soustraction entre deux coordonnées donne une distance.
    --  @param Right
    --  La coordonnée droite.
    --  @param Left
    --  La coordonnée gauche.
    --  @return La distance entre les deux coordonnées.
-   function "-"
-      (Right, Left : in Coordonnee_T)
-      return Distance_T;
 
 private
 

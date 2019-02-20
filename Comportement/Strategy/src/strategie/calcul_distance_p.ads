@@ -10,21 +10,21 @@ package Calcul_Distance_P is
 
    pragma Pure;
 
+   type Calcul_Distance_T is abstract tagged private;
    --  Stratégie abstraite de calcul du problème
    --  de distance entre deux points.
-   type Calcul_Distance_T is abstract tagged private;
 
+   procedure Resoudre
+      (
+         Strategie   : in Calcul_Distance_T;
+         Probleme    : in out Distance_P.Probleme_T
+      )
+   is abstract;
    --  Résout le problème de la distance entre deux points.
    --  @param Strategie
    --  La stratégie qui va résoudre le problème.
    --  @param Probleme
    --  Le problème à résoudre.
-   procedure Resoudre
-   (
-      Strategie   : in Calcul_Distance_T;
-      Probleme    : in out Distance_P.Probleme_T
-   )
-   is abstract;
 
 private
 
