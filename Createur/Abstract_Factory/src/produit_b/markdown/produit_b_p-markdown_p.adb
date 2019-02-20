@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body Produit_B_P.Produit_Un_P is
+package body Produit_B_P.Markdown_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -12,4 +12,4 @@ package body Produit_B_P.Produit_Un_P is
       Ada.Text_IO.Put_Line ("# Classe B 1 ! Pour vous servir.");
    end Presente;
 
-end Produit_B_P.Produit_Un_P;
+end Produit_B_P.Markdown_P;

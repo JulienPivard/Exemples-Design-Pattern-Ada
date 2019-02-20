@@ -1,5 +1,5 @@
-with Produit_A_P.Produit_Un_P;
-with Produit_B_P.Produit_Un_P;
+with Produit_A_P.Markdown_P;
+with Produit_B_P.Markdown_P;
 
 package body Fabrique_P.Markdown_P is
 
@@ -10,7 +10,7 @@ package body Fabrique_P.Markdown_P is
       return Produit_A_P.Produit_T'Class
    is
       pragma Unreferenced (Fabrique);
-      P : Produit_A_P.Produit_Un_P.Produit_Un_T;
+      P : Produit_A_P.Markdown_P.Produit_Un_T;
    begin
       return P;
    end Creer_Produit_A;
@@ -22,7 +22,7 @@ package body Fabrique_P.Markdown_P is
       return Produit_B_P.Produit_T'Class
    is
       pragma Unreferenced (Fabrique);
-      P : Produit_B_P.Produit_Un_P.Produit_Un_T;
+      P : Produit_B_P.Markdown_P.Produit_Un_T;
    begin
       return P;
    end Creer_Produit_B;

@@ -1,4 +1,4 @@
-package Produit_A_P.Produit_Deux_P is
+package Produit_A_P.Html_P is
 
    type Produit_Deux_T is new Produit_T with private;
    --  Un produit de type A en version 2.
@@ -14,4 +14,4 @@ private
 
    type Produit_Deux_T is new Produit_T with null record;
 
-end Produit_A_P.Produit_Deux_P;
+end Produit_A_P.Html_P;
