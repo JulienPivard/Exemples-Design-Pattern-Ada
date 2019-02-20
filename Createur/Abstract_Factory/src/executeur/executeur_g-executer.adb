@@ -1,8 +1,8 @@
 with Ada.Text_IO;
 
 with Fabrique_P;
-with Fabrique_P.Fabrique_Un_P;
-with Fabrique_P.Fabrique_Deux_P;
+with Fabrique_P.Markdown_P;
+with Fabrique_P.Html_P;
 with Produit_A_P;
 with Produit_B_P;
 
@@ -30,8 +30,8 @@ is
    end Construire;
    ---------------------------------------------------------------------------
 
-   package Fab_1_R   renames Fabrique_P.Fabrique_Un_P;
-   package Fab_2_R renames Fabrique_P.Fabrique_Deux_P;
+   package Fab_1_R renames Fabrique_P.Markdown_P;
+   package Fab_2_R renames Fabrique_P.Html_P;
    Fabrique_1 : Fab_1_R.Fabrique_Un_T;
    Fabrique_2 : Fab_2_R.Fabrique_Deux_T;
 begin

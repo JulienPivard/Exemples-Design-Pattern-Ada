@@ -1,4 +1,4 @@
-package Fabrique_P.Fabrique_Un_P is
+package Fabrique_P.Markdown_P is
 
    type Fabrique_Un_T is new Fabrique_T with private;
    --  Une fabrique de produit en version un.
@@ -25,4 +25,4 @@ private
 
    type Fabrique_Un_T is new Fabrique_T with null record;
 
-end Fabrique_P.Fabrique_Un_P;
+end Fabrique_P.Markdown_P;

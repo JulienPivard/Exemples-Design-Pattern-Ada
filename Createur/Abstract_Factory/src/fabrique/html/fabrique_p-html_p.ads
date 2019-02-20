@@ -1,4 +1,4 @@
-package Fabrique_P.Fabrique_Deux_P is
+package Fabrique_P.Html_P is
 
    type Fabrique_Deux_T is new Fabrique_T with private;
    --  Une fabrique de produit en version deux.
@@ -25,4 +25,4 @@ private
 
    type Fabrique_Deux_T is new Fabrique_T with null record;
 
-end Fabrique_P.Fabrique_Deux_P;
+end Fabrique_P.Html_P;
