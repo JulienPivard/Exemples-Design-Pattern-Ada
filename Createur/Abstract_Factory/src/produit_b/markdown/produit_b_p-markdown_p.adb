@@ -5,7 +5,7 @@ package body Produit_B_P.Markdown_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Presente
-      (Produit : in Produit_Un_T)
+      (Produit : in Produit_Markdown_T)
    is
       pragma Unreferenced (Produit);
    begin

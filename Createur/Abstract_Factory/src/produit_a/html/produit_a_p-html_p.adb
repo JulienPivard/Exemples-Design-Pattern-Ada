@@ -5,7 +5,7 @@ package body Produit_A_P.Html_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Annonce
-      (Produit : in Produit_Deux_T)
+      (Produit : in Produit_Html_T)
    is
       pragma Unreferenced (Produit);
    begin
