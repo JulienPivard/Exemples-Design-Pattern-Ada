@@ -1,33 +1,52 @@
 with Produit_Markdown_P;
 
+--  @summary
+--  Un monteur de fichier markdown.
+--  @description
+--  Un monteur qui construit au format markdown.
+--  @group Builder Markdown
 package Builder_P.Markdown_P is
 
-   --  Un monteur pour du texte formaté en markdown.
    type Monteur_Markdown_T is new Monteur_T with private;
+   --  Un monteur pour du texte formaté en markdown.
 
+   procedure Nouveau_Texte_Markdown
+      (Monteur : in out Monteur_Markdown_T);
    --  Permet d'initialiser un texte vide au format markdown.
-   procedure Nouveau_Texte_Markdown (Monteur : in out Monteur_Markdown_T);
+   --  @param Monteur
+   --  Le monteur.
 
-   --  Permet d'ajouter un titre au texte markdown
    overriding
    procedure Ajouter_Titre
-   (
-      Monteur : in out Monteur_Markdown_T;
-      Texte : in Contenu_R.Unbounded_Wide_Wide_String
-   );
+      (
+         Monteur : in out Monteur_Markdown_T;
+         Texte : in Contenu_R.Unbounded_Wide_Wide_String
+      );
+   --  Permet d'ajouter un titre au texte markdown.
+   --  @param Monteur
+   --  Le monteur.
+   --  @param Texte
+   --  Le texte à ajouter dans l'objet.
 
-   --  Permet d'ajouter un paragraphe au texte markdown
    overriding
    procedure Ajouter_Paragraphe
-   (
-      Monteur : in out Monteur_Markdown_T;
-      Texte : in Contenu_R.Unbounded_Wide_Wide_String
-   );
+      (
+         Monteur : in out Monteur_Markdown_T;
+         Texte : in Contenu_R.Unbounded_Wide_Wide_String
+      );
+   --  Permet d'ajouter un paragraphe au texte markdown.
+   --  @param Monteur
+   --  Le monteur.
+   --  @param Texte
+   --  Le texte à ajouter dans l'objet.
 
-   --  Permet de récupérer le texte construit par le monteur.
    function Recuperer_Resultat
       (Monteur : in Monteur_Markdown_T)
       return Produit_Markdown_P.Texte_Markdown_T;
+   --  Permet de récupérer le texte construit par le monteur.
+   --  @param Monteur
+   --  Le monteur.
+   --  @return Le markdown formaté.
 
 private
 
