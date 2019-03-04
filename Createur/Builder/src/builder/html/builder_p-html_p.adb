@@ -1,19 +1,18 @@
-package body Builder_P.Builder_Markdown_P is
+package body Builder_P.Html_P is
 
    ---------------------------------------------------------------------------
-   procedure Nouveau_Texte_Markdown
-      (Monteur : in out Monteur_Markdown_T)
+   procedure Nouveau_Texte_Html
+      (Monteur : in out Monteur_Html_T)
    is
    begin
-      Monteur.Texte_En_Construction :=
-         Produit_Markdown_P.Creer_Produit_Markdown;
-   end Nouveau_Texte_Markdown;
+      Monteur.Texte_En_Construction := Produit_Html_P.Creer_Produit_Html;
+   end Nouveau_Texte_Html;
 
    ---------------------------------------------------------------------------
    overriding
    procedure Ajouter_Titre
       (
-         Monteur : in out Monteur_Markdown_T;
+         Monteur : in out Monteur_Html_T;
          Texte : in Contenu_R.Unbounded_Wide_Wide_String
       )
    is
@@ -27,7 +26,7 @@ package body Builder_P.Builder_Markdown_P is
    overriding
    procedure Ajouter_Paragraphe
       (
-         Monteur : in out Monteur_Markdown_T;
+         Monteur : in out Monteur_Html_T;
          Texte : in Contenu_R.Unbounded_Wide_Wide_String
       )
    is
@@ -39,11 +38,11 @@ package body Builder_P.Builder_Markdown_P is
 
    ---------------------------------------------------------------------------
    function Recuperer_Resultat
-      (Monteur : in Monteur_Markdown_T)
-      return Produit_Markdown_P.Texte_Markdown_T
+      (Monteur : in Monteur_Html_T)
+      return Produit_Html_P.Texte_Html_T
    is
    begin
       return Monteur.Texte_En_Construction;
    end Recuperer_Resultat;
 
-end Builder_P.Builder_Markdown_P;
+end Builder_P.Html_P;

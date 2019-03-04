@@ -1,6 +1,6 @@
 with Produit_Markdown_P;
 
-package Builder_P.Builder_Markdown_P is
+package Builder_P.Markdown_P is
 
    --  Un monteur pour du texte formaté en markdown.
    type Monteur_Markdown_T is new Monteur_T with private;
@@ -36,4 +36,4 @@ private
          Texte_En_Construction : Produit_Markdown_P.Texte_Markdown_T;
       end record;
 
-end Builder_P.Builder_Markdown_P;
+end Builder_P.Markdown_P;

@@ -1,9 +1,9 @@
 with Ada.Text_IO;
 
 with Directeur_P;
-with Builder_P.Builder_Html_P;
+with Builder_P.Html_P;
 with Produit_Html_P;
-with Builder_P.Builder_Markdown_P;
+with Builder_P.Markdown_P;
 with Produit_Markdown_P;
 
 separate (Executeur_G)
@@ -11,8 +11,8 @@ procedure Executer
    --  (Arguments)
 is
 
-   package Html_B_R           renames Builder_P.Builder_Html_P;
-   package Mark_B_R           renames Builder_P.Builder_Markdown_P;
+   package Html_B_R           renames Builder_P.Html_P;
+   package Mark_B_R           renames Builder_P.Markdown_P;
 
    Dir   : Directeur_P.Directeur_T;
    Mon_H : Html_B_R.Monteur_Html_T;
