@@ -20,8 +20,8 @@ package Prototype_P is
    --  Permet de changer l'age du prototype.
    procedure Changer_Age
       (
-         Proto : out Prototype_T;
-         Age : in Age_T
+         Proto : in out Prototype_T;
+         Age   : in Age_T
       )
    is abstract;
 

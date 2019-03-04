@@ -19,8 +19,8 @@ package Prototype_P.Porte_P is
    overriding
    procedure Changer_Age
       (
-         Porte : out Porte_T;
-         Age : in Age_T
+         Porte : in out Porte_T;
+         Age   : in Age_T
       );
 
    --  Permet de lire l'age de la porte.
@@ -31,7 +31,7 @@ package Prototype_P.Porte_P is
 
    --  Permet de créer une porte à partir de rien.
    procedure Creer_Porte
-      (Porte : out Porte_T);
+      (Porte : in out Porte_T);
 
 private
 

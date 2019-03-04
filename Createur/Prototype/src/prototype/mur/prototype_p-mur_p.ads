@@ -18,8 +18,8 @@ package Prototype_P.Mur_P is
    overriding
    procedure Changer_Age
       (
-         Le_Mur : out Mur_T;
-         Age : in Age_T
+         Le_Mur   : in out Mur_T;
+         Age      : in Age_T
       );
 
    --  Permet de lire l'age du mur.
@@ -34,13 +34,16 @@ package Prototype_P.Mur_P is
 
 private
 
-   type T_Caracteristique is (Normal, Magique, Bois, Papier);
+   type Caracteristique_T is (Normal, Magique, Bois, Papier);
+
+   subtype Indice_Nom_T is Integer range 1 .. 30;
+   subtype Nom_T is String (Indice_Nom_T);
 
    type Mur_T is new Prototype_T with
       record
-         Nom : String (1 .. 30);
-         Age : Age_T;
-         Cara : T_Caracteristique;
+         Nom   : Nom_T;
+         Age   : Age_T;
+         Cara  : Caracteristique_T;
       end record;
 
 end Prototype_P.Mur_P;

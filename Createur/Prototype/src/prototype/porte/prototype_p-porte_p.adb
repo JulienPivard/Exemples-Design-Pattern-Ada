@@ -6,10 +6,10 @@ package body Prototype_P.Porte_P is
       (Porte : in Porte_T)
       return Porte_T
    is
-      p : Porte_T;
+      P : Porte_T;
    begin
-      p.Age := Porte.Age;
-      return p;
+      P.Age := Porte.Age;
+      return P;
    end Clone;
 
    ---------------------------------------------------------------------------
@@ -26,8 +26,8 @@ package body Prototype_P.Porte_P is
    overriding
    procedure Changer_Age
       (
-         Porte : out Porte_T;
-         Age : in Age_T
+         Porte : in out Porte_T;
+         Age   : in Age_T
       )
    is
    begin
@@ -46,7 +46,7 @@ package body Prototype_P.Porte_P is
 
    ---------------------------------------------------------------------------
    procedure Creer_Porte
-      (Porte : out Porte_T)
+      (Porte : in out Porte_T)
    is
    begin
       Porte.Age := 0;

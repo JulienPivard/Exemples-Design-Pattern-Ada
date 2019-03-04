@@ -5,8 +5,8 @@ package body Prototype_P.Mur_P is
       (Le_Mur : in out Mur_T)
    is
    begin
-      Le_Mur.Nom := "                              ";
-      Le_Mur.Age := 0;
+      Le_Mur.Nom  := "                              ";
+      Le_Mur.Age  := 0;
       Le_Mur.Cara := Normal;
    end Creer_Mur;
 
@@ -16,20 +16,20 @@ package body Prototype_P.Mur_P is
       (Le_Mur : in Mur_T)
       return Mur_T
    is
-      m : Mur_T;
+      M : Mur_T;
    begin
-      m.Nom := Le_Mur.Nom;
-      m.Age := Le_Mur.Age;
-      m.Cara := Le_Mur.Cara;
-      return m;
+      M.Nom    := Le_Mur.Nom;
+      M.Age    := Le_Mur.Age;
+      M.Cara   := Le_Mur.Cara;
+      return M;
    end Clone;
 
    ---------------------------------------------------------------------------
    overriding
    procedure Changer_Age
       (
-         Le_Mur : out Mur_T;
-         Age : in Age_T
+         Le_Mur   : in out Mur_T;
+         Age      : in Age_T
       )
    is
    begin
