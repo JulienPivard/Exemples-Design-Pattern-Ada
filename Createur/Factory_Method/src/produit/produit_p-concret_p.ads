@@ -10,7 +10,7 @@ package Produit_P.Concret_P is
 
    overriding
    procedure Creer_Produit
-      (Produit : out Concret_T);
+      (Produit : in out Concret_T);
    --  Crée un produit concret.
    --  @param Produit
    --  Le produit à créer.
@@ -24,9 +24,12 @@ package Produit_P.Concret_P is
 
 private
 
+   subtype Index_Contenu_T is Integer range 1 .. 10;
+   subtype Contenu_T is String (Index_Contenu_T);
+
    type Concret_T is new Produit_T with
       record
-         Contenu : String (1 .. 10);
+         Contenu : Contenu_T;
       end record;
 
 end Produit_P.Concret_P;

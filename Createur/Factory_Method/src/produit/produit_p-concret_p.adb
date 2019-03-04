@@ -5,7 +5,7 @@ package body Produit_P.Concret_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Creer_Produit
-      (Produit : out Concret_T)
+      (Produit : in out Concret_T)
    is
    begin
       Produit.Contenu := "Coucou ttt";
