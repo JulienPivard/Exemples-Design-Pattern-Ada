@@ -28,7 +28,12 @@ doc:
 ###################
 .PHONY: prove
 prove:
-	gnatprove -P$(GPR)
+	gnatprove -P$(GPR) $(OPTGPR)
+
+###################
+.PHONY: check
+check:
+	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: cleandoc
