@@ -4,7 +4,7 @@ package body Singleton_P is
 
    ---------------------------------------------------------------------------
    function Recuperer_Singleton
-      return Singleton_Access_T
+      return Singleton_A
    is
    begin
       return Unique;
@@ -14,7 +14,7 @@ package body Singleton_P is
    procedure Changer_Nom
       (
          Singleton : in out Singleton_T;
-         Nom : in Nom_P.Unbounded_String
+         Nom : in Nom_R.Unbounded_String
       )
    is
    begin
@@ -26,7 +26,7 @@ package body Singleton_P is
       (Singleton : in Singleton_T)
    is
    begin
-      Ada.Text_IO.Put (Nom_P.To_String (Singleton.Nom));
+      Ada.Text_IO.Put (Nom_R.To_String (Singleton.Nom));
       Ada.Text_IO.Put (" | ");
       Ada.Text_IO.Put_Line (Singleton.Age'Img);
    end Afficher;

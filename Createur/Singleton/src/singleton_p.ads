@@ -7,23 +7,23 @@ with Ada.Strings.Unbounded;
 --  @group Créateur
 package Singleton_P is
 
-   package Nom_P renames Ada.Strings.Unbounded;
+   package Nom_R renames Ada.Strings.Unbounded;
 
    type Singleton_T (<>) is tagged limited private;
    --  Représente un singleton avec un type discriminant.
 
-   type Singleton_Access_T is access Singleton_T;
+   type Singleton_A is access Singleton_T;
    --  Permet d'accéder à un singleton avec un pointeur.
 
    function Recuperer_Singleton
-      return Singleton_Access_T;
+      return Singleton_A;
    --  Permet de récupérer notre singleton.
    --  @return Le singleton
 
    procedure Changer_Nom
       (
          Singleton : in out Singleton_T;
-         Nom : in Nom_P.Unbounded_String
+         Nom : in Nom_R.Unbounded_String
       );
    --  Permet de changer l'attribut variable
    --  @param Singleton
@@ -44,11 +44,12 @@ private
 
    type Singleton_T (Age : Age_T) is tagged limited
       record
-         Nom : Nom_P.Unbounded_String;
+         Nom : Nom_R.Unbounded_String;
       end record;
 
-   Unique : constant Singleton_Access_T :=
-      new Singleton_T (Age => 45);
+   subtype Singleton_Instance_T is Singleton_T (Age => 45);
+
+   Unique : constant Singleton_A := new Singleton_Instance_T;
    --  Singleton
 
 end Singleton_P;

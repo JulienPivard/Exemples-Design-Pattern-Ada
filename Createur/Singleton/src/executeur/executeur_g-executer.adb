@@ -8,9 +8,9 @@ procedure Executer
    --  (Arguments)
 is
 
-   S1 : constant Singleton_P.Singleton_Access_T :=
+   S1 : constant Singleton_P.Singleton_A :=
       Singleton_P.Recuperer_Singleton;
-   S2 : constant Singleton_P.Singleton_Access_T :=
+   S2 : constant Singleton_P.Singleton_A :=
       Singleton_P.Recuperer_Singleton;
 
 begin
