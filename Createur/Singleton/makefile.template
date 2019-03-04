@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 07 septembre[09] 2018
+# Dernière modification : Lundi 04 mars[03] 2019
 
 ###################
 # Point d'entrée #
@@ -17,6 +17,7 @@ GNAT_BIN_MACOS			:= /usr/local/gnat/bin
 
 ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
     PATH		:= $(GNAT_BIN_PERSO):$(PATH)
+    $(info  Utilisation de bin GNAT personnalisé)
 else ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
     PATH		:= $(GNAT_BIN_MACOS):$(PATH)
 else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
@@ -44,30 +45,30 @@ version_makefile:
 ###################
 .PHONY: build
 build:
-	@echo
-	@echo "┌───────────────────────────────────────────────────────────────┐"
-	@echo "│                  Lancement de la compilation                  │"
-	@echo "└───────────────────────────────────────────────────────────────┘"
+	@echo "  "
+	@echo " ┌───────────────────────────────────────────────────────────────┐"
+	@echo " │                  Lancement de la compilation                  │"
+	@echo " └───────────────────────────────────────────────────────────────┘"
 	$(CC) -P$(GPR) $(OPTGPR)
-	@echo "─────────────────────────────────────────────────────────────────"
+	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: clean
 clean:
-	@echo "┌───────────────────────────────────────────────────────────────┐"
-	@echo "│    Effacement des fichiers temporaire généré pour les tests   │"
-	@echo "└───────────────────────────────────────────────────────────────┘"
+	@echo " ┌──────────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers temporaire généré par la compilation │"
+	@echo " └──────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) obj
-	@echo "─────────────────────────────────────────────────────────────────"
+	@echo " ────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: distclean
 distclean: clean
-	@echo "┌───────────────────────────────────────────────────────────────┐"
-	@echo "│    Effacement des fichiers executable généré pour les tests   │"
-	@echo "└───────────────────────────────────────────────────────────────┘"
+	@echo " ┌──────────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers executable généré par la compilation │"
+	@echo " └──────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) bin
-	@echo "─────────────────────────────────────────────────────────────────"
+	@echo " ────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: compter
