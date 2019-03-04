@@ -13,7 +13,7 @@ package Builder_P.Builder_Html_P is
    procedure Ajouter_Titre
       (
          Monteur : in out Monteur_Html_T;
-         Texte : in Contenu_P.Unbounded_Wide_Wide_String
+         Texte : in Contenu_R.Unbounded_Wide_Wide_String
       );
 
    --  Permet d'ajouter un paragraphe au texte html
@@ -21,7 +21,7 @@ package Builder_P.Builder_Html_P is
    procedure Ajouter_Paragraphe
       (
          Monteur : in out Monteur_Html_T;
-         Texte : in Contenu_P.Unbounded_Wide_Wide_String
+         Texte : in Contenu_R.Unbounded_Wide_Wide_String
       );
 
    --  Permet de récupérer le texte construit par le monteur.

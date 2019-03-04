@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded;
 
 package Produit_Markdown_P is
 
-   package Contenu_P renames Ada.Strings.Wide_Wide_Unbounded;
+   package Contenu_R renames Ada.Strings.Wide_Wide_Unbounded;
 
    --  Permet de contenir du texte formaté en markdown.
    type Texte_Markdown_T is tagged private;
@@ -14,7 +14,7 @@ package Produit_Markdown_P is
    procedure Ajouter_Texte
       (
          Texte : in out Texte_Markdown_T;
-         Contenu : in Contenu_P.Unbounded_Wide_Wide_String
+         Contenu : in Contenu_R.Unbounded_Wide_Wide_String
       );
 
    --  Ajout d'un début de titre.
@@ -36,7 +36,7 @@ private
 
    type Texte_Markdown_T is tagged
       record
-         Contenu : Contenu_P.Unbounded_Wide_Wide_String;
+         Contenu : Contenu_R.Unbounded_Wide_Wide_String;
       end record;
 
 end Produit_Markdown_P;

@@ -2,7 +2,7 @@ with Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
 
 package body Produit_Markdown_P is
 
-   package Contenu_IO renames Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
+   package Contenu_IO_R renames Ada.Wide_Wide_Text_IO.Wide_Wide_Unbounded_IO;
 
    ---------------------------------------------------------------------------
    function Creer_Produit_Markdown
@@ -10,7 +10,7 @@ package body Produit_Markdown_P is
    is
       T : Texte_Markdown_T;
    begin
-      T.Contenu := Contenu_P.To_Unbounded_Wide_Wide_String ("");
+      T.Contenu := Contenu_R.To_Unbounded_Wide_Wide_String ("");
       return T;
    end Creer_Produit_Markdown;
 
@@ -18,11 +18,11 @@ package body Produit_Markdown_P is
    procedure Ajouter_Texte
       (
          Texte : in out Texte_Markdown_T;
-         Contenu : in Contenu_P.Unbounded_Wide_Wide_String
+         Contenu : in Contenu_R.Unbounded_Wide_Wide_String
       )
    is
    begin
-      Contenu_P.Append (Texte.Contenu, Contenu);
+      Contenu_R.Append (Texte.Contenu, Contenu);
    end Ajouter_Texte;
 
    ---------------------------------------------------------------------------
@@ -30,7 +30,7 @@ package body Produit_Markdown_P is
       (Texte : in out Texte_Markdown_T)
    is
    begin
-      Contenu_P.Append (Texte.Contenu, "# ");
+      Contenu_R.Append (Texte.Contenu, "# ");
    end Commencer_Titre;
 
    ---------------------------------------------------------------------------
@@ -38,8 +38,8 @@ package body Produit_Markdown_P is
       (Texte : in out Texte_Markdown_T)
    is
    begin
-      Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
-      Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
+      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
+      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
    end Finir_Titre;
 
    ---------------------------------------------------------------------------
@@ -56,15 +56,15 @@ package body Produit_Markdown_P is
       (Texte : in out Texte_Markdown_T)
    is
    begin
-      Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
-      Contenu_P.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
+      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
+      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
    end Finir_Paragraphe;
 
    procedure Rendu
       (Texte : in Texte_Markdown_T)
    is
    begin
-      Contenu_IO.Put_Line (Texte.Contenu);
+      Contenu_IO_R.Put_Line (Texte.Contenu);
    end Rendu;
 
 end Produit_Markdown_P;

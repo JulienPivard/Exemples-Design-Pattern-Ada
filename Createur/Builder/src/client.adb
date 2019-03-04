@@ -1,37 +1,36 @@
-with Ada.Text_IO;
+------------------------------------------------------------------------------
+--                                                                          --
+--                          Auteur : PIVARD Julien                          --
+--           Dernière modification : Lundi 04 mars[03] 2019
+--                                                                          --
+------------------------------------------------------------------------------
 
-with Directeur_P;
-with Builder_P.Builder_Html_P;
-with Produit_Html_P;
-with Builder_P.Builder_Markdown_P;
-with Produit_Markdown_P;
+with Ada.Text_IO;
+with Executeur_G;
 
 procedure Client is
 
-   package Html_B_P           renames Builder_P.Builder_Html_P;
-   package Mark_B_P           renames Builder_P.Builder_Markdown_P;
-
-   dir  : Directeur_P.Directeur_T;
-   monH : Html_B_P.Monteur_Html_T;
-   texH : Produit_Html_P.Texte_Html_T;
-   monM : Mark_B_P.Monteur_Markdown_T;
-   texM : Produit_Markdown_P.Texte_Markdown_T;
+   package Executeur_P is new Executeur_G
+      (
+         Nombre_D_Arguments_Min => 0,
+         Nombre_D_Arguments_Max => 0
+      );
 
 begin
 
-   --  Mettez votre code ici
-   Ada.Text_IO.Put_Line ("--------------");
+   Ada.Text_IO.New_Line (1);
 
-   dir.Construire (monH);
-   texH := monH.Recuperer_Resultat;
-   texH.Rendu;
+   Executeur_P.Verifier_Nombre_D_Arguments;
+   Executeur_P.Executer;
 
-   Ada.Text_IO.Put_Line ("--------------");
-
-   dir.Construire (monM);
-   texM := monM.Recuperer_Resultat;
-   texM.Rendu;
-
-   Ada.Text_IO.Put_Line ("--------------");
+exception
+   when Executeur_P.Trop_D_Arguments_E =>
+      null;
+   when Executeur_P.Pas_Assez_D_Arguments_E =>
+      null;
+   when Executeur_P.Option_Incorrect_E =>
+      null;
+   when Executeur_P.Valeur_Option_Incorrect_E =>
+      null;
 
 end Client;
