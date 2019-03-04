@@ -22,8 +22,8 @@ package Singleton_P is
 
    procedure Changer_Nom
       (
-         Singleton : in out Singleton_T;
-         Nom : in Nom_R.Unbounded_String
+         Singleton   : in out Singleton_T;
+         Nom         : in Nom_R.Unbounded_String
       );
    --  Permet de changer l'attribut variable
    --  @param Singleton
