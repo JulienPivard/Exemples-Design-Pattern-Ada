@@ -1,44 +1,36 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Vendredi 07 septembre[09] 2018
+--           Dernière modification : Lundi 04 mars[03] 2019
 --                                                                          --
 ------------------------------------------------------------------------------
 
 with Ada.Text_IO;
-
-with Singleton_P;
-with Ada.Strings.Unbounded;
+with Executeur_G;
 
 procedure Client is
 
-   s1 : constant Singleton_P.Singleton_Access_T :=
-      Singleton_P.Recuperer_Singleton;
-   s2 : constant Singleton_P.Singleton_Access_T :=
-      Singleton_P.Recuperer_Singleton;
+   package Executeur_P is new Executeur_G
+      (
+         Nombre_D_Arguments_Min => 0,
+         Nombre_D_Arguments_Max => 0
+      );
 
 begin
 
    Ada.Text_IO.New_Line (1);
-   Ada.Text_IO.Put_Line ("====  Après modification de S1  ====");
-   Ada.Text_IO.New_Line (1);
 
-   s1.all.Changer_Nom
-      (Ada.Strings.Unbounded.To_Unbounded_String ("Roulecouele"));
-   Ada.Text_IO.Put ("S1 : ");
-   s1.all.Afficher;
-   Ada.Text_IO.Put ("S2 : ");
-   s2.all.Afficher;
+   Executeur_P.Verifier_Nombre_D_Arguments;
+   Executeur_P.Executer;
 
-   Ada.Text_IO.New_Line (1);
-   Ada.Text_IO.Put_Line ("====  Après modification de S2  ====");
-   Ada.Text_IO.New_Line (1);
-
-   s2.all.Changer_Nom
-      (Ada.Strings.Unbounded.To_Unbounded_String ("Hey poivros"));
-   Ada.Text_IO.Put ("S1 : ");
-   s1.all.Afficher;
-   Ada.Text_IO.Put ("S2 : ");
-   s2.all.Afficher;
+exception
+   when Executeur_P.Trop_D_Arguments_E =>
+      null;
+   when Executeur_P.Pas_Assez_D_Arguments_E =>
+      null;
+   when Executeur_P.Option_Incorrect_E =>
+      null;
+   when Executeur_P.Valeur_Option_Incorrect_E =>
+      null;
 
 end Client;
