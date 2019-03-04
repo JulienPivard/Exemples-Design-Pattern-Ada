@@ -1,13 +1,23 @@
 with Produit_P;
 
+--  @summary
+--  Une fabrique abstraite.
+--  @description
+--  Une fabrique de produits abstraite.
+--  @group Fabrique
 package Fabrique_P is
 
-   --  Fabrique abstraite
    type Fabrique_T is abstract tagged private;
+   --  Fabrique abstraite.
 
-   --  Fabrique un produit
-   function Fabriquer (Fabrique : in Fabrique_T)
-      return Produit_P.Produit_T'Class is abstract;
+   function Fabriquer
+      (Fabrique : in Fabrique_T)
+      return Produit_P.Produit_T'Class
+   is abstract;
+   --  Fabrique un produit.
+   --  @param Fabrique
+   --  Une fabrique d'objet.
+   --  @return Un produit.
 
 private
 

@@ -1,15 +1,26 @@
+--  @summary
+--  Un produit concret.
+--  @description
+--  Un produit concret.
+--  @group Produit
 package Produit_P.Concret_P is
 
-   --  Un produit de type concret.
    type Concret_T is new Produit_T with private;
+   --  Un produit de type concret.
 
+   overriding
+   procedure Creer_Produit
+      (Produit : out Concret_T);
    --  Crée un produit concret.
-   overriding
-   procedure Creer_Produit (Produit : out Concret_T);
+   --  @param Produit
+   --  Le produit à créer.
 
-   --  Affiche le produit concret.
    overriding
-   procedure Afficher (Produit : in Concret_T);
+   procedure Afficher
+      (Produit : in Concret_T);
+   --  Affiche le produit concret.
+   --  @param Produit
+   --  Le produit à afficher.
 
 private
 
