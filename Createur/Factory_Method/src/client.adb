@@ -1,18 +1,36 @@
-with Ada.Text_IO;
+------------------------------------------------------------------------------
+--                                                                          --
+--                          Auteur : PIVARD Julien                          --
+--           Dernière modification : Lundi 04 mars[03] 2019
+--                                                                          --
+------------------------------------------------------------------------------
 
-with Produit_P;
-with Fabrique_P.Concret_P;
+with Ada.Text_IO;
+with Executeur_G;
 
 procedure Client is
 
-   f : Fabrique_P.Concret_P.Concret_T;
-   p : Produit_P.Produit_T'Class := f.Fabriquer;
+   package Executeur_P is new Executeur_G
+      (
+         Nombre_D_Arguments_Min => 0,
+         Nombre_D_Arguments_Max => 0
+      );
 
 begin
 
    Ada.Text_IO.New_Line (1);
 
-   p.Creer_Produit;
-   p.Afficher;
+   Executeur_P.Verifier_Nombre_D_Arguments;
+   Executeur_P.Executer;
+
+exception
+   when Executeur_P.Trop_D_Arguments_E =>
+      null;
+   when Executeur_P.Pas_Assez_D_Arguments_E =>
+      null;
+   when Executeur_P.Option_Incorrect_E =>
+      null;
+   when Executeur_P.Valeur_Option_Incorrect_E =>
+      null;
 
 end Client;
