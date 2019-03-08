@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 04 mars[03] 2019
+# Dernière modification : Samedi 13 octobre[10] 2018
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
