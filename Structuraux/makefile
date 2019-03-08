@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 07 septembre[09] 2018
+# Dernière modification : Vendredi 08 mars[03] 2019
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -13,6 +13,7 @@ Makefiles		= $(wildcard */makefile)
 Makefiles_Cleans	= $(Makefiles:%=%_clean)
 Makefiles_DistClean	= $(Makefiles:%=%_distclean)
 Makefiles_Version	= $(Makefiles:%=%_version)
+Makefiles_Run		= $(Makefiles:%=%_run)
 
 
 ###################
@@ -27,6 +28,14 @@ build: $(Makefiles)
 ###################
 $(Makefiles): force
 	$(MAKE) -C $(dir $@)
+
+###################
+.PHONY: run
+run: $(Makefiles_Run)
+
+###################
+$(Makefiles_Run):
+	$(MAKE) -C $(dir $@) run
 
 ###################
 .PHONY: clean
