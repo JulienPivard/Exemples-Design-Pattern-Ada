@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 13 octobre[10] 2018
+# Dernière modification : Mardi 26 mars[03] 2019
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -10,8 +10,8 @@ SHELL		:= /bin/sh
 srcdir		:= .
 
 include ./makefile.conf
-include ./makefile.checks
-include ./makefile.template
+include ./config/makefile.checks
+include ./config/makefile.template
 
 ###################
 .PHONY: $(CIBLECOMPILE)
@@ -34,6 +34,11 @@ prove:
 .PHONY: check
 check:
 	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
+
+###################
+.PHONY: pretty
+pretty:
+	gnatpp -P$(GPR) $(Fic)
 
 ###################
 .PHONY: cleandoc
