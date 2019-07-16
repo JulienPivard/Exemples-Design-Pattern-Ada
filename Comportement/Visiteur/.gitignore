@@ -1,0 +1,10 @@
+# Dossiers fichiers généré par la compilation.
+obj/
+bin/
+doc/
+tags
+# Fichier généré par pretty print.
+*.pp
+# Fichier temporaire de gnat.
+.\#*\#
+./comptage_p.compteur
