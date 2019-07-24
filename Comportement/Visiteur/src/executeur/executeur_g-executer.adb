@@ -76,13 +76,13 @@ is
 
    ---------------------------------------------------------------------------
 
-   Tmp1 : Uml_P.Element_Nomme_T;
-   Tmp2 : Uml_P.CClass_T;
-   Tmp3 : Uml_P.PPackage_T;
-   Tmp4 : Uml_P.Operation_T;
+   Tmp1 : Uml_P.Element_Nomme_T;    --  Un visité
+   Tmp2 : Uml_P.CClass_T;           --  Un visité
+   Tmp3 : Uml_P.PPackage_T;         --  Un visité
+   Tmp4 : Uml_P.Operation_T;        --  Un visité
 
-   Gen  : Code_Generateur_T;
-   Ver  : Verificateur_T;
+   Gen  : Code_Generateur_T;  --  Un visiteur
+   Ver  : Verificateur_T;     --  Un visiteur
 
 begin
    Tmp1.Visiter (Gen);  --  Pas d'affichage
