@@ -13,7 +13,7 @@ generic
 --  @summary
 --  L'exécuteur de programme.
 --  @description
---  L'éxécuteur se charge de vérifier les arguments donné sur la ligne de
+--  L'exécuteur se charge de vérifier les arguments donné sur la ligne de
 --  commande, puis d'extraire les valeurs. Dans une unité séparé il
 --  contient également la méthode de lancement du programme.
 --  @group Exécuteur
