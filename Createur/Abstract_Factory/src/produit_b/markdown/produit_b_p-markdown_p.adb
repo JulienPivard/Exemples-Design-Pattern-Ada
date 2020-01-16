@@ -13,5 +13,6 @@ package body Produit_B_P.Markdown_P is
       Ada.Text_IO.Put_Line (Item    => "Classe B 1 ! Pour vous servir.");
       Ada.Text_IO.New_Line (Spacing => 1);
    end Presente;
+   ---------------------------------------------------------------------------
 
 end Produit_B_P.Markdown_P;

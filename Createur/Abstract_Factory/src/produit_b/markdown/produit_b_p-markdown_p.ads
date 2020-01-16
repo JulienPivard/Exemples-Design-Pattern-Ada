@@ -9,7 +9,8 @@ package Produit_B_P.Markdown_P is
    --  Un produit de type B en version 1.
 
    overriding
-   procedure Presente (Produit : in Produit_Markdown_T);
+   procedure Presente
+      (Produit : in Produit_Markdown_T);
    --  Le produit concret B1 se présente elle même.
    --  @param Produit
    --  Le produit.

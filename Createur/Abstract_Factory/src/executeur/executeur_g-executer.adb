@@ -40,6 +40,7 @@ is
 
    package Fab_1_R renames Fabrique_P.Markdown_P;
    package Fab_2_R renames Fabrique_P.Html_P;
+
    Fabrique_1 : Fab_1_R.Fabrique_Markdown_T;
    Fabrique_2 : Fab_2_R.Fabrique_Html_T;
 begin

@@ -10,10 +10,12 @@ package body Fabrique_P.Markdown_P is
       return Produit_A_P.Produit_T'Class
    is
       pragma Unreferenced (Fabrique);
+
       P : Produit_A_P.Markdown_P.Produit_Markdown_T;
    begin
       return P;
    end Creer_Produit_A;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
@@ -22,9 +24,11 @@ package body Fabrique_P.Markdown_P is
       return Produit_B_P.Produit_T'Class
    is
       pragma Unreferenced (Fabrique);
+
       P : Produit_B_P.Markdown_P.Produit_Markdown_T;
    begin
       return P;
    end Creer_Produit_B;
+   ---------------------------------------------------------------------------
 
 end Fabrique_P.Markdown_P;
