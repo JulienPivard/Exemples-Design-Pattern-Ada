@@ -9,7 +9,7 @@ package body Produit_A_P.Html_P is
    is
       pragma Unreferenced (Produit);
    begin
-      Ada.Text_IO.Put_Line ("<h1>Je suis la classe A 2</h1>");
+      Ada.Text_IO.Put_Line (Item => "<h1>Je suis la classe A 2</h1>");
    end Annonce;
 
 end Produit_A_P.Html_P;

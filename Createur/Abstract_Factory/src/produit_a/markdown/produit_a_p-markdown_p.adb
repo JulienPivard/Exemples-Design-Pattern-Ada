@@ -9,7 +9,7 @@ package body Produit_A_P.Markdown_P is
    is
       pragma Unreferenced (Produit);
    begin
-      Ada.Text_IO.Put_Line ("# Je suis la classe A 1");
+      Ada.Text_IO.Put_Line (Item => "# Je suis la classe A 1");
    end Annonce;
 
 end Produit_A_P.Markdown_P;
