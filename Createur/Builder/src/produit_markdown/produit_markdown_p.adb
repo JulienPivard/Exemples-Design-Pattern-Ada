@@ -10,37 +10,57 @@ package body Produit_Markdown_P is
    is
       T : Texte_Markdown_T;
    begin
-      T.Contenu := Contenu_R.To_Unbounded_Wide_Wide_String ("");
+      T.Contenu := Contenu_R.To_Unbounded_Wide_Wide_String (Source => "");
       return T;
    end Creer_Produit_Markdown;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Ajouter_Texte
       (
-         Texte : in out Texte_Markdown_T;
-         Contenu : in Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in out Texte_Markdown_T;
+         Contenu : in     Contenu_R.Unbounded_Wide_Wide_String
       )
    is
    begin
-      Contenu_R.Append (Texte.Contenu, Contenu);
+      Contenu_R.Append
+         (
+            Source   => Texte.Contenu,
+            New_Item => Contenu
+         );
    end Ajouter_Texte;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Commencer_Titre
       (Texte : in out Texte_Markdown_T)
    is
    begin
-      Contenu_R.Append (Texte.Contenu, "# ");
+      Contenu_R.Append
+         (
+            Source   => Texte.Contenu,
+            New_Item => "# "
+         );
    end Commencer_Titre;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Finir_Titre
       (Texte : in out Texte_Markdown_T)
    is
    begin
-      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
-      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
+      Contenu_R.Append
+         (
+            Source   => Texte.Contenu,
+            New_Item => Wide_Wide_Character'Val (10)
+         );
+      Contenu_R.Append
+         (
+            Source   => Texte.Contenu,
+            New_Item => Wide_Wide_Character'Val (10)
+         );
    end Finir_Titre;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Commencer_Paragraphe
@@ -50,21 +70,33 @@ package body Produit_Markdown_P is
    begin
       null;
    end Commencer_Paragraphe;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Finir_Paragraphe
       (Texte : in out Texte_Markdown_T)
    is
    begin
-      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
-      Contenu_R.Append (Texte.Contenu, Wide_Wide_Character'Val (10));
+      Contenu_R.Append
+         (
+            Source   => Texte.Contenu,
+            New_Item => Wide_Wide_Character'Val (10)
+         );
+      Contenu_R.Append
+         (
+            Source   => Texte.Contenu,
+            New_Item => Wide_Wide_Character'Val (10)
+         );
    end Finir_Paragraphe;
+   ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
    procedure Rendu
       (Texte : in Texte_Markdown_T)
    is
    begin
-      Contenu_IO_R.Put_Line (Texte.Contenu);
+      Contenu_IO_R.Put_Line (Item => Texte.Contenu);
    end Rendu;
+   ---------------------------------------------------------------------------
 
 end Produit_Markdown_P;

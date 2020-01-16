@@ -7,29 +7,39 @@ package body Directeur_P is
    ---------------------------------------------------------------------------
    procedure Construire
       (
-         Directeur : in Directeur_T;
-         Monteur : in out Builder_P.Monteur_T'Class
+         Directeur : in     Directeur_T;
+         Monteur   : in out Builder_P.Monteur_T'Class
       )
    is
       pragma Unreferenced (Directeur);
+
       Titre : constant Text_R.Unbounded_Wide_Wide_String :=
-         Text_R.To_Unbounded_Wide_Wide_String ("Titre bidon");
+         Text_R.To_Unbounded_Wide_Wide_String (Source => "Titre bidon");
       Deuxe : constant Text_R.Unbounded_Wide_Wide_String :=
-         Text_R.To_Unbounded_Wide_Wide_String ("Titre section suivante");
+         Text_R.To_Unbounded_Wide_Wide_String
+            (Source => "Titre section suivante");
       Para1 : constant Text_R.Unbounded_Wide_Wide_String :=
-         Text_R.To_Unbounded_Wide_Wide_String ("Et un bon gros pavé de texte"
-         & " qui vas être bien gros ma gueule.");
+         Text_R.To_Unbounded_Wide_Wide_String
+            (
+               Source => "Et un bon gros pavé de texte" &
+                  " qui vas être bien gros ma gueule."
+            );
       Para2 : constant Text_R.Unbounded_Wide_Wide_String :=
-         Text_R.To_Unbounded_Wide_Wide_String ("Un petit deuxième paragraphe");
+         Text_R.To_Unbounded_Wide_Wide_String
+            (Source => "Un petit deuxième paragraphe");
       Para3 : constant Text_R.Unbounded_Wide_Wide_String :=
-         Text_R.To_Unbounded_Wide_Wide_String ("Et le troisième paragraphe "
-         & "Qui vas être un peu plus long que le reste.");
+         Text_R.To_Unbounded_Wide_Wide_String
+            (
+               Source => "Et le troisième paragraphe " &
+                  "Qui vas être un peu plus long que le reste."
+            );
    begin
-      Monteur.Ajouter_Titre (Titre);
-      Monteur.Ajouter_Paragraphe (Para1);
-      Monteur.Ajouter_Paragraphe (Para2);
-      Monteur.Ajouter_Titre (Deuxe);
-      Monteur.Ajouter_Paragraphe (Para3);
+      Monteur.Ajouter_Titre      (Texte => Titre);
+      Monteur.Ajouter_Paragraphe (Texte => Para1);
+      Monteur.Ajouter_Paragraphe (Texte => Para2);
+      Monteur.Ajouter_Titre      (Texte => Deuxe);
+      Monteur.Ajouter_Paragraphe (Texte => Para3);
    end Construire;
+   ---------------------------------------------------------------------------
 
 end Directeur_P;

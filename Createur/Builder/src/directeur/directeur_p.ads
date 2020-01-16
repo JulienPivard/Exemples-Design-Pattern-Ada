@@ -13,8 +13,8 @@ package Directeur_P is
 
    procedure Construire
       (
-         Directeur : in Directeur_T;
-         Monteur : in out Builder_P.Monteur_T'Class
+         Directeur : in     Directeur_T;
+         Monteur   : in out Builder_P.Monteur_T'Class
       );
    --  Formate le texte au format donné par le monteur.
    --  @param Directeur

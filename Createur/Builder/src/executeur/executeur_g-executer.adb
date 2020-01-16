@@ -22,18 +22,18 @@ is
 
 begin
 
-   Ada.Text_IO.Put_Line ("--------------");
+   Ada.Text_IO.Put_Line (Item => "--------------");
 
-   Dir.Construire (Mon_H);
+   Dir.Construire (Monteur => Mon_H);
    Tex_H := Mon_H.Recuperer_Resultat;
    Tex_H.Rendu;
 
-   Ada.Text_IO.Put_Line ("--------------");
+   Ada.Text_IO.Put_Line (Item => "--------------");
 
-   Dir.Construire (Mon_M);
+   Dir.Construire (Monteur => Mon_M);
    Tex_M := Mon_M.Recuperer_Resultat;
    Tex_M.Rendu;
 
-   Ada.Text_IO.Put_Line ("--------------");
+   Ada.Text_IO.Put_Line (Item => "--------------");
 
 end Executer;
