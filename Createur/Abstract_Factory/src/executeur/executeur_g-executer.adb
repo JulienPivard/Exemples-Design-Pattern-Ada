@@ -19,6 +19,8 @@ is
    --  Construit les produits à partir de la fabrique.
    --  @param Fabrique
    --  La fabrique.
+   --  @param Titre
+   --  Le titre à afficher.
 
    procedure Construire
       (
