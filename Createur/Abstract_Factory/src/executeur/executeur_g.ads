@@ -13,7 +13,7 @@ generic
 --  @summary
 --  L'exécuteur de programme.
 --  @description
---  L'éxécuteur se charge de vérifier les arguments donné sur la ligne de
+--  L'exécuteur se charge de vérifier les arguments donné sur la ligne de
 --  commande, puis d'extraire les valeurs. Dans une unité séparé il
 --  contient également la méthode de lancement du programme.
 --  @group Exécuteur
@@ -37,7 +37,7 @@ package Executeur_G is
 
    package W_W_IO_R renames Ada.Wide_Wide_Text_IO;
 
-   Nb_Args : constant Natural := Ada.Command_Line.Argument_Count;
+   Nb_Args     : constant Natural := Ada.Command_Line.Argument_Count;
    --  Le nombre d'arguments sur la ligne de commande.
    Nb_Args_Max : constant Natural := Nombre_D_Arguments_Max;
    --  Le nombre maximum d'arguments autorisé sur la ligne de commande.
