@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mardi 26 mars[03] 2019
+# Dernière modification : Lundi 10 juin[06] 2019
 
 # Les options sont désactivée si vide
 ifeq ($(ACTIVER_DEBUG), )
@@ -57,7 +57,7 @@ ifneq ($(ACTIVER_WARN_SONT_ERREURS), true)
   endif
 endif
 
-# On vérifie que ACTIVER_WARN_SONT_ERREURS vaut bien [true|false]
+# On vérifie que ACTIVER_AFFICHER_LA_STACK vaut bien [true|false]
 ifneq ($(ACTIVER_AFFICHER_LA_STACK), true)
   ifneq ($(ACTIVER_AFFICHER_LA_STACK), false)
     $(error Dans makefile.conf:69: [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
@@ -97,4 +97,9 @@ ifeq ($(ACTIVER_AFFICHER_LA_STACK), true)
     AFFICHER_LA_STACK	= oui
 else
     AFFICHER_LA_STACK	= non
+endif
+
+# Vérification du niveau de preuve
+ifeq ($(NIVEAU_PREUVE), )
+    NIVEAU_PREUVE	= 0
 endif

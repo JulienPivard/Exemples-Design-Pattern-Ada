@@ -223,7 +223,7 @@ project Build is
             --  -gnata active les assertions. Pragma : assert, debug,
             --  Check, Precondition, et Postcondition
             for Default_Switches ("Ada") use
-               Options & ("-g", "-gnata");
+               Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
