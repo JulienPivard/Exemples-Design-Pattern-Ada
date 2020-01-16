@@ -20,7 +20,7 @@ package Builder_P.Markdown_P is
    procedure Ajouter_Titre
       (
          Monteur : in out Monteur_Markdown_T;
-         Texte : in Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
       );
    --  Permet d'ajouter un titre au texte markdown.
    --  @param Monteur
@@ -32,7 +32,7 @@ package Builder_P.Markdown_P is
    procedure Ajouter_Paragraphe
       (
          Monteur : in out Monteur_Markdown_T;
-         Texte : in Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
       );
    --  Permet d'ajouter un paragraphe au texte markdown.
    --  @param Monteur

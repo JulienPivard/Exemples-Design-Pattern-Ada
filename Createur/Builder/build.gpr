@@ -1,6 +1,8 @@
---  Dernière modification : Mardi 26 mars[03] 2019
+--  Dernière modification : Vendredi 29 novembre[11] 2019
 --  Auteur : PIVARD Julien
 
+--  https://gcc.gnu.org/releases.html
+--  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/elaboration_order_handling_in_gnat.html
 project Build is
 
    --  Les énumérations sont des types accepté.
@@ -10,6 +12,7 @@ project Build is
    type Strict_T              is ("non", "oui");
    type Sorte_Avertissement_T is ("non", "oui");
    type Afficher_La_Stack_T   is ("non", "oui");
+   type Afficher_Ordre_Elab_T is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
@@ -20,10 +23,12 @@ project Build is
    Verbeux           : Verbeux_T             := External ("verbeux", "non");
    Strict            : Strict_T              := External ("strict",  "non");
 
-   Afficher_La_Stack : Afficher_La_Stack_T         :=
+   Afficher_La_Stack          : Afficher_La_Stack_T   :=
       External ("afficher_utilisation_stack",  "non");
-   Warn_Deviennent_Erreurs : Sorte_Avertissement_T :=
+   Warn_Deviennent_Erreurs    : Sorte_Avertissement_T :=
       External ("warn_sont_err", "non");
+   Afficher_Ordre_Elaboration : Afficher_Ordre_Elab_T :=
+      External ("afficher_ordre_elaboration", "non");
 
    Fichier_Principal             := "client.adb";
    Nom_Executable                := "executable";
@@ -38,6 +43,8 @@ project Build is
 
    for Object_Dir                use "obj/" & Mode_Compilation;
    for Exec_Dir                  use "bin/" & Mode_Compilation;
+
+   for Create_Missing_Dirs       use "True";
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
    --  gnaty : les options
@@ -67,39 +74,50 @@ project Build is
    --  x : vérifie les parenthèses inutile
    Options :=
       (
-         --  gnatef est la pour afficher le chemin complet des
-         --  fichiers dans les messages erreurs et avertissements.
          "-gnatef",
-         --  gnatf Affiche toutes les erreurs.
+         --  gnatef : est la pour afficher le chemin complet des
+         --           fichiers dans les messages erreurs et avertissements.
          "-gnatf",
-         --  gnatU : Permet de marquer les messages erreurs
-         --  avec le tag error:
+         --  gnatf : Affiche toutes les erreurs.
          "-gnatU",
+         --  gnatU : Permet de marquer les messages erreurs
+         --          avec le tag error:
          "-gnat2012",
-         --  Vérification du style utilisé (longueur de ligne, espacement ...).
-         --  gnatyy équivaut à 3aAbcefhiklmnprst
+         --  Vérification du style utilisé (longueur ligne, espacement ...).
          "-gnatyy",
+         --  gnatyy : équivaut à 3aAbcefhiklmnprst
          "-gnatyBdOSux",
-         --  gnatw.e active les avertissements pour les
-         --  variables non utilisé.
          "-gnatw.e",
-         --  gnatw.Y désactive le message qui dit que la
-         --  spec nécessite un corps.
+         --  gnatw.e : active tous les avertissements comme gnatwa, mais aussi
+         --            ceux qui sont considéré comme optionnel.
          "-gnatw.Y",
-         --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
-         --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
+         --  gnatw.Y : désactive le message qui dit que la
+         --            spec nécessite un corps.
+         "-gnatw.N",
+         --  gnatw.N : désactive le message qui dit qu'une
+         --            variable a l'aspect Atomic
          "-gnatW8",
-         --  gnateE : Génère des informations supplémentaires
-         --  dans les exceptions
+         --  gnatW8 : Pour que l'encodage du code source se fasse en UTF8
+         --           Similaire à ajouter le
+         --           pragma Wide_Character_Encoding (UTF8)
          "-gnateE",
-         --  Vérification des dépassements numériques.
+         --  gnateE : Génère des informations supplémentaires
+         --           dans les exceptions
          "-gnato",
-         --  Active les vérification de la stack pour éviter les
-         --  stacks overflow.
+         --  gnato : Vérification des dépassements numériques.
          "-fstack-check",
-         --  gnatif pour pouvoir utiliser les accents dans
-         --  les noms de variables.
+         --  fstack-check : Active les vérification de la stack pour
+         --                 éviter les stacks overflow.
+         "-gnatel",
+         --  gnatel : Active les messages d'informations signalant les
+         --           ajout implicite de pragma Elaborate et
+         --           Elaborate_All dans le code.
+         "-gnatw.d",
+         --  gnatw.d : Ajoute un tag au message de warning et d'info
+         --            pour savoir quel réglages provoque le message.
          "-gnatif"
+         --  gnatif : pour pouvoir utiliser les accents dans
+         --           les noms de variables.
       );
 
    --  gnatu : Liste toutes les unitées utilisé pour cette compilation
@@ -129,6 +147,7 @@ project Build is
          null;
    end case;
 
+   --  -gnatwe Les avertissements deviennent des erreurs
    case Warn_Deviennent_Erreurs is
       when "oui" =>
          Options := Options & ("-gnatwe");
@@ -143,13 +162,14 @@ project Build is
    --  puis
    --    install_name_tool -change <@executable_path/lib.dylib>
    --       </opt/local/lib/lib.dylib> <exefile>
-   --  Les commentaires qui commencent par "--<" sont de la documentation
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
+   ----------------------------------------------------------------------------
    package Documentation is
 
       for Documentation_Dir use "doc";
 
    end Documentation;
+   ----------------------------------------------------------------------------
 
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
@@ -162,20 +182,37 @@ project Build is
       --for Body ("MyPack.MyChild") use "mypack.mychild.body";
 
    end Naming;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
    package Builder is
-      --  Active la recompilation si un drapeau change
-      for Default_Switches ("ada") use ("-s");
+      --  -s : Active la recompilation si un drapeau change
+      --  -m : Recompilation minimum.
+      --  -k : Va le plus loin possible lors de la compilation même si elle
+      --       échoue.
+      --  -g : Active le mode debug.
+      --  -C : Utilise un fichier de mapping pour améliorer les performances.
+      --  -gantQ : Génère les ali et l'arbre de fichier même si la
+      --           compilation échoue.
+      Options_Builder := ("-s", "-C");
 
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
-         when "debug" | "release" =>
-            for Executable ("client.adb") use Nom_Executable;
+         when "debug" =>
+            Options_Builder := Options_Builder & ("-g");
+         when "release" =>
+            null;
       end case;
 
+      for Default_Switches ("ada")  use Options_Builder;
+      --  for Global_Configuration_Pragmas use "./config/gnat.adc";
+
+      --  Pour changer le nom du binaire de client à executable après le use.
+      for Executable ("client.adb") use Nom_Executable;
+
    end Builder;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le compiler
    ----------------------------------------------------------------------------
@@ -183,15 +220,21 @@ project Build is
 
       case Mode_Compilation is
          when "debug" =>
+            --  -gnateP Transforme les erreurs de catégorisation des
+            --  dépendances en avertissements. Une unité Pure ne peut
+            --  pas importer une unité Preelaborate.
             --  -gnata active les assertions. Pragma : assert, debug,
             --  Check, Precondition, et Postcondition
-            for Default_Switches ("Ada") use Options & ("-g", "-gnata");
+            for Default_Switches ("Ada") use
+               Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
+      --  for Local_Configuration_Pragmas use "./config/gnat.adc";
 
    end Compiler;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour gnatxref
    ----------------------------------------------------------------------------
@@ -211,6 +254,7 @@ project Build is
          );
 
    end Cross_Reference;
+   ----------------------------------------------------------------------------
 
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
@@ -218,6 +262,7 @@ project Build is
       for Default_Switches ("ada") use
          ("-rules", "-from=config/regles_de_codage");
    end Check;
+   ----------------------------------------------------------------------------
 
    --  Les options pour gnatprove
    --  report mode
@@ -229,6 +274,7 @@ project Build is
    package Prove is
       for Default_Switches ("Ada") use ("--report=fail");
    end Prove;
+   ----------------------------------------------------------------------------
 
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
@@ -236,7 +282,16 @@ project Build is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
+      --  -r : Affiche la liste des restrictions (pragma Restriction)
+      --       qui peuvent être appliqué aux unité courante.
       Options_Binder := ();
+
+      case Verbeux is
+         when "oui" =>
+            Options_Binder := Options_Binder & ("-r");
+         when "non" =>
+            null;
+      end case;
 
       case Mode_Compilation is
          when "debug" =>
@@ -252,6 +307,7 @@ project Build is
          when "release" =>
             null;
       end case;
+      -----------------------------------------------
       case Afficher_La_Stack is
          when "oui" =>
             Options_Binder := Options_Binder &
@@ -263,9 +319,21 @@ project Build is
          when "non" =>
             null;
       end case;
+      -----------------------------------------------
+      case Afficher_Ordre_Elaboration is
+         when "oui" =>
+            --  -l : Affiche l'ordre d'élaboration choisi et fournis une
+            --       forme plus lisible
+            --  -e : Affiche la liste complète de l'ordre d'élaboration
+            --       choisi par le compilateur et la raison de cet ordre.
+            Options_Binder := Options_Binder & ("-l", "-e");
+         when "non" =>
+            null;
+      end case;
 
       for Default_Switches ("Ada") use Options_Binder;
    end Binder;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le Linker
    ----------------------------------------------------------------------------
@@ -279,6 +347,7 @@ project Build is
       end case;
 
    end Linker;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le formatage de sources
    --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
@@ -348,22 +417,25 @@ project Build is
             --  Fin de ligne unix.
             "--eol=unix",
             --  Défini l'encodage des caractères du fichier.
-            "---wide-character-encoding=8",
+            "--wide-character-encoding=8",
             --  Pas de tabulation dans les commentaires.
             "-N"
          );
    end Pretty_Printer;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour GPS.
    ----------------------------------------------------------------------------
    package Ide is
       for Vcs_Kind use "Git";
    end Ide;
+   ----------------------------------------------------------------------------
 
    --  Indique quel makefile utiliser.
    ----------------------------------------------------------------------------
    package Make is
       for Makefile use "makefile";
    end Make;
+   ----------------------------------------------------------------------------
 
 end Build;

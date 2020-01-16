@@ -19,8 +19,8 @@ package Produit_Markdown_P is
 
    procedure Ajouter_Texte
       (
-         Texte : in out Texte_Markdown_T;
-         Contenu : in Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in out Texte_Markdown_T;
+         Contenu : in     Contenu_R.Unbounded_Wide_Wide_String
       );
    --  Ajoute du texte brut.
    --  @param Texte

@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Lundi 04 mars[03] 2019
+--           Dernière modification : Jeudi 16 janvier[01] 2020
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ procedure Client is
 
 begin
 
-   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.New_Line (Spacing => 1);
 
    Executeur_P.Verifier_Nombre_D_Arguments;
    Executeur_P.Executer;

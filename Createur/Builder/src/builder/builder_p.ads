@@ -16,7 +16,7 @@ package Builder_P is
    procedure Ajouter_Titre
       (
          Monteur : in out Monteur_T;
-         Texte : in Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
       )
    is null;
    --  Permet d'ajouter un titre au texte.
@@ -28,7 +28,7 @@ package Builder_P is
    procedure Ajouter_Paragraphe
       (
          Monteur : in out Monteur_T;
-         Texte : in Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
       )
    is null;
    --  Permet d'ajouter un paragraphe au texte.
