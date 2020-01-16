@@ -31,8 +31,8 @@ is
       Produit_B : constant Produit_B_P.Produit_T'Class :=
          Fabrique.Creer_Produit_B;
    begin
-      Ada.Text_IO.Put_Line (Titre);
-      Ada.Text_IO.New_Line (1);
+      Ada.Text_IO.Put_Line (Item    => Titre);
+      Ada.Text_IO.New_Line (Spacing => 1);
       Produit_A.Annonce;
       Produit_B.Presente;
    end Construire;
@@ -43,11 +43,11 @@ is
    Fabrique_1 : Fab_1_R.Fabrique_Markdown_T;
    Fabrique_2 : Fab_2_R.Fabrique_Html_T;
 begin
-   Ada.Text_IO.Put_Line ("----------------------------");
-   Construire (Fabrique_1, "En markdown : ");
+   Ada.Text_IO.Put_Line (Item => "----------------------------");
+   Construire (Fabrique => Fabrique_1, Titre => "En markdown : ");
 
-   Ada.Text_IO.Put_Line ("----------------------------");
+   Ada.Text_IO.Put_Line (Item => "----------------------------");
 
-   Construire (Fabrique_2, "En html : ");
-   Ada.Text_IO.Put_Line ("----------------------------");
+   Construire (Fabrique => Fabrique_2, Titre => "En html : ");
+   Ada.Text_IO.Put_Line (Item => "----------------------------");
 end Executer;
