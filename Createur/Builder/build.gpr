@@ -41,6 +41,8 @@ project Build is
    for Object_Dir                use "obj/" & Mode_Compilation;
    for Exec_Dir                  use "bin/" & Mode_Compilation;
 
+   for Create_Missing_Dirs       use "True";
+
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
    --  gnaty : les options
    --  3 : taille indentation
@@ -190,15 +192,21 @@ project Build is
       --  -C : Utilise un fichier de mapping pour améliorer les performances.
       --  -gantQ : Génère les ali et l'arbre de fichier même si la
       --           compilation échoue.
-      for Default_Switches ("ada") use ("-s");
+      Options_Builder := ("-s", "-C");
 
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
-         when "debug" | "release" =>
-            for Executable ("client.adb") use Nom_Executable;
+         when "debug" =>
+            Options_Builder := Options_Builder & ("-g");
+         when "release" =>
+            null;
       end case;
 
+      for Default_Switches ("ada")  use Options_Builder;
       --  for Global_Configuration_Pragmas use "./config/gnat.adc";
+
+      --  Pour changer le nom du binaire de client à executable après le use.
+      for Executable ("client.adb") use Nom_Executable;
 
    end Builder;
    ----------------------------------------------------------------------------
@@ -215,7 +223,7 @@ project Build is
             --  -gnata active les assertions. Pragma : assert, debug,
             --  Check, Precondition, et Postcondition
             for Default_Switches ("Ada") use
-               Options & ("-g", "-gnata");
+               Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
@@ -274,6 +282,13 @@ project Build is
       --  -r : Affiche la liste des restrictions (pragma Restriction)
       --       qui peuvent être appliqué aux unité courante.
       Options_Binder := ();
+
+      case Verbeux is
+         when "oui" =>
+            Options_Binder := Options_Binder & ("-r");
+         when "non" =>
+            null;
+      end case;
 
       case Mode_Compilation is
          when "debug" =>
