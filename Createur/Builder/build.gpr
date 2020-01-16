@@ -389,7 +389,7 @@ project Build is
             --  Fin de ligne unix.
             "--eol=unix",
             --  Défini l'encodage des caractères du fichier.
-            "---wide-character-encoding=8",
+            "--wide-character-encoding=8",
             --  Pas de tabulation dans les commentaires.
             "-N"
          );

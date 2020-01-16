@@ -37,7 +37,7 @@ package Executeur_G is
 
    package W_W_IO_R renames Ada.Wide_Wide_Text_IO;
 
-   Nb_Args : constant Natural := Ada.Command_Line.Argument_Count;
+   Nb_Args     : constant Natural := Ada.Command_Line.Argument_Count;
    --  Le nombre d'arguments sur la ligne de commande.
    Nb_Args_Max : constant Natural := Nombre_D_Arguments_Max;
    --  Le nombre maximum d'arguments autorisé sur la ligne de commande.
