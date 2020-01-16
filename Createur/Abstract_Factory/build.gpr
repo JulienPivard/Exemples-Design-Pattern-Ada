@@ -22,9 +22,9 @@ project Build is
    Verbeux           : Verbeux_T             := External ("verbeux", "non");
    Strict            : Strict_T              := External ("strict",  "non");
 
-   Afficher_La_Stack : Afficher_La_Stack_T         :=
+   Afficher_La_Stack          : Afficher_La_Stack_T   :=
       External ("afficher_utilisation_stack",  "non");
-   Warn_Deviennent_Erreurs : Sorte_Avertissement_T :=
+   Warn_Deviennent_Erreurs    : Sorte_Avertissement_T :=
       External ("warn_sont_err", "non");
 
    Fichier_Principal             := "client.adb";
@@ -69,39 +69,50 @@ project Build is
    --  x : vérifie les parenthèses inutile
    Options :=
       (
-         --  gnatef est la pour afficher le chemin complet des
-         --  fichiers dans les messages erreurs et avertissements.
          "-gnatef",
-         --  gnatf Affiche toutes les erreurs.
+         --  gnatef : est la pour afficher le chemin complet des
+         --           fichiers dans les messages erreurs et avertissements.
          "-gnatf",
-         --  gnatU : Permet de marquer les messages erreurs
-         --  avec le tag error:
+         --  gnatf : Affiche toutes les erreurs.
          "-gnatU",
+         --  gnatU : Permet de marquer les messages erreurs
+         --          avec le tag error:
          "-gnat2012",
-         --  Vérification du style utilisé (longueur de ligne, espacement ...).
-         --  gnatyy équivaut à 3aAbcefhiklmnprst
+         --  Vérification du style utilisé (longueur ligne, espacement ...).
          "-gnatyy",
+         --  gnatyy : équivaut à 3aAbcefhiklmnprst
          "-gnatyBdOSux",
-         --  gnatw.e active les avertissements pour les
-         --  variables non utilisé.
          "-gnatw.e",
-         --  gnatw.Y désactive le message qui dit que la
-         --  spec nécessite un corps.
+         --  gnatw.e : active tous les avertissements comme gnatwa, mais aussi
+         --            ceux qui sont considéré comme optionnel.
          "-gnatw.Y",
-         --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
-         --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
+         --  gnatw.Y : désactive le message qui dit que la
+         --            spec nécessite un corps.
+         "-gnatw.N",
+         --  gnatw.N : désactive le message qui dit qu'une
+         --            variable a l'aspect Atomic
          "-gnatW8",
-         --  gnateE : Génère des informations supplémentaires
-         --  dans les exceptions
+         --  gnatW8 : Pour que l'encodage du code source se fasse en UTF8
+         --           Similaire à ajouter le
+         --           pragma Wide_Character_Encoding (UTF8)
          "-gnateE",
-         --  Vérification des dépassements numériques.
+         --  gnateE : Génère des informations supplémentaires
+         --           dans les exceptions
          "-gnato",
-         --  Active les vérification de la stack pour éviter les
-         --  stacks overflow.
+         --  gnato : Vérification des dépassements numériques.
          "-fstack-check",
-         --  gnatif pour pouvoir utiliser les accents dans
-         --  les noms de variables.
+         --  fstack-check : Active les vérification de la stack pour
+         --                 éviter les stacks overflow.
+         "-gnatel",
+         --  gnatel : Active les messages d'informations signalant les
+         --           ajout implicite de pragma Elaborate et
+         --           Elaborate_All dans le code.
+         "-gnatw.d",
+         --  gnatw.d : Ajoute un tag au message de warning et d'info
+         --            pour savoir quel réglages provoque le message.
          "-gnatif"
+         --  gnatif : pour pouvoir utiliser les accents dans
+         --           les noms de variables.
       );
 
    --  gnatu : Liste toutes les unitées utilisé pour cette compilation
@@ -131,6 +142,7 @@ project Build is
          null;
    end case;
 
+   --  -gnatwe Les avertissements deviennent des erreurs
    case Warn_Deviennent_Erreurs is
       when "oui" =>
          Options := Options & ("-gnatwe");
@@ -170,7 +182,14 @@ project Build is
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
    package Builder is
-      --  Active la recompilation si un drapeau change
+      --  -s : Active la recompilation si un drapeau change
+      --  -m : Recompilation minimum.
+      --  -k : Va le plus loin possible lors de la compilation même si elle
+      --       échoue.
+      --  -g : Active le mode debug.
+      --  -C : Utilise un fichier de mapping pour améliorer les performances.
+      --  -gantQ : Génère les ali et l'arbre de fichier même si la
+      --           compilation échoue.
       for Default_Switches ("ada") use ("-s");
 
       --  Pour changer le nom du binaire de client à executable après le use.
@@ -179,7 +198,10 @@ project Build is
             for Executable ("client.adb") use Nom_Executable;
       end case;
 
+      --  for Global_Configuration_Pragmas use "./config/gnat.adc";
+
    end Builder;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le compiler
    ----------------------------------------------------------------------------
@@ -187,13 +209,18 @@ project Build is
 
       case Mode_Compilation is
          when "debug" =>
+            --  -gnateP Transforme les erreurs de catégorisation des
+            --  dépendances en avertissements. Une unité Pure ne peut
+            --  pas importer une unité Preelaborate.
             --  -gnata active les assertions. Pragma : assert, debug,
             --  Check, Precondition, et Postcondition
-            for Default_Switches ("Ada") use Options & ("-g", "-gnata");
+            for Default_Switches ("Ada") use
+               Options & ("-g", "-gnata");
          when "release" =>
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
+      --  for Local_Configuration_Pragmas use "./config/gnat.adc";
 
    end Compiler;
    ----------------------------------------------------------------------------
@@ -244,6 +271,8 @@ project Build is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
+      --  -r : Affiche la liste des restrictions (pragma Restriction)
+      --       qui peuvent être appliqué aux unité courante.
       Options_Binder := ();
 
       case Mode_Compilation is
@@ -260,6 +289,7 @@ project Build is
          when "release" =>
             null;
       end case;
+      -----------------------------------------------
       case Afficher_La_Stack is
          when "oui" =>
             Options_Binder := Options_Binder &
@@ -271,6 +301,7 @@ project Build is
          when "non" =>
             null;
       end case;
+      -----------------------------------------------
 
       for Default_Switches ("Ada") use Options_Binder;
    end Binder;
@@ -358,7 +389,7 @@ project Build is
             --  Fin de ligne unix.
             "--eol=unix",
             --  Défini l'encodage des caractères du fichier.
-            "---wide-character-encoding=8",
+            "--wide-character-encoding=8",
             --  Pas de tabulation dans les commentaires.
             "-N"
          );
