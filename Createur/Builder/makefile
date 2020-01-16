@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mardi 26 mars[03] 2019
+# Dernière modification : Samedi 21 septembre[09] 2019
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -28,7 +28,7 @@ doc:
 ###################
 .PHONY: prove
 prove:
-	gnatprove -P$(GPR) $(OPTGPR)
+	gnatprove -P$(GPR) $(OPTGPR) --level=$(NIVEAU_PREUVE) --report=all
 
 ###################
 .PHONY: check
@@ -49,11 +49,25 @@ cleandoc:
 .PHONY: help
 help:
 	@echo "Liste des commandes :"
-	@echo " - all		: Compile l'application."
+	@echo " - all			: Compile l'application."
 	@echo "    - build"
 	@echo "    - $(CIBLECOMPILE)"
-	@echo " - doc		: Génère la documentation du programme."
-	@echo " - cleandoc	: Supprime la documentation généré."
-	@echo " - run		: Execute l'application avec les paramètres défini."
-	@echo " - clean	: Efface tous les fichiers généré par le compilateur sauf les exécutables."
-	@echo " - distclean	: Efface tous les fichiers généré par le compilateur."
+	@echo " - run			: Execute l'application avec les paramètres défini."
+	@echo " - doc			: Génère la documentation du programme."
+	@echo " "
+	@echo " -  clean		: Efface tous les fichiers généré par le compilateur sauf les exécutables."
+	@echo " - distclean		: Efface tous les fichiers généré par le compilateur."
+	@echo " - cleandoc		: Supprime la documentation généré."
+	@echo " "
+	@echo " -  check		: Lance la vérification des règles de programmation sur les sources."
+	@echo " -  prove		: Exécute l'outil gnatprove sur les fichiers sources."
+	@echo " - pretty		: Reformate le fichier désigné par Fic=/nom/du/fichier."
+	@echo " "
+	@echo " - compter		: Compte le nombre de lignes de code source."
+	@echo "    - avec_find"
+	@echo "    - avec_cloc"
+	@echo " - compter_detail	: Compte le nombre de lignes de code source par fichier."
+	@echo "    - avec_find_detail"
+	@echo "    - avec_cloc_detail"
+	@echo " "
+	@echo " - version_makefile	: La version des makefiles."
