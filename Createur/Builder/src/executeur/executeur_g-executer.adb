@@ -11,28 +11,28 @@ procedure Executer
    --  (Arguments)
 is
 
-   package Html_B_R           renames Builder_P.Html_P;
-   package Mark_B_R           renames Builder_P.Markdown_P;
+   package Html_B_R  renames Builder_P.Html_P;
+   package Mark_B_R  renames Builder_P.Markdown_P;
 
-   Dir   : Directeur_P.Directeur_T;
-   Mon_H : Html_B_R.Monteur_Html_T;
-   Tex_H : Produit_Html_P.Texte_Html_T;
-   Mon_M : Mark_B_R.Monteur_Markdown_T;
-   Tex_M : Produit_Markdown_P.Texte_Markdown_T;
+   Dir          : Directeur_P.Directeur_T;
+   Monteur_Html : Html_B_R.Monteur_Html_T;
+   Texte_Html   : Produit_Html_P.Texte_Html_T;
+   Monteur_Mark : Mark_B_R.Monteur_Markdown_T;
+   Texte_Mark    : Produit_Markdown_P.Texte_Markdown_T;
 
 begin
 
    Ada.Text_IO.Put_Line (Item => "--------------");
 
-   Dir.Construire (Monteur => Mon_H);
-   Tex_H := Mon_H.Recuperer_Resultat;
-   Tex_H.Rendu;
+   Dir.Construire (Monteur => Monteur_Html);
+   Texte_Html := Monteur_Html.Recuperer_Resultat;
+   Texte_Html.Rendu;
 
    Ada.Text_IO.Put_Line (Item => "--------------");
 
-   Dir.Construire (Monteur => Mon_M);
-   Tex_M := Mon_M.Recuperer_Resultat;
-   Tex_M.Rendu;
+   Dir.Construire (Monteur => Monteur_Mark);
+   Texte_Mark := Monteur_Mark.Recuperer_Resultat;
+   Texte_Mark.Rendu;
 
    Ada.Text_IO.Put_Line (Item => "--------------");
 
