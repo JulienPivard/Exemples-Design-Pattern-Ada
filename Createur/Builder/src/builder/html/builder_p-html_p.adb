@@ -14,7 +14,7 @@ package body Builder_P.Html_P is
    procedure Ajouter_Titre
       (
          Monteur : in out Monteur_Html_T;
-         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Wide_Wide_String
       )
    is
    begin
@@ -29,7 +29,7 @@ package body Builder_P.Html_P is
    procedure Ajouter_Paragraphe
       (
          Monteur : in out Monteur_Html_T;
-         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Wide_Wide_String
       )
    is
    begin

@@ -19,14 +19,15 @@ package body Produit_Html_P is
    procedure Ajouter_Texte
       (
          Texte   : in out Texte_Html_T;
-         Contenu : in     Contenu_R.Unbounded_Wide_Wide_String
+         Contenu : in     Wide_Wide_String
       )
    is
    begin
       Contenu_R.Append
          (
             Source   => Texte.Contenu,
-            New_Item => Contenu
+            New_Item =>
+               Contenu_R.To_Unbounded_Wide_Wide_String (Source => Contenu)
          );
    end Ajouter_Texte;
    ---------------------------------------------------------------------------
