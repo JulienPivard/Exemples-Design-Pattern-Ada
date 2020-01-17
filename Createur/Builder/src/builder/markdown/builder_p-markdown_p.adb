@@ -15,7 +15,7 @@ package body Builder_P.Markdown_P is
    procedure Ajouter_Titre
       (
          Monteur : in out Monteur_Markdown_T;
-         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Wide_Wide_String
       )
    is
    begin
@@ -30,7 +30,7 @@ package body Builder_P.Markdown_P is
    procedure Ajouter_Paragraphe
       (
          Monteur : in out Monteur_Markdown_T;
-         Texte   : in     Contenu_R.Unbounded_Wide_Wide_String
+         Texte   : in     Wide_Wide_String
       )
    is
    begin
