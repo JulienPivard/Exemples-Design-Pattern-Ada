@@ -11,6 +11,7 @@ package body Prototype_P.Porte_P is
       P.Age := Porte.Age;
       return P;
    end Clone;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
@@ -21,18 +22,20 @@ package body Prototype_P.Porte_P is
    begin
       return Porte.Age > 30;
    end Est_Trop_Vieux;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
    procedure Changer_Age
       (
          Porte : in out Porte_T;
-         Age   : in Age_T
+         Age   : in     Age_T
       )
    is
    begin
       Porte.Age := Age;
    end Changer_Age;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
@@ -43,6 +46,7 @@ package body Prototype_P.Porte_P is
    begin
       return Porte.Age;
    end Lire_Age;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Creer_Porte
@@ -51,5 +55,6 @@ package body Prototype_P.Porte_P is
    begin
       Porte.Age := 0;
    end Creer_Porte;
+   ---------------------------------------------------------------------------
 
 end Prototype_P.Porte_P;

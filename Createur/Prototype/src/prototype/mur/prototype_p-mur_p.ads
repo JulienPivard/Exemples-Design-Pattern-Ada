@@ -30,7 +30,7 @@ package Prototype_P.Mur_P is
    procedure Changer_Age
       (
          Le_Mur   : in out Mur_T;
-         Age      : in Age_T
+         Age      : in     Age_T
       );
    --  Permet de changer l'age du mur.
    --  @param Le_Mur

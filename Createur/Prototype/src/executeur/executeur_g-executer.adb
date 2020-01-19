@@ -9,25 +9,32 @@ procedure Executer
    --  (Arguments)
 is
 
+   ---------------------------------------------------------------------------
    procedure Test_De_L_Age
       (P : in Prototype_P.Prototype_T'Class);
+   --  @param P
+   --  Un objet créé par la méthode des prototypes.
 
-   ---------------------------------------------------------------------------
+   -----------------------
    procedure Test_De_L_Age
       (P : in Prototype_P.Prototype_T'Class)
    is
       A        : Prototype_P.Age_T              := P.Lire_Age;
       P_Test   : Prototype_P.Prototype_T'Class  := P.Clone;
+
       use type Prototype_P.Age_T;
    begin
       Ages :
       loop
          P_Test := P.Clone;
          P_Test.Changer_Age (A);
+
          Ada.Text_IO.Put ("Test de l'age : ");
          Ada.Text_IO.Put (P_Test.Lire_Age'Image);
          Ada.Text_IO.New_Line (1);
+
          exit Ages when P_Test.Est_Trop_Vieux;
+
          A := A + 10;
       end loop Ages;
 

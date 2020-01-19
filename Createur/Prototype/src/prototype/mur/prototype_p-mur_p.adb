@@ -9,6 +9,7 @@ package body Prototype_P.Mur_P is
       Le_Mur.Age  := 0;
       Le_Mur.Cara := Normal;
    end Creer_Mur;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
@@ -23,18 +24,20 @@ package body Prototype_P.Mur_P is
       M.Cara   := Le_Mur.Cara;
       return M;
    end Clone;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
    procedure Changer_Age
       (
          Le_Mur   : in out Mur_T;
-         Age      : in Age_T
+         Age      : in     Age_T
       )
    is
    begin
       Le_Mur.Age := Age;
    end Changer_Age;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
@@ -45,6 +48,7 @@ package body Prototype_P.Mur_P is
    begin
       return Le_Mur.Age > 20;
    end Est_Trop_Vieux;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
@@ -55,5 +59,6 @@ package body Prototype_P.Mur_P is
    begin
       return Le_Mur.Age;
    end Lire_Age;
+   ---------------------------------------------------------------------------
 
 end Prototype_P.Mur_P;
