@@ -98,3 +98,8 @@ ifeq ($(ACTIVER_AFFICHER_LA_STACK), true)
 else
     AFFICHER_LA_STACK	= non
 endif
+
+# Vérification du niveau de preuve
+ifeq ($(NIVEAU_PREUVE), )
+    NIVEAU_PREUVE	= 0
+endif
