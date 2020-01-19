@@ -1,4 +1,4 @@
-with Ada.Strings.Unbounded;
+private with Ada.Strings.Unbounded;
 
 --  @summary
 --  Représentation d'un singleton.
@@ -6,8 +6,6 @@ with Ada.Strings.Unbounded;
 --  Le singleton est bloqué en création avec le discriminant.
 --  @group Créateur
 package Singleton_P is
-
-   package Nom_R renames Ada.Strings.Unbounded;
 
    type Singleton_T (<>) is tagged limited private;
    --  Représente un singleton avec un type discriminant.
@@ -23,7 +21,7 @@ package Singleton_P is
    procedure Changer_Nom
       (
          Singleton   : in out Singleton_T;
-         Nom         : in     Nom_R.Unbounded_String
+         Nom         : in     String
       );
    --  Permet de changer l'attribut variable
    --  @param Singleton
@@ -38,6 +36,8 @@ package Singleton_P is
    --  Le singleton à afficher.
 
 private
+
+   package Nom_R renames Ada.Strings.Unbounded;
 
    type Age_T is new Natural;
    --  Représentation interne de l'age du jeton

@@ -15,11 +15,11 @@ package body Singleton_P is
    procedure Changer_Nom
       (
          Singleton   : in out Singleton_T;
-         Nom         : in     Nom_R.Unbounded_String
+         Nom         : in     String
       )
    is
    begin
-      Singleton.Nom := Nom;
+      Singleton.Nom := Nom_R.To_Unbounded_String (Source => Nom);
    end Changer_Nom;
    ---------------------------------------------------------------------------
 
@@ -27,8 +27,9 @@ package body Singleton_P is
    procedure Afficher
       (Singleton : in Singleton_T)
    is
+      Nom : constant String := Nom_R.To_String (Source => Singleton.Nom);
    begin
-      Ada.Text_IO.Put      (Item => Nom_R.To_String (Source => Singleton.Nom));
+      Ada.Text_IO.Put      (Item => Nom);
       Ada.Text_IO.Put      (Item => " | ");
       Ada.Text_IO.Put_Line (Item => Singleton.Age'Img);
    end Afficher;
