@@ -12,7 +12,7 @@ package Calcul_Distance_P.Strategie_P is
    overriding
    procedure Resoudre
       (
-         Strategie   : in Strategie_T;
+         Strategie   : in     Strategie_T;
          Probleme    : in out Distance_P.Probleme_T
       );
    --  Résout le problème de la distance entre deux points.

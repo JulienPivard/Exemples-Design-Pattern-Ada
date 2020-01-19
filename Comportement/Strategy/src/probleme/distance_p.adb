@@ -14,8 +14,10 @@ package body Distance_P is
       Resultat.X2        := X2;
       Resultat.Y2        := Y2;
       Resultat.Distance  := 0;
+
       return Resultat;
    end Initialiser;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Lire_X1
@@ -25,6 +27,7 @@ package body Distance_P is
    begin
       return Probleme.X1;
    end Lire_X1;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Lire_Y1
@@ -34,6 +37,7 @@ package body Distance_P is
    begin
       return Probleme.Y1;
    end Lire_Y1;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Lire_X2
@@ -43,6 +47,7 @@ package body Distance_P is
    begin
       return Probleme.X2;
    end Lire_X2;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Lire_Y2
@@ -52,17 +57,19 @@ package body Distance_P is
    begin
       return Probleme.Y2;
    end Lire_Y2;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Ecrire_Distance
       (
          Probleme : in out Probleme_T;
-         Distance : in Distance_T
+         Distance : in     Distance_T
       )
    is
    begin
       Probleme.Distance := Distance;
    end Ecrire_Distance;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Lire_Distance
@@ -72,17 +79,19 @@ package body Distance_P is
    begin
       return Probleme.Distance;
    end Lire_Distance;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Resoudre
       (
          Probleme  : in out Probleme_T;
-         Strategie : in Calcul_Distance_P.Calcul_Distance_T'Class
+         Strategie : in     Calcul_Distance_P.Calcul_Distance_T'Class
       )
    is
    begin
       Strategie.Resoudre (Probleme);
    end Resoudre;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function "-"
@@ -92,5 +101,6 @@ package body Distance_P is
    begin
       return Distance_T (Right) - Distance_T (Left);
    end "-";
+   ---------------------------------------------------------------------------
 
 end Distance_P;

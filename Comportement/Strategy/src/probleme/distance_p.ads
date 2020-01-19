@@ -71,7 +71,7 @@ package Distance_P is
    procedure Ecrire_Distance
       (
          Probleme : in out Probleme_T;
-         Distance : in Distance_T
+         Distance : in     Distance_T
       );
    --  Écrit la distance entre les deux points.
    --  @param Probleme
@@ -90,7 +90,7 @@ package Distance_P is
    procedure Resoudre
       (
          Probleme  : in out Probleme_T;
-         Strategie : in Calcul_Distance_P.Calcul_Distance_T'Class
+         Strategie : in     Calcul_Distance_P.Calcul_Distance_T'Class
       );
    --  Lance la résolution de la distance entre les deux points avec
    --  la stratégie adéquate.
@@ -114,7 +114,7 @@ private
    type Probleme_T is tagged
       record
          X1, Y1, X2, Y2 : Coordonnee_T;
-         Distance : Distance_T;
+         Distance       : Distance_T;
       end record;
 
 end Distance_P;
