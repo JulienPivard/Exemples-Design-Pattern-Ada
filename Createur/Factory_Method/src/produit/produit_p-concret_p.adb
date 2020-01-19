@@ -10,6 +10,7 @@ package body Produit_P.Concret_P is
    begin
       Produit.Contenu := "Coucou ttt";
    end Creer_Produit;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
@@ -17,7 +18,8 @@ package body Produit_P.Concret_P is
       (Produit : in Concret_T)
    is
    begin
-      Ada.Text_IO.Put_Line (Produit.Contenu);
+      Ada.Text_IO.Put_Line (Item => Produit.Contenu);
    end Afficher;
+   ---------------------------------------------------------------------------
 
 end Produit_P.Concret_P;
