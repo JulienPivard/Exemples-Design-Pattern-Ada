@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 15 juillet[07] 2019
+--  Dernière modification : Vendredi 29 novembre[11] 2019
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -147,6 +147,7 @@ project Build is
          null;
    end case;
 
+   --  -gnatwe Les avertissements deviennent des erreurs
    case Warn_Deviennent_Erreurs is
       when "oui" =>
          Options := Options & ("-gnatwe");
@@ -162,11 +163,13 @@ project Build is
    --    install_name_tool -change <@executable_path/lib.dylib>
    --       </opt/local/lib/lib.dylib> <exefile>
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
+   ----------------------------------------------------------------------------
    package Documentation is
 
       for Documentation_Dir use "doc";
 
    end Documentation;
+   ----------------------------------------------------------------------------
 
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
@@ -179,6 +182,7 @@ project Build is
       --for Body ("MyPack.MyChild") use "mypack.mychild.body";
 
    end Naming;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
@@ -201,13 +205,14 @@ project Build is
             null;
       end case;
 
-      for Default_Switches ("ada")     use Options_Builder;
-      --  for Global_Configuration_Pragmas use "./gnat.adc";
+      for Default_Switches ("ada")  use Options_Builder;
+      --  for Global_Configuration_Pragmas use "./config/gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
       for Executable ("client.adb") use Nom_Executable;
 
    end Builder;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le compiler
    ----------------------------------------------------------------------------
@@ -226,9 +231,10 @@ project Build is
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
-      --  for Local_Configuration_Pragmas use "./gnat.adc";
+      --  for Local_Configuration_Pragmas use "./config/gnat.adc";
 
    end Compiler;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour gnatxref
    ----------------------------------------------------------------------------
@@ -248,6 +254,7 @@ project Build is
          );
 
    end Cross_Reference;
+   ----------------------------------------------------------------------------
 
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
@@ -255,6 +262,7 @@ project Build is
       for Default_Switches ("ada") use
          ("-rules", "-from=config/regles_de_codage");
    end Check;
+   ----------------------------------------------------------------------------
 
    --  Les options pour gnatprove
    --  report mode
@@ -266,6 +274,7 @@ project Build is
    package Prove is
       for Default_Switches ("Ada") use ("--report=fail");
    end Prove;
+   ----------------------------------------------------------------------------
 
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
@@ -324,6 +333,7 @@ project Build is
 
       for Default_Switches ("Ada") use Options_Binder;
    end Binder;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le Linker
    ----------------------------------------------------------------------------
@@ -337,6 +347,7 @@ project Build is
       end case;
 
    end Linker;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le formatage de sources
    --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
@@ -411,17 +422,20 @@ project Build is
             "-N"
          );
    end Pretty_Printer;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour GPS.
    ----------------------------------------------------------------------------
    package Ide is
       for Vcs_Kind use "Git";
    end Ide;
+   ----------------------------------------------------------------------------
 
    --  Indique quel makefile utiliser.
    ----------------------------------------------------------------------------
    package Make is
       for Makefile use "makefile";
    end Make;
+   ----------------------------------------------------------------------------
 
 end Build;

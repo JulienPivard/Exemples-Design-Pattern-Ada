@@ -7,6 +7,7 @@ package body Executeur_G is
    procedure Executer
       --  (Arguments)
    is separate;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Afficher_Aide is
@@ -27,6 +28,7 @@ package body Executeur_G is
       --  W_W_IO_R.New_Line
       --     (File => W_W_IO_R.Standard_Error, Spacing => 1);
    end Afficher_Aide;
+   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Verifier_Nombre_D_Arguments is
@@ -69,7 +71,7 @@ package body Executeur_G is
          raise Pas_Assez_D_Arguments_E;
 
       end if;
-
    end Verifier_Nombre_D_Arguments;
+   ---------------------------------------------------------------------------
 
 end Executeur_G;
