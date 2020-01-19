@@ -13,7 +13,7 @@ is
 
 begin
 
-   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.New_Line (Spacing => 1);
 
    P.Creer_Produit;
    P.Afficher;

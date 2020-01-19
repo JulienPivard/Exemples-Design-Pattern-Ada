@@ -25,11 +25,14 @@ package Produit_P.Concret_P is
 private
 
    subtype Index_Contenu_T is Integer range 1 .. 10;
-   subtype Contenu_T is String (Index_Contenu_T);
+   --  Taille du contenant.
+   subtype Contenu_T       is String  (Index_Contenu_T);
+   --  Le contenant.
 
    type Concret_T is new Produit_T with
       record
          Contenu : Contenu_T;
+         --  Le contenu du produit.
       end record;
 
 end Produit_P.Concret_P;
