@@ -21,7 +21,7 @@ package body Calcul_Distance_P.Strategie_P is
       Distance : Distance_P.Distance_T := 0;
    begin
       Distance := ((X2 - X1) + (Y2 - Y1));
-      Probleme.Ecrire_Distance (Distance);
+      Probleme.Ecrire_Distance (Distance => Distance);
    end Resoudre;
    ---------------------------------------------------------------------------
 

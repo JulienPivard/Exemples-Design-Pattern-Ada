@@ -89,7 +89,7 @@ package body Distance_P is
       )
    is
    begin
-      Strategie.Resoudre (Probleme);
+      Strategie.Resoudre (Probleme => Probleme);
    end Resoudre;
    ---------------------------------------------------------------------------
 
