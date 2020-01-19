@@ -88,6 +88,9 @@ project Build is
          "-gnatw.Y",
          --  gnatw.Y : désactive le message qui dit que la
          --            spec nécessite un corps.
+         "-gnatw.N",
+         --  gnatw.N : désactive le message qui dit qu'une
+         --            variable a l'aspect Atomic
          "-gnatW8",
          --  gnatW8 : Pour que l'encodage du code source se fasse en UTF8
          --           Similaire à ajouter le
@@ -100,6 +103,13 @@ project Build is
          "-fstack-check",
          --  fstack-check : Active les vérification de la stack pour
          --                 éviter les stacks overflow.
+         "-gnatel",
+         --  gnatel : Active les messages d'informations signalant les
+         --           ajout implicite de pragma Elaborate et
+         --           Elaborate_All dans le code.
+         "-gnatw.d",
+         --  gnatw.d : Ajoute un tag au message de warning et d'info
+         --            pour savoir quel réglages provoque le message.
          "-gnatif"
          --  gnatif : pour pouvoir utiliser les accents dans
          --           les noms de variables.
@@ -180,15 +190,21 @@ project Build is
       --  -C : Utilise un fichier de mapping pour améliorer les performances.
       --  -gantQ : Génère les ali et l'arbre de fichier même si la
       --           compilation échoue.
-      for Default_Switches ("ada") use ("-s");
+      Options_Builder := ("-s", "-C");
 
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
-         when "debug" | "release" =>
-            for Executable ("client.adb") use Nom_Executable;
+         when "debug" =>
+            Options_Builder := Options_Builder & ("-g");
+         when "release" =>
+            null;
       end case;
 
+      for Default_Switches ("ada")  use Options_Builder;
       --  for Global_Configuration_Pragmas use "./config/gnat.adc";
+
+      --  Pour changer le nom du binaire de client à executable après le use.
+      for Executable ("client.adb") use Nom_Executable;
 
    end Builder;
    ----------------------------------------------------------------------------
@@ -205,7 +221,7 @@ project Build is
             --  -gnata active les assertions. Pragma : assert, debug,
             --  Check, Precondition, et Postcondition
             for Default_Switches ("Ada") use
-               Options & ("-g", "-gnata");
+               Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
@@ -264,6 +280,13 @@ project Build is
       --  -r : Affiche la liste des restrictions (pragma Restriction)
       --       qui peuvent être appliqué aux unité courante.
       Options_Binder := ();
+
+      case Verbeux is
+         when "oui" =>
+            Options_Binder := Options_Binder & ("-r");
+         when "non" =>
+            null;
+      end case;
 
       case Mode_Compilation is
          when "debug" =>
