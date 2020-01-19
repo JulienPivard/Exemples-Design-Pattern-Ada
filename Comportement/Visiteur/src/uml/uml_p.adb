@@ -10,7 +10,7 @@ package body Uml_P is
       )
    is
    begin
-      Le_Visiteur.Visiter_Element_Nomme (This);
+      Le_Visiteur.Visiter_Element_Nomme (Obj => This);
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -18,12 +18,12 @@ package body Uml_P is
    overriding
    procedure Visiter
       (
-         This        : in out CClass_T;
+         This        : in out Code_Class_T;
          Le_Visiteur : in out Visiteur_P.Visiteur_T'Class
       )
    is
    begin
-      Le_Visiteur.Visiter_CClass (This);
+      Le_Visiteur.Visiter_Code_Class (Obj => This);
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -31,12 +31,12 @@ package body Uml_P is
    overriding
    procedure Visiter
       (
-         This        : in out PPackage_T;
+         This        : in out Verif_Package_T;
          Le_Visiteur : in out Visiteur_P.Visiteur_T'Class
       )
    is
    begin
-      Le_Visiteur.Visiter_PPackage (This);
+      Le_Visiteur.Visiter_Verif_Package (Obj => This);
    end Visiter;
    ---------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ package body Uml_P is
       )
    is
    begin
-      Le_Visiteur.Visiter_Operation (This);
+      Le_Visiteur.Visiter_Operation (Obj => This);
    end Visiter;
    ---------------------------------------------------------------------------
 

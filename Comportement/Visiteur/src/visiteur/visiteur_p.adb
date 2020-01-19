@@ -13,27 +13,27 @@ package body Visiteur_P is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Visiter_CClass
+   procedure Visiter_Code_Class
       (
          This : in out Visiteur_T;
-         Obj  : in out Uml_P.CClass_T'Class
+         Obj  : in out Uml_P.Code_Class_T'Class
       )
    is
    begin
-      This.Visiter_Element_Nomme (Obj);
-   end Visiter_CClass;
+      This.Visiter_Element_Nomme (Obj => Obj);
+   end Visiter_Code_Class;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Visiter_PPackage
+   procedure Visiter_Verif_Package
       (
          This : in out Visiteur_T;
-         Obj  : in out Uml_P.PPackage_T'Class
+         Obj  : in out Uml_P.Verif_Package_T'Class
       )
    is
    begin
-      This.Visiter_Element_Nomme (Obj);
-   end Visiter_PPackage;
+      This.Visiter_Element_Nomme (Obj => Obj);
+   end Visiter_Verif_Package;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -44,7 +44,7 @@ package body Visiteur_P is
       )
    is
    begin
-      This.Visiter_Element_Nomme (Obj);
+      This.Visiter_Element_Nomme (Obj => Obj);
    end Visiter_Operation;
    ---------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 01 juillet[07] 2019
+# Dernière modification : Dimanche 17 novembre[11] 2019
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,7 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	:= 2.1.3
+MAKEFILE_V	:= 2.1.7
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
@@ -89,8 +89,8 @@ avec_cloc:
 	cloc --exclude-dir=obj,bin --by-percent cmb $(DOSSIERSRC)
 
 ###################
-.PHONY: compterdetail
-compterdetail: $(TECHNIQUE_COMPTAGE)_detail
+.PHONY: compter_detail
+compter_detail: $(TECHNIQUE_COMPTAGE)_detail
 
 .PHONY: avec_find_detail
 avec_find_detail:
@@ -99,3 +99,8 @@ avec_find_detail:
 .PHONY: avec_cloc_detail
 avec_cloc_detail:
 	cloc --exclude-dir=obj,bin --by-file-by-lang $(DOSSIERSRC)
+
+# Afficher toutes les cibles disponible
+.PHONY: afficher_nom_cibles
+afficher_nom_cibles:
+	@grep $(MAKEFILE_LIST) -i -e "^[a-zA-Z_\-]*:" | awk 'BEGIN {FS = ":"}; {printf "%s - %s\n", $$1, $$2}'
