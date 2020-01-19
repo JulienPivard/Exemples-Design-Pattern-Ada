@@ -24,23 +24,23 @@ is
 
       use type Prototype_P.Age_T;
    begin
-      Ages :
+      Boucle_Ages :
       loop
          P_Test := P.Clone;
-         P_Test.Changer_Age (A);
+         P_Test.Changer_Age   (Age     => A);
 
-         Ada.Text_IO.Put ("Test de l'age : ");
-         Ada.Text_IO.Put (P_Test.Lire_Age'Image);
-         Ada.Text_IO.New_Line (1);
+         Ada.Text_IO.Put      (Item    => "Test de l'age : ");
+         Ada.Text_IO.Put      (Item    => P_Test.Lire_Age'Image);
+         Ada.Text_IO.New_Line (Spacing => 1);
 
-         exit Ages when P_Test.Est_Trop_Vieux;
+         exit Boucle_Ages when P_Test.Est_Trop_Vieux;
 
          A := A + 10;
-      end loop Ages;
+      end loop Boucle_Ages;
 
-      Ada.Text_IO.Put ("L'age limite est : ");
-      Ada.Text_IO.Put (A'Image);
-      Ada.Text_IO.Put_Line (" ");
+      Ada.Text_IO.Put      (Item => "L'age limite est : ");
+      Ada.Text_IO.Put      (Item => A'Image);
+      Ada.Text_IO.Put_Line (Item => " ");
    end Test_De_L_Age;
    ---------------------------------------------------------------------------
 
@@ -55,28 +55,28 @@ is
 
 begin
 
-   Mur_R.Creer_Mur (P1);
+   Mur_R.Creer_Mur (Le_Mur => P1);
    P2 := P1.Clone;
-   P2.Changer_Age (20);
+   P2.Changer_Age (Age => 20);
 
    Po1.Creer_Porte;
    Po2 := Po1.Clone;
-   Po2.Changer_Age (30);
+   Po2.Changer_Age (Age => 30);
 
-   Ada.Text_IO.Put_Line ("------------- Un Mur -------------");
-   Test_De_L_Age (P1);
-   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put_Line (Item    => "------------- Un Mur -------------");
+   Test_De_L_Age        (P       => P1);
+   Ada.Text_IO.New_Line (Spacing => 1);
 
-   Ada.Text_IO.Put_Line ("------------- Un Mur -------------");
-   Test_De_L_Age (P2);
-   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put_Line (Item    => "------------- Un Mur -------------");
+   Test_De_L_Age        (P       => P2);
+   Ada.Text_IO.New_Line (Spacing => 1);
 
-   Ada.Text_IO.Put_Line ("------------- Une Porte -------------");
-   Test_De_L_Age (Po1);
-   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put_Line (Item    => "------------- Une Porte -------------");
+   Test_De_L_Age        (P       => Po1);
+   Ada.Text_IO.New_Line (Spacing => 1);
 
-   Ada.Text_IO.Put_Line ("------------- Une Porte -------------");
-   Test_De_L_Age (Po2);
-   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put_Line (Item    => "------------- Une Porte -------------");
+   Test_De_L_Age        (P       => Po2);
+   Ada.Text_IO.New_Line (Spacing => 1);
 
 end Executer;
