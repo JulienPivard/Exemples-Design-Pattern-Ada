@@ -28,9 +28,9 @@ package body Singleton_P is
       (Singleton : in Singleton_T)
    is
    begin
-      Ada.Text_IO.Put (Nom_R.To_String (Singleton.Nom));
-      Ada.Text_IO.Put (" | ");
-      Ada.Text_IO.Put_Line (Singleton.Age'Img);
+      Ada.Text_IO.Put      (Item => Nom_R.To_String (Source => Singleton.Nom));
+      Ada.Text_IO.Put      (Item => " | ");
+      Ada.Text_IO.Put_Line (Item => Singleton.Age'Img);
    end Afficher;
    ---------------------------------------------------------------------------
 
