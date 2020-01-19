@@ -1,12 +1,11 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 16 juillet[07] 2019
+--           Dernière modification : Dimanche 19 janvier[01] 2020
 --                                                                          --
 ------------------------------------------------------------------------------
 
 with Ada.Text_IO;
-
 with Executeur_G;
 with Comptage_P;
 

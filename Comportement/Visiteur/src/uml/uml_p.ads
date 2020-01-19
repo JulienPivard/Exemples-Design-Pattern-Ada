@@ -9,7 +9,7 @@ limited with Visiteur_P;
 --  @group Classe à visiter
 package Uml_P is
 
-   type Element_Nomme_T is tagged null record;
+   type Element_Nomme_T is tagged private;
    --  La classe mère des objets visitable. Tous autres objets
    --  qui doit pouvoir être visité devra hériter de cette classe.
 
@@ -24,13 +24,13 @@ package Uml_P is
    --  @param Le_Visiteur
    --  L'instance concrète du visiteur.
 
-   type CClass_T is new Element_Nomme_T with null record;
+   type Code_Class_T is new Element_Nomme_T with private;
    --  Un des fils de Element_Nomme.
 
    overriding
    procedure Visiter
       (
-         This        : in out CClass_T;
+         This        : in out Code_Class_T;
          Le_Visiteur : in out Visiteur_P.Visiteur_T'Class
       );
    --  Le point d'entré pour le visiteur.
@@ -39,13 +39,13 @@ package Uml_P is
    --  @param Le_Visiteur
    --  L'instance concrète du visiteur.
 
-   type PPackage_T is new Element_Nomme_T with null record;
+   type Verif_Package_T is new Element_Nomme_T with private;
    --  Un des fils de Element_Nomme.
 
    overriding
    procedure Visiter
       (
-         This        : in out PPackage_T;
+         This        : in out Verif_Package_T;
          Le_Visiteur : in out Visiteur_P.Visiteur_T'Class
       );
    --  Le point d'entré pour le visiteur.
@@ -54,7 +54,8 @@ package Uml_P is
    --  @param Le_Visiteur
    --  L'instance concrète du visiteur.
 
-   type Operation_T is new Element_Nomme_T with null record;
+   type Operation_T is new Element_Nomme_T with private;
+   --  Un des fils de Element_Nomme.
 
    overriding
    procedure Visiter
@@ -67,5 +68,15 @@ package Uml_P is
    --  L'objet à visiter.
    --  @param Le_Visiteur
    --  L'instance concrète du visiteur.
+
+private
+
+   type Element_Nomme_T is tagged null record;
+
+   type Code_Class_T is new Element_Nomme_T with null record;
+
+   type Verif_Package_T is new Element_Nomme_T with null record;
+
+   type Operation_T is new Element_Nomme_T with null record;
 
 end Uml_P;

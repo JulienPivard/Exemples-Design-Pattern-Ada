@@ -8,7 +8,7 @@ with Uml_P;
 --  @group Visiteur
 package Visiteur_P is
 
-   type Visiteur_T is abstract tagged null record;
+   type Visiteur_T is abstract tagged private;
    --  Un visiteur abstrait. Les classes qui en hérite pourront
    --  faire des opérations spécifique sur les objets visité.
    --  Par exemple un visiteur pourra faire de la génération de code
@@ -25,10 +25,10 @@ package Visiteur_P is
    --  @param Obj
    --  L'objet à visiter.
 
-   procedure Visiter_CClass
+   procedure Visiter_Code_Class
       (
          This : in out Visiteur_T;
-         Obj  : in out Uml_P.CClass_T'Class
+         Obj  : in out Uml_P.Code_Class_T'Class
       );
    --  Permet de visiter un des fils de la classe Element_Nomme.
    --  @param This
@@ -36,10 +36,10 @@ package Visiteur_P is
    --  @param Obj
    --  L'objet à visiter.
 
-   procedure Visiter_PPackage
+   procedure Visiter_Verif_Package
       (
          This : in out Visiteur_T;
-         Obj  : in out Uml_P.PPackage_T'Class
+         Obj  : in out Uml_P.Verif_Package_T'Class
       );
    --  Permet de visiter un des fils de la classe Element_Nomme.
    --  @param This
@@ -57,5 +57,9 @@ package Visiteur_P is
    --  Le visiteur.
    --  @param Obj
    --  L'objet à visiter.
+
+private
+
+   type Visiteur_T is abstract tagged null record;
 
 end Visiteur_P;
