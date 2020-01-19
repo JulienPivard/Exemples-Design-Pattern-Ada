@@ -30,7 +30,7 @@ package Prototype_P.Porte_P is
    procedure Changer_Age
       (
          Porte : in out Porte_T;
-         Age   : in Age_T
+         Age   : in     Age_T
       );
    --  Permet de changer l'age de la porte.
    --  @param Porte
