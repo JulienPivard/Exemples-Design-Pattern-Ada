@@ -28,7 +28,7 @@ doc:
 ###################
 .PHONY: prove
 prove:
-	gnatprove -P$(GPR) $(OPTGPR)
+	gnatprove -P$(GPR) $(OPTGPR) --level=$(NIVEAU_PREUVE) --report=all
 
 ###################
 .PHONY: check
