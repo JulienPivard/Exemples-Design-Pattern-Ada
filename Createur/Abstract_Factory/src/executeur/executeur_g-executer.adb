@@ -22,6 +22,7 @@ is
    --  @param Titre
    --  Le titre à afficher.
 
+   --------------------
    procedure Construire
       (
          Fabrique : in Fabrique_P.Fabrique_T'Class;
