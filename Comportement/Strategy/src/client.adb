@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Dimanche 19 janvier[01] 2020
+--           Dernière modification : Dimanche 05 juin[06] 2022
 --                                                                          --
 ------------------------------------------------------------------------------
 with Ada.Text_IO;
@@ -14,7 +14,7 @@ with Executeur_G;
 procedure Client is
 
    package Version_Compilateur_P is new GNAT.Compiler_Version;
-   package Executeur_P is new Executeur_G
+   package Executeur_P           is new Executeur_G
       (
          Nombre_D_Arguments_Min => 0,
          Nombre_D_Arguments_Max => 0
