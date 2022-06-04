@@ -36,6 +36,8 @@ is
    begin
       Ada.Text_IO.Put_Line (Item => "Classe visitée par code générateur.");
    end Visiter_Code_Class;
+   ---------------------------
+
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -95,6 +97,8 @@ is
    begin
       Ada.Text_IO.Put_Line (Item => "Opération visité par le vérificateur.");
    end Visiter_Operation;
+   ---------------------------
+
    ---------------------------------------------------------------------------
 
    type Nb_Elements_T   is range 0 .. 1_000;
@@ -162,6 +166,13 @@ is
    --  Le visiteur.
    --  @param Obj
    --  L'objet à visiter.
+
+   --------------------------
+   procedure Afficher
+      (This : in     Instrumentation_T);
+   --  Affiche le résultat du visiteur.
+   --  @param This
+   --  Le visiteur.
 
    --------------------------
    overriding
@@ -237,6 +248,36 @@ is
                Nb_Operations_T'Image (This.Nb_Operations) & "]"
          );
    end Visiter_Operation;
+   ---------------------------
+
+   ---------------------------
+   procedure Afficher
+      (This : in     Instrumentation_T)
+   is
+   begin
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre d'éléments : ["  &
+               Nb_Elements_T'Image (This.Nb_Elements) & "]"
+         );
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre de classes : ["  &
+               Nb_Classes_T'Image (This.Nb_Classes) & "]"
+         );
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre de packages : ["  &
+               Nb_Packages_T'Image (This.Nb_Packages) & "]"
+         );
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre d'opérations : ["  &
+               Nb_Operations_T'Image (This.Nb_Operations) & "]"
+         );
+   end Afficher;
+   ---------------------------
+
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -278,6 +319,8 @@ begin
    Executer (Visiteur => Ver);
    Ada.Text_IO.New_Line (Spacing => 1);
    Executer (Visiteur => Inst);
+
+   Afficher (This => Inst);
 
    pragma Unreferenced (Gen);
    pragma Unreferenced (Ver);
