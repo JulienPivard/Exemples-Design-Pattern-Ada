@@ -1,6 +1,7 @@
+with Ada.Text_IO;
+
 with Uml_P;
 with Visiteur_P;
-with Ada.Text_IO;
 
 separate (Executeur_G)
 procedure Executer
@@ -8,7 +9,7 @@ procedure Executer
 is
    ---------------------------------------------------------------------------
    type Code_Generateur_T is new Visiteur_P.Visiteur_T with null record;
-   --  Dscendant d'un visiteur.
+   --  Descendant d'un visiteur.
 
    ------------------------
    overriding
