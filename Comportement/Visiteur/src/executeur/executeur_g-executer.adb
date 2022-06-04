@@ -268,20 +268,46 @@ is
    procedure Executer
       (Visiteur : in out Visiteur_P.Visiteur_T'Class)
    is
-      Tmp1 : Uml_P.Element_Nomme_T;    --  Un visité
-      Tmp2 : Uml_P.Code_Class_T;       --  Un visité
-      Tmp3 : Uml_P.Verif_Package_T;    --  Un visité
-      Tmp4 : Uml_P.Operation_T;        --  Un visité
+      Var   : Uml_P.Element_Nomme_T;    --  Un visité
+      Class : Uml_P.Code_Class_T;       --  Un visité
+      Pack  : Uml_P.Verif_Package_T;    --  Un visité
+      Ope   : Uml_P.Operation_T;        --  Un visité
    begin
-      Tmp1.Visiter (Le_Visiteur => Visiteur);
-      Tmp2.Visiter (Le_Visiteur => Visiteur);
-      Tmp3.Visiter (Le_Visiteur => Visiteur);
-      Tmp4.Visiter (Le_Visiteur => Visiteur);
+      Pack.Visiter (Le_Visiteur => Visiteur);
 
-      pragma Unreferenced (Tmp1);
-      pragma Unreferenced (Tmp2);
-      pragma Unreferenced (Tmp3);
-      pragma Unreferenced (Tmp4);
+      Class.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+      Class.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+      Class.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+
+      Var.Visiter (Le_Visiteur => Visiteur);
+      Ope.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+
+      Var.Visiter (Le_Visiteur => Visiteur);
+      Ope.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+
+      Pack.Visiter (Le_Visiteur => Visiteur);
+
+      Pack.Visiter (Le_Visiteur => Visiteur);
+
+      Class.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+
+      Var.Visiter (Le_Visiteur => Visiteur);
+      Ope.Visiter (Le_Visiteur => Visiteur);
+      Var.Visiter (Le_Visiteur => Visiteur);
+
+      Pack.Visiter (Le_Visiteur => Visiteur);
+
+      pragma Unreferenced (Var);
+      pragma Unreferenced (Class);
+      pragma Unreferenced (Pack);
+      pragma Unreferenced (Ope);
    end Executer;
    ---------------------------------------------------------------------------
 
