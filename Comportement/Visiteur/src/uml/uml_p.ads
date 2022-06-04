@@ -24,10 +24,9 @@ package Uml_P is
    --  @param Le_Visiteur
    --  L'instance concrète du visiteur.
 
-   type Code_Class_T is new Element_Nomme_T with private;
+   type Code_Class_T is tagged private;
    --  Un des fils de Element_Nomme.
 
-   overriding
    procedure Visiter
       (
          This        : in out Code_Class_T;
@@ -39,10 +38,9 @@ package Uml_P is
    --  @param Le_Visiteur
    --  L'instance concrète du visiteur.
 
-   type Verif_Package_T is new Element_Nomme_T with private;
+   type Verif_Package_T is tagged private;
    --  Un des fils de Element_Nomme.
 
-   overriding
    procedure Visiter
       (
          This        : in out Verif_Package_T;
@@ -54,10 +52,9 @@ package Uml_P is
    --  @param Le_Visiteur
    --  L'instance concrète du visiteur.
 
-   type Operation_T is new Element_Nomme_T with private;
+   type Operation_T is tagged private;
    --  Un des fils de Element_Nomme.
 
-   overriding
    procedure Visiter
       (
          This        : in out Operation_T;
@@ -73,10 +70,10 @@ private
 
    type Element_Nomme_T is tagged null record;
 
-   type Code_Class_T is new Element_Nomme_T with null record;
+   type Code_Class_T    is tagged null record;
 
-   type Verif_Package_T is new Element_Nomme_T with null record;
+   type Verif_Package_T is tagged null record;
 
-   type Operation_T is new Element_Nomme_T with null record;
+   type Operation_T     is tagged null record;
 
 end Uml_P;
