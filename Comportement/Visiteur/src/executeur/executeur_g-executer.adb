@@ -97,29 +97,38 @@ is
    end Visiter_Operation;
    ---------------------------------------------------------------------------
 
-   Tmp1 : Uml_P.Element_Nomme_T;    --  Un visité
-   Tmp2 : Uml_P.Code_Class_T;       --  Un visité
-   Tmp3 : Uml_P.Verif_Package_T;    --  Un visité
-   Tmp4 : Uml_P.Operation_T;        --  Un visité
+   ---------------------------------------------------------------------------
+   procedure Executer
+      (Visiteur : in out Visiteur_P.Visiteur_T'Class);
+
+   ------------------
+   procedure Executer
+      (Visiteur : in out Visiteur_P.Visiteur_T'Class)
+   is
+      Tmp1 : Uml_P.Element_Nomme_T;    --  Un visité
+      Tmp2 : Uml_P.Code_Class_T;       --  Un visité
+      Tmp3 : Uml_P.Verif_Package_T;    --  Un visité
+      Tmp4 : Uml_P.Operation_T;        --  Un visité
+   begin
+      Tmp1.Visiter (Le_Visiteur => Visiteur);  --  Pas d'affichage
+      Tmp2.Visiter (Le_Visiteur => Visiteur);  --  Affichage
+      Tmp3.Visiter (Le_Visiteur => Visiteur);  --  Pas d'affichage
+      Tmp4.Visiter (Le_Visiteur => Visiteur);  --  Pas d'affichage
+
+      pragma Unreferenced (Tmp1);
+      pragma Unreferenced (Tmp2);
+      pragma Unreferenced (Tmp3);
+      pragma Unreferenced (Tmp4);
+   end Executer;
+   ---------------------------------------------------------------------------
 
    Gen  : Code_Generateur_T;  --  Un visiteur
    Ver  : Verificateur_T;     --  Un visiteur
 
 begin
-   Tmp1.Visiter (Le_Visiteur => Gen);  --  Pas d'affichage
-   Tmp2.Visiter (Le_Visiteur => Gen);  --  Affichage
-   Tmp3.Visiter (Le_Visiteur => Gen);  --  Pas d'affichage
-   Tmp4.Visiter (Le_Visiteur => Gen);  --  Pas d'affichage
+   Executer (Visiteur => Gen);
+   Executer (Visiteur => Ver);
 
-   Tmp1.Visiter (Le_Visiteur => Ver);  --  Pas d'affichage
-   Tmp2.Visiter (Le_Visiteur => Ver);  --  Pas d'affichage
-   Tmp3.Visiter (Le_Visiteur => Ver);  --  Affichage
-   Tmp4.Visiter (Le_Visiteur => Ver);  --  Affichage
-
-   pragma Unreferenced (Tmp1);
-   pragma Unreferenced (Tmp2);
-   pragma Unreferenced (Tmp3);
-   pragma Unreferenced (Tmp4);
    pragma Unreferenced (Gen);
    pragma Unreferenced (Ver);
 end Executer;
