@@ -237,7 +237,7 @@ is
    begin
       Ada.Text_IO.Put_Line
          (
-            Item => "Nombre d'éléments : ["  &
+            Item => "Nombre de variables : ["  &
                Nb_Elements_T'Image (This.Nb_Elements) & "]"
          );
       Ada.Text_IO.Put_Line
