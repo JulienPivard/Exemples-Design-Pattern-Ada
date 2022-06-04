@@ -4,7 +4,7 @@ with Uml_P;
 --  Le visiteur qui va se charger d'aller visiter la cible.
 --  @description
 --  Pour chaque type il faut définir une opération spécifique
---  pour le visiteur.
+--  dans le visiteur.
 --  @group Visiteur
 package Visiteur_P is
 
@@ -18,7 +18,8 @@ package Visiteur_P is
       (
          This : in out Visiteur_T;
          Obj  : in out Uml_P.Element_Nomme_T'Class
-      );
+      )
+   is null;
    --  Permet de visiter l'élément parent.
    --  @param This
    --  Le visiteur.
@@ -29,7 +30,8 @@ package Visiteur_P is
       (
          This : in out Visiteur_T;
          Obj  : in out Uml_P.Code_Class_T'Class
-      );
+      )
+   is null;
    --  Permet de visiter un des fils de la classe Element_Nomme.
    --  @param This
    --  Le visiteur.
@@ -40,7 +42,8 @@ package Visiteur_P is
       (
          This : in out Visiteur_T;
          Obj  : in out Uml_P.Verif_Package_T'Class
-      );
+      )
+   is null;
    --  Permet de visiter un des fils de la classe Element_Nomme.
    --  @param This
    --  Le visiteur.
@@ -51,7 +54,8 @@ package Visiteur_P is
       (
          This : in out Visiteur_T;
          Obj  : in out Uml_P.Operation_T'Class
-      );
+      )
+   is null;
    --  Permet de visiter un des fils de la classe Element_Nomme.
    --  @param This
    --  Le visiteur.
