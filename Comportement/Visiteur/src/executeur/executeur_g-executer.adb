@@ -97,6 +97,148 @@ is
    end Visiter_Operation;
    ---------------------------------------------------------------------------
 
+   type Nb_Elements_T   is range 0 .. 1_000;
+   type Nb_Classes_T    is range 0 .. 1_000;
+   type Nb_Packages_T   is range 0 .. 1_000;
+   type Nb_Operations_T is range 0 .. 1_000;
+
+   ---------------------------------------------------------------------------
+   type Instrumentation_T is new Visiteur_P.Visiteur_T with
+      record
+         Nb_Elements   : Nb_Elements_T   := Nb_Elements_T'First;
+         Nb_Classes    : Nb_Classes_T    := Nb_Classes_T'First;
+         Nb_Packages   : Nb_Packages_T   := Nb_Packages_T'First;
+         Nb_Operations : Nb_Operations_T := Nb_Operations_T'First;
+      end record;
+
+   --------------------------
+   overriding
+   procedure Visiter_Element_Nomme
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Element_Nomme_T'Class
+      );
+   --  Permet de visiter l'élément parent.
+   --  @param This
+   --  Le visiteur.
+   --  @param Obj
+   --  L'objet à visiter.
+
+   --------------------------
+   overriding
+   procedure Visiter_Code_Class
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Code_Class_T'Class
+      );
+   --  Permet de visiter un des fils de la classe Element_Nomme.
+   --  @param This
+   --  Le visiteur.
+   --  @param Obj
+   --  L'objet à visiter.
+
+   --------------------------
+   overriding
+   procedure Visiter_Verif_Package
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Verif_Package_T'Class
+      );
+   --  Permet de visiter.
+   --  @param This
+   --  Le visiteur.
+   --  @param Obj
+   --  L'objet à visiter.
+
+   --------------------------
+   overriding
+   procedure Visiter_Operation
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Operation_T'Class
+      );
+   --  Permet de visiter.
+   --  @param This
+   --  Le visiteur.
+   --  @param Obj
+   --  L'objet à visiter.
+
+   --------------------------
+   overriding
+   procedure Visiter_Element_Nomme
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Element_Nomme_T'Class
+      )
+   is
+      pragma Unreferenced (Obj);
+   begin
+      This.Nb_Elements := This.Nb_Elements + 1;
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre d'éléments : ["  &
+               Nb_Elements_T'Image (This.Nb_Elements) & "]"
+         );
+   end Visiter_Element_Nomme;
+   --------------------------
+
+   --------------------------
+   overriding
+   procedure Visiter_Code_Class
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Code_Class_T'Class
+      )
+   is
+      pragma Unreferenced (Obj);
+   begin
+      This.Nb_Classes := This.Nb_Classes + 1;
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre de classes : ["  &
+               Nb_Classes_T'Image (This.Nb_Classes) & "]"
+         );
+   end Visiter_Code_Class;
+   --------------------------
+
+   --------------------------
+   overriding
+   procedure Visiter_Verif_Package
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Verif_Package_T'Class
+      )
+   is
+      pragma Unreferenced (Obj);
+   begin
+      This.Nb_Packages := This.Nb_Packages + 1;
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre de packages : ["  &
+               Nb_Packages_T'Image (This.Nb_Packages) & "]"
+         );
+   end Visiter_Verif_Package;
+   ---------------------------
+
+   ---------------------------
+   overriding
+   procedure Visiter_Operation
+      (
+         This : in out Instrumentation_T;
+         Obj  : in out Uml_P.Operation_T'Class
+      )
+   is
+      pragma Unreferenced (Obj);
+   begin
+      This.Nb_Operations := This.Nb_Operations + 1;
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nombre d'opérations : ["  &
+               Nb_Operations_T'Image (This.Nb_Operations) & "]"
+         );
+   end Visiter_Operation;
+   ---------------------------------------------------------------------------
+
    ---------------------------------------------------------------------------
    procedure Executer
       (Visiteur : in out Visiteur_P.Visiteur_T'Class);
@@ -124,6 +266,7 @@ is
 
    Gen  : Code_Generateur_T;  --  Un visiteur
    Ver  : Verificateur_T;     --  Un visiteur
+   Inst : Instrumentation_T;
 
 begin
    Ada.Text_IO.Put_Line (Item => "Démonstration de l'utilisation du pattern");
@@ -133,7 +276,10 @@ begin
    Executer (Visiteur => Gen);
    Ada.Text_IO.New_Line (Spacing => 1);
    Executer (Visiteur => Ver);
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Executer (Visiteur => Inst);
 
    pragma Unreferenced (Gen);
    pragma Unreferenced (Ver);
+   pragma Unreferenced (Inst);
 end Executer;
