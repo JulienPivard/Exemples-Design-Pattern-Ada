@@ -185,11 +185,6 @@ is
       pragma Unreferenced (Obj);
    begin
       This.Nb_Elements := This.Nb_Elements + 1;
-      Ada.Text_IO.Put_Line
-         (
-            Item => "Nombre d'éléments : ["  &
-               Nb_Elements_T'Image (This.Nb_Elements) & "]"
-         );
    end Visiter_Element_Nomme;
    --------------------------
 
@@ -204,11 +199,6 @@ is
       pragma Unreferenced (Obj);
    begin
       This.Nb_Classes := This.Nb_Classes + 1;
-      Ada.Text_IO.Put_Line
-         (
-            Item => "Nombre de classes : ["  &
-               Nb_Classes_T'Image (This.Nb_Classes) & "]"
-         );
    end Visiter_Code_Class;
    --------------------------
 
@@ -223,11 +213,6 @@ is
       pragma Unreferenced (Obj);
    begin
       This.Nb_Packages := This.Nb_Packages + 1;
-      Ada.Text_IO.Put_Line
-         (
-            Item => "Nombre de packages : ["  &
-               Nb_Packages_T'Image (This.Nb_Packages) & "]"
-         );
    end Visiter_Verif_Package;
    ---------------------------
 
@@ -242,11 +227,6 @@ is
       pragma Unreferenced (Obj);
    begin
       This.Nb_Operations := This.Nb_Operations + 1;
-      Ada.Text_IO.Put_Line
-         (
-            Item => "Nombre d'opérations : ["  &
-               Nb_Operations_T'Image (This.Nb_Operations) & "]"
-         );
    end Visiter_Operation;
    ---------------------------
 
