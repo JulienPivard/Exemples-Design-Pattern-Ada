@@ -110,10 +110,10 @@ is
       Tmp3 : Uml_P.Verif_Package_T;    --  Un visité
       Tmp4 : Uml_P.Operation_T;        --  Un visité
    begin
-      Tmp1.Visiter (Le_Visiteur => Visiteur);  --  Pas d'affichage
-      Tmp2.Visiter (Le_Visiteur => Visiteur);  --  Affichage
-      Tmp3.Visiter (Le_Visiteur => Visiteur);  --  Pas d'affichage
-      Tmp4.Visiter (Le_Visiteur => Visiteur);  --  Pas d'affichage
+      Tmp1.Visiter (Le_Visiteur => Visiteur);
+      Tmp2.Visiter (Le_Visiteur => Visiteur);
+      Tmp3.Visiter (Le_Visiteur => Visiteur);
+      Tmp4.Visiter (Le_Visiteur => Visiteur);
 
       pragma Unreferenced (Tmp1);
       pragma Unreferenced (Tmp2);
@@ -126,7 +126,12 @@ is
    Ver  : Verificateur_T;     --  Un visiteur
 
 begin
+   Ada.Text_IO.Put_Line (Item => "Démonstration de l'utilisation du pattern");
+   Ada.Text_IO.Put_Line (Item => "visiteur sur une hiérarchie d'objets.");
+
+   Ada.Text_IO.New_Line (Spacing => 1);
    Executer (Visiteur => Gen);
+   Ada.Text_IO.New_Line (Spacing => 1);
    Executer (Visiteur => Ver);
 
    pragma Unreferenced (Gen);
