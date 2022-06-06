@@ -316,8 +316,8 @@ is
    Ver  : Verificateur_T;     --  Un visiteur
    Inst : Instrumentation_T;
 begin
-   Ada.Text_IO.Put_Line (Item => "Démonstration de l'utilisation du pattern");
-   Ada.Text_IO.Put_Line (Item => "visiteur sur une hiérarchie d'objets.");
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern visiteur");
+   Ada.Text_IO.Put_Line (Item => "sur une hiérarchie d'objets.");
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Executer (Visiteur => Gen);
