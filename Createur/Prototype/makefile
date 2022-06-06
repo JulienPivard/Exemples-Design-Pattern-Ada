@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 21 septembre[09] 2019
+# Dernière modification : Mercredi 25 mai[05] 2022
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -9,59 +9,102 @@ SHELL		:= /bin/sh
 
 srcdir		:= .
 
-include ./makefile.conf
-include ./config/makefile.checks
-include ./config/makefile.template
+DOSSIER_MAKE	:= dossier_makefiles
+
+include ./$(DOSSIER_MAKE)/makefile.fixe
+ifeq ($(wildcard makefile.conf), )
+    include ./$(DOSSIER_MAKE)/makefile.conf.tmpl
+else
+    include ./makefile.conf
+endif
+include ./$(DOSSIER_MAKE)/makefile.checks
+include ./$(DOSSIER_MAKE)/makefile.template
+
+# Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
+# en dépendance.
+ifeq ($(wildcard $(RESLT_COMPIL)), )
+    DEPEND	= compiler
+else
+    DEPEND	=
+endif
 
 ###################
-.PHONY: $(CIBLECOMPILE)
-$(CIBLECOMPILE): build
+$(DOSSIER_MAKE)/makefile.conf.tmpl:
+
+###################
+makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
+	cp ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
+	chmod u+w ./makefile.conf
+	@echo " "
+
+###################
+.PHONY: run
+run: $(DEPEND)
+	$(RESLT_COMPIL) $(ARGUMENTSAPPLI)
+
+###################
+.PHONY: compiler
+compiler: makefile.conf build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo "  "
 
 ###################
+.PHONY: prod
+prod: makefile.conf $(FAIRE_INITIALISATION)
+	which $(COMPILATEUR)
+	$(CC) -P$(GPR) $(OPT_GPR_PROD)
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
+	@echo " ─────────────────────────────────────────────────────────────────"
+
+###################
 .PHONY: doc
-doc:
-	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
+doc: makefile.conf $(FAIRE_INITIALISATION)
+	which $(GNAT_DOC)
+	$(GNAT_DOC) -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
 .PHONY: prove
-prove:
-	gnatprove -P$(GPR) $(OPTGPR) --level=$(NIVEAU_PREUVE) --report=all
+prove: makefile.conf $(FAIRE_INITIALISATION)
+	which $(GNATPROVE)
+	$(GNATPROVE) -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
-check:
-	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
+check: makefile.conf $(FAIRE_INITIALISATION)
+	which $(GNATCHECK)
+	$(GNATCHECK) -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
-pretty:
-	gnatpp -P$(GPR) $(Fic)
+pretty: makefile.conf $(FAIRE_INITIALISATION)
+	which $(GNATPP)
+	$(GNATPP) -P$(GPR) $(Fichier)
 
 ###################
 .PHONY: cleandoc
-cleandoc:
+cleandoc: makefile.conf
 	$(RM) $(OPTRM) doc
 
 ###################
 .PHONY: help
-help:
+help: makefile.conf
 	@echo "Liste des commandes :"
 	@echo " - all			: Compile l'application."
 	@echo "    - build"
-	@echo "    - $(CIBLECOMPILE)"
+	@echo "    - compiler"
+	@echo " - prod			: Compile avec l'option release active."
 	@echo " - run			: Execute l'application avec les paramètres défini."
 	@echo " - doc			: Génère la documentation du programme."
 	@echo " "
-	@echo " -  clean		: Efface tous les fichiers généré par le compilateur sauf les exécutables."
+	@echo " - clean 		: Efface tous les fichiers généré par le compilateur sauf les exécutables."
 	@echo " - distclean		: Efface tous les fichiers généré par le compilateur."
 	@echo " - cleandoc		: Supprime la documentation généré."
 	@echo " "
 	@echo " -  check		: Lance la vérification des règles de programmation sur les sources."
 	@echo " -  prove		: Exécute l'outil gnatprove sur les fichiers sources."
-	@echo " - pretty		: Reformate le fichier désigné par Fic=/nom/du/fichier."
+	@echo " - pretty		: Reformate le fichier désigné par Fichier=/nom/du/fichier."
 	@echo " "
 	@echo " - compter		: Compte le nombre de lignes de code source."
 	@echo "    - avec_find"
@@ -69,5 +112,7 @@ help:
 	@echo " - compter_detail	: Compte le nombre de lignes de code source par fichier."
 	@echo "    - avec_find_detail"
 	@echo "    - avec_cloc_detail"
+	@echo " "
+	@echo " - maj_sous_modules	: Met à jour les sous modules"
 	@echo " "
 	@echo " - version_makefile	: La version des makefiles."
