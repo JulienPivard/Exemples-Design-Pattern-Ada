@@ -1,44 +1,17 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 16 janvier[01] 2020
-
-# Options possible pour la compilation de la documentation.
-# -w Affiche des warnings pour tout toutes les docs oublié.
-# -l Cherche avant les déclarations plutôt que après.
-# -p Ajoute les private dans la documentation.
+# Dernière modification : Lundi 06 juin[06] 2022
 
 ###############
 # Partie Fixe #
 ###############
 
-COMPILATEUR	= gprbuild
-OPTCOMPILATEUR	= -d# -p
-CC		= $(COMPILATEUR) $(OPTCOMPILATEUR)
-
-RM		= rm
-OPTRM		= -vrf
-
-GPR		= build.gpr
+GPR		= gnat/build.gpr
 
 CHEMIN_OBJET	= obj
-CHEMIN_EXEC	= bin
-
-GPR_MODE	= -Xmode=$(MODE)
-GPR_VERBEUX	= -Xverbeux=$(VERBEUX)
-GPR_STRICT	= -Xstrict=$(STRICT)
-GPR_W_SONT_E	= -Xwarn_sont_err=$(WARN_DEVIENNENT_ERREURS)
-GPR_AFFICHE_S	= -Xafficher_utilisation_stack=$(AFFICHER_LA_STACK)
-GPR_AFFICHE_E	= -Xafficher_ordre_elaboration=$(AFFICHER_ORDRE_ELABORATION)
-OPTGPR		= $(GPR_MODE) $(GPR_VERBEUX) $(GPR_STRICT) $(GPR_W_SONT_E) \
-		  $(GPR_AFFICHE_S) $(GPR_AFFICHE_E)
-
-SORTIEDOC	= --output=$(FORMAT)
-OPTDOCUMENT	= -w --enable-build $(SORTIEDOC)
-
-OPTCOMPTAGE	= -l #-w
-
-CIBLECOMPILE	= compile_appli
-EXECUTABLE	= ./bin/$(MODE)/executable
+CHEMIN_RESLT	= bin
+CHEMIN_ALI	= ali
+RESLT_COMPIL	= ./$(CHEMIN_RESLT)/$(MODE)/executable
 
 #############################################
 # Les modifications sont à faire en dessous #
@@ -50,9 +23,9 @@ FORMAT		= html
 # Fixer le nom de l'application
 NOMAPP		= Exemple de monteur
 
-# Pour activer le mode debug mettre à true
-# ACTIVER_DEBUG = [true|false]
-ACTIVER_DEBUG	= true
+# Pour activer le mode debug -> deb | release -> rel | développement -> dev
+# MODE_COMPILE = [dev|deb|rel]
+MODE_COMPILE	= dev
 
 # Pour activer le mode verbeux
 # ACTIVER_VERB = [true|false]
@@ -83,6 +56,24 @@ OPT_CHECK	= -dd -l -U --show-rule
 
 # 0 = le plus rapide; 4 = le plus puissant.
 NIVEAU_PREUVE	= 2
+
+# Affichage des messages durant les preuves.
+AFFICHAGE_MESSAGES	= fail
+#  . fail       - N'affiche que les erreurs (default).
+#  . all        - Affiche tous les résultats de gnatprove.
+#  . provers    - Pareil que all, mais avec les info d'usage du prover.
+#  . statistics - Pareil que provers, mais avec les temps et info d'étapes.
+
+# éléments examiné pour la preuve
+MODE_EXECUTION_PREUVE	= all
+#  . check             - Vérification partiel et rapide des contraintes SPARK.
+#  . check_all, stone  - Vérification complète des contraintes SPARK.
+#  . flow, bronze      - Prouve que l'initialisation et le flot de données sont correct.
+#  . prove             - Prouve l'absence d'erreurs d'exécution et de contrat
+#  . all, silver, gold
+
+# NIVEAU_OPTIMI = [defaut|0|1|2|3]
+NIVEAU_OPTIMI		= defaut
 
 # Fixer les arguments qui seront donné en entré de l'application
 # lors de l'exécution
