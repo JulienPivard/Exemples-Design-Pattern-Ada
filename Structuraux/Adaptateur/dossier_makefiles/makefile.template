@@ -1,0 +1,165 @@
+# vim: nofoldenable: list:
+# PIVARD Julien
+# Dernière modification : Mercredi 23 mars[03] 2022
+
+###################
+# Point d'entrée #
+###################
+.PHONY: all
+all: compiler
+
+MAKEFILE_V	:= 2.6.5
+
+# Ajout du chemin du compilateur gnat dans le path
+GNAT_BIN_LINUX			:= /usr/gnat/bin
+
+GNAT_BIN_MACOS			:= /usr/local/gnat/bin
+
+ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
+    PATH		:= $(GNAT_BIN_PERSO):$(PATH)
+    $(info  Utilisation de bin GNAT personnalisé [$(GNAT_BIN_PERSO)])
+else ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
+    PATH		:= $(GNAT_BIN_MACOS):$(PATH)
+    $(info  Utilisation de bin GNAT MacOS [$(GNAT_BIN_MACOS)])
+else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
+    PATH		:= $(GNAT_BIN_LINUX):$(PATH)
+    $(info  Utilisation de bin GNAT Linux [$(GNAT_BIN_LINUX)])
+endif
+
+$(info Valeur de GPR_CONFIG=[${GPR_CONFIG}])
+
+ifeq ($(CHEMIN_OBJET), )
+    $(info makefile.conf:11: *** Le nom du dossier des objets est vide)
+    $(error Compilation impossible)
+endif
+ifeq ($(CHEMIN_RESLT), )
+    $(info makefile.conf:12: *** Le nom du dossier des exe/lib est vide)
+    $(error Compilation impossible)
+endif
+ifeq ($(CHEMIN_ALI), )
+    $(info makefile.conf:13: *** Le nom du dossier des ali est vide)
+    $(error Compilation impossible)
+endif
+
+# On liste les sous modules en éliminant le premier caractère si c'est + ou U
+# + signal un sous module mis à jour. U signal un conflit de merge.
+ifeq ($(wildcard .git), )
+    PRES_SOUS_MODULES	:=
+else
+    PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
+endif
+
+ifeq ([$(PRES_SOUS_MODULES)], [])
+    FAIRE_INITIALISATION	:=
+else
+    FAIRE_INITIALISATION	:= initialiser_sous_modules
+endif
+
+$(info )
+
+###################
+.PHONY: version
+version:
+	which $(COMPILATEUR)
+	which $(GNATMAKE)
+	which $(GNAT_GNAT)
+	which $(GNATLS)
+	@echo " "
+	$(COMPILATEUR) --version
+	$(GNATMAKE) --version
+	$(GNAT_GNAT) --version
+	$(GNATLS) -v
+
+###################
+.PHONY: version_makefile
+version_makefile:
+	@echo $(MAKEFILE_V)
+
+###################
+.PHONY: initialiser_sous_modules
+initialiser_sous_modules:
+	git submodule init
+	git submodule update
+	git submodule foreach git checkout master
+
+###################
+.PHONY: maj_sous_modules
+maj_sous_modules:
+	git submodule foreach git pull origin master
+	@echo
+	git submodule foreach git checkout master
+	@echo
+	git submodule foreach git rebase master
+	@echo
+	git submodule foreach git pull
+	@echo
+	git submodule summary
+
+###################
+.PHONY: build
+build: $(FAIRE_INITIALISATION)
+	which $(COMPILATEUR)
+	which $(GNATLS)
+	@echo " "
+	$(GNATLS) -v
+	@echo " ┌───────────────────────────────────────────────────────────────┐"
+	@echo " │                  Lancement de la compilation                  │"
+	@echo " └───────────────────────────────────────────────────────────────┘"
+	$(CC) -P$(GPR) $(OPTGPR)
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
+	@echo " ─────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: clean
+clean:
+	@echo " ┌──────────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers temporaire généré par la compilation │"
+	@echo " └──────────────────────────────────────────────────────────────┘"
+	-$(RM) $(OPTRM) "./$(CHEMIN_OBJET)"
+	-$(RM) $(OPTRM) "./$(CHEMIN_ALI)"
+	@echo " ────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: distclean
+distclean: clean
+	@echo " ┌───────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers exe/lib généré par la compilation │"
+	@echo " └───────────────────────────────────────────────────────────┘"
+	-$(RM) $(OPTRM) "./$(CHEMIN_RESLT)"
+	@echo " ─────────────────────────────────────────────────────────────"
+
+ifeq ($(shell which cloc 2>/dev/null), )
+    TECHNIQUE_COMPTAGE	= avec_find
+else
+    TECHNIQUE_COMPTAGE	= avec_cloc
+endif
+
+###################
+.PHONY: compter
+compter: $(TECHNIQUE_COMPTAGE)
+
+.PHONY: avec_find
+avec_find:
+	find $(DOSSIERSRC) -type f | xargs cat | wc $(OPTCOMPTAGE)
+
+.PHONY: avec_cloc
+avec_cloc:
+	cloc --exclude-dir=obj,bin --by-percent cmb $(DOSSIERSRC)
+
+###################
+.PHONY: compter_detail
+compter_detail: $(TECHNIQUE_COMPTAGE)_detail
+
+.PHONY: avec_find_detail
+avec_find_detail:
+	find $(DOSSIERSRC) -type f | xargs wc $(OPTCOMPTAGE)
+
+.PHONY: avec_cloc_detail
+avec_cloc_detail:
+	cloc --exclude-dir=obj,bin --by-file-by-lang $(DOSSIERSRC)
+
+# Afficher toutes les cibles disponible
+.PHONY: afficher_nom_cibles
+afficher_nom_cibles:
+	@grep $(MAKEFILE_LIST) -i -e "^[a-zA-Z_\-]*:" | awk 'BEGIN {FS = ":"}; {printf "%s - %s\n", $$1, $$2}'
