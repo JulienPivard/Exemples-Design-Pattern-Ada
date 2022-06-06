@@ -315,12 +315,11 @@ is
    Gen  : Code_Generateur_T;  --  Un visiteur
    Ver  : Verificateur_T;     --  Un visiteur
    Inst : Instrumentation_T;
-
 begin
    Ada.Text_IO.Put_Line (Item => "Démonstration de l'utilisation du pattern");
    Ada.Text_IO.Put_Line (Item => "visiteur sur une hiérarchie d'objets.");
-
    Ada.Text_IO.New_Line (Spacing => 1);
+
    Executer (Visiteur => Gen);
    Ada.Text_IO.New_Line (Spacing => 1);
    Executer (Visiteur => Ver);
