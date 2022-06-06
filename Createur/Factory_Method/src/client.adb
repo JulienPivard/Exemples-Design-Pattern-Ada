@@ -13,7 +13,8 @@ with Executeur_G;
 
 procedure Client is
 
-   package Executeur_P is new Executeur_G
+   package Version_Compilateur_P is new GNAT.Compiler_Version;
+   package Executeur_P           is new Executeur_G
       (
          Nombre_D_Arguments_Min => 0,
          Nombre_D_Arguments_Max => 0
@@ -30,6 +31,9 @@ begin
    Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Compilation_Time);
    Ada.Text_IO.Put      (Item => "+---------------------+");
    Ada.Text_IO.Put_Line (Item => " - - - - - - - - - - - ");
+
+   Ada.Text_IO.Put      (Item => "Version du compilateur : ");
+   Ada.Text_IO.Put_Line (Item => "[" & Version_Compilateur_P.Version & "]");
 
    Ada.Text_IO.New_Line (Spacing => 1);
 
