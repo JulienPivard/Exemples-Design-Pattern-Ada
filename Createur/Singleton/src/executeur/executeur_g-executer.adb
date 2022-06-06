@@ -11,6 +11,11 @@ is
    S2 : constant Singleton_P.Singleton_A :=
       Singleton_P.Recuperer_Singleton;
 begin
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern singleton");
+   Ada.Text_IO.Put_Line (Item => "S1 et S2 sont deux accès différents ");
+   Ada.Text_IO.Put_Line (Item => "au même singleton.");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
    Ada.Text_IO.New_Line (Spacing => 1);
