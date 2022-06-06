@@ -8,7 +8,6 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-
    ---------------------------------------------------------------------------
    procedure Test_De_L_Age
       (P : in Prototype_P.Prototype_T'Class);
@@ -52,9 +51,7 @@ is
 
    Po1 : Porte_R.Porte_T;
    Po2 : Porte_R.Porte_T;
-
 begin
-
    Mur_R.Creer_Mur (Le_Mur => P1);
    P2 := P1.Clone;
    P2.Changer_Age (Age => 20);
@@ -78,5 +75,4 @@ begin
    Ada.Text_IO.Put_Line (Item    => "------------- Une Porte -------------");
    Test_De_L_Age        (P       => Po2);
    Ada.Text_IO.New_Line (Spacing => 1);
-
 end Executer;
