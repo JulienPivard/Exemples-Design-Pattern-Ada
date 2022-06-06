@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 25 mai[05] 2022
+--           Dernière modification : Lundi 06 juin[06] 2022
 --                                                                          --
 ------------------------------------------------------------------------------
 with Ada.Text_IO;
@@ -21,6 +21,8 @@ procedure Client is
       );
 
 begin
+
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern singleton");
 
    Ada.Text_IO.Put      (Item => "+---------------------+");
    Ada.Text_IO.Put_Line (Item => " - - - - - - - - - - - ");
