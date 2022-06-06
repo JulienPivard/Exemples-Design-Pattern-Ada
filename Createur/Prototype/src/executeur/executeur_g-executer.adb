@@ -52,6 +52,12 @@ is
    Po1 : Porte_R.Porte_T;
    Po2 : Porte_R.Porte_T;
 begin
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern prototype");
+   Ada.Text_IO.Put_Line (Item => "Création d'un premier objet par une");
+   Ada.Text_IO.Put_Line (Item => "fonction, puis toutes les autres par");
+   Ada.Text_IO.Put_Line (Item => "clonage. Une porte et un mur.");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
    Mur_R.Creer_Mur (Le_Mur => P1);
    P2 := P1.Clone;
    P2.Changer_Age (Age => 20);
