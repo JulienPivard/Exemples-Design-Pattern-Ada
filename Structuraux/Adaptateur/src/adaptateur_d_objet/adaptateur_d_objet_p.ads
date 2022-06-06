@@ -3,10 +3,11 @@ with Classe_Utilisee_P;
 private with Objet_Adapte_P;
 
 --  @summary
---  Une petite explication
+--  Un adaptateur d'objet.
 --  @description
---  Une description plus longue
---  @group Un nom de groupe
+--  Adapte une instance d'un objet pour la rendre utilisable par
+--  l'utilisateur.
+--  @group Adaptateur
 package Adaptateur_D_Objet_P
    with
       Pure           => False,

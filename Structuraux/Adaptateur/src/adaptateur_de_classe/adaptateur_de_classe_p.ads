@@ -4,7 +4,7 @@ with Classe_Utilisee_P;
 --  @summary
 --  Un adaptateur de classe.
 --  @description
---  Adapte une classe vers une autre pour la rendre utilisable,
+--  Adapte une classe à l'interface d'une autre pour la rendre utilisable,
 --  tout en descendant de la classe qu'il faut adapter.
 --  @group Adaptateur
 package Adaptateur_De_Classe_P
