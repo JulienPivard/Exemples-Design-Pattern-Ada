@@ -6,12 +6,10 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-
    S1 : constant Singleton_P.Singleton_A :=
       Singleton_P.Recuperer_Singleton;
    S2 : constant Singleton_P.Singleton_A :=
       Singleton_P.Recuperer_Singleton;
-
 begin
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
