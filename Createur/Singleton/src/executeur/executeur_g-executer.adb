@@ -13,7 +13,6 @@ is
       Singleton_P.Recuperer_Singleton;
 
 begin
-
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
    Ada.Text_IO.New_Line (Spacing => 1);
@@ -35,5 +34,4 @@ begin
    S1.all.Afficher;
    Ada.Text_IO.Put (Item => "S2 : ");
    S2.all.Afficher;
-
 end Executer;
