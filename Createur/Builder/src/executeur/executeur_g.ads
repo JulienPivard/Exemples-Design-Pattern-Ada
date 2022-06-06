@@ -19,6 +19,8 @@ generic
 --  @group Exécuteur
 package Executeur_G is
 
+   pragma Elaborate_Body;
+
    pragma Compile_Time_Error
       (
          Nombre_D_Arguments_Min > Nombre_D_Arguments_Max,

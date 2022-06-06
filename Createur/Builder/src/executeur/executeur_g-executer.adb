@@ -10,7 +10,6 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-
    package Html_B_R  renames Builder_P.Html_P;
    package Mark_B_R  renames Builder_P.Markdown_P;
 
@@ -19,9 +18,7 @@ is
    Texte_Html   : Produit_Html_P.Texte_Html_T;
    Monteur_Mark : Mark_B_R.Monteur_Markdown_T;
    Texte_Mark    : Produit_Markdown_P.Texte_Markdown_T;
-
 begin
-
    Ada.Text_IO.Put_Line (Item => "--------------");
 
    Dir.Construire (Monteur => Monteur_Html);
@@ -35,5 +32,4 @@ begin
    Texte_Mark.Rendu;
 
    Ada.Text_IO.Put_Line (Item => "--------------");
-
 end Executer;
