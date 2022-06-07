@@ -21,6 +21,12 @@ is
 
    type Abstraction_T is tagged private;
 
+   procedure Initialiser
+      (
+         This  : in out Abstraction_T;
+         Sorte : in     Natural
+      );
+
    procedure Operation
       (This : in out Abstraction_T);
 
@@ -30,6 +36,10 @@ private
 
    package Impl_P is new Ada.Containers.Indefinite_Holders
       (Element_Type => Implementeur_P.Implementeur_T'Class);
+
+   function Init
+      (Sorte : in     Natural)
+      return Implementeur_P.Implementeur_T'Class;
 
    type Abstraction_T is tagged
       record
