@@ -1,5 +1,7 @@
 with Ada.Text_IO;
 
+with GNAT.Source_Info;
+
 package body Implementeur_P.Motif_P
    with Spark_Mode => Off
 is
@@ -11,7 +13,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Ope 1 de motif.");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Enclosing_Entity);
    end Operation_1;
    ---------------------------------------------------------------------------
 
@@ -22,7 +24,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Ope 2 de motif.");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Enclosing_Entity);
    end Operation_2;
    ---------------------------------------------------------------------------
 
@@ -33,8 +35,30 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Ope 3 de motif.");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Enclosing_Entity);
    end Operation_3;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   procedure Operation_4
+      (This : in out Motif_T)
+   is
+      pragma Unreferenced (This);
+   begin
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Enclosing_Entity);
+   end Operation_4;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   procedure Operation_5
+      (This : in out Motif_T)
+   is
+      pragma Unreferenced (This);
+   begin
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Enclosing_Entity);
+   end Operation_5;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

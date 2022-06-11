@@ -25,4 +25,12 @@ is
       (This : in out Implementeur_T)
    is abstract;
 
+   procedure Operation_4
+      (This : in out Implementeur_T)
+   is abstract;
+
+   procedure Operation_5
+      (This : in out Implementeur_T)
+   is abstract;
+
 end Implementeur_P;

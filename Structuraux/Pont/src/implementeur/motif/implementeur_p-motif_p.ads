@@ -25,6 +25,14 @@ is
    procedure Operation_3
       (This : in out Motif_T);
 
+   overriding
+   procedure Operation_4
+      (This : in out Motif_T);
+
+   overriding
+   procedure Operation_5
+      (This : in out Motif_T);
+
 private
 
    type Motif_T is new Implementeur_T with
