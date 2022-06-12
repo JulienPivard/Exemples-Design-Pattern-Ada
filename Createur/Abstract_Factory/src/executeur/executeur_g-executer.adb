@@ -47,9 +47,11 @@ is
    Fabrique_1 : Fab_1_R.Fabrique_Markdown_T;
    Fabrique_2 : Fab_2_R.Fabrique_Html_T;
 begin
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern fabrique");
    Ada.Text_IO.Put_Line (Item => "abstraite.");
    Ada.Text_IO.Put_Line (Item => "Fabrique des familles d'objets");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Ada.Text_IO.Put_Line (Item => "----------------------------");
