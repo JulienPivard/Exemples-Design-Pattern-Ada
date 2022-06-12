@@ -11,6 +11,9 @@ package Composant_P.Feuille_P
       Spark_Mode     => Off
 is
 
+   E_Ajout_Impossible       : exception;
+   E_Suppression_Impossible : exception;
+
    type Feuille_T is new Composant_T with private;
 
    function Construire

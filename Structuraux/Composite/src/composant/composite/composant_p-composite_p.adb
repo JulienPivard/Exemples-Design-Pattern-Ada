@@ -1,3 +1,5 @@
+with Ada.Text_IO;
+
 with Composant_P.Feuille_P;
 
 package body Composant_P.Composite_P
@@ -10,6 +12,7 @@ is
       (This : in     Composite_T)
    is
    begin
+      Ada.Text_IO.Put_Line (Item => "+");
       if not This.Enfant_1.Is_Empty then
          This.Enfant_1.Element.Faire;
       end if;
@@ -76,12 +79,10 @@ is
             Composite.Ajouter (Valeur => Valeur);
             This.Enfant_2.Replace_Element (New_Item => Composite);
          end Bloc_Creer_Composite_Droite;
-      elsif Nb_Enfants_Droite < Nb_Enfants_Gauche - 1 then
-         This.Enfant_2.Reference.Ajouter (Valeur => Valeur);
-      elsif Nb_Enfants_Gauche < Nb_Enfants_Droite - 1 then
+      elsif Nb_Enfants_Gauche - 1 <= Nb_Enfants_Droite then
          This.Enfant_1.Reference.Ajouter (Valeur => Valeur);
       else
-         This.Enfant_1.Reference.Ajouter (Valeur => Valeur);
+         This.Enfant_2.Reference.Ajouter (Valeur => Valeur);
       end if;
    end Ajouter;
    ---------------------------------------------------------------------------

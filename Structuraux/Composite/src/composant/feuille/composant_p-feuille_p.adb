@@ -35,7 +35,7 @@ is
       )
    is
    begin
-      null;
+      raise E_Ajout_Impossible with "Impossible d'ajouter à une feuille";
    end Ajouter;
    ---------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ is
       )
    is
    begin
-      null;
+      raise E_Suppression_Impossible with "Impossible de supprimer";
    end Supprimer;
    ---------------------------------------------------------------------------
 
