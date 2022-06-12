@@ -1,5 +1,7 @@
 with Ada.Text_IO;
 
+with Comptage_P;
+
 package body Singleton_P is
 
    ---------------------------------------------------------------------------
@@ -7,6 +9,7 @@ package body Singleton_P is
       return Singleton_A
    is
    begin
+      Comptage_P.Compteur := Comptage_P.Compteur + 1;
       return Unique;
    end Recuperer_Singleton;
    ---------------------------------------------------------------------------
@@ -31,7 +34,12 @@ package body Singleton_P is
    begin
       Ada.Text_IO.Put      (Item => Nom);
       Ada.Text_IO.Put      (Item => " | ");
-      Ada.Text_IO.Put_Line (Item => Singleton.Age'Img);
+
+      Ada.Text_IO.Put_Line
+         (
+            Item => "Nb instances lues : " &
+               Comptage_P.Compteur'Img & " fois"
+         );
    end Afficher;
    ---------------------------------------------------------------------------
 

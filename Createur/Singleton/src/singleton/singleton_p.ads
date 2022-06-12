@@ -39,17 +39,12 @@ private
 
    package Nom_R renames Ada.Strings.Unbounded;
 
-   type Age_T is new Natural;
-   --  Représentation interne de l'age du jeton
-
-   type Singleton_T (Age : Age_T) is tagged limited
+   type Singleton_T is tagged limited
       record
          Nom : Nom_R.Unbounded_String;
       end record;
 
-   subtype Singleton_Instance_T is Singleton_T (Age => 45);
-
-   Unique : constant Singleton_A := new Singleton_Instance_T;
+   Unique : constant Singleton_A := new Singleton_T;
    --  Singleton
 
 end Singleton_P;
