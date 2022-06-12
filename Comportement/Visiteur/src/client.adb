@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Dimanche 05 juin[06] 2022
+--           Dernière modification : Mercredi 25 mai[05] 2022
 --                                                                          --
 ------------------------------------------------------------------------------
 with Ada.Text_IO;
@@ -9,7 +9,6 @@ with Ada.Text_IO;
 with GNAT.Compiler_Version;
 with GNAT.Source_Info;
 
-with Comptage_P;
 with Executeur_G;
 
 procedure Client is
@@ -41,12 +40,6 @@ begin
    Executeur_P.Verifier_Nombre_D_Arguments;
    Executeur_P.Executer;
 
-   Comptage_P.Compteur := Comptage_P.Compteur + 1;
-   Ada.Text_IO.Put_Line
-      (
-         Item => "Le programme à été lancé : " &
-            Comptage_P.Compteur'Img & " fois"
-      );
 exception
    when Executeur_P.Trop_D_Arguments_E =>
       null;
