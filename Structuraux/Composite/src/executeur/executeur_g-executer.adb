@@ -1,14 +1,28 @@
---  with GNAT.Source_Info;
+with Composant_P.Composite_P;
+with Valeur_P;
 
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
+   use type Valeur_P.Valeur_T;
+
+   C : Composant_P.Composite_P.Composite_T;
 begin
-   --  Ada.Text_IO.Put      (Item => "Procédure : [");
-   --  Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
-   --  Ada.Text_IO.Put      (Item => "], une instance de : ");
-   --  Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
-   --  Mettez votre code ici
-   null;
+   C.Ajouter (Valeur => 5);
+   C.Ajouter (Valeur => -20);
+
+   C.Ajouter (Valeur => 9);
+   C.Ajouter (Valeur => 33);
+
+   C.Faire;
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   C.Ajouter (Valeur => -13);
+   C.Ajouter (Valeur => -1);
+
+   C.Ajouter (Valeur => -99);
+   C.Ajouter (Valeur => 27);
+
+   C.Faire;
 end Executer;

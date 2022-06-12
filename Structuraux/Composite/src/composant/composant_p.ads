@@ -1,0 +1,54 @@
+with Valeur_P;
+
+--  @summary
+--  Démonstration du pattern Composite.
+--  @description
+--  Démonstration du pattern Composite.
+--  Classe abstraite qui définira la base de la structure.
+--  @group Composite
+package Composant_P
+   with
+      Pure           => True,
+      Preelaborate   => False,
+      Elaborate_Body => False,
+      Spark_Mode     => Off
+is
+
+   type Composant_T is interface;
+
+   procedure Faire
+      (This : in     Composant_T)
+   is abstract;
+
+   procedure Ajouter
+      (
+         This   : in out Composant_T;
+         Valeur : in     Valeur_P.Valeur_T
+      )
+   is abstract;
+
+   procedure Supprimer
+      (
+         This   : in out Composant_T;
+         Valeur : in     Valeur_P.Valeur_T
+      )
+   is abstract;
+
+   type Id_T is range 1 .. 2;
+
+   function Lire_Enfant
+      (
+         This     : in     Composant_T;
+         Position : in     Id_T
+      )
+      return Composant_T'Class
+   is abstract;
+
+   type Nb_Enfants_T is range 0 .. 1_000;
+
+   function Lire_Nb_Enfants
+      (This : in     Composant_T)
+      return Nb_Enfants_T
+   is abstract;
+
+end Composant_P;
