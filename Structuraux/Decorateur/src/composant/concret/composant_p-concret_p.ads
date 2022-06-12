@@ -1,0 +1,38 @@
+with Ada.Strings.Unbounded;
+
+--  @summary
+--  Version concrète de notre composant.
+--  @description
+--  Affiche du texte en limitant le nombre de caractères.
+--  @group Decorateur
+package Composant_P.Concret_P
+   with
+      Pure           => False,
+      Preelaborate   => False,
+      Elaborate_Body => True,
+      Spark_Mode     => Off
+is
+
+   type Concret_T is new Composant_T with private;
+
+   function Initialiser
+      (Text : in     String)
+      return Concret_T;
+
+   overriding
+   procedure Faire
+      (
+         This    : in     Concret_T;
+         Largeur : in     Largeur_P.Largeur_T
+      );
+
+private
+
+   package Str_R renames Ada.Strings.Unbounded;
+
+   type Concret_T is new Composant_T with
+      record
+         Text : Ada.Strings.Unbounded.Unbounded_String;
+      end record;
+
+end Composant_P.Concret_P;
