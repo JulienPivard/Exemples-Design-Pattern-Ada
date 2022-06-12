@@ -44,12 +44,12 @@ is
    begin
       Boucle_Decoupage_Str :
       loop
-         Bloc_Calcul_Fin :
+         Bloc_Calcul_Position_Fin :
          declare
             Fin_Tmp : constant Integer := Debut + Integer (Largeur) - 1;
          begin
             Fin := (if Fin_Tmp < Fin_Du_Texte then Fin_Tmp else Fin_Du_Texte);
-         end Bloc_Calcul_Fin;
+         end Bloc_Calcul_Position_Fin;
 
          Bloc_Trouver_Saut_De_Ligne :
          declare
@@ -66,21 +66,11 @@ is
 
          Quitter := Fin >= Fin_Du_Texte;
 
-         Str_Tmp := Str_T'(others => ' ');
-
-         if (Fin - Debut + 1) = Integer (Largeur) then
-            Str_Tmp (Indice_Str_T) := Str (Debut .. Fin);
-         else
-            Bloc_Copie_Str :
-            declare
-               Debut_Tmp : constant Integer := Debut - (Debut - 1);
-               Fin_Tmp   : constant Integer := Fin   - (Debut - 1);
-
-               subtype Indice_Tmp_T is Indice_Str_T range Debut_Tmp .. Fin_Tmp;
-            begin
-               Str_Tmp (Indice_Tmp_T) := Str (Debut .. Fin);
-            end Bloc_Copie_Str;
-         end if;
+         Ada.Strings.Fixed.Move
+            (
+               Source => Str (Debut .. Fin),
+               Target => Str_Tmp
+            );
 
          Ada.Text_IO.Put_Line (Item => Str_Tmp);
 
