@@ -27,9 +27,15 @@ is
          Largeur : in     Largeur_P.Largeur_T
       )
    is
-      Str : constant String  := Str_R.To_String (Source => This.Text);
+      subtype Indice_Str_T is Integer range 1 .. Integer (Largeur);
+
+      subtype Str_T is String (Indice_Str_T);
+
+      Str : constant String := Str_R.To_String (Source => This.Text);
 
       Fin_Du_Texte : constant Integer := Str'Last;
+
+      Str_Tmp : Str_T := Str_T'(others => ' ');
 
       Debut : Integer := Str'First;
       Fin   : Integer;
@@ -60,7 +66,23 @@ is
 
          Quitter := Fin >= Fin_Du_Texte;
 
-         Ada.Text_IO.Put_Line (Item => Str (Debut .. Fin));
+         Str_Tmp := Str_T'(others => ' ');
+
+         if (Fin - Debut + 1) = Integer (Largeur) then
+            Str_Tmp (Indice_Str_T) := Str (Debut .. Fin);
+         else
+            Bloc_Copie_Str :
+            declare
+               Debut_Tmp : constant Integer := Debut - (Debut - 1);
+               Fin_Tmp   : constant Integer := Fin   - (Debut - 1);
+
+               subtype Indice_Tmp_T is Indice_Str_T range Debut_Tmp .. Fin_Tmp;
+            begin
+               Str_Tmp (Indice_Tmp_T) := Str (Debut .. Fin);
+            end Bloc_Copie_Str;
+         end if;
+
+         Ada.Text_IO.Put_Line (Item => Str_Tmp);
 
          exit Boucle_Decoupage_Str when Quitter;
 
