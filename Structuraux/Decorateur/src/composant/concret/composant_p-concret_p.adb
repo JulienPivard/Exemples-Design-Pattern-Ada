@@ -37,6 +37,8 @@ is
       Debut : Integer := Str'First;
       Fin   : Integer;
 
+      Est_Fini : Boolean := False;
+
       I : Texte_P.Nb_Lignes_T := Texte_P.Nb_Lignes_T'First;
 
       Resultat : Texte_P.Texte_T := Texte_P.Texte_Vide;
@@ -73,11 +75,11 @@ is
                );
          end if;
 
-         exit Boucle_Decoupage_Str when Fin >= Fin_Du_Texte;
+         Est_Fini := Fin >= Fin_Du_Texte or else I >= Hauteur;
 
-         if I /= Texte_P.Nb_Lignes_T'Last then
-            I := I + 1;
-         end if;
+         exit Boucle_Decoupage_Str when Est_Fini;
+
+         I := I + 1;
 
          Debut := Fin + 1;
       end loop Boucle_Decoupage_Str;
