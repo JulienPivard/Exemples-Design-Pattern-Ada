@@ -17,7 +17,7 @@ is
    is
       T : Texte_P.Texte_T;
    begin
-      T := Texte.Faire (Largeur => 80);
+      T := Texte.Faire (Largeur => 80, Hauteur => Texte_P.Nb_Lignes);
 
       Boucle_Afficher :
       for P of T loop

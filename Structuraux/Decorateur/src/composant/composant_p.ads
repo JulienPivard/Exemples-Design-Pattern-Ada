@@ -19,7 +19,8 @@ is
    function Faire
       (
          This    : in     Composant_T;
-         Largeur : in     Texte_P.Largeur_T
+         Largeur : in     Texte_P.Largeur_T;
+         Hauteur : in     Texte_P.Nb_Lignes_T
       )
       return Texte_P.Texte_T
    is abstract;

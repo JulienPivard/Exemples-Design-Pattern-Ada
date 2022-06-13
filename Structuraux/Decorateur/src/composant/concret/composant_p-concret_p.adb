@@ -23,7 +23,8 @@ is
    function Faire
       (
          This    : in     Concret_T;
-         Largeur : in     Texte_P.Largeur_T
+         Largeur : in     Texte_P.Largeur_T;
+         Hauteur : in     Texte_P.Nb_Lignes_T
       )
       return Texte_P.Texte_T
    is

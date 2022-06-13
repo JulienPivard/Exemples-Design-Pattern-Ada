@@ -22,7 +22,8 @@ is
    function Faire
       (
          This    : in     Boite_T;
-         Largeur : in     Texte_P.Largeur_T
+         Largeur : in     Texte_P.Largeur_T;
+         Hauteur : in     Texte_P.Nb_Lignes_T
       )
       return Texte_P.Texte_T
    is
@@ -37,8 +38,11 @@ is
 
       subtype Largeur_Texte_T is Integer range 1 .. Integer (Largeur_Texte);
 
-      Texte : constant Texte_P.Texte_T :=
-         This.Composant.Element.Faire (Largeur => Largeur_Texte);
+      Texte : constant Texte_P.Texte_T := This.Composant.Element.Faire
+         (
+            Largeur => Largeur_Texte,
+            Hauteur => Hauteur
+         );
 
       Str_Tmp : Str_T := Str_T'(others => ' ');
 
