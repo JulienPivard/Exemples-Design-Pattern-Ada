@@ -1,4 +1,5 @@
 with Composant_P.Concret_P;
+with Composant_P.Decorateur_P.Boite_P;
 with Largeur_P;
 
 separate (Executeur_G)
@@ -39,6 +40,10 @@ is
                "preuves tangibles, on doit me classer parmi les athées »" &
                ASCII.LF & "H.P. Lovecraft"
          );
+   B : Composant_P.Decorateur_P.Boite_P.Boite_T;
 begin
    Afficher (Texte => C);
+
+   B.Ajouter (Composant => C);
+   Afficher (Texte => B);
 end Executer;
