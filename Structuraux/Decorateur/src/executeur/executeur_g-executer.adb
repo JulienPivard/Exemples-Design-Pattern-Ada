@@ -24,7 +24,7 @@ is
    end Afficher;
    ---------------------------------------------------------------------------
 
-   C : Composant_P.Concret_P.Concret_T :=
+   C : constant Composant_P.Concret_P.Concret_T :=
       Composant_P.Concret_P.Initialiser
          (
             Text => "« Tout ce que je dis c'est que je pense qu'il est " &
