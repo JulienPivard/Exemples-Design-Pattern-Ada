@@ -1,4 +1,5 @@
 with Composant_P.Concret_P;
+with Composant_P.Decorateur_P.Ascenseur_P;
 with Composant_P.Decorateur_P.Boite_P;
 with Largeur_P;
 
@@ -40,10 +41,29 @@ is
                "preuves tangibles, on doit me classer parmi les athées »" &
                ASCII.LF & "H.P. Lovecraft"
          );
+   A : Composant_P.Decorateur_P.Ascenseur_P.Ascenseur_T;
    B : Composant_P.Decorateur_P.Boite_P.Boite_T;
 begin
    Afficher (Texte => C);
 
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put_Line (Item => "-");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
    B.Ajouter (Composant => C);
    Afficher (Texte => B);
+
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put_Line (Item => "-");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   A.Ajouter (Composant => C);
+   Afficher (Texte => A);
+
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put_Line (Item => "-");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   A.Ajouter (Composant => B);
+   Afficher (Texte => A);
 end Executer;
