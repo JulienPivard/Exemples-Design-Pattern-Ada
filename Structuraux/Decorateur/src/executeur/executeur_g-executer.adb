@@ -5,6 +5,25 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
+   ---------------------------------------------------------------------------
+   procedure Afficher
+      (Texte : in     Composant_P.Composant_T'Class);
+
+   ------------------
+   procedure Afficher
+      (Texte : in     Composant_P.Composant_T'Class)
+   is
+      T : Largeur_P.Texte_T;
+   begin
+      T := Texte.Faire (Largeur => 80);
+
+      Boucle_Afficher :
+      for P of T loop
+         Ada.Text_IO.Put_Line (Item => P);
+      end loop Boucle_Afficher;
+   end Afficher;
+   ---------------------------------------------------------------------------
+
    C : Composant_P.Concret_P.Concret_T :=
       Composant_P.Concret_P.Initialiser
          (
@@ -20,12 +39,6 @@ is
                "preuves tangibles, on doit me classer parmi les athées »" &
                ASCII.LF & "H.P. Lovecraft"
          );
-   T : Largeur_P.Texte_T;
 begin
-   T := C.Faire (Largeur => 80);
-
-   Boucle_Afficher :
-   for P of T loop
-      Ada.Text_IO.Put_Line (Item => P);
-   end loop Boucle_Afficher;
+   Afficher (Texte => C);
 end Executer;
