@@ -38,10 +38,14 @@ is
 
       subtype Largeur_Texte_T is Integer range 1 .. Integer (Largeur_Texte);
 
+      Nb_Lignes : constant Texte_P.Nb_Lignes_T := Hauteur - 2;
+
+      subtype Nb_Lignes_T is Texte_P.Nb_Lignes_T range 1 .. Nb_Lignes;
+
       Texte : constant Texte_P.Texte_T := This.Composant.Element.Faire
          (
             Largeur => Largeur_Texte,
-            Hauteur => Hauteur
+            Hauteur => Nb_Lignes
          );
 
       Str_Tmp : Str_T := Str_T'(others => ' ');
@@ -62,7 +66,7 @@ is
       Str_Tmp := Str_T'(others => ' ');
 
       Boucle_Ajout_Decorateur :
-      for P of Texte loop
+      for P of Texte (Nb_Lignes_T) loop
          Str_Tmp := "| " & P (Largeur_Texte_T) & " |";
          Ada.Strings.Fixed.Move
             (

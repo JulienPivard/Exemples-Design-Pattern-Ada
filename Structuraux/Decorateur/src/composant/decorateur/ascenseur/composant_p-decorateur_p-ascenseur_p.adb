@@ -38,6 +38,8 @@ is
 
       subtype Largeur_Texte_T is Integer range 1 .. Integer (Largeur_Texte);
 
+      subtype Nb_Lignes_T is Texte_P.Nb_Lignes_T range 1 .. Hauteur;
+
       Texte : constant Texte_P.Texte_T := This.Composant.Element.Faire
          (
             Largeur => Largeur_Texte,
@@ -50,10 +52,10 @@ is
       I : Texte_P.Nb_Lignes_T := Texte_P.Nb_Lignes_T'First;
    begin
       Boucle_Ajout_Decorateur :
-      for P of Texte loop
-         if I = Texte_P.Nb_Lignes_T'First then
+      for P of Texte (Nb_Lignes_T) loop
+         if    I = Nb_Lignes_T'First then
             Str_Tmp := P (Largeur_Texte_T) & " |^|";
-         elsif I = Texte_P.Nb_Lignes_T'Last then
+         elsif I = Nb_Lignes_T'Last then
             Str_Tmp := P (Largeur_Texte_T) & " |v|";
          else
             Str_Tmp := P (Largeur_Texte_T) & " | |";
