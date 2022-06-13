@@ -20,11 +20,12 @@ is
       return Concret_T;
 
    overriding
-   procedure Faire
+   function Faire
       (
          This    : in     Concret_T;
          Largeur : in     Largeur_P.Largeur_T
-      );
+      )
+      return Largeur_P.Texte_T;
 
 private
 

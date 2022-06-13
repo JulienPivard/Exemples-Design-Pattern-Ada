@@ -1,4 +1,5 @@
 with Composant_P.Concret_P;
+with Largeur_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -19,6 +20,12 @@ is
                "preuves tangibles, on doit me classer parmi les athées »" &
                ASCII.LF & "H.P. Lovecraft"
          );
+   T : Largeur_P.Texte_T;
 begin
-   C.Faire (Largeur => 80);
+   T := C.Faire (Largeur => 80);
+
+   Boucle_Afficher :
+   for P of T loop
+      Ada.Text_IO.Put_Line (Item => P);
+   end loop Boucle_Afficher;
 end Executer;

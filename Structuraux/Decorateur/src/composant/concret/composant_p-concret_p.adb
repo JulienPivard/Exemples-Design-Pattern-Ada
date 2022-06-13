@@ -1,5 +1,4 @@
 with Ada.Strings.Fixed;
-with Ada.Text_IO;
 
 package body Composant_P.Concret_P
    with Spark_Mode => Off
@@ -21,12 +20,15 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Faire
+   function Faire
       (
          This    : in     Concret_T;
          Largeur : in     Largeur_P.Largeur_T
       )
+      return Largeur_P.Texte_T
    is
+      use type Largeur_P.Nb_Phrases_T;
+
       subtype Indice_Str_T is Integer range 1 .. Integer (Largeur);
 
       subtype Str_T is String (Indice_Str_T);
@@ -41,6 +43,10 @@ is
       Fin   : Integer;
 
       Quitter : Boolean := False;
+
+      I : Largeur_P.Nb_Phrases_T := Largeur_P.Nb_Phrases_T'First;
+
+      Resultat : Largeur_P.Texte_T := Largeur_P.Texte_Vide;
    begin
       Boucle_Decoupage_Str :
       loop
@@ -72,12 +78,22 @@ is
                Target => Str_Tmp
             );
 
-         Ada.Text_IO.Put_Line (Item => Str_Tmp);
+         Ada.Strings.Fixed.Move
+            (
+               Source => Str_Tmp,
+               Target => Resultat (I)
+            );
 
          exit Boucle_Decoupage_Str when Quitter;
 
+         if I /= Largeur_P.Nb_Phrases_T'Last then
+            I := I + 1;
+         end if;
+
          Debut := Fin + 1;
       end loop Boucle_Decoupage_Str;
+
+      return Resultat;
    end Faire;
    ---------------------------------------------------------------------------
 

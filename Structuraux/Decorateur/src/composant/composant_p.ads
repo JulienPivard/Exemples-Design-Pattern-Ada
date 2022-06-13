@@ -16,11 +16,12 @@ is
 
    type Composant_T is interface;
 
-   procedure Faire
+   function Faire
       (
          This    : in     Composant_T;
          Largeur : in     Largeur_P.Largeur_T
       )
+      return Largeur_P.Texte_T
    is abstract;
 
 end Composant_P;
