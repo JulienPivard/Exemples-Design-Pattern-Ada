@@ -1,7 +1,7 @@
 with Composant_P.Concret_P;
 with Composant_P.Decorateur_P.Ascenseur_P;
 with Composant_P.Decorateur_P.Boite_P;
-with Largeur_P;
+with Texte_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -15,7 +15,7 @@ is
    procedure Afficher
       (Texte : in     Composant_P.Composant_T'Class)
    is
-      T : Largeur_P.Texte_T;
+      T : Texte_P.Texte_T;
    begin
       T := Texte.Faire (Largeur => 80);
 

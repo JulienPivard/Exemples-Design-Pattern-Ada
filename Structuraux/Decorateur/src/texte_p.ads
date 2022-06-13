@@ -3,7 +3,7 @@
 --  @description
 --  La largeur autorisé pour l'affichage.
 --  @group Largeur
-package Largeur_P
+package Texte_P
    with
       Pure           => True,
       Preelaborate   => False,
@@ -28,4 +28,4 @@ is
    Texte_Vide : constant Texte_T :=
       Texte_T'(others => Ligne_T'(others => ' '));
 
-end Largeur_P;
+end Texte_P;

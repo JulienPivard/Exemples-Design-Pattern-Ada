@@ -23,11 +23,11 @@ is
    function Faire
       (
          This    : in     Concret_T;
-         Largeur : in     Largeur_P.Largeur_T
+         Largeur : in     Texte_P.Largeur_T
       )
-      return Largeur_P.Texte_T
+      return Texte_P.Texte_T
    is
-      use type Largeur_P.Nb_Lignes_T;
+      use type Texte_P.Nb_Lignes_T;
 
       Str : constant String := Str_R.To_String (Source => This.Text);
 
@@ -36,9 +36,9 @@ is
       Debut : Integer := Str'First;
       Fin   : Integer;
 
-      I : Largeur_P.Nb_Lignes_T := Largeur_P.Nb_Lignes_T'First;
+      I : Texte_P.Nb_Lignes_T := Texte_P.Nb_Lignes_T'First;
 
-      Resultat : Largeur_P.Texte_T := Largeur_P.Texte_Vide;
+      Resultat : Texte_P.Texte_T := Texte_P.Texte_Vide;
    begin
       Boucle_Decoupage_Str :
       loop
@@ -63,7 +63,7 @@ is
          end Bloc_Trouver_Saut_De_Ligne;
 
          if Fin = Debut and then Str (Debut) = ASCII.LF then
-            Resultat (I) := Largeur_P.Ligne_T'(others => ' ');
+            Resultat (I) := Texte_P.Ligne_T'(others => ' ');
          else
             Ada.Strings.Fixed.Move
                (
@@ -74,7 +74,7 @@ is
 
          exit Boucle_Decoupage_Str when Fin >= Fin_Du_Texte;
 
-         if I /= Largeur_P.Nb_Lignes_T'Last then
+         if I /= Texte_P.Nb_Lignes_T'Last then
             I := I + 1;
          end if;
 

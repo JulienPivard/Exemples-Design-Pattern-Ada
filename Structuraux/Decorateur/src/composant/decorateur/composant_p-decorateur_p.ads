@@ -24,9 +24,9 @@ is
    function Faire
       (
          This    : in     Decorateur_T;
-         Largeur : in     Largeur_P.Largeur_T
+         Largeur : in     Texte_P.Largeur_T
       )
-      return Largeur_P.Texte_T
+      return Texte_P.Texte_T
    is abstract;
 
 private

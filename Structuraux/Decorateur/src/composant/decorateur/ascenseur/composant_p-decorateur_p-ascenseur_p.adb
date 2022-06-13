@@ -22,34 +22,34 @@ is
    function Faire
       (
          This    : in     Ascenseur_T;
-         Largeur : in     Largeur_P.Largeur_T
+         Largeur : in     Texte_P.Largeur_T
       )
-      return Largeur_P.Texte_T
+      return Texte_P.Texte_T
    is
-      use type Largeur_P.Largeur_T;
-      use type Largeur_P.Nb_Lignes_T;
+      use type Texte_P.Largeur_T;
+      use type Texte_P.Nb_Lignes_T;
 
       subtype Indice_Str_T is Integer range 1 .. Integer (Largeur);
 
       subtype Str_T is String (Indice_Str_T);
 
-      Largeur_Texte : constant Largeur_P.Largeur_T := Largeur - 4;
+      Largeur_Texte : constant Texte_P.Largeur_T := Largeur - 4;
 
       subtype Largeur_Texte_T is Integer range 1 .. Integer (Largeur_Texte);
 
-      Texte : constant Largeur_P.Texte_T :=
+      Texte : constant Texte_P.Texte_T :=
          This.Composant.Element.Faire (Largeur => Largeur_Texte);
 
       Str_Tmp : Str_T := Str_T'(others => ' ');
 
-      Resultat : Largeur_P.Texte_T := Largeur_P.Texte_Vide;
-      I : Largeur_P.Nb_Lignes_T := Largeur_P.Nb_Lignes_T'First;
+      Resultat : Texte_P.Texte_T := Texte_P.Texte_Vide;
+      I : Texte_P.Nb_Lignes_T := Texte_P.Nb_Lignes_T'First;
    begin
       Boucle_Ajout_Decorateur :
       for P of Texte loop
-         if I = Largeur_P.Nb_Lignes_T'First then
+         if I = Texte_P.Nb_Lignes_T'First then
             Str_Tmp := P (Largeur_Texte_T) & " |^|";
-         elsif I = Largeur_P.Nb_Lignes_T'Last then
+         elsif I = Texte_P.Nb_Lignes_T'Last then
             Str_Tmp := P (Largeur_Texte_T) & " |v|";
          else
             Str_Tmp := P (Largeur_Texte_T) & " | |";
@@ -60,7 +60,7 @@ is
                Source => Str_Tmp,
                Target => Resultat (I)
             );
-         if I /= Largeur_P.Nb_Lignes_T'Last then
+         if I /= Texte_P.Nb_Lignes_T'Last then
             I := I + 1;
          end if;
       end loop Boucle_Ajout_Decorateur;
