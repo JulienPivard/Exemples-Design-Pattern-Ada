@@ -27,7 +27,7 @@ is
       )
       return Largeur_P.Texte_T
    is
-      use type Largeur_P.Nb_Phrases_T;
+      use type Largeur_P.Nb_Lignes_T;
 
       Str : constant String := Str_R.To_String (Source => This.Text);
 
@@ -36,7 +36,7 @@ is
       Debut : Integer := Str'First;
       Fin   : Integer;
 
-      I : Largeur_P.Nb_Phrases_T := Largeur_P.Nb_Phrases_T'First;
+      I : Largeur_P.Nb_Lignes_T := Largeur_P.Nb_Lignes_T'First;
 
       Resultat : Largeur_P.Texte_T := Largeur_P.Texte_Vide;
    begin
@@ -63,7 +63,7 @@ is
          end Bloc_Trouver_Saut_De_Ligne;
 
          if Fin = Debut and then Str (Debut) = ASCII.LF then
-            Resultat (I) := Largeur_P.Phrase_T'(others => ' ');
+            Resultat (I) := Largeur_P.Ligne_T'(others => ' ');
          else
             Ada.Strings.Fixed.Move
                (
@@ -74,7 +74,7 @@ is
 
          exit Boucle_Decoupage_Str when Fin >= Fin_Du_Texte;
 
-         if I /= Largeur_P.Nb_Phrases_T'Last then
+         if I /= Largeur_P.Nb_Lignes_T'Last then
             I := I + 1;
          end if;
 

@@ -27,7 +27,7 @@ is
       return Largeur_P.Texte_T
    is
       use type Largeur_P.Largeur_T;
-      use type Largeur_P.Nb_Phrases_T;
+      use type Largeur_P.Nb_Lignes_T;
 
       subtype Indice_Str_T is Integer range 1 .. Integer (Largeur);
 
@@ -43,7 +43,7 @@ is
       Str_Tmp : Str_T := Str_T'(others => ' ');
 
       Resultat : Largeur_P.Texte_T := Largeur_P.Texte_Vide;
-      I : Largeur_P.Nb_Phrases_T := Largeur_P.Nb_Phrases_T'First;
+      I : Largeur_P.Nb_Lignes_T := Largeur_P.Nb_Lignes_T'First;
    begin
       Str_Tmp := Str_T'(others => '-');
       Str_Tmp (Str_Tmp'First) := '+';
@@ -65,7 +65,7 @@ is
                Source => Str_Tmp,
                Target => Resultat (I)
             );
-         if I /= Largeur_P.Nb_Phrases_T'Last then
+         if I /= Largeur_P.Nb_Lignes_T'Last then
             I := I + 1;
          end if;
       end loop Boucle_Ajout_Decorateur;
