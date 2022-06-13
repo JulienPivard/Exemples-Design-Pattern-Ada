@@ -59,14 +59,21 @@ is
          begin
             if Pos /= 0 then
                Fin := Pos;
+               if Pos /= Debut then
+                  Fin := Fin - 1;
+               end if;
             end if;
          end Bloc_Trouver_Saut_De_Ligne;
 
+         if Fin = Debut and then Str (Debut) = ASCII.LF then
+            Resultat (I) := Largeur_P.Phrase_T'(others => ' ');
+         else
          Ada.Strings.Fixed.Move
             (
                Source => Str (Debut .. Fin),
                Target => Resultat (I)
             );
+         end if;
 
          exit Boucle_Decoupage_Str when Fin >= Fin_Du_Texte;
 
