@@ -29,15 +29,9 @@ is
    is
       use type Largeur_P.Nb_Phrases_T;
 
-      subtype Indice_Str_T is Integer range 1 .. Integer (Largeur);
-
-      subtype Str_T is String (Indice_Str_T);
-
       Str : constant String := Str_R.To_String (Source => This.Text);
 
       Fin_Du_Texte : constant Integer := Str'Last;
-
-      Str_Tmp : Str_T := Str_T'(others => ' ');
 
       Debut : Integer := Str'First;
       Fin   : Integer;
@@ -75,12 +69,6 @@ is
          Ada.Strings.Fixed.Move
             (
                Source => Str (Debut .. Fin),
-               Target => Str_Tmp
-            );
-
-         Ada.Strings.Fixed.Move
-            (
-               Source => Str_Tmp,
                Target => Resultat (I)
             );
 
