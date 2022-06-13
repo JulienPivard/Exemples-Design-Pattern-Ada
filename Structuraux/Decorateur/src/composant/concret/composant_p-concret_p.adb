@@ -36,8 +36,6 @@ is
       Debut : Integer := Str'First;
       Fin   : Integer;
 
-      Quitter : Boolean := False;
-
       I : Largeur_P.Nb_Phrases_T := Largeur_P.Nb_Phrases_T'First;
 
       Resultat : Largeur_P.Texte_T := Largeur_P.Texte_Vide;
@@ -64,15 +62,13 @@ is
             end if;
          end Bloc_Trouver_Saut_De_Ligne;
 
-         Quitter := Fin >= Fin_Du_Texte;
-
          Ada.Strings.Fixed.Move
             (
                Source => Str (Debut .. Fin),
                Target => Resultat (I)
             );
 
-         exit Boucle_Decoupage_Str when Quitter;
+         exit Boucle_Decoupage_Str when Fin >= Fin_Du_Texte;
 
          if I /= Largeur_P.Nb_Phrases_T'Last then
             I := I + 1;
