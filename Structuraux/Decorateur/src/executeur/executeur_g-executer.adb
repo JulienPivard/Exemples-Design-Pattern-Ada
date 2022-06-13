@@ -44,6 +44,14 @@ is
    A : Composant_P.Decorateur_P.Ascenseur_P.Ascenseur_T;
    B : Composant_P.Decorateur_P.Boite_P.Boite_T;
 begin
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern décorateur");
+   Ada.Text_IO.Put_Line (Item => "Un texte que l'on cherche à afficher avec");
+   Ada.Text_IO.Put_Line (Item => "différentes décoration que l'on voudrait");
+   Ada.Text_IO.Put_Line (Item => "pouvoir changer et combiner à volonté.");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
    Afficher (Texte => C);
 
    Ada.Text_IO.New_Line (Spacing => 1);
