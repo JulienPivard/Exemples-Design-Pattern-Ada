@@ -34,7 +34,8 @@ private
 
    type Boite_T is new Decorateur_T with
       record
-         Composant : Composant_Class_P.Holder;
+         Composant : Composant_Class_P.Holder :=
+            Composant_Class_P.Empty_Holder;
       end record;
 
 end Composant_P.Decorateur_P.Boite_P;
