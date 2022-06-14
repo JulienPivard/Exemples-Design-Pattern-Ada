@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mercredi 25 mai[05] 2022
+# Dernière modification : Lundi 13 juin[06] 2022
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -18,7 +18,7 @@ else
     include ./makefile.conf
 endif
 include ./$(DOSSIER_MAKE)/makefile.checks
-include ./$(DOSSIER_MAKE)/makefile.template
+include ./dossier_makefiles/makefile.template
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
