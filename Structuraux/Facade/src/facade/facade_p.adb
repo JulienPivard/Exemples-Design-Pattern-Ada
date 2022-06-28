@@ -8,6 +8,7 @@ is
    procedure Executer
       (Facade : in     Facade_T)
    is
+      pragma Unreferenced (Facade);
    begin
       Ada.Text_IO.Put_Line (Item => "Appel premier objet complexe");
       Ada.Text_IO.Put_Line (Item => "Appel deuxième objet complexe");

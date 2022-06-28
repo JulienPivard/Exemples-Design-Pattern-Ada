@@ -6,9 +6,9 @@
 --  @group Façade
 package Facade_P
    with
-      Pure           => True,
+      Pure           => False,
       Preelaborate   => False,
-      Elaborate_Body => False,
+      Elaborate_Body => True,
       Spark_Mode     => Off
 is
 
