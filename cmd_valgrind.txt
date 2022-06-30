@@ -1,0 +1,7 @@
+# Affiche les fuites de mémoire et la raison potentiel.
+valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./bin/debug/executable
+
+# Exécute le programme et enregistre l'utilisation de la pile et de la file.
+valgrind --tool=massif --heap=yes --stacks=yes --massif-out-file=massif.out ./bin/debug/executable
+# Affiche de façon lisible les résultats enregistré dans le fichier résultat
+ms_print massif.out
