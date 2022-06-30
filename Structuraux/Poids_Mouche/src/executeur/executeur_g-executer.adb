@@ -35,6 +35,10 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line
       (Item => "Démonstration du design pattern poids mouche.");
+   Ada.Text_IO.Put_Line (Item => "Le principe est diminuer la charge sur la");
+   Ada.Text_IO.Put_Line (Item => "mémoire qu'induit un grand nombre ");
+   Ada.Text_IO.Put_Line (Item => "d'instances d'objets similaire et sans.");
+   Ada.Text_IO.Put_Line (Item => "états interne.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
