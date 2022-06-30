@@ -23,7 +23,10 @@ is
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line
-      (Item => "Démonstration du design pattern procuration");
+      (Item => "Démonstration du design pattern procuration.");
+   Ada.Text_IO.Put_Line (Item => "Utilisé pour cacher un décalage");
+   Ada.Text_IO.Put_Line (Item => "d'instanciation, un compteur de référence,");
+   Ada.Text_IO.Put_Line (Item => "un accès réseau.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
