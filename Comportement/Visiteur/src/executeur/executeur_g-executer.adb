@@ -1,10 +1,10 @@
 with Ada.Text_IO;
 
 with Uml_P;
-with Visiteur_P;
 with Visiteur_P.Code_Generateur_P;
-with Visiteur_P.Verificateur_P;
 with Visiteur_P.Instrumentation_P;
+with Visiteur_P.Verificateur_P;
+with Visiteur_P;
 
 separate (Executeur_G)
 procedure Executer
