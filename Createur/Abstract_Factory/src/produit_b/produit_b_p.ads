@@ -12,7 +12,7 @@ package Produit_B_P is
    --  Pointeur vers un produit de type B.
 
    procedure Presente
-      (Produit : in Produit_T)
+      (Produit : in     Produit_T)
    is abstract;
    --  Le produit B se présente.
    --  @param Produit

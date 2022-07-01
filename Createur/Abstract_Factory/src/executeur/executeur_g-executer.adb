@@ -13,8 +13,8 @@ is
    ---------------------------------------------------------------------------
    procedure Construire
       (
-         Fabrique : in Fabrique_P.Fabrique_T'Class;
-         Titre    : in String
+         Fabrique : in     Fabrique_P.Fabrique_T'Class;
+         Titre    : in     String
       );
    --  Construit les produits à partir de la fabrique.
    --  @param Fabrique
@@ -25,8 +25,8 @@ is
    --------------------
    procedure Construire
       (
-         Fabrique : in Fabrique_P.Fabrique_T'Class;
-         Titre    : in String
+         Fabrique : in     Fabrique_P.Fabrique_T'Class;
+         Titre    : in     String
       )
    is
       Produit_A : constant Produit_A_P.Produit_T'Class :=

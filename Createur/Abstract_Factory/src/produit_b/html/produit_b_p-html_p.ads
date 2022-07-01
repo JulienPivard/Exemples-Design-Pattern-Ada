@@ -10,7 +10,7 @@ package Produit_B_P.Html_P is
 
    overriding
    procedure Presente
-      (Produit : in Produit_Html_T);
+      (Produit : in     Produit_Html_T);
    --  Le produit concret B2 se présente lui même.
    --  @param Produit
    --  Le produit.

@@ -12,7 +12,7 @@ package Produit_A_P is
    --  Pointeur vers un produit de type A.
 
    procedure Annonce
-      (Produit : in Produit_T)
+      (Produit : in     Produit_T)
    is abstract;
    --  Le produit A s'annonce.
    --  @param Produit

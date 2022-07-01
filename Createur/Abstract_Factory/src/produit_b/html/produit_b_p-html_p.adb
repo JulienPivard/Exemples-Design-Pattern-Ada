@@ -5,7 +5,7 @@ package body Produit_B_P.Html_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Presente
-      (Produit : in Produit_Html_T)
+      (Produit : in     Produit_Html_T)
    is
       pragma Unreferenced (Produit);
 

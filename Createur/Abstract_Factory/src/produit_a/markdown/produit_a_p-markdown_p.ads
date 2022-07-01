@@ -10,7 +10,7 @@ package Produit_A_P.Markdown_P is
 
    overriding
    procedure Annonce
-      (Produit : in Produit_Markdown_T);
+      (Produit : in     Produit_Markdown_T);
    --  Le produit concret A1 s'annonce lui même.
    --  @param Produit
    --  Le produit.

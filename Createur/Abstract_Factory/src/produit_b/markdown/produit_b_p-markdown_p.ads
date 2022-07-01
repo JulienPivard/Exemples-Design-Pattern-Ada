@@ -10,7 +10,7 @@ package Produit_B_P.Markdown_P is
 
    overriding
    procedure Presente
-      (Produit : in Produit_Markdown_T);
+      (Produit : in     Produit_Markdown_T);
    --  Le produit concret B1 se présente elle même.
    --  @param Produit
    --  Le produit.

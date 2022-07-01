@@ -6,7 +6,7 @@ package body Fabrique_P.Markdown_P is
    ---------------------------------------------------------------------------
    overriding
    function Creer_Produit_A
-      (Fabrique : in Fabrique_Markdown_T)
+      (Fabrique : in     Fabrique_Markdown_T)
       return Produit_A_P.Produit_T'Class
    is
       pragma Unreferenced (Fabrique);
@@ -20,7 +20,7 @@ package body Fabrique_P.Markdown_P is
    ---------------------------------------------------------------------------
    overriding
    function Creer_Produit_B
-      (Fabrique : in Fabrique_Markdown_T)
+      (Fabrique : in     Fabrique_Markdown_T)
       return Produit_B_P.Produit_T'Class
    is
       pragma Unreferenced (Fabrique);

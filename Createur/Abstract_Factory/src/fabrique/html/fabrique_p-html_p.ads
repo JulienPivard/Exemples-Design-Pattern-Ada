@@ -10,7 +10,7 @@ package Fabrique_P.Html_P is
 
    overriding
    function Creer_Produit_A
-      (Fabrique : in Fabrique_Html_T)
+      (Fabrique : in     Fabrique_Html_T)
       return Produit_A_P.Produit_T'Class;
    --  Permet de créer un produit de type A version 2.
    --  @param Fabrique
@@ -19,7 +19,7 @@ package Fabrique_P.Html_P is
 
    overriding
    function Creer_Produit_B
-      (Fabrique : in Fabrique_Html_T)
+      (Fabrique : in     Fabrique_Html_T)
       return Produit_B_P.Produit_T'Class;
    --  Permet de créer un produit de type B version 2.
    --  @param Fabrique
