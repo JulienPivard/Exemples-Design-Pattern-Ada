@@ -17,12 +17,12 @@ is
    Monteur_Html : Html_B_R.Monteur_Html_T;
    Texte_Html   : Produit_Html_P.Texte_Html_T;
    Monteur_Mark : Mark_B_R.Monteur_Markdown_T;
-   Texte_Mark    : Produit_Markdown_P.Texte_Markdown_T;
+   Texte_Mark   : Produit_Markdown_P.Texte_Markdown_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern builder");
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern builder.");
    Ada.Text_IO.Put_Line (Item => "Construit un texte à balise en fonction");
-   Ada.Text_IO.Put_Line (Item => "du format choisi");
+   Ada.Text_IO.Put_Line (Item => "du format choisi.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
