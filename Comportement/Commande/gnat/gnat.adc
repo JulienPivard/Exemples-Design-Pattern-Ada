@@ -1,0 +1,33 @@
+--  vim:filetype=ada
+--  Dernière modification : Mardi 03 mai[05] 2022
+--  Auteur : PIVARD Julien
+
+pragma Initialize_Scalars;
+--  Initialise les scalaire sans valeur initial à une valeur prédéfinie,
+--  invalide si possible, ou une valeur définie dans le pragma.
+
+pragma Overflow_Mode
+   (
+      General    => Strict,
+      --  General    => Minimized,
+      --  General    => Eliminated,
+      --  Assertions => Strict
+      --  Assertions => Minimized
+      Assertions => Eliminated
+   );
+--  Permet de configurer le mode overflow des calculs intermédiaire.
+--   - Strict     : utilise le type de base pour faire les calculs
+--                   intermédiaire.
+--   - Minimized  : utilise la plus grande représentation possible.
+--   - Eliminated : utilise la précision infinie. Attention au cout
+--                   d'exécution de ce type de calculs.
+
+--  pragma Profile                      (Ravenscar);
+--  pragma Partition_Elaboration_Policy (Sequential);
+
+pragma License (Modified_GPL);
+--  Licence appliquée au code, valeur possible :
+--   - Unrestricted (Compatible avec tout)
+--   - GPL           (Ne peut pas etre inclut par des Restricted)
+--   - Modified_GPL  (Peut etre inclut par des restricted)
+--   - Restricted    (Ne peut pas inclure de GPL)
