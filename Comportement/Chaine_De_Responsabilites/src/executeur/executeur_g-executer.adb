@@ -16,6 +16,10 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line
       (Item => "Démonstration du design pattern chaine de responsabilités.");
+   Ada.Text_IO.Put_Line (Item => "On utilise une variante de la chaine de");
+   Ada.Text_IO.Put_Line (Item => "responsabilité. Le parcours ne s'arrête");
+   Ada.Text_IO.Put_Line (Item => "pas quand un maillon correspondant est");
+   Ada.Text_IO.Put_Line (Item => "trouvé, mais on va tous les parcourir.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
