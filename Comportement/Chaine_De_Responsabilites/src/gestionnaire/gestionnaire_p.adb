@@ -27,7 +27,7 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Ajouter_Successeur
+   procedure Ajouter
       (
          This       : in out Chaine_De_Responsabilite_T;
          Successeur : in     Gestionnaire_T'Class
@@ -35,12 +35,11 @@ is
    is
    begin
       if This.Possede_Successeur then
-         This.Successeur.Reference.Ajouter_Successeur
-            (Successeur => Successeur);
+         This.Successeur.Reference.Ajouter (Successeur => Successeur);
       else
          This.Successeur := Successeur_P.To_Holder (New_Item => Successeur);
       end if;
-   end Ajouter_Successeur;
+   end Ajouter;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

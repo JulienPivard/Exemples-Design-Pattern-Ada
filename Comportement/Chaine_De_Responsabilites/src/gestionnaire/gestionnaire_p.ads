@@ -17,7 +17,7 @@ is
 
    type Gestionnaire_T is interface;
 
-   procedure Ajouter_Successeur
+   procedure Ajouter
       (
          This       : in out Gestionnaire_T;
          Successeur : in     Gestionnaire_T'Class
@@ -57,7 +57,7 @@ is
    type Chaine_De_Responsabilite_T is abstract new Gestionnaire_T with private;
 
    overriding
-   procedure Ajouter_Successeur
+   procedure Ajouter
       (
          This       : in out Chaine_De_Responsabilite_T;
          Successeur : in     Gestionnaire_T'Class

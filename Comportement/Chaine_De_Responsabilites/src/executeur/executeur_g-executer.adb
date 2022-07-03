@@ -28,7 +28,7 @@ begin
    G_2.Gerer_Requete (Contexte => C);
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   G_1.Ajouter_Successeur (Successeur => G_2);
+   G_1.Ajouter (Successeur => G_2);
    C := Contexte_P.Action_3;
 
    G_1.Gerer_Requete (Contexte => C);
@@ -39,11 +39,11 @@ begin
       G_X : Gestionnaire_P.Concret_1_P.Gestionnaire_Concret_T;
    begin
       G_X := Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_2);
-      G_1.Ajouter_Successeur (Successeur => G_X);
+      G_1.Ajouter (Successeur => G_X);
       G_X := Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_5);
-      G_1.Ajouter_Successeur (Successeur => G_X);
+      G_1.Ajouter (Successeur => G_X);
       G_X := Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_4);
-      G_1.Ajouter_Successeur (Successeur => G_X);
+      G_1.Ajouter (Successeur => G_X);
    end Bloc_Ajout_1;
 
    Bloc_Ajout_2 :
@@ -52,7 +52,7 @@ begin
    begin
       for I in Contexte_P.Action_T loop
          G_X := Gestionnaire_P.Concret_2_P.Creer (Action => I);
-         G_1.Ajouter_Successeur (Successeur => G_X);
+         G_1.Ajouter (Successeur => G_X);
       end loop;
    end Bloc_Ajout_2;
 
