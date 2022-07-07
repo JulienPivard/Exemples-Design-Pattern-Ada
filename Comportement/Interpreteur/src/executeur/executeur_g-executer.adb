@@ -65,6 +65,11 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line
       (Item => "Démonstration du design pattern interpréteur.");
+   Ada.Text_IO.Put_Line (Item => "Exécution d'un calcul sur des entiers en");
+   Ada.Text_IO.Put_Line (Item => "Utilisant le pattern Interpréteur. Exemple");
+   Ada.Text_IO.Put_Line (Item => "tiré d'un système expert 0+ qui passe une");
+   Ada.Text_IO.Put_Line (Item => "Base de Faits en parametre à la méthode");
+   Ada.Text_IO.Put_Line (Item => "Interprete");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
