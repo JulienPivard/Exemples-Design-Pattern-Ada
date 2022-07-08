@@ -28,10 +28,10 @@ is
       Boucle_Verification :
       for I in Structure_P.Indice_T loop
          Valeur := Structure.Lire_Element (Position => I);
-         Ada.Text_IO.Put_Line (Item => Data_P.Element_T'Image (Valeur));
+         Ada.Text_IO.Put (Item => Data_P.Element_T'Image (Valeur));
       end loop Boucle_Verification;
 
-      Ada.Text_IO.New_Line (Spacing => 2);
+      Ada.Text_IO.New_Line (Spacing => 3);
    end Initialiser;
    ---------------------------------------------------------------------------
 
@@ -46,16 +46,16 @@ is
       Ada.Text_IO.Put_Line (Item => "Affichage contenu en ordre normale");
       Boucle_Affichage_En_Avant :
       for E of Structure loop
-         Ada.Text_IO.Put_Line (Item => Data_P.Element_T'Image (E));
+         Ada.Text_IO.Put (Item => Data_P.Element_T'Image (E));
       end loop Boucle_Affichage_En_Avant;
-      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.New_Line (Spacing => 2);
 
       Ada.Text_IO.Put_Line (Item => "Affichage contenu en ordre inverse");
       Boucle_Affichage_En_Arriere :
       for E of reverse Structure loop
-         Ada.Text_IO.Put_Line (Item => Data_P.Element_T'Image (E));
+         Ada.Text_IO.Put (Item => Data_P.Element_T'Image (E));
       end loop Boucle_Affichage_En_Arriere;
-      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.New_Line (Spacing => 2);
    end Iterer;
    ---------------------------------------------------------------------------
 
@@ -64,6 +64,7 @@ is
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern itérateur.");
+   Ada.Text_IO.Put_Line (Item => "En utilisant les mécanismes du langage.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
