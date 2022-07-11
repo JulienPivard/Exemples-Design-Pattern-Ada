@@ -1,0 +1,50 @@
+with Utilisateur_P.Collegue_P;
+
+--  @summary
+--  Version concrète du médiateur.
+--  @description
+--  Version concrète du médiateur.
+--  @group Mediateur
+package Mediateur_P.Concret_P
+   with
+      Pure           => False,
+      Preelaborate   => False,
+      Elaborate_Body => True,
+      Spark_Mode     => Off
+is
+
+   type Concret_T is new Mediateur_T with private;
+
+   overriding
+   procedure Signaler
+      (
+         This : in out Concret_T;
+         Id   : in     Id_T
+      );
+
+   not overriding
+   procedure Inscrire
+      (
+         This        : not null access Concret_T;
+         Utilisateur : in     Utilisateur_P.Collegue_P.Utilisateur_Collegue_A
+      );
+
+private
+
+   type Concret_T is new Mediateur_T with
+      record
+         U_1 : Utilisateur_P.Collegue_P.Utilisateur_Collegue_A;
+         --  Le premier utilisateur.
+         U_2 : Utilisateur_P.Collegue_P.Utilisateur_Collegue_A;
+         --  Le deuxième utilisateur.
+         Pos : Id_T := Id_T'First;
+      end record;
+
+   not overriding
+   procedure Afficher
+      (
+         This        : in     Concret_T;
+         Utilisateur : in     Utilisateur_P.Utilisateur_T'Class
+      );
+
+end Mediateur_P.Concret_P;
