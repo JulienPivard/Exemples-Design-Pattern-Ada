@@ -162,6 +162,12 @@ is
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern mémento.");
+   Ada.Text_IO.Put_Line (Item => "Enregistrer facilement l'état d'un objet");
+   Ada.Text_IO.Put_Line (Item => "pour pouvoir le rétablir après.");
+   Ada.Text_IO.Put_Line (Item => "3 constructions différentes du memento.");
+   Ada.Text_IO.Put_Line (Item => "Ce sont des tests d'organisation du code");
+   Ada.Text_IO.Put_Line (Item => "pour répondre au mieux aux contraintes");
+   Ada.Text_IO.Put_Line (Item => "du modèle.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
