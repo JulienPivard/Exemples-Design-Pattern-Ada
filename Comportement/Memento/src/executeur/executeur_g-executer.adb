@@ -10,31 +10,31 @@ procedure Executer
 is
    ---------------------------------------------------------------------------
    generic
-      type Valeur_G_T  is range <>;
+      type Valeur_Bis_G_T  is range <>;
       --  Contenu.
 
-      type Auteur_G_T  is tagged private;
+      type Auteur_Bis_G_T  is tagged private;
       --  Classe utilisatrice de memento.
 
       with function Lire_Valeur_G
-         (This : in     Auteur_G_T)
-         return Valeur_G_T;
+         (This : in     Auteur_Bis_G_T)
+         return Valeur_Bis_G_T;
       --  Lit la valeur stockée.
       --  @param This
       --  L'utilisateur.
       --  @return La valeur dans l'auteur.
 
    procedure Afficher_G
-      (Utilisateur : in     Auteur_G_T);
+      (Utilisateur : in     Auteur_Bis_G_T);
    --  Affiche le contenu de l'auteur.
    --  @param Utilisateur
    --  L'utilisateur à afficher.
 
    --------------------
    procedure Afficher_G
-      (Utilisateur : in     Auteur_G_T)
+      (Utilisateur : in     Auteur_Bis_G_T)
    is
-      V : constant Valeur_G_T := Lire_Valeur_G (This => Utilisateur);
+      V : constant Valeur_Bis_G_T := Lire_Valeur_G (This => Utilisateur);
    begin
       Ada.Text_IO.Put_Line (Item => "Valeur : " & V'Image);
    end Afficher_G;
@@ -96,9 +96,9 @@ is
    procedure Montrer_Utilisation_G is
       procedure Afficher is new Afficher_G
          (
-            Valeur_G_T    => Valeur_G_T,
-            Auteur_G_T    => Auteur_G_T,
-            Lire_Valeur_G => Lire_Valeur_G
+            Valeur_Bis_G_T => Valeur_G_T,
+            Auteur_Bis_G_T => Auteur_G_T,
+            Lire_Valeur_G  => Lire_Valeur_G
          );
 
       U   : Auteur_G_T;
