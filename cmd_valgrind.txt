@@ -1,3 +1,7 @@
+# Trouver les variables utilisée avant leur initialisation.
+# Chemin doc : /usr/share/doc/valgrind-version/valgrind_manual.pdf
+valgrind --tool=memcheck --leak-check=no --track-origins=yes --undef-value-errors=yes programme
+
 # Affiche les fuites de mémoire et la raison potentiel.
 valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./bin/debug/executable
 
