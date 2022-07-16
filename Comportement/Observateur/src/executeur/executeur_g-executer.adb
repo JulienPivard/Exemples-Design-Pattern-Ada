@@ -15,6 +15,10 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line
       (Item => "Démonstration du design pattern observateur.");
+   Ada.Text_IO.Put_Line (Item => "Observateur sans pointeur, mais qui");
+   Ada.Text_IO.Put_Line (Item => "nécessite de passer par un singleton,");
+   Ada.Text_IO.Put_Line (Item => "dans les coulisses, pour faire référence");
+   Ada.Text_IO.Put_Line (Item => "à un même objet si il y a besoin.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
