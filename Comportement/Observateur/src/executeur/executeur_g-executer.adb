@@ -24,7 +24,10 @@ begin
    T := Valeurs_P.Table_Valeurs_T'(1 => 4, 2 => 32, 3 => 9, 4 => 55, 5 => 0);
    V.Modifier (Vals => T);
 
-   T := Valeurs_P.Table_Valeurs_T'(1 => 32, 2 => 9, 3 => 55, 4 => 4, 5 => 0);
+   T := Valeurs_P.Table_Valeurs_T'(1 => 32, 2 => 0, 3 => 55, 4 => 4, 5 => 9);
+   V.Modifier (Vals => T);
+
+   T := Valeurs_P.Table_Valeurs_T'(1 => 9, 2 => 36, 3 => 4, 4 => 19, 5 => 32);
    V.Modifier (Vals => T);
 
    pragma Unreferenced (V);
