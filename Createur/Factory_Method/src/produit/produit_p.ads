@@ -3,9 +3,6 @@ package Produit_P is
    type Produit_T is abstract tagged private;
    --  Produit abstrait
 
-   type Produit_A is access Produit_T'Class;
-   --  Pointeur de classe vers un produit.
-
    procedure Creer_Produit
       (Produit : in out Produit_T)
    is abstract;
