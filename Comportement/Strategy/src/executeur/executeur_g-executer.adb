@@ -1,15 +1,13 @@
 with Ada.Text_IO;
 
-with Calcul_Distance_P.Strategie_P;
 with Distance_P;
+with Strategie_P.Calcul_Distance_Washington_P;
 
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   package Strat_R renames Calcul_Distance_P.Strategie_P;
-
-   S : Strat_R.Strategie_T;
+   S : Strategie_P.Calcul_Distance_Washington_P.Strategie_T;
    P : Distance_P.Probleme_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");

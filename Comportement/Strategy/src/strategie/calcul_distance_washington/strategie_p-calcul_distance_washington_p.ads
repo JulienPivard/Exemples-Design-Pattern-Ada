@@ -4,7 +4,13 @@
 --  Permet de résoudre le problème de la distance entre deux points
 --  en ne se préoccupant pas de la représentation des dits points.
 --  @group Stratégie
-package Calcul_Distance_P.Strategie_P is
+package Strategie_P.Calcul_Distance_Washington_P
+   with
+      Pure           => True,
+      Preelaborate   => False,
+      Elaborate_Body => False,
+      Spark_Mode     => Off
+is
 
    type Strategie_T is new Calcul_Distance_T with private;
    --  La stratégie concrète de résolution du problème.
@@ -25,4 +31,4 @@ private
 
    type Strategie_T is new Calcul_Distance_T with null record;
 
-end Calcul_Distance_P.Strategie_P;
+end Strategie_P.Calcul_Distance_Washington_P;

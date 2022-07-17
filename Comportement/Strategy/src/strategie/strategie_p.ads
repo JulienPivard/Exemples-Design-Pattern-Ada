@@ -6,9 +6,13 @@ with Distance_P;
 --  Permet de résoudre le problème de la distance entre deux points
 --  en ne se préoccupant pas de la représentation des dits points.
 --  @group Stratégie
-package Calcul_Distance_P is
-
-   pragma Pure;
+package Strategie_P
+   with
+      Pure           => True,
+      Preelaborate   => False,
+      Elaborate_Body => False,
+      Spark_Mode     => Off
+is
 
    type Calcul_Distance_T is abstract tagged private;
    --  Stratégie abstraite de calcul du problème
@@ -30,4 +34,4 @@ private
 
    type Calcul_Distance_T is abstract tagged null record;
 
-end Calcul_Distance_P;
+end Strategie_P;

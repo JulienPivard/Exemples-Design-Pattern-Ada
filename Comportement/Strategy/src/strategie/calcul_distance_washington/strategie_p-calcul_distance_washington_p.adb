@@ -1,4 +1,6 @@
-package body Calcul_Distance_P.Strategie_P is
+package body Strategie_P.Calcul_Distance_Washington_P
+   with Spark_Mode => Off
+is
 
    ---------------------------------------------------------------------------
    overriding
@@ -25,4 +27,8 @@ package body Calcul_Distance_P.Strategie_P is
    end Resoudre;
    ---------------------------------------------------------------------------
 
-end Calcul_Distance_P.Strategie_P;
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+end Strategie_P.Calcul_Distance_Washington_P;
