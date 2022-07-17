@@ -17,6 +17,7 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    U.Presse_E;
+   U.Presse_Esc;
    U.Presse_I;
    U.Presse_I;
    U.Presse_E;
