@@ -14,13 +14,13 @@ package Strategie_P
       Spark_Mode     => Off
 is
 
-   type Calcul_Distance_T is abstract tagged private;
+   type Strategie_T is abstract tagged private;
    --  Stratégie abstraite de calcul du problème
    --  de distance entre deux points.
 
    procedure Resoudre
       (
-         Strategie   : in     Calcul_Distance_T;
+         Strategie   : in     Strategie_T;
          Probleme    : in out Distance_P.Probleme_T
       )
    is abstract;
@@ -32,6 +32,6 @@ is
 
 private
 
-   type Calcul_Distance_T is abstract tagged null record;
+   type Strategie_T is abstract tagged null record;
 
 end Strategie_P;

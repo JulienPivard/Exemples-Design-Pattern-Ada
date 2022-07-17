@@ -90,7 +90,7 @@ package Distance_P is
    procedure Resoudre
       (
          Probleme  : in out Probleme_T;
-         Strategie : in     Strategie_P.Calcul_Distance_T'Class
+         Strategie : in     Strategie_P.Strategie_T'Class
       );
    --  Lance la résolution de la distance entre les deux points avec
    --  la stratégie adéquate.

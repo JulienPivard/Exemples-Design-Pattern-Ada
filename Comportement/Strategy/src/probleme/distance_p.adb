@@ -85,7 +85,7 @@ package body Distance_P is
    procedure Resoudre
       (
          Probleme  : in out Probleme_T;
-         Strategie : in     Strategie_P.Calcul_Distance_T'Class
+         Strategie : in     Strategie_P.Strategie_T'Class
       )
    is
    begin

@@ -12,13 +12,13 @@ package Strategie_P.Calcul_Distance_Washington_P
       Spark_Mode     => Off
 is
 
-   type Strategie_T is new Calcul_Distance_T with private;
+   type Washington_T is new Strategie_T with private;
    --  La stratégie concrète de résolution du problème.
 
    overriding
    procedure Resoudre
       (
-         Strategie   : in     Strategie_T;
+         Strategie   : in     Washington_T;
          Probleme    : in out Distance_P.Probleme_T
       );
    --  Résout le problème de la distance entre deux points.
@@ -29,6 +29,6 @@ is
 
 private
 
-   type Strategie_T is new Calcul_Distance_T with null record;
+   type Washington_T is new Strategie_T with null record;
 
 end Strategie_P.Calcul_Distance_Washington_P;

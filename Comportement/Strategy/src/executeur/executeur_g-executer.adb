@@ -7,7 +7,7 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   S : Strategie_P.Calcul_Distance_Washington_P.Strategie_T;
+   S : Strategie_P.Calcul_Distance_Washington_P.Washington_T;
    P : Distance_P.Probleme_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
