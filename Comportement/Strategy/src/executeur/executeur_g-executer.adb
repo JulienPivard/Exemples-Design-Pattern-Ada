@@ -1,13 +1,16 @@
 with Ada.Text_IO;
 
 with Distance_P;
+with Strategie_P.Calcul_Distance_Pythagore_P;
 with Strategie_P.Calcul_Distance_Washington_P;
 
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   S : Strategie_P.Calcul_Distance_Washington_P.Washington_T;
+   Washington : Strategie_P.Calcul_Distance_Washington_P.Washington_T;
+   Pythagore  : Strategie_P.Calcul_Distance_Pythagore_P.Pythagore_T;
+
    P : Distance_P.Probleme_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
@@ -21,8 +24,13 @@ begin
 
    P := Distance_P.Initialiser (X1 => 3, Y1 => 3, X2 => 6, Y2 => 6);
 
-   P.Resoudre (Strategie => S);
+   P.Resoudre (Strategie => Washington);
+   Ada.Text_IO.Put
+      (Item => "La distance de Washington entre les deux points est : ");
+   Ada.Text_IO.Put_Line (Item => P.Lire_Distance'Img);
 
-   Ada.Text_IO.Put      (Item => "La distance entre les deux points est : ");
+   P.Resoudre (Strategie => Pythagore);
+   Ada.Text_IO.Put
+      (Item => "La distance de Pythagore  entre les deux points est : ");
    Ada.Text_IO.Put_Line (Item => P.Lire_Distance'Img);
 end Executer;
