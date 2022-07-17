@@ -82,5 +82,6 @@ begin
 
    Ada.Text_IO.Put_Line (Item    => "------------- Une Porte -------------");
    Test_De_L_Age        (P       => Po2);
-   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

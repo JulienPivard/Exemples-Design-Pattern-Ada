@@ -78,4 +78,6 @@ begin
 
    Initialiser (Structure => E);
    Iterer      (Structure => E);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

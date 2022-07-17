@@ -39,4 +39,6 @@ begin
    Texte_Mark.Rendu;
 
    Ada.Text_IO.Put_Line (Item => "--------------");
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

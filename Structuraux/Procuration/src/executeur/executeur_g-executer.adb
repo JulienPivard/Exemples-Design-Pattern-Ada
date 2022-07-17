@@ -35,4 +35,6 @@ begin
    Utiliser (S => P);
 
    pragma Unreferenced (P);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

@@ -63,4 +63,6 @@ begin
 
    pragma Unreferenced (G_1);
    pragma Unreferenced (G_2);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

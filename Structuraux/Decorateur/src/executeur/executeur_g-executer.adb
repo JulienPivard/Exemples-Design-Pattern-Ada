@@ -99,4 +99,6 @@ begin
    B.Ajouter (Composant => A);
    B.Ajouter (Composant => B);
    Afficher (Texte => B);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

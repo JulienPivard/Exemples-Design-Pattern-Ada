@@ -38,4 +38,6 @@ begin
    C.Ajouter (Valeur => 27);
 
    C.Faire;
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

@@ -29,4 +29,6 @@ begin
 
    U_1.Envoyer (Message => "Wesh Mouloud !      ");
    U_2.Envoyer (Message => "Yo Roger            ");
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

@@ -33,4 +33,6 @@ begin
    Ada.Text_IO.Put
       (Item => "La distance de Pythagore  entre les deux points est : ");
    Ada.Text_IO.Put_Line (Item => P.Lire_Distance'Img);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

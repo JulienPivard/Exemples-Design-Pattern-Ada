@@ -85,4 +85,6 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Interpreter (Valeur => Combi_4);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

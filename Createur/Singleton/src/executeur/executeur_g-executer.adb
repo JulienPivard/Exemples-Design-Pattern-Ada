@@ -39,4 +39,6 @@ begin
    S1.all.Afficher;
    Ada.Text_IO.Put (Item => "S2 : ");
    S2.all.Afficher;
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

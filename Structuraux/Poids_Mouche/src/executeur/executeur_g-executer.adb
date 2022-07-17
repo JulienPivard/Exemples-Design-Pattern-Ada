@@ -51,4 +51,6 @@ begin
    Consomer_Jeton (Fabrique => F, Jeton => Fab_P.Jeton_5, Etat_Ext => E);
 
    pragma Unreferenced (F);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

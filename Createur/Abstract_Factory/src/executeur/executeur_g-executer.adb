@@ -62,4 +62,6 @@ begin
 
    Construire (Fabrique => Fabrique_2, Titre => "En html : ");
    Ada.Text_IO.Put_Line (Item => "----------------------------");
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

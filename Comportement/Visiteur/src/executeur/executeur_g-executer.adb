@@ -82,4 +82,6 @@ begin
    pragma Unreferenced (Gen);
    pragma Unreferenced (Ver);
    pragma Unreferenced (Inst);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
