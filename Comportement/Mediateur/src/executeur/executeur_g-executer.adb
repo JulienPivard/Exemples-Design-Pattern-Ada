@@ -6,9 +6,9 @@ procedure Executer
    --  (Arguments)
 is
    U_1 : aliased Utilisateur_P.Collegue_P.Utilisateur_Collegue_T :=
-      Utilisateur_P.Collegue_P.Creer (Nom => "Roger               ");
+      Utilisateur_P.Collegue_P.Creer (Nom => "Morgane             ");
    U_2 : aliased Utilisateur_P.Collegue_P.Utilisateur_Collegue_T :=
-      Utilisateur_P.Collegue_P.Creer (Nom => "Mouloud             ");
+      Utilisateur_P.Collegue_P.Creer (Nom => "Cassandre           ");
 
    M : aliased Mediateur_P.Concret_P.Concret_T;
 begin
@@ -27,8 +27,8 @@ begin
    M.Inscrire (Utilisateur => U_1'Unchecked_Access);
    M.Inscrire (Utilisateur => U_2'Unchecked_Access);
 
-   U_1.Envoyer (Message => "Wesh Mouloud !      ");
-   U_2.Envoyer (Message => "Yo Roger            ");
+   U_1.Envoyer (Message => "Wesh Cassandre !    ");
+   U_2.Envoyer (Message => "Yo Morgane          ");
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
