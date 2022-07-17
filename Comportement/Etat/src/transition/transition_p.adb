@@ -1,3 +1,5 @@
+with Ada.Text_IO;
+
 with Etat_P.Commande_P;
 with Etat_P.Insertion_P;
 
@@ -59,6 +61,15 @@ is
       Suivant : constant Prochain_Etat_T :=
          Prochain_Etat (Etat.Lire_Id, Touche);
    begin
+      case Suivant is
+         when Commande =>
+            Ada.Text_IO.Put_Line (Item => "----------- Commande  -----------");
+         when Insertion =>
+            Ada.Text_IO.Put_Line (Item => "----------- Insertion -----------");
+         when Pas_De_Changement =>
+            null;
+      end case;
+
       return
          (
             case Suivant is

@@ -9,8 +9,9 @@ is
    procedure Presse_E
       (This : in out Commande_T)
    is
+      pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "<E>");
+      Ada.Text_IO.Put_Line (Item => "Commande  : <E>");
    end Presse_E;
    ---------------------------------------------------------------------------
 
@@ -19,8 +20,9 @@ is
    procedure Presse_I
       (This : in out Commande_T)
    is
+      pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "<I>");
+      Ada.Text_IO.Put_Line (Item => "Commande  : <I>");
    end Presse_I;
    ---------------------------------------------------------------------------
 
@@ -29,8 +31,9 @@ is
    procedure Presse_Esc
       (This : in out Commande_T)
    is
+      pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "<ESC>");
+      Ada.Text_IO.Put_Line (Item => "Commande  : <ESC>");
    end Presse_Esc;
    ---------------------------------------------------------------------------
 
