@@ -1,0 +1,86 @@
+# vim: nofoldenable: list:
+# PIVARD Julien
+# Dernière modification : Dimanche 17 juillet[07] 2022
+
+###############
+# Partie Fixe #
+###############
+
+GPR		= gnat/build.gpr
+
+CHEMIN_OBJET	= obj
+CHEMIN_RESLT	= bin
+CHEMIN_ALI	= ali
+RESLT_COMPIL	= ./$(CHEMIN_RESLT)/$(MODE)/executable
+
+#############################################
+# Les modifications sont à faire en dessous #
+#############################################
+
+# Permet de choisir le format de la documentation
+FORMAT		= html
+
+# Fixer le nom de l'application
+NOMAPP		= Démonstration du design pattern Patron De Méthode
+
+# Pour activer le mode debug -> deb | release -> rel | développement -> dev
+# MODE_COMPILE = [dev|deb|rel]
+MODE_COMPILE	= dev
+
+# Pour activer le mode verbeux
+# ACTIVER_VERB = [true|false]
+ACTIVER_VERB	= false
+
+# Pour activer le mode strict
+# ACTIVER_STRICT = [true|false]
+ACTIVER_STRICT	= false
+
+# Pour activer le traitement des avertissements comme si c'était des erreurs
+# ACTIVER_WARN_SONT_ERREURS = [true|false]
+ACTIVER_WARN_SONT_ERREURS	= false
+
+# Active l'affichage dynamique de l'utilisation de la stack.
+# ACTIVER_AFFICHER_LA_STACK = [true|false]
+ACTIVER_AFFICHER_LA_STACK	= false
+
+# Active l'affichage de l'ordre d'élaboration de paquets choisi
+# par le compilateur.
+# ACTIVER_AFFICHER_ORDRE_ELABORATION = [true|false]
+ACTIVER_AFFICHER_ORDRE_ELABORATION	= false
+
+# -l Montre le chemin complet du fichier désigné
+# --show-rule Ajoute le nom de la règle qui à déclenché le signalement
+# -o gnatcheck.out Pour désigner un fichier de sortie
+# -dd affiche la progression
+OPT_CHECK	= -dd -l -U --show-rule
+
+# 0 = le plus rapide; 4 = le plus puissant.
+NIVEAU_PREUVE	= 2
+
+# Affichage des messages durant les preuves.
+AFFICHAGE_MESSAGES	= fail
+#  . fail       - N'affiche que les erreurs (default).
+#  . all        - Affiche tous les résultats de gnatprove.
+#  . provers    - Pareil que all, mais avec les info d'usage du prover.
+#  . statistics - Pareil que provers, mais avec les temps et info d'étapes.
+
+# éléments examiné pour la preuve
+MODE_EXECUTION_PREUVE	= all
+#  . check             - Vérification partiel et rapide des contraintes SPARK.
+#  . check_all, stone  - Vérification complète des contraintes SPARK.
+#  . flow, bronze      - Prouve que l'initialisation et le flot de données sont correct.
+#  . prove             - Prouve l'absence d'erreurs d'exécution et de contrat
+#  . all, silver, gold
+
+# NIVEAU_OPTIMI = [defaut|0|1|2|3]
+NIVEAU_OPTIMI		= defaut
+
+# Fixer les arguments qui seront donné en entré de l'application
+# lors de l'exécution
+ARGUMENTSAPPLI	=
+
+# Emplacement des binaires si ils ne sont pas localisable par les makefile
+GNAT_BIN_PERSO	=
+
+# Emplacement des sources
+DOSSIERSRC	= src
