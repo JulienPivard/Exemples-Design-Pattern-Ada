@@ -13,7 +13,7 @@ package Fabrique_P
       Spark_Mode     => Off
 is
 
-   type Fabrique_T is abstract tagged private;
+   type Fabrique_T is interface;
    --  Fabrique abstraite.
 
    function Fabriquer
@@ -24,9 +24,5 @@ is
    --  @param Fabrique
    --  Une fabrique d'objet.
    --  @return Un produit.
-
-private
-
-   type Fabrique_T is abstract tagged null record;
 
 end Fabrique_P;

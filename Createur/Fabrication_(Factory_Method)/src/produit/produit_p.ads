@@ -11,7 +11,7 @@ package Produit_P
       Spark_Mode     => Off
 is
 
-   type Produit_T is abstract tagged private;
+   type Produit_T is interface;
    --  Produit abstrait
 
    procedure Creer_Produit
@@ -27,9 +27,5 @@ is
    --  Affiche le produit.
    --  @param Produit
    --  Le produit à afficher.
-
-private
-
-   type Produit_T is abstract tagged null record;
 
 end Produit_P;
