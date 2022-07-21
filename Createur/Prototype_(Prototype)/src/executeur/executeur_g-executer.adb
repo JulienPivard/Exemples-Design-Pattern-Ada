@@ -53,7 +53,7 @@ is
    Po2 : Porte_R.Porte_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern prototype");
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern Prototype.");
    Ada.Text_IO.Put_Line (Item => "Création d'un premier objet par une");
    Ada.Text_IO.Put_Line (Item => "fonction, puis toutes les autres par");
    Ada.Text_IO.Put_Line (Item => "clonage. Une porte et un mur.");

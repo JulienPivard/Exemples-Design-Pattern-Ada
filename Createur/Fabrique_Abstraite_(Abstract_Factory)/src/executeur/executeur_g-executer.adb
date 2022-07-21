@@ -49,7 +49,7 @@ is
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line
-      (Item => "Démonstration du design pattern fabrique abstraite.");
+      (Item => "Démonstration du design pattern Fabrique Abstraite.");
    Ada.Text_IO.Put_Line (Item => "Une fabrique qui génère des instances");
    Ada.Text_IO.Put_Line (Item => "concrète d'objets d'une même famille.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
