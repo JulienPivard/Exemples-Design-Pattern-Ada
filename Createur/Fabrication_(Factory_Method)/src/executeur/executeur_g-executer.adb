@@ -28,7 +28,8 @@ is
    F_2 : Fabrique_P.Concret_2_P.Concret_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern Fabrique");
+   Ada.Text_IO.Put_Line
+      (Item => "Démonstration du design pattern Fabrication.");
    Ada.Text_IO.Put_Line (Item => "Définit une interface de création d'objets");
    Ada.Text_IO.Put_Line (Item => "mais laisse à ses filles le soins de");
    Ada.Text_IO.Put_Line (Item => "créer les instances concrète du produit.");
