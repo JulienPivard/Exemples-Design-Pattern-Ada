@@ -6,21 +6,21 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Creer_Produit
-      (Produit : in out Concret_T)
+   procedure Initialiser
+      (This : in out Concret_T)
    is
    begin
-      Produit.Contenu := "Coucou ttt";
-   end Creer_Produit;
+      This.Contenu := "Coucou ttt";
+   end Initialiser;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    overriding
    procedure Afficher
-      (Produit : in Concret_T)
+      (This : in     Concret_T)
    is
    begin
-      Ada.Text_IO.Put_Line (Item => Produit.Contenu);
+      Ada.Text_IO.Put_Line (Item => This.Contenu);
    end Afficher;
    ---------------------------------------------------------------------------
 

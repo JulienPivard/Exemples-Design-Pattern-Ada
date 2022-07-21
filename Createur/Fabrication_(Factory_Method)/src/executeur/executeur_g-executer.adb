@@ -18,7 +18,7 @@ is
    is
       P : Produit_P.Produit_T'Class := Fabrique.Fabriquer;
    begin
-      P.Creer_Produit;
+      P.Initialiser;
       P.Afficher;
    end Utiliser;
    ---------------------------------------------------------------------------

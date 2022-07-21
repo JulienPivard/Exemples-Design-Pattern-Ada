@@ -14,18 +14,20 @@ is
    type Concret_T is new Produit_T with private;
    --  Un produit de type concret.
 
+   Produit_Vide : constant Concret_T;
+
    overriding
-   procedure Creer_Produit
-      (Produit : in out Concret_T);
+   procedure Initialiser
+      (This : in out Concret_T);
    --  Crée un produit concret.
-   --  @param Produit
+   --  @param This
    --  Le produit à créer.
 
    overriding
    procedure Afficher
-      (Produit : in Concret_T);
+      (This : in     Concret_T);
    --  Affiche le produit concret.
-   --  @param Produit
+   --  @param This
    --  Le produit à afficher.
 
 private
@@ -40,5 +42,7 @@ private
          Contenu : Contenu_T;
          --  Le contenu du produit.
       end record;
+
+   Produit_Vide : constant Concret_T := Concret_T'(Contenu => "          ");
 
 end Produit_P.Concret_1_P;

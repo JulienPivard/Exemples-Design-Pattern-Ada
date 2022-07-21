@@ -18,10 +18,10 @@ is
 
    overriding
    function Fabriquer
-      (Fabrique : in Concret_T)
+      (This : in     Concret_T)
       return Produit_P.Produit_T'Class;
    --  Permet de construire un nouveau produit.
-   --  @param Fabrique
+   --  @param This
    --  Une fabrique d'objet.
    --  @return Un produit.
 

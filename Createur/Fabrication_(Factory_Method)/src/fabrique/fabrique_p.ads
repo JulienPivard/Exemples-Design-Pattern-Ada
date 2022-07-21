@@ -17,11 +17,11 @@ is
    --  Fabrique abstraite.
 
    function Fabriquer
-      (Fabrique : in Fabrique_T)
+      (This : in     Fabrique_T)
       return Produit_P.Produit_T'Class
    is abstract;
    --  Fabrique un produit.
-   --  @param Fabrique
+   --  @param This
    --  Une fabrique d'objet.
    --  @return Un produit.
 

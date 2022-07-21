@@ -14,18 +14,18 @@ is
    type Produit_T is interface;
    --  Produit abstrait
 
-   procedure Creer_Produit
-      (Produit : in out Produit_T)
+   procedure Initialiser
+      (This : in out Produit_T)
    is abstract;
    --  Permet de créer un produit.
-   --  @param Produit
+   --  @param This
    --  Le produit à créer.
 
    procedure Afficher
-      (Produit : in Produit_T)
+      (This : in     Produit_T)
    is abstract;
    --  Affiche le produit.
-   --  @param Produit
+   --  @param This
    --  Le produit à afficher.
 
 end Produit_P;
