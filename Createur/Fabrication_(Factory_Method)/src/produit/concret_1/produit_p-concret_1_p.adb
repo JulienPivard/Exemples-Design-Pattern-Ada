@@ -1,6 +1,8 @@
 with Ada.Text_IO;
 
-package body Produit_P.Concret_P is
+package body Produit_P.Concret_1_P
+   with Spark_Mode => Off
+is
 
    ---------------------------------------------------------------------------
    overriding
@@ -22,4 +24,8 @@ package body Produit_P.Concret_P is
    end Afficher;
    ---------------------------------------------------------------------------
 
-end Produit_P.Concret_P;
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+end Produit_P.Concret_1_P;

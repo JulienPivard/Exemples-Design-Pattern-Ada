@@ -5,7 +5,13 @@ with Produit_P;
 --  @description
 --  Une fabrique de produits abstraite.
 --  @group Fabrique
-package Fabrique_P is
+package Fabrique_P
+   with
+      Pure           => True,
+      Preelaborate   => False,
+      Elaborate_Body => False,
+      Spark_Mode     => Off
+is
 
    type Fabrique_T is abstract tagged private;
    --  Fabrique abstraite.

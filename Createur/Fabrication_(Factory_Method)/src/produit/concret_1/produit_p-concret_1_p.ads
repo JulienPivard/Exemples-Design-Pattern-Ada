@@ -3,7 +3,13 @@
 --  @description
 --  Un produit concret.
 --  @group Produit
-package Produit_P.Concret_P is
+package Produit_P.Concret_1_P
+   with
+      Pure           => False,
+      Preelaborate   => False,
+      Elaborate_Body => True,
+      Spark_Mode     => Off
+is
 
    type Concret_T is new Produit_T with private;
    --  Un produit de type concret.
@@ -35,4 +41,4 @@ private
          --  Le contenu du produit.
       end record;
 
-end Produit_P.Concret_P;
+end Produit_P.Concret_1_P;

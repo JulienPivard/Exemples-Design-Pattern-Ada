@@ -1,4 +1,15 @@
-package Produit_P is
+--  @summary
+--  La classe de produit à fabriquer.
+--  @description
+--  La classe de produit à fabriquer.
+--  @group Fabrication
+package Produit_P
+   with
+      Pure           => True,
+      Preelaborate   => False,
+      Elaborate_Body => False,
+      Spark_Mode     => Off
+is
 
    type Produit_T is abstract tagged private;
    --  Produit abstrait

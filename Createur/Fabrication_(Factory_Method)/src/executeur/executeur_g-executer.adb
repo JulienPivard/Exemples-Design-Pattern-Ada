@@ -1,18 +1,20 @@
 with Ada.Text_IO;
 
 with Produit_P;
-with Fabrique_P.Concret_P;
+with Fabrique_P.Concret_1_P;
 
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   F : Fabrique_P.Concret_P.Concret_T;
+   F : Fabrique_P.Concret_1_P.Concret_T;
    P : Produit_P.Produit_T'Class := F.Fabriquer;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern Fabrique");
-   Ada.Text_IO.Put_Line (Item => "Fabrique un produit.");
+   Ada.Text_IO.Put_Line (Item => "Définit une interface de création d'objets");
+   Ada.Text_IO.Put_Line (Item => "mais laisse à ses filles le soins de");
+   Ada.Text_IO.Put_Line (Item => "créer les instances concrète du produit.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
