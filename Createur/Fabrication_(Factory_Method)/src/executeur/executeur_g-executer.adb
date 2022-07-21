@@ -1,6 +1,7 @@
 with Ada.Text_IO;
 
 with Fabrique_P.Concret_1_P;
+with Fabrique_P.Concret_2_P;
 with Fabrique_P;
 with Produit_P;
 
@@ -23,7 +24,8 @@ is
    end Utiliser;
    ---------------------------------------------------------------------------
 
-   F : Fabrique_P.Concret_1_P.Concret_T;
+   F_1 : Fabrique_P.Concret_1_P.Concret_T;
+   F_2 : Fabrique_P.Concret_2_P.Concret_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern Fabrique");
@@ -33,7 +35,9 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Utiliser (Fabrique => F);
+   Utiliser (Fabrique => F_1);
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Utiliser (Fabrique => F_2);
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

@@ -3,7 +3,7 @@
 --  @description
 --  Une fabrique de produits concret.
 --  @group Fabrique
-package Fabrique_P.Concret_1_P
+package Fabrique_P.Concret_2_P
    with
       Pure           => False,
       Preelaborate   => False,
@@ -27,4 +27,4 @@ private
 
    type Concret_T is new Fabrique_T with null record;
 
-end Fabrique_P.Concret_1_P;
+end Fabrique_P.Concret_2_P;
