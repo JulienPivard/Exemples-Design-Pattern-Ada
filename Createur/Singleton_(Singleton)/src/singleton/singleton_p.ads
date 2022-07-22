@@ -5,12 +5,19 @@ private with Ada.Strings.Unbounded;
 --  @description
 --  Le singleton est bloqué en création avec le discriminant.
 --  @group Créateur
-package Singleton_P is
+package Singleton_P
+   with
+      Pure           => False,
+      Preelaborate   => False,
+      Elaborate_Body => True,
+      Spark_Mode     => Off
+is
 
    type Singleton_T (<>) is tagged limited private;
    --  Représente un singleton avec un type discriminant.
 
-   type Singleton_A is access Singleton_T;
+   type Singleton_A is not null access all Singleton_T
+      with Storage_Size => 0;
    --  Permet d'accéder à un singleton avec un pointeur.
 
    function Recuperer_Singleton
@@ -20,8 +27,8 @@ package Singleton_P is
 
    procedure Changer_Nom
       (
-         Singleton   : in out Singleton_T;
-         Nom         : in     String
+         Singleton : in out Singleton_T;
+         Nom       : in     String
       );
    --  Permet de changer l'attribut variable
    --  @param Singleton
@@ -30,7 +37,7 @@ package Singleton_P is
    --  La nouvelle valeur de l'attribut.
 
    procedure Afficher
-      (Singleton : in Singleton_T);
+      (Singleton : in     Singleton_T);
    --  Affiche le contenu du singleton.
    --  @param Singleton
    --  Le singleton à afficher.
@@ -44,7 +51,7 @@ private
          Nom : Nom_R.Unbounded_String;
       end record;
 
-   Unique : constant Singleton_A := new Singleton_T;
+   Unique : aliased Singleton_T;
    --  Singleton
 
 end Singleton_P;

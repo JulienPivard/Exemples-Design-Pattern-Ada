@@ -2,7 +2,9 @@ with Ada.Text_IO;
 
 with Comptage_P;
 
-package body Singleton_P is
+package body Singleton_P
+   with Spark_Mode => Off
+is
 
    ---------------------------------------------------------------------------
    function Recuperer_Singleton
@@ -10,15 +12,15 @@ package body Singleton_P is
    is
    begin
       Comptage_P.Compteur := Comptage_P.Compteur + 1;
-      return Unique;
+      return Unique'Access;
    end Recuperer_Singleton;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Changer_Nom
       (
-         Singleton   : in out Singleton_T;
-         Nom         : in     String
+         Singleton : in out Singleton_T;
+         Nom       : in     String
       )
    is
    begin
@@ -28,7 +30,7 @@ package body Singleton_P is
 
    ---------------------------------------------------------------------------
    procedure Afficher
-      (Singleton : in Singleton_T)
+      (Singleton : in     Singleton_T)
    is
       Nom : constant String := Nom_R.To_String (Source => Singleton.Nom);
    begin
@@ -41,6 +43,10 @@ package body Singleton_P is
                Comptage_P.Compteur'Img & " fois"
          );
    end Afficher;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
 end Singleton_P;
