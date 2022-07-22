@@ -51,7 +51,7 @@ package Produit_Markdown_P is
    --  Le markdown en cours.
 
    procedure Rendu
-      (Texte : in Texte_Markdown_T);
+      (Texte : in     Texte_Markdown_T);
    --  Affiche le contenu formaté.
    --  @param Texte
    --  Le markdown en cours.

@@ -104,7 +104,7 @@ package body Produit_Html_P is
 
    ---------------------------------------------------------------------------
    procedure Rendu
-      (Texte : in Texte_Html_T)
+      (Texte : in     Texte_Html_T)
    is
    begin
       Contenu_IO_R.Put_Line (Item => Texte.Contenu);

@@ -3,7 +3,7 @@ package body Prototype_P.Porte_P is
    ---------------------------------------------------------------------------
    overriding
    function Clone
-      (Porte : in Porte_T)
+      (Porte : in     Porte_T)
       return Porte_T
    is
       P : Porte_T;
@@ -16,7 +16,7 @@ package body Prototype_P.Porte_P is
    ---------------------------------------------------------------------------
    overriding
    function Est_Trop_Vieux
-      (Porte : in Porte_T)
+      (Porte : in     Porte_T)
       return Boolean
    is
    begin
@@ -40,7 +40,7 @@ package body Prototype_P.Porte_P is
    ---------------------------------------------------------------------------
    overriding
    function Lire_Age
-      (Porte : in Porte_T)
+      (Porte : in     Porte_T)
       return Age_T
    is
    begin

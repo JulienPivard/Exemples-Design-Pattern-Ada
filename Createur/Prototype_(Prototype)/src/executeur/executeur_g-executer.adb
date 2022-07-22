@@ -10,13 +10,13 @@ procedure Executer
 is
    ---------------------------------------------------------------------------
    procedure Test_De_L_Age
-      (P : in Prototype_P.Prototype_T'Class);
+      (P : in     Prototype_P.Prototype_T'Class);
    --  @param P
    --  Un objet créé par la méthode des prototypes.
 
    -----------------------
    procedure Test_De_L_Age
-      (P : in Prototype_P.Prototype_T'Class)
+      (P : in     Prototype_P.Prototype_T'Class)
    is
       A        : Prototype_P.Age_T              := P.Lire_Age;
       P_Test   : Prototype_P.Prototype_T'Class  := P.Clone;

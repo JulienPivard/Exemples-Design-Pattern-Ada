@@ -51,7 +51,7 @@ package Produit_Html_P is
    --  Le html en cours.
 
    procedure Rendu
-      (Texte : in Texte_Html_T);
+      (Texte : in     Texte_Html_T);
    --  Affiche le contenu formaté.
    --  @param Texte
    --  Le html en cours.

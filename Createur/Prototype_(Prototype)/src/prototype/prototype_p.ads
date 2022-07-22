@@ -12,7 +12,7 @@ package Prototype_P is
    --  L'age d'un prototype.
 
    function Clone
-      (Proto : in Prototype_T)
+      (Proto : in     Prototype_T)
       return Prototype_T
    is abstract;
    --  Permet de créer un clone l'instance.
@@ -21,7 +21,7 @@ package Prototype_P is
    --  @return Le clone du prototype.
 
    function Est_Trop_Vieux
-      (Proto : in Prototype_T)
+      (Proto : in     Prototype_T)
       return Boolean
    is abstract;
    --  Permet de savoir si le prototype est trop vieux
@@ -42,7 +42,7 @@ package Prototype_P is
    --  L'age à donner au prototype.
 
    function Lire_Age
-      (Proto : in Prototype_T)
+      (Proto : in     Prototype_T)
       return Age_T
    is abstract;
    --  Permet de lire l'age du prototype.

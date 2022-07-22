@@ -42,7 +42,7 @@ package body Builder_P.Markdown_P is
 
    ---------------------------------------------------------------------------
    function Recuperer_Resultat
-      (Monteur : in Monteur_Markdown_T)
+      (Monteur : in     Monteur_Markdown_T)
       return Produit_Markdown_P.Texte_Markdown_T
    is
    begin

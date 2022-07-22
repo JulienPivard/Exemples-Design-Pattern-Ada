@@ -10,7 +10,7 @@ package Prototype_P.Porte_P is
 
    overriding
    function Clone
-      (Porte : in Porte_T)
+      (Porte : in     Porte_T)
       return Porte_T;
    --  Permet de cloner la porte.
    --  @param Porte
@@ -19,7 +19,7 @@ package Prototype_P.Porte_P is
 
    overriding
    function Est_Trop_Vieux
-      (Porte : in Porte_T)
+      (Porte : in     Porte_T)
       return Boolean;
    --  Permet de savoir si la porte est trop vieille.
    --  @param Porte
@@ -40,7 +40,7 @@ package Prototype_P.Porte_P is
 
    overriding
    function Lire_Age
-      (Porte : in Porte_T)
+      (Porte : in     Porte_T)
       return Age_T;
    --  Permet de lire l'age de la porte.
    --  @param Porte

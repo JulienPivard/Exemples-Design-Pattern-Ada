@@ -41,7 +41,7 @@ package Builder_P.Markdown_P is
    --  Le texte à ajouter dans l'objet.
 
    function Recuperer_Resultat
-      (Monteur : in Monteur_Markdown_T)
+      (Monteur : in     Monteur_Markdown_T)
       return Produit_Markdown_P.Texte_Markdown_T;
    --  Permet de récupérer le texte construit par le monteur.
    --  @param Monteur

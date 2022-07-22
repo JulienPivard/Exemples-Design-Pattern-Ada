@@ -14,14 +14,14 @@ package body Prototype_P.Mur_P is
    ---------------------------------------------------------------------------
    overriding
    function Clone
-      (Le_Mur : in Mur_T)
+      (Le_Mur : in     Mur_T)
       return Mur_T
    is
       M : Mur_T;
    begin
-      M.Nom    := Le_Mur.Nom;
-      M.Age    := Le_Mur.Age;
-      M.Cara   := Le_Mur.Cara;
+      M.Nom  := Le_Mur.Nom;
+      M.Age  := Le_Mur.Age;
+      M.Cara := Le_Mur.Cara;
       return M;
    end Clone;
    ---------------------------------------------------------------------------
@@ -30,8 +30,8 @@ package body Prototype_P.Mur_P is
    overriding
    procedure Changer_Age
       (
-         Le_Mur   : in out Mur_T;
-         Age      : in     Age_T
+         Le_Mur : in out Mur_T;
+         Age    : in     Age_T
       )
    is
    begin
@@ -42,7 +42,7 @@ package body Prototype_P.Mur_P is
    ---------------------------------------------------------------------------
    overriding
    function Est_Trop_Vieux
-      (Le_Mur : in Mur_T)
+      (Le_Mur : in     Mur_T)
       return Boolean
    is
    begin
@@ -53,7 +53,7 @@ package body Prototype_P.Mur_P is
    ---------------------------------------------------------------------------
    overriding
    function Lire_Age
-      (Le_Mur : in Mur_T)
+      (Le_Mur : in     Mur_T)
       return Age_T
    is
    begin

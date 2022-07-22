@@ -41,7 +41,7 @@ package body Builder_P.Html_P is
 
    ---------------------------------------------------------------------------
    function Recuperer_Resultat
-      (Monteur : in Monteur_Html_T)
+      (Monteur : in     Monteur_Html_T)
       return Produit_Html_P.Texte_Html_T
    is
    begin

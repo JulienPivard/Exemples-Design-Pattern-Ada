@@ -93,7 +93,7 @@ package body Produit_Markdown_P is
 
    ---------------------------------------------------------------------------
    procedure Rendu
-      (Texte : in Texte_Markdown_T)
+      (Texte : in     Texte_Markdown_T)
    is
    begin
       Contenu_IO_R.Put_Line (Item => Texte.Contenu);

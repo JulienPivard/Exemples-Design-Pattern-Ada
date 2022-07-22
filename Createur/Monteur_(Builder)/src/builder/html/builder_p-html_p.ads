@@ -41,7 +41,7 @@ package Builder_P.Html_P is
    --  Le texte à ajouter dans l'objet.
 
    function Recuperer_Resultat
-      (Monteur : in Monteur_Html_T)
+      (Monteur : in     Monteur_Html_T)
       return Produit_Html_P.Texte_Html_T;
    --  Permet de récupérer le texte construit par le monteur.
    --  @param Monteur
