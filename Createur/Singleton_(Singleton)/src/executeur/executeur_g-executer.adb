@@ -6,10 +6,6 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   S1 : constant Singleton_P.Singleton_A :=
-      Singleton_P.Recuperer_Singleton;
-   S2 : constant Singleton_P.Singleton_A :=
-      Singleton_P.Recuperer_Singleton;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern singleton");
@@ -18,6 +14,13 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   Bloc_Singleton_Access :
+   declare
+      S1 : constant Singleton_P.Singleton_A :=
+         Singleton_P.Recuperer_Singleton;
+      S2 : constant Singleton_P.Singleton_A :=
+         Singleton_P.Recuperer_Singleton;
+   begin
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
    Ada.Text_IO.New_Line (Spacing => 1);
@@ -39,6 +42,7 @@ begin
    S1.all.Afficher;
    Ada.Text_IO.Put (Item => "S2 : ");
    S2.all.Afficher;
+   end Bloc_Singleton_Access;
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
