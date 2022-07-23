@@ -32,19 +32,19 @@ is
 
    procedure Changer_Nom
       (
-         Singleton : in out Singleton_T;
-         Nom       : in     String
+         This : in out Singleton_T;
+         Nom  : in     String
       );
    --  Permet de changer l'attribut variable
-   --  @param Singleton
+   --  @param This
    --  Le singleton
    --  @param Nom
    --  La nouvelle valeur de l'attribut.
 
    procedure Afficher
-      (Singleton : in     Singleton_T);
+      (This : in     Singleton_T);
    --  Affiche le contenu du singleton.
-   --  @param Singleton
+   --  @param This
    --  Le singleton à afficher.
 
 private

@@ -19,20 +19,20 @@ is
    ---------------------------------------------------------------------------
    procedure Changer_Nom
       (
-         Singleton : in out Singleton_T;
-         Nom       : in     String
+         This : in out Singleton_T;
+         Nom  : in     String
       )
    is
    begin
-      Singleton.Nom := Nom_R.To_Unbounded_String (Source => Nom);
+      This.Nom := Nom_R.To_Unbounded_String (Source => Nom);
    end Changer_Nom;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Afficher
-      (Singleton : in     Singleton_T)
+      (This : in     Singleton_T)
    is
-      Nom : constant String := Nom_R.To_String (Source => Singleton.Nom);
+      Nom : constant String := Nom_R.To_String (Source => This.Nom);
    begin
       Ada.Text_IO.Put      (Item => Nom);
       Ada.Text_IO.Put      (Item => " | ");
