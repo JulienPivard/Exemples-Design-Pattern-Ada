@@ -16,32 +16,32 @@ begin
 
    Bloc_Singleton_Access :
    declare
-      S1 : constant Singleton_P.Singleton_A :=
+      S1 : constant Singleton_P.Accesseur_T :=
          Singleton_P.Recuperer_Singleton;
-      S2 : constant Singleton_P.Singleton_A :=
+      S2 : constant Singleton_P.Accesseur_T :=
          Singleton_P.Recuperer_Singleton;
    begin
       Ada.Text_IO.New_Line (Spacing => 1);
       Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
       Ada.Text_IO.New_Line (Spacing => 1);
 
-      S1.all.Changer_Nom (Nom => "Roulecoule");
+      S1.Changer_Nom (Nom => "Roulecoule");
 
       Ada.Text_IO.Put (Item => "S1 : ");
-      S1.all.Afficher;
+      S1.Afficher;
       Ada.Text_IO.Put (Item => "S2 : ");
-      S2.all.Afficher;
+      S2.Afficher;
 
       Ada.Text_IO.New_Line (Spacing => 1);
       Ada.Text_IO.Put_Line (Item => "====  Après modification de S2  ====");
       Ada.Text_IO.New_Line (Spacing => 1);
 
-      S2.all.Changer_Nom (Nom => "T'inquiète mec !");
+      S2.Changer_Nom (Nom => "T'inquiète mec !");
 
       Ada.Text_IO.Put (Item => "S1 : ");
-      S1.all.Afficher;
+      S1.Afficher;
       Ada.Text_IO.Put (Item => "S2 : ");
-      S2.all.Afficher;
+      S2.Afficher;
    end Bloc_Singleton_Access;
 
    Ada.Text_IO.New_Line (Spacing => 2);

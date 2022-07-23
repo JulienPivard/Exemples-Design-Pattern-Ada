@@ -16,12 +16,17 @@ is
    type Singleton_T (<>) is tagged limited private;
    --  Représente un singleton avec un type discriminant.
 
-   type Singleton_A is not null access all Singleton_T
-      with Storage_Size => 0;
-   --  Permet d'accéder à un singleton avec un pointeur.
+   type Accesseur_T
+      (Singleton : not null access Singleton_T)
+   is limited private
+      with Implicit_Dereference => Singleton;
+   --  Accesseur protégeant le pointeur. Aucune déallocation
+   --  du pointeur n'est possible puisque le fait que ce soit
+   --  un discriminant en fait un pointeur constant. Le contenu
+   --  pointé peut, par contre, être modifié.
 
    function Recuperer_Singleton
-      return Singleton_A;
+      return Accesseur_T;
    --  Permet de récupérer notre singleton.
    --  @return Le singleton
 
@@ -53,5 +58,9 @@ private
 
    Unique : aliased Singleton_T;
    --  Singleton
+
+   type Accesseur_T
+      (Singleton : not null access Singleton_T)
+   is limited null record;
 
 end Singleton_P;

@@ -8,11 +8,11 @@ is
 
    ---------------------------------------------------------------------------
    function Recuperer_Singleton
-      return Singleton_A
+      return Accesseur_T
    is
    begin
       Comptage_P.Compteur := Comptage_P.Compteur + 1;
-      return Unique'Access;
+      return Accesseur_T'(Singleton => Unique'Access);
    end Recuperer_Singleton;
    ---------------------------------------------------------------------------
 
