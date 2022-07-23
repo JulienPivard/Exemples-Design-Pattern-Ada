@@ -25,7 +25,7 @@ begin
       Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
       Ada.Text_IO.New_Line (Spacing => 1);
 
-      S1.all.Changer_Nom (Nom => "Roulecouele");
+      S1.all.Changer_Nom (Nom => "Roulecoule");
 
       Ada.Text_IO.Put (Item => "S1 : ");
       S1.all.Afficher;
@@ -36,7 +36,7 @@ begin
       Ada.Text_IO.Put_Line (Item => "====  Après modification de S2  ====");
       Ada.Text_IO.New_Line (Spacing => 1);
 
-      S2.all.Changer_Nom (Nom => "Hey poivros");
+      S2.all.Changer_Nom (Nom => "T'inquiète mec !");
 
       Ada.Text_IO.Put (Item => "S1 : ");
       S1.all.Afficher;
