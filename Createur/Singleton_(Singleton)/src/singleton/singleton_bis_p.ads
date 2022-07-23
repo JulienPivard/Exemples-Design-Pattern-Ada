@@ -49,7 +49,9 @@ private
          null;
       end record;
 
+   ------------------------------
    protected Singleton_Protege is
+      -----------------
       procedure Changer
          (Nom : in     String);
       --  Permet de changer l'attribut variable
@@ -59,6 +61,7 @@ private
       --  Affiche le contenu du singleton.
    private
       Nom : Nom_R.Unbounded_String;
+      --  Les données stocké dans le singleton.
    end Singleton_Protege;
    --  Le singleton. À l'épreuve des accès concurrent.
 
