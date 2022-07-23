@@ -133,7 +133,7 @@ is
       (This : in     Composite_T)
       return Nb_Enfants_T
    is
-      Nb_Enfants : Nb_Enfants_T := Nb_Enfants_T'First;
+      Nb_Enfants : Nb_Enfants_T := 0;
    begin
       if not This.Enfant_1.Is_Empty then
          Nb_Enfants := Nb_Enfants + This.Enfant_1.Element.Lire_Nb_Enfants + 1;
