@@ -13,9 +13,8 @@ is
    function Initialiser
       return Fabrique_De_Poids_Mouche_T
    is
-      F : Fabrique_De_Poids_Mouche_T;
    begin
-      return F;
+      return Fabrique_De_Poids_Mouche_T'(null record);
    end Initialiser;
    ---------------------------------------------------------------------------
 
@@ -35,15 +34,13 @@ is
          when Jeton_1 =>
             Resultat := C_1'Access;
          when Jeton_2 =>
-            Resultat :=
-               new Concret_Non_Partage_P.Poids_Mouche_Concret_1_T;
+            Resultat := new Concret_Non_Partage_P.Poids_Mouche_Concret_1_T;
          when Jeton_3 =>
             Resultat := C_2'Access;
          when Jeton_4 =>
             Resultat := C_3'Access;
          when Jeton_5 =>
-            Resultat :=
-               new Concret_Non_Partage_P.Poids_Mouche_Concret_2_T;
+            Resultat := new Concret_Non_Partage_P.Poids_Mouche_Concret_2_T;
       end case;
 
       return Resultat;
