@@ -21,7 +21,8 @@ is
    function Fabriquer
       (
          This : in out Fabrique_De_Poids_Mouche_T;
-         Clef : in     Id_Poids_Mouche_T
+         Clef : in     Id_Poids_Mouche_T;
+         Nom  : in     Nom_T
       )
       return Poids_Mouche_T'Class;
 

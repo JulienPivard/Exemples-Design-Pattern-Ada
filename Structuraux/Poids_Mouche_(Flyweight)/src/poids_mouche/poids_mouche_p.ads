@@ -14,6 +14,8 @@ package Poids_Mouche_P
       Spark_Mode     => Off
 is
 
+   subtype Nom_T is String (1 .. 20);
+
    type Poids_Mouche_T is interface;
    --  Un poids mouche.
 

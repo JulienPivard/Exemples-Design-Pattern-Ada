@@ -15,6 +15,11 @@ is
 
    type Poids_Mouche_Concret_1_T is new Poids_Mouche_T with private;
 
+   not overriding
+   function Creer
+      (Nom : in     Nom_T)
+      return Poids_Mouche_Concret_1_T;
+
    overriding
    procedure Operation
       (
@@ -23,6 +28,11 @@ is
       );
 
    type Poids_Mouche_Concret_2_T is new Poids_Mouche_T with private;
+
+   not overriding
+   function Creer
+      (Nom : in     Nom_T)
+      return Poids_Mouche_Concret_2_T;
 
    overriding
    procedure Operation
@@ -35,12 +45,12 @@ private
 
    type Poids_Mouche_Concret_1_T is new Poids_Mouche_T with
       record
-         null;
+         Nom : Nom_T;
       end record;
 
    type Poids_Mouche_Concret_2_T is new Poids_Mouche_T with
       record
-         null;
+         Nom : Nom_T;
       end record;
 
 end Poids_Mouche_P.Concret_Non_Partage_P;

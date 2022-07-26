@@ -22,7 +22,8 @@ is
    function Fabriquer
       (
          This : in out Fabrique_De_Poids_Mouche_T;
-         Clef : in     Id_Poids_Mouche_T
+         Clef : in     Id_Poids_Mouche_T;
+         Nom  : in     Nom_T
       )
       return Poids_Mouche_T'Class
    is
@@ -32,10 +33,12 @@ is
          (
             case Clef is
                when Jeton_1 => C_1,
-               when Jeton_2 => Concret_Non_Partage_P.Poids_Mouche_Concret_1_T,
+               when Jeton_2 => Concret_Non_Partage_P.Poids_Mouche_Concret_1_T'
+                  (Concret_Non_Partage_P.Creer (Nom => Nom)),
                when Jeton_3 => C_2,
                when Jeton_4 => C_3,
-               when Jeton_5 => Concret_Non_Partage_P.Poids_Mouche_Concret_2_T
+               when Jeton_5 => Concret_Non_Partage_P.Poids_Mouche_Concret_2_T'
+                  (Concret_Non_Partage_P.Creer (Nom => Nom))
          );
    begin
       return Resultat;
