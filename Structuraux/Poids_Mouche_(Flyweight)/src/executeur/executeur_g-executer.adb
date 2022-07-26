@@ -48,9 +48,10 @@ is
          Etat_Ext : in     Etat_P.Etat_Externe_T
       )
    is
-      P : constant Fab_P.Poids_Mouche_A := Fabrique.Fabriquer (Clef => Jeton);
+      P : Poids_Mouche_P.Poids_Mouche_T'Class :=
+         Fabrique.Fabriquer (Clef => Jeton, Nom => "Saumon              ");
    begin
-      P.all.Operation (Etat => Etat_Ext);
+      P.Operation (Etat => Etat_Ext);
       Ada.Text_IO.New_Line (Spacing => 1);
    end Consomer_Jeton;
    ---------------------------------------------------------------------------

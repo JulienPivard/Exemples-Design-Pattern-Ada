@@ -11,8 +11,6 @@ package Poids_Mouche_P.Fabrique_P
       Spark_Mode     => Off
 is
 
-   type Poids_Mouche_A is access all Poids_Mouche_T'Class;
-
    type Id_Poids_Mouche_T is (Jeton_1, Jeton_2, Jeton_3, Jeton_4, Jeton_5);
 
    type Fabrique_De_Poids_Mouche_T is tagged private;
@@ -25,7 +23,7 @@ is
          This : in out Fabrique_De_Poids_Mouche_T;
          Clef : in     Id_Poids_Mouche_T
       )
-      return Poids_Mouche_A;
+      return Poids_Mouche_T'Class;
 
 private
 

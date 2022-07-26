@@ -5,9 +5,9 @@ package body Poids_Mouche_P.Fabrique_P
    with Spark_Mode => Off
 is
 
-   C_1 : aliased Concret_P.Poids_Mouche_Concret_1_T;
-   C_2 : aliased Concret_P.Poids_Mouche_Concret_2_T;
-   C_3 : aliased Concret_P.Poids_Mouche_Concret_3_T;
+   C_1 : Concret_P.Poids_Mouche_Concret_1_T;
+   C_2 : Concret_P.Poids_Mouche_Concret_2_T;
+   C_3 : Concret_P.Poids_Mouche_Concret_3_T;
 
    ---------------------------------------------------------------------------
    function Initialiser
@@ -24,25 +24,20 @@ is
          This : in out Fabrique_De_Poids_Mouche_T;
          Clef : in     Id_Poids_Mouche_T
       )
-      return Poids_Mouche_A
+      return Poids_Mouche_T'Class
    is
       pragma Unreferenced (This);
 
-      Resultat : Poids_Mouche_A;
+      Resultat : Poids_Mouche_T'Class :=
+         (
+            case Clef is
+               when Jeton_1 => C_1,
+               when Jeton_2 => Concret_Non_Partage_P.Poids_Mouche_Concret_1_T,
+               when Jeton_3 => C_2,
+               when Jeton_4 => C_3,
+               when Jeton_5 => Concret_Non_Partage_P.Poids_Mouche_Concret_2_T
+         );
    begin
-      case Clef is
-         when Jeton_1 =>
-            Resultat := C_1'Access;
-         when Jeton_2 =>
-            Resultat := new Concret_Non_Partage_P.Poids_Mouche_Concret_1_T;
-         when Jeton_3 =>
-            Resultat := C_2'Access;
-         when Jeton_4 =>
-            Resultat := C_3'Access;
-         when Jeton_5 =>
-            Resultat := new Concret_Non_Partage_P.Poids_Mouche_Concret_2_T;
-      end case;
-
       return Resultat;
    end Fabriquer;
    ---------------------------------------------------------------------------
