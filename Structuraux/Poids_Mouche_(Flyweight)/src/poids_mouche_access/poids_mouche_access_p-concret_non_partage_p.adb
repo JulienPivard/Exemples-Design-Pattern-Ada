@@ -21,7 +21,7 @@ is
    overriding
    procedure Operation
       (
-         This : in out Poids_Mouche_Concret_1_T;
+         This : in     Poids_Mouche_Concret_1_T;
          Etat : in     Etat_P.Etat_Externe_T
       )
    is
@@ -50,7 +50,7 @@ is
    overriding
    procedure Operation
       (
-         This : in out Poids_Mouche_Concret_2_T;
+         This : in     Poids_Mouche_Concret_2_T;
          Etat : in     Etat_P.Etat_Externe_T
       )
    is

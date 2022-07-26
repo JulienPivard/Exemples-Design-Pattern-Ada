@@ -19,7 +19,7 @@ is
 
    procedure Operation
       (
-         This : in out Poids_Mouche_T;
+         This : in     Poids_Mouche_T;
          Etat : in     Etat_P.Etat_Externe_T
       )
    is abstract;

@@ -3,7 +3,10 @@ private
 --  @summary
 --  Poids mouche concret.
 --  @description
---  Une instance sera créée et pointé par tout les utilisateurs.
+--  Chaque poids_mouche_t est un record vide qui n'est la que
+--  pour servir de proxy vers le véritable objet. On évite les
+--  pointeurs et le cout n'est pas plus élevé que dans le cas
+--  d'un pointeur.
 --  @group Poids Mouche
 package Poids_Mouche_P.Concret_P
    with
@@ -18,7 +21,7 @@ is
    overriding
    procedure Operation
       (
-         This : in out Poids_Mouche_Concret_1_T;
+         This : in     Poids_Mouche_Concret_1_T;
          Etat : in     Etat_P.Etat_Externe_T
       );
 
@@ -27,7 +30,7 @@ is
    overriding
    procedure Operation
       (
-         This : in out Poids_Mouche_Concret_2_T;
+         This : in     Poids_Mouche_Concret_2_T;
          Etat : in     Etat_P.Etat_Externe_T
       );
 
@@ -36,7 +39,7 @@ is
    overriding
    procedure Operation
       (
-         This : in out Poids_Mouche_Concret_3_T;
+         This : in     Poids_Mouche_Concret_3_T;
          Etat : in     Etat_P.Etat_Externe_T
       );
 
