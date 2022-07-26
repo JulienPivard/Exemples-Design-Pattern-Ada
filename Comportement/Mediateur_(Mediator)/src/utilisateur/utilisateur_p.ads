@@ -52,14 +52,17 @@ is
 
 private
 
+   Nom_Vide : constant Donnee_P.Contenu_T :=
+      Donnee_P.Contenu_T'(others => ' ');
+
    Msg_Vide : constant Donnee_P.Contenu_T :=
       Donnee_P.Contenu_T'(others => ' ');
 
    type Utilisateur_T is tagged
       record
-         Nom : Donnee_P.Contenu_T := Donnee_P.Contenu_T'(others => ' ');
+         Nom : Donnee_P.Contenu_T := Nom_Vide;
          --  Le nom de l'utilisateur.
-         Msg : Donnee_P.Contenu_T := Donnee_P.Contenu_T'(others => ' ');
+         Msg : Donnee_P.Contenu_T := Msg_Vide;
          --  Le message à envoyer.
       end record;
 
