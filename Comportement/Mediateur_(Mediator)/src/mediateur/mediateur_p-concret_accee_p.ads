@@ -5,7 +5,7 @@ with Utilisateur_P.Collegue_Accee_P;
 --  @description
 --  Version concrète du médiateur.
 --  @group Mediateur
-package Mediateur_P.Concret_P
+package Mediateur_P.Concret_Accee_P
    with
       Pure           => False,
       Preelaborate   => False,
@@ -49,4 +49,4 @@ private
          Utilisateur : in     Utilisateur_P.Utilisateur_T'Class
       );
 
-end Mediateur_P.Concret_P;
+end Mediateur_P.Concret_Accee_P;

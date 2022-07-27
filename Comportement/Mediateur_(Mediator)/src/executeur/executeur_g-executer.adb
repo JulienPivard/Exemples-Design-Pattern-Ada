@@ -1,5 +1,5 @@
 with Utilisateur_P.Collegue_Accee_P;
-with Mediateur_P.Concret_P;
+with Mediateur_P.Concret_Accee_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -25,7 +25,7 @@ begin
       U_2 : aliased Utilisateur_P.Collegue_Accee_P.Utilisateur_Collegue_T :=
          Utilisateur_P.Collegue_Accee_P.Creer (Nom => "Cassandre           ");
 
-      M : aliased Mediateur_P.Concret_P.Concret_T;
+      M : aliased Mediateur_P.Concret_Accee_P.Concret_T;
    begin
       M.Inscrire (Utilisateur => U_1'Unchecked_Access);
       M.Inscrire (Utilisateur => U_2'Unchecked_Access);

@@ -1,7 +1,7 @@
 with Ada.Strings.Fixed;
 with Ada.Text_IO;
 
-package body Mediateur_P.Concret_P
+package body Mediateur_P.Concret_Accee_P
    with Spark_Mode => Off
 is
 
@@ -75,4 +75,4 @@ is
    end Afficher;
    ---------------------------------------------------------------------------
 
-end Mediateur_P.Concret_P;
+end Mediateur_P.Concret_Accee_P;
