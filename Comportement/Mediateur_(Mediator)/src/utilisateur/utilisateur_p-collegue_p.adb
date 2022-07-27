@@ -7,7 +7,7 @@ is
    procedure Ajouter
       (
          This      : in out Utilisateur_Collegue_T;
-         Mediateur : in     Mediateur_P.Mediateur_A;
+         Mediateur : in     Accee_P.Mediateur_A;
          Id        : in     Mediateur_P.Id_T
       )
    is

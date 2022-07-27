@@ -5,8 +5,8 @@
 --  @group Médiateur
 package Mediateur_P
    with
-      Pure           => False,
-      Preelaborate   => True,
+      Pure           => True,
+      Preelaborate   => False,
       Elaborate_Body => False,
       Spark_Mode     => Off
 is
@@ -28,9 +28,5 @@ is
    --  Le médiateur.
    --  @param Id
    --  L'identifiant de celui qui signal le changement.
-
-   type Mediateur_A is access all Mediateur_T'Class
-      with Storage_Size => 0;
-   --  Pointeur sur un médiateur. Aucune allocation dynamique n'est autorisé.
 
 end Mediateur_P;

@@ -1,11 +1,9 @@
-with Mediateur_P;
-
 --  @summary
 --  Un collègue qui va interagir avec le médiateur.
 --  @description
 --  Un collègue qui va interagir avec le médiateur.
 --  @group Médiateur
-package Collegue_Abstrait_P
+package Accee_P.Collegue_Abstrait_P
    with
       Pure           => False,
       Preelaborate   => True,
@@ -20,7 +18,7 @@ is
    procedure Ajouter
       (
          This      : in out Collegue_T;
-         Mediateur : in     Mediateur_P.Mediateur_A;
+         Mediateur : in     Mediateur_A;
          Id        : in     Mediateur_P.Id_T
       )
    is abstract;
@@ -32,4 +30,4 @@ is
    --  @param Id
    --  L'identifiant unique connu du médiateur.
 
-end Collegue_Abstrait_P;
+end Accee_P.Collegue_Abstrait_P;

@@ -1,4 +1,4 @@
-with Collegue_Abstrait_P;
+with Accee_P.Collegue_Abstrait_P;
 with Mediateur_P;
 
 --  @summary
@@ -15,14 +15,14 @@ package Utilisateur_P.Collegue_P
 is
 
    type Utilisateur_Collegue_T is new Utilisateur_T and
-      Collegue_Abstrait_P.Collegue_T with private;
+      Accee_P.Collegue_Abstrait_P.Collegue_T with private;
    --  Version collègue de l'utilisateur.
 
    overriding
    procedure Ajouter
       (
          This      : in out Utilisateur_Collegue_T;
-         Mediateur : in     Mediateur_P.Mediateur_A;
+         Mediateur : in     Accee_P.Mediateur_A;
          Id        : in     Mediateur_P.Id_T
       );
 
@@ -53,9 +53,9 @@ is
 private
 
    type Utilisateur_Collegue_T is new Utilisateur_T and
-      Collegue_Abstrait_P.Collegue_T with
+      Accee_P.Collegue_Abstrait_P.Collegue_T with
       record
-         Mediateur : Mediateur_P.Mediateur_A;
+         Mediateur : Accee_P.Mediateur_A;
          --  Le médiateur.
          Id        : Mediateur_P.Id_T;
          --  L'identifiant associé.
