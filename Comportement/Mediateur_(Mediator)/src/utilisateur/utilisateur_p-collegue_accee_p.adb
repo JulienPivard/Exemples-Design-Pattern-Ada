@@ -1,4 +1,4 @@
-package body Utilisateur_P.Collegue_P
+package body Utilisateur_P.Collegue_Accee_P
    with Spark_Mode => Off
 is
 
@@ -52,4 +52,4 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Utilisateur_P.Collegue_P;
+end Utilisateur_P.Collegue_Accee_P;

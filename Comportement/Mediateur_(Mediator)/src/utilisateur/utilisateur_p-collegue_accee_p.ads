@@ -6,7 +6,7 @@ with Mediateur_P;
 --  @description
 --  Version collègue de l'utilisateur.
 --  @group Mediateur
-package Utilisateur_P.Collegue_P
+package Utilisateur_P.Collegue_Accee_P
    with
       Pure           => False,
       Preelaborate   => False,
@@ -61,4 +61,4 @@ private
          --  L'identifiant associé.
       end record;
 
-end Utilisateur_P.Collegue_P;
+end Utilisateur_P.Collegue_Accee_P;

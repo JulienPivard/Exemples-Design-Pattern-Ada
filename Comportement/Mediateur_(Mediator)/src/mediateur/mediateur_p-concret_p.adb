@@ -28,7 +28,7 @@ is
    procedure Inscrire
       (
          This        : not null access Concret_T;
-         Utilisateur : in     Utilisateur_P.Collegue_P.Utilisateur_Collegue_A
+         Utilisateur : in     Collegue_A
       )
    is
    begin

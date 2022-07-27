@@ -1,4 +1,4 @@
-with Utilisateur_P.Collegue_P;
+with Utilisateur_P.Collegue_Accee_P;
 with Mediateur_P.Concret_P;
 
 separate (Executeur_G)
@@ -20,10 +20,10 @@ begin
 
    Bloc_Demo_Avec_Access :
    declare
-      U_1 : aliased Utilisateur_P.Collegue_P.Utilisateur_Collegue_T :=
-         Utilisateur_P.Collegue_P.Creer (Nom => "Morgane             ");
-      U_2 : aliased Utilisateur_P.Collegue_P.Utilisateur_Collegue_T :=
-         Utilisateur_P.Collegue_P.Creer (Nom => "Cassandre           ");
+      U_1 : aliased Utilisateur_P.Collegue_Accee_P.Utilisateur_Collegue_T :=
+         Utilisateur_P.Collegue_Accee_P.Creer (Nom => "Morgane             ");
+      U_2 : aliased Utilisateur_P.Collegue_Accee_P.Utilisateur_Collegue_T :=
+         Utilisateur_P.Collegue_Accee_P.Creer (Nom => "Cassandre           ");
 
       M : aliased Mediateur_P.Concret_P.Concret_T;
    begin

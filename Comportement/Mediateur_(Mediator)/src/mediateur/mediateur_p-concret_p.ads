@@ -1,4 +1,4 @@
-with Utilisateur_P.Collegue_P;
+with Utilisateur_P.Collegue_Accee_P;
 
 --  @summary
 --  Version concrète du médiateur.
@@ -13,6 +13,8 @@ package Mediateur_P.Concret_P
       Spark_Mode     => Off
 is
 
+   subtype Collegue_A is Utilisateur_P.Collegue_Accee_P.Utilisateur_Collegue_A;
+
    type Concret_T is new Mediateur_T with private;
 
    overriding
@@ -26,16 +28,16 @@ is
    procedure Inscrire
       (
          This        : not null access Concret_T;
-         Utilisateur : in     Utilisateur_P.Collegue_P.Utilisateur_Collegue_A
+         Utilisateur : in     Collegue_A
       );
 
 private
 
    type Concret_T is new Mediateur_T with
       record
-         U_1 : Utilisateur_P.Collegue_P.Utilisateur_Collegue_A;
+         U_1 : Utilisateur_P.Collegue_Accee_P.Utilisateur_Collegue_A;
          --  Le premier utilisateur.
-         U_2 : Utilisateur_P.Collegue_P.Utilisateur_Collegue_A;
+         U_2 : Utilisateur_P.Collegue_Accee_P.Utilisateur_Collegue_A;
          --  Le deuxième utilisateur.
          Pos : Id_T := Id_T'First;
       end record;
