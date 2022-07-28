@@ -42,11 +42,4 @@ private
          Pos : Id_T := Id_T'First;
       end record;
 
-   not overriding
-   procedure Afficher
-      (
-         This        : in     Concret_T;
-         Utilisateur : in     Utilisateur_P.Utilisateur_T'Class
-      );
-
 end Mediateur_P.Concret_Accee_P;

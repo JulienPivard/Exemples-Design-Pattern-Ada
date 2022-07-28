@@ -1,3 +1,6 @@
+with Ada.Strings.Fixed;
+with Ada.Text_IO;
+
 package body Utilisateur_P
    with Spark_Mode => Off
 is
@@ -42,6 +45,34 @@ is
    begin
       return This.Msg;
    end Lire_Msg;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Afficher
+      (
+         This : in     Utilisateur_T;
+         Recu : in     Utilisateur_T
+      )
+   is
+   begin
+      Ada.Text_IO.Put
+         (
+            Item => "[" &
+               Ada.Strings.Fixed.Trim
+                  (
+                     Source => This.Lire_Nom,
+                     Side   => Ada.Strings.Both
+                  ) &
+               "] a reçu un message de [" &
+               Ada.Strings.Fixed.Trim
+                  (
+                     Source => Recu.Lire_Nom,
+                     Side   => Ada.Strings.Both
+                  ) &
+               "] => "
+         );
+      Ada.Text_IO.Put_Line (Item => Recu.Lire_Msg);
+   end Afficher;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

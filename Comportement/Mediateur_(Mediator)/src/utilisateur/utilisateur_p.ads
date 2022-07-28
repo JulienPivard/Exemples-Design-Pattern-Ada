@@ -7,9 +7,9 @@ with Donnee_P;
 --  @group Utilisateur
 package Utilisateur_P
    with
-      Pure           => True,
+      Pure           => False,
       Preelaborate   => False,
-      Elaborate_Body => False,
+      Elaborate_Body => True,
       Spark_Mode     => Off
 is
 
@@ -49,6 +49,17 @@ is
    --  @param This
    --  L'utilisateur.
    --  @return Le contenu du message.
+
+   procedure Afficher
+      (
+         This : in     Utilisateur_T;
+         Recu : in     Utilisateur_T
+      );
+   --  Affiche le message reçu d'un autre utilisateur.
+   --  @param This
+   --  L'utilisateur.
+   --  @param Recu
+   --  L'autre utilisateur qui veux communiquer avec nous.
 
 private
 

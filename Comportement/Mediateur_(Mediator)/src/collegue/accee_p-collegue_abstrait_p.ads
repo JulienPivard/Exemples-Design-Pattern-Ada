@@ -2,6 +2,7 @@
 --  Un collègue qui va interagir avec le médiateur.
 --  @description
 --  Un collègue qui va interagir avec le médiateur.
+--  L'interaction se fait grâce à un pointeur.
 --  @group Médiateur
 package Accee_P.Collegue_Abstrait_P
    with

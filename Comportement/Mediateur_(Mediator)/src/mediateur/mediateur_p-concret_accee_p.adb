@@ -1,6 +1,3 @@
-with Ada.Strings.Fixed;
-with Ada.Text_IO;
-
 package body Mediateur_P.Concret_Accee_P
    with Spark_Mode => Off
 is
@@ -16,9 +13,9 @@ is
    begin
       case Id is
          when 1 =>
-            This.Afficher (Utilisateur => This.U_1.all);
+            This.U_2.all.Afficher (Recu => This.U_1.all);
          when 2 =>
-            This.Afficher (Utilisateur => This.U_2.all);
+            This.U_1.all.Afficher (Recu => This.U_2.all);
       end case;
    end Signaler;
    ---------------------------------------------------------------------------
@@ -49,30 +46,6 @@ is
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   not overriding
-   procedure Afficher
-      (
-         This        : in     Concret_T;
-         Utilisateur : in     Utilisateur_P.Utilisateur_T'Class
-      )
-   is
-      pragma Unreferenced (This);
-   begin
-      Ada.Text_IO.Put
-         (
-            Item => "[" &
-               Ada.Strings.Fixed.Trim
-                  (
-                     Source => Utilisateur.Lire_Nom,
-                     Side   => Ada.Strings.Both
-                  ) &
-               "] "
-         );
-      Ada.Text_IO.Put_Line (Item => Utilisateur.Lire_Msg);
-   end Afficher;
    ---------------------------------------------------------------------------
 
 end Mediateur_P.Concret_Accee_P;
