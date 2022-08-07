@@ -1,6 +1,8 @@
 with Utilisateur_P.Collegue_Accee_P;
 with Mediateur_P.Concret_Accee_P;
 
+with Mediateur_P.Concret_P;
+
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
@@ -27,12 +29,44 @@ begin
 
       M : aliased Mediateur_P.Concret_Accee_P.Concret_T;
    begin
+      Ada.Text_IO.Put_Line (Item => "Version du médiateur avec des pointeurs");
+      Ada.Text_IO.Put_Line (Item => "----");
       M.Inscrire (Utilisateur => U_1'Unchecked_Access);
       M.Inscrire (Utilisateur => U_2'Unchecked_Access);
 
       U_1.Envoyer (Message => "Wesh Cassandre !    ");
       U_2.Envoyer (Message => "Yo Morgane          ");
    end Bloc_Demo_Avec_Access;
+
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Bloc_Demo_Sans_Access :
+   declare
+      U_1 : Mediateur_P.Id_T;
+      U_2 : Mediateur_P.Id_T;
+
+      M : Mediateur_P.Concret_P.Concret_T;
+   begin
+      Ada.Text_IO.Put_Line (Item => "Version du médiateur sans pointeurs");
+      Ada.Text_IO.Put_Line (Item => "----");
+      M.Inscrire (Nom => "Morgane             ", Id => U_1);
+      M.Inscrire (Nom => "Cassandre           ", Id => U_2);
+
+      M.Envoyer
+         (
+            Envoyeur     => U_1,
+            Destinataire => U_2,
+            Message      => "Wesh Cassandre !    "
+         );
+      M.Envoyer
+         (
+            Envoyeur     => U_2,
+            Destinataire => U_1,
+            Message      => "Yo Morgane          "
+         );
+
+      pragma Unreferenced (M);
+   end Bloc_Demo_Sans_Access;
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
