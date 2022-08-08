@@ -14,4 +14,6 @@ is
    subtype Contenu_T is String (1 .. 20);
    --  Le contenu du texte.
 
+   Vide : constant Contenu_T := Contenu_T'(others => ' ');
+
 end Donnee_P;

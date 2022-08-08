@@ -1,86 +1,69 @@
 with Donnee_P;
-with Utilisateur_Abstrait_P;
 
 --  @summary
---  Un utilisateur de chat.
+--  Version abstraite de l'utilisateur.
 --  @description
---  Un utilisateur de chat.
+--  Version abstraite de l'utilisateur.
 --  @group Utilisateur
-package Utilisateur_P
+package Utilisateur_Abstrait_P
    with
-      Pure           => False,
+      Pure           => True,
       Preelaborate   => False,
-      Elaborate_Body => True,
+      Elaborate_Body => False,
       Spark_Mode     => Off
 is
 
-   type Utilisateur_T is new Utilisateur_Abstrait_P.Utilisateur_T with private;
+   type Utilisateur_T is interface;
 
-   overriding
    function Creer
       (Nom : in     Donnee_P.Contenu_T)
-      return Utilisateur_T;
+      return Utilisateur_T
+   is abstract;
    --  Crée un utilisateur.
    --  @param Nom
    --  Le nom de l'utilisateur.
    --  @return L'utilisateur initialisé.
 
-   overriding
    procedure Envoyer
       (
          This    : in out Utilisateur_T;
          Message : in     Donnee_P.Contenu_T
-      );
+      )
+   is abstract;
    --  Envoie un message à un autre utilisateur.
    --  @param This
    --  L'utilisateur.
    --  @param Message
    --  Le contenu du message.
 
-   overriding
    function Lire_Nom
       (This : in     Utilisateur_T)
-      return Donnee_P.Contenu_T;
+      return Donnee_P.Contenu_T
+   is abstract;
    --  Lit le nom de l'utilisateur.
    --  @param This
    --  L'utilisateur.
    --  @return Le nom de l'utilisateur.
 
-   overriding
    function Lire_Msg
       (This : in     Utilisateur_T)
-      return Donnee_P.Contenu_T;
+      return Donnee_P.Contenu_T
+   is abstract;
    --  Lit le contenu du message à envoyer.
    --  @param This
    --  L'utilisateur.
    --  @return Le contenu du message.
 
-   overriding
    procedure Afficher
       (
          This : in     Utilisateur_T;
-         Recu : in     Utilisateur_Abstrait_P.Utilisateur_T'Class
-      );
+         Recu : in     Utilisateur_T'Class
+      )
+   is abstract;
    --  Affiche le message reçu d'un autre utilisateur.
    --  @param This
    --  L'utilisateur.
    --  @param Recu
    --  L'autre utilisateur qui veux communiquer avec nous.
 
-private
-
-   Nom_Vide : constant Donnee_P.Contenu_T :=
-      Donnee_P.Contenu_T'(others => ' ');
-
-   Msg_Vide : constant Donnee_P.Contenu_T :=
-      Donnee_P.Contenu_T'(others => ' ');
-
-   type Utilisateur_T is new Utilisateur_Abstrait_P.Utilisateur_T with
-      record
-         Nom : Donnee_P.Contenu_T := Nom_Vide;
-         --  Le nom de l'utilisateur.
-         Msg : Donnee_P.Contenu_T := Msg_Vide;
-         --  Le message à envoyer.
-      end record;
-
-end Utilisateur_P;
+end Utilisateur_Abstrait_P;

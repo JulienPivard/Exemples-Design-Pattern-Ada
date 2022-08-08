@@ -6,6 +6,7 @@ package body Utilisateur_P
 is
 
    ---------------------------------------------------------------------------
+   overriding
    function Creer
       (Nom : in     Donnee_P.Contenu_T)
       return Utilisateur_T
@@ -16,6 +17,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
    procedure Envoyer
       (
          This    : in out Utilisateur_T;
@@ -28,6 +30,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
    function Lire_Nom
       (This : in     Utilisateur_T)
       return Donnee_P.Contenu_T
@@ -38,6 +41,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
    function Lire_Msg
       (This : in     Utilisateur_T)
       return Donnee_P.Contenu_T
@@ -48,10 +52,11 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
    procedure Afficher
       (
          This : in     Utilisateur_T;
-         Recu : in     Utilisateur_T
+         Recu : in     Utilisateur_Abstrait_P.Utilisateur_T'Class
       )
    is
    begin
