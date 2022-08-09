@@ -3,6 +3,10 @@ with Mediateur_P.Concret_Accee_P;
 
 with Mediateur_P.Concret_P;
 
+with Mediateur_P.Singleton_P;
+with Utilisateur_Collegue_1_P;
+with Utilisateur_Collegue_2_P;
+
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
@@ -67,6 +71,33 @@ begin
 
       pragma Unreferenced (M);
    end Bloc_Demo_Sans_Access;
+
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Bloc_Demo_Singletons :
+   declare
+      M : Mediateur_P.Singleton_P.Mediateur_Concret_T;
+
+      U_1 : Utilisateur_Collegue_1_P.Utilisateur_Collegue_T :=
+         Utilisateur_Collegue_1_P.Creer (Nom => "Morgane             ");
+      U_2 : Utilisateur_Collegue_2_P.Utilisateur_Collegue_T :=
+         Utilisateur_Collegue_2_P.Creer (Nom => "Cassandre           ");
+   begin
+      Ada.Text_IO.Put_Line (Item => "Version du médiateur sans pointeurs,");
+      Ada.Text_IO.Put_Line (Item => "avec des singletons. Cette version se");
+      Ada.Text_IO.Put_Line (Item => "destine à une utilisation concurrente");
+      Ada.Text_IO.Put_Line (Item => "----");
+
+      M.Inscrire (Utilisateur => U_1);
+      M.Inscrire (Utilisateur => U_2);
+
+      U_1.Envoyer (Message => "Wesh Cassandre !    ");
+      U_2.Envoyer (Message => "Yo Morgane          ");
+
+      pragma Unreferenced (M);
+      pragma Unreferenced (U_1);
+      pragma Unreferenced (U_2);
+   end Bloc_Demo_Singletons;
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
