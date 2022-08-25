@@ -20,8 +20,8 @@ is
 
    procedure Resoudre
       (
-         Strategie   : in     Strategie_T;
-         Probleme    : in out Distance_P.Probleme_T
+         Strategie : in     Strategie_T;
+         Probleme  : in out Distance_P.Probleme_T
       )
    is abstract;
    --  Résout le problème de la distance entre deux points.

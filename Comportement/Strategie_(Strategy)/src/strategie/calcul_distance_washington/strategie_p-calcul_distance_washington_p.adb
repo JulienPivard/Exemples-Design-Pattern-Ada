@@ -6,8 +6,8 @@ is
    overriding
    procedure Resoudre
       (
-         Strategie   : in     Washington_T;
-         Probleme    : in out Distance_P.Probleme_T
+         Strategie : in     Washington_T;
+         Probleme  : in out Distance_P.Probleme_T
       )
    is
       pragma Unreferenced (Strategie);

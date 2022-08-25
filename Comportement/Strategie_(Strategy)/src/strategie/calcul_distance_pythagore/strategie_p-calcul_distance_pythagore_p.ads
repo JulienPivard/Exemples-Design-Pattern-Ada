@@ -18,8 +18,8 @@ is
    overriding
    procedure Resoudre
       (
-         Strategie   : in     Pythagore_T;
-         Probleme    : in out Distance_P.Probleme_T
+         Strategie : in     Pythagore_T;
+         Probleme  : in out Distance_P.Probleme_T
       );
    --  Résout le problème de la distance entre deux points.
    --  @param Strategie

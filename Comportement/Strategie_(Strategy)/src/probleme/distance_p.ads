@@ -19,7 +19,7 @@ package Distance_P is
    type Coordonnee_T is new Integer;
    --  Une coordonnée x, y ou z d'un point.
 
-   type Distance_T is new Integer;
+   type Distance_T   is new Integer;
    --  La distance entre deux points.
 
    function Initialiser

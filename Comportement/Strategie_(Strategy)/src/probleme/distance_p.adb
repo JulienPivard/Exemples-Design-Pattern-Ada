@@ -4,16 +4,16 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function Initialiser
-      (X1, Y1, X2, Y2 : in Coordonnee_T)
+      (X1, Y1, X2, Y2 : in     Coordonnee_T)
       return Probleme_T
    is
       Resultat : Probleme_T;
    begin
-      Resultat.X1        := X1;
-      Resultat.Y1        := Y1;
-      Resultat.X2        := X2;
-      Resultat.Y2        := Y2;
-      Resultat.Distance  := 0;
+      Resultat.X1       := X1;
+      Resultat.Y1       := Y1;
+      Resultat.X2       := X2;
+      Resultat.Y2       := Y2;
+      Resultat.Distance := 0;
 
       return Resultat;
    end Initialiser;
@@ -21,7 +21,7 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function Lire_X1
-      (Probleme : in Probleme_T)
+      (Probleme : in     Probleme_T)
       return Coordonnee_T
    is
    begin
@@ -31,7 +31,7 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function Lire_Y1
-      (Probleme : in Probleme_T)
+      (Probleme : in     Probleme_T)
       return Coordonnee_T
    is
    begin
@@ -41,7 +41,7 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function Lire_X2
-      (Probleme : in Probleme_T)
+      (Probleme : in     Probleme_T)
       return Coordonnee_T
    is
    begin
@@ -51,7 +51,7 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function Lire_Y2
-      (Probleme : in Probleme_T)
+      (Probleme : in     Probleme_T)
       return Coordonnee_T
    is
    begin
@@ -73,7 +73,7 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function Lire_Distance
-      (Probleme : in Probleme_T)
+      (Probleme : in     Probleme_T)
       return Distance_T
    is
    begin
@@ -95,7 +95,7 @@ package body Distance_P is
 
    ---------------------------------------------------------------------------
    function "-"
-      (Right, Left : in Coordonnee_T)
+      (Right, Left : in     Coordonnee_T)
       return Distance_T
    is
    begin

@@ -8,8 +8,8 @@ is
    overriding
    procedure Resoudre
       (
-         Strategie   : in     Pythagore_T;
-         Probleme    : in out Distance_P.Probleme_T
+         Strategie : in     Pythagore_T;
+         Probleme  : in out Distance_P.Probleme_T
       )
    is
       pragma Unreferenced (Strategie);
@@ -26,7 +26,7 @@ is
       D_Tmp    : Float;
    begin
       Distance := ((X2 - X1)**2 + (Y2 - Y1)**2);
-      D_Tmp := Ada.Numerics.Elementary_Functions.Sqrt (Float (Distance));
+      D_Tmp    := Ada.Numerics.Elementary_Functions.Sqrt (Float (Distance));
       Distance := Distance_P.Distance_T (D_Tmp);
       Probleme.Ecrire_Distance (Distance => Distance);
    end Resoudre;
