@@ -168,6 +168,7 @@ private
       end record;
    --  Notre itérateur dans les deux sens.
 
+   --------------
    overriding
    function First
       (It : in     Iterateur_T)
@@ -185,6 +186,7 @@ private
    --  Notre itérateur.
    --  @return Le curseur en position initial.
 
+   -------------
    overriding
    function Next
       (
@@ -213,6 +215,7 @@ private
    --  Le curseur.
    --  @return Notre curseur un pas en avant.
 
+   -------------
    overriding
    function Last
       (It : in     Iterateur_T)
@@ -230,6 +233,7 @@ private
    --  Notre itérateur.
    --  @return Le curseur en position initial.
 
+   -----------------
    overriding
    function Previous
       (
