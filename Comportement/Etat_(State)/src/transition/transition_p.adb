@@ -51,6 +51,8 @@ is
    end Etat_Initial;
    ---------------------------------------------------------------------------
 
+   package Etat_IO is new Ada.Text_IO.Enumeration_IO (Enum => Prochain_Etat_T);
+
    ---------------------------------------------------------------------------
    function Changer_D_Etat
       (
@@ -66,10 +68,11 @@ is
          Prochain_Etat (Etat.Lire_Id, Touche);
    begin
       case Suivant is
-         when Commande =>
-            Ada.Text_IO.Put_Line (Item => "----------- Commande  -----------");
-         when Insertion =>
-            Ada.Text_IO.Put_Line (Item => "----------- Insertion -----------");
+         when Commande | Insertion | Visuel =>
+            Ada.Text_IO.Put (Item => "----------- ");
+            Etat_IO.Put (Item => Suivant, Width => 10);
+            Ada.Text_IO.Put (Item => " -----------");
+            Ada.Text_IO.New_Line (Spacing => 1);
          when Pas_De_Changement =>
             null;
       end case;
