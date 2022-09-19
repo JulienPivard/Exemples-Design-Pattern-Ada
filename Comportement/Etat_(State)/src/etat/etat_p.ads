@@ -13,7 +13,14 @@ is
 
    type Id_Etat_T is (Commande, Insertion);
 
-   type Id_Touche_T is (Lettre_E, Lettre_I, Lettre_Esc);
+   type Id_Touche_T is
+      (
+         Lettre_E,
+         Lettre_I,
+         Lettre_V,
+         Lettre_R,
+         Lettre_Esc
+      );
 
    type Etat_T is interface;
 
@@ -22,6 +29,14 @@ is
    is abstract;
 
    procedure Presse_I
+      (This : in out Etat_T)
+   is abstract;
+
+   procedure Presse_V
+      (This : in out Etat_T)
+   is abstract;
+
+   procedure Presse_R
       (This : in out Etat_T)
    is abstract;
 

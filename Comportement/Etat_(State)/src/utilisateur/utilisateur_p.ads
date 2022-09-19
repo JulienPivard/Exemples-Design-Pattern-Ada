@@ -27,6 +27,12 @@ is
    procedure Presse_I
       (This : in out Utilisateur_T);
 
+   procedure Presse_V
+      (This : in out Utilisateur_T);
+
+   procedure Presse_R
+      (This : in out Utilisateur_T);
+
    procedure Presse_Esc
       (This : in out Utilisateur_T);
 

@@ -13,12 +13,16 @@ is
             (
                Etat_P.Lettre_E   => Pas_De_Changement,
                Etat_P.Lettre_I   => Insertion,
+               Etat_P.Lettre_V   => Pas_De_Changement,
+               Etat_P.Lettre_R   => Pas_De_Changement,
                Etat_P.Lettre_Esc => Pas_De_Changement
             ),
          Etat_P.Insertion =>
             (
                Etat_P.Lettre_E   => Pas_De_Changement,
                Etat_P.Lettre_I   => Pas_De_Changement,
+               Etat_P.Lettre_V   => Pas_De_Changement,
+               Etat_P.Lettre_R   => Pas_De_Changement,
                Etat_P.Lettre_Esc => Commande
             )
       );

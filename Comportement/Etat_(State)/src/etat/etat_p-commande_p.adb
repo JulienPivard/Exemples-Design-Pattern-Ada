@@ -28,6 +28,28 @@ is
 
    ---------------------------------------------------------------------------
    overriding
+   procedure Presse_V
+      (This : in out Commande_T)
+   is
+      pragma Unreferenced (This);
+   begin
+      Ada.Text_IO.Put_Line (Item => "Commande  : <V>");
+   end Presse_V;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   procedure Presse_R
+      (This : in out Commande_T)
+   is
+      pragma Unreferenced (This);
+   begin
+      Ada.Text_IO.Put_Line (Item => "Commande  : <R>");
+   end Presse_R;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
    procedure Presse_Esc
       (This : in out Commande_T)
    is

@@ -38,6 +38,26 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Presse_V
+      (This : in out Utilisateur_T)
+   is
+   begin
+      This.Etat.Reference.Presse_V;
+      This.Changer_D_Etat (Touche => Etat_P.Lettre_V);
+   end Presse_V;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Presse_R
+      (This : in out Utilisateur_T)
+   is
+   begin
+      This.Etat.Reference.Presse_R;
+      This.Changer_D_Etat (Touche => Etat_P.Lettre_R);
+   end Presse_R;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Presse_Esc
       (This : in out Utilisateur_T)
    is

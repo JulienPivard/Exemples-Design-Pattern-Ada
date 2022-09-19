@@ -25,6 +25,14 @@ is
       (This : in out Commande_T);
 
    overriding
+   procedure Presse_V
+      (This : in out Commande_T);
+
+   overriding
+   procedure Presse_R
+      (This : in out Commande_T);
+
+   overriding
    procedure Presse_Esc
       (This : in out Commande_T);
 
