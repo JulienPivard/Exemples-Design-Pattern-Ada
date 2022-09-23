@@ -1,3 +1,4 @@
+with Lettre_P;
 with Utilisateur_P;
 
 separate (Executeur_G)
@@ -16,29 +17,29 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   U.Presse_E;
-   U.Presse_Esc;
-   U.Presse_I;
-   U.Presse_I;
-   U.Presse_V;
-   U.Presse_R;
-   U.Presse_E;
-   U.Presse_Esc;
-   U.Presse_E;
-   U.Presse_Esc;
-   U.Presse_V;
-   U.Presse_I;
-   U.Presse_V;
-   U.Presse_R;
-   U.Presse_E;
-   U.Presse_Esc;
-   U.Presse_R;
-   U.Presse_E;
-   U.Presse_I;
-   U.Presse_V;
-   U.Presse_E;
-   U.Presse_Esc;
-   U.Presse_E;
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_R);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_R);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_R);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
 
    pragma Unreferenced (U);
 

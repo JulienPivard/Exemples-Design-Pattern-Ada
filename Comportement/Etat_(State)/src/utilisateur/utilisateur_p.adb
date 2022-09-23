@@ -18,53 +18,27 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Presse_E
-      (This : in out Utilisateur_T)
+   procedure Presser
+      (
+         This   : in out Utilisateur_T;
+         Lettre : in     Lettre_P.Id_Touche_T
+      )
    is
    begin
-      This.Etat.Reference.Presse_E;
-      This.Changer_D_Etat (Touche => Lettre_P.Lettre_E);
-   end Presse_E;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Presse_I
-      (This : in out Utilisateur_T)
-   is
-   begin
-      This.Etat.Reference.Presse_I;
-      This.Changer_D_Etat (Touche => Lettre_P.Lettre_I);
-   end Presse_I;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Presse_V
-      (This : in out Utilisateur_T)
-   is
-   begin
-      This.Etat.Reference.Presse_V;
-      This.Changer_D_Etat (Touche => Lettre_P.Lettre_V);
-   end Presse_V;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Presse_R
-      (This : in out Utilisateur_T)
-   is
-   begin
-      This.Etat.Reference.Presse_R;
-      This.Changer_D_Etat (Touche => Lettre_P.Lettre_R);
-   end Presse_R;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Presse_Esc
-      (This : in out Utilisateur_T)
-   is
-   begin
-      This.Etat.Reference.Presse_Esc;
-      This.Changer_D_Etat (Touche => Lettre_P.Lettre_Esc);
-   end Presse_Esc;
+      case Lettre is
+         when Lettre_P.Lettre_E =>
+            This.Etat.Reference.Presse_E;
+         when Lettre_P.Lettre_I =>
+            This.Etat.Reference.Presse_I;
+         when Lettre_P.Lettre_V =>
+            This.Etat.Reference.Presse_V;
+         when Lettre_P.Lettre_R =>
+            This.Etat.Reference.Presse_R;
+         when Lettre_P.Lettre_Esc =>
+            This.Etat.Reference.Presse_Esc;
+      end case;
+      This.Changer_D_Etat (Touche => Lettre);
+   end Presser;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
