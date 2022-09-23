@@ -11,7 +11,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Insertion : e");
+      Ada.Text_IO.Put_Line (Item => "Insertion : <E>");
    end Presse_E;
    ---------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Insertion : i");
+      Ada.Text_IO.Put_Line (Item => "Insertion : <I>");
    end Presse_I;
    ---------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Insertion : v");
+      Ada.Text_IO.Put_Line (Item => "Insertion : <V>");
    end Presse_V;
    ---------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Insertion : r");
+      Ada.Text_IO.Put_Line (Item => "Insertion : <R>");
    end Presse_R;
    ---------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Insertion : <esc>");
+      Ada.Text_IO.Put_Line (Item => "Insertion : <ESC>");
    end Presse_Esc;
    ---------------------------------------------------------------------------
 
