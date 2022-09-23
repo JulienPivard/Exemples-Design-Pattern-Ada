@@ -23,7 +23,7 @@ is
    is
    begin
       This.Etat.Reference.Presse_E;
-      This.Changer_D_Etat (Touche => Etat_P.Lettre_E);
+      This.Changer_D_Etat (Touche => Lettre_P.Lettre_E);
    end Presse_E;
    ---------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ is
    is
    begin
       This.Etat.Reference.Presse_I;
-      This.Changer_D_Etat (Touche => Etat_P.Lettre_I);
+      This.Changer_D_Etat (Touche => Lettre_P.Lettre_I);
    end Presse_I;
    ---------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ is
    is
    begin
       This.Etat.Reference.Presse_V;
-      This.Changer_D_Etat (Touche => Etat_P.Lettre_V);
+      This.Changer_D_Etat (Touche => Lettre_P.Lettre_V);
    end Presse_V;
    ---------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ is
    is
    begin
       This.Etat.Reference.Presse_R;
-      This.Changer_D_Etat (Touche => Etat_P.Lettre_R);
+      This.Changer_D_Etat (Touche => Lettre_P.Lettre_R);
    end Presse_R;
    ---------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ is
    is
    begin
       This.Etat.Reference.Presse_Esc;
-      This.Changer_D_Etat (Touche => Etat_P.Lettre_Esc);
+      This.Changer_D_Etat (Touche => Lettre_P.Lettre_Esc);
    end Presse_Esc;
    ---------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ is
    procedure Changer_D_Etat
       (
          This   : in out Utilisateur_T;
-         Touche : in     Etat_P.Id_Touche_T
+         Touche : in     Lettre_P.Id_Touche_T
       )
    is
       Etat : constant Etat_P.Etat_T'Class := This.Transition.Changer_D_Etat

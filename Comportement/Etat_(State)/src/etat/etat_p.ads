@@ -13,15 +13,6 @@ is
 
    type Id_Etat_T is (Commande, Insertion, Remplacement, Visuel);
 
-   type Id_Touche_T is
-      (
-         Lettre_E,
-         Lettre_I,
-         Lettre_V,
-         Lettre_R,
-         Lettre_Esc
-      );
-
    type Etat_T is interface;
 
    procedure Presse_E

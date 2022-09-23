@@ -1,3 +1,5 @@
+with Lettre_P;
+
 private with Ada.Containers.Indefinite_Holders;
 
 private with Etat_P;
@@ -41,7 +43,7 @@ private
    procedure Changer_D_Etat
       (
          This   : in out Utilisateur_T;
-         Touche : in     Etat_P.Id_Touche_T
+         Touche : in     Lettre_P.Id_Touche_T
       );
 
    use type Etat_P.Etat_T;

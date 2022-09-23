@@ -13,35 +13,35 @@ is
       (
          Etat_P.Commande  =>
             (
-               Etat_P.Lettre_E   => Pas_De_Changement,
-               Etat_P.Lettre_I   => Insertion,
-               Etat_P.Lettre_V   => Visuel,
-               Etat_P.Lettre_R   => Remplacement,
-               Etat_P.Lettre_Esc => Pas_De_Changement
+               Lettre_P.Lettre_E   => Pas_De_Changement,
+               Lettre_P.Lettre_I   => Insertion,
+               Lettre_P.Lettre_V   => Visuel,
+               Lettre_P.Lettre_R   => Remplacement,
+               Lettre_P.Lettre_Esc => Pas_De_Changement
             ),
          Etat_P.Insertion =>
             (
-               Etat_P.Lettre_E   => Pas_De_Changement,
-               Etat_P.Lettre_I   => Pas_De_Changement,
-               Etat_P.Lettre_V   => Pas_De_Changement,
-               Etat_P.Lettre_R   => Pas_De_Changement,
-               Etat_P.Lettre_Esc => Commande
+               Lettre_P.Lettre_E   => Pas_De_Changement,
+               Lettre_P.Lettre_I   => Pas_De_Changement,
+               Lettre_P.Lettre_V   => Pas_De_Changement,
+               Lettre_P.Lettre_R   => Pas_De_Changement,
+               Lettre_P.Lettre_Esc => Commande
             ),
          Etat_P.Remplacement =>
             (
-               Etat_P.Lettre_E   => Pas_De_Changement,
-               Etat_P.Lettre_I   => Pas_De_Changement,
-               Etat_P.Lettre_V   => Pas_De_Changement,
-               Etat_P.Lettre_R   => Pas_De_Changement,
-               Etat_P.Lettre_Esc => Commande
+               Lettre_P.Lettre_E   => Pas_De_Changement,
+               Lettre_P.Lettre_I   => Pas_De_Changement,
+               Lettre_P.Lettre_V   => Pas_De_Changement,
+               Lettre_P.Lettre_R   => Pas_De_Changement,
+               Lettre_P.Lettre_Esc => Commande
             ),
          Etat_P.Visuel =>
             (
-               Etat_P.Lettre_E   => Pas_De_Changement,
-               Etat_P.Lettre_I   => Pas_De_Changement,
-               Etat_P.Lettre_V   => Pas_De_Changement,
-               Etat_P.Lettre_R   => Pas_De_Changement,
-               Etat_P.Lettre_Esc => Commande
+               Lettre_P.Lettre_E   => Pas_De_Changement,
+               Lettre_P.Lettre_I   => Pas_De_Changement,
+               Lettre_P.Lettre_V   => Pas_De_Changement,
+               Lettre_P.Lettre_R   => Pas_De_Changement,
+               Lettre_P.Lettre_Esc => Commande
             )
       );
 
@@ -76,7 +76,7 @@ is
       (
          This   : in out Transition_T;
          Etat   : in     Etat_P.Etat_T'Class;
-         Touche : in     Etat_P.Id_Touche_T
+         Touche : in     Lettre_P.Id_Touche_T
       )
       return Etat_P.Etat_T'Class
    is

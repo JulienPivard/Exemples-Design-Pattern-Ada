@@ -1,4 +1,5 @@
 with Etat_P;
+with Lettre_P;
 
 --  @summary
 --  Une petite explication
@@ -26,7 +27,7 @@ is
       (
          This   : in out Transition_T;
          Etat   : in     Etat_P.Etat_T'Class;
-         Touche : in     Etat_P.Id_Touche_T
+         Touche : in     Lettre_P.Id_Touche_T
       )
       return Etat_P.Etat_T'Class;
 
@@ -47,6 +48,6 @@ private
       end record;
 
    type Table_De_Transition_T is array
-      (Etat_P.Id_Etat_T, Etat_P.Id_Touche_T) of Prochain_Etat_T;
+      (Etat_P.Id_Etat_T, Lettre_P.Id_Touche_T) of Prochain_Etat_T;
 
 end Transition_P;
