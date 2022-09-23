@@ -2,6 +2,7 @@ with Ada.Text_IO;
 
 with Etat_P.Commande_P;
 with Etat_P.Insertion_P;
+with Etat_P.Remplacement_P;
 with Etat_P.Visuel_P;
 
 package body Transition_P
@@ -15,10 +16,18 @@ is
                Etat_P.Lettre_E   => Pas_De_Changement,
                Etat_P.Lettre_I   => Insertion,
                Etat_P.Lettre_V   => Visuel,
-               Etat_P.Lettre_R   => Pas_De_Changement,
+               Etat_P.Lettre_R   => Remplacement,
                Etat_P.Lettre_Esc => Pas_De_Changement
             ),
          Etat_P.Insertion =>
+            (
+               Etat_P.Lettre_E   => Pas_De_Changement,
+               Etat_P.Lettre_I   => Pas_De_Changement,
+               Etat_P.Lettre_V   => Pas_De_Changement,
+               Etat_P.Lettre_R   => Pas_De_Changement,
+               Etat_P.Lettre_Esc => Commande
+            ),
+         Etat_P.Remplacement =>
             (
                Etat_P.Lettre_E   => Pas_De_Changement,
                Etat_P.Lettre_I   => Pas_De_Changement,
@@ -77,7 +86,7 @@ is
          Prochain_Etat (Etat.Lire_Id, Touche);
    begin
       case Suivant is
-         when Commande | Insertion | Visuel =>
+         when Commande | Insertion | Remplacement | Visuel =>
             Ada.Text_IO.Put (Item => "----------- ");
             Etat_IO.Put (Item => Suivant, Width => 10);
             Ada.Text_IO.Put (Item => " -----------");
@@ -92,6 +101,7 @@ is
                when Pas_De_Changement => Etat,
                when Commande          => Etat_P.Commande_P.Creer,
                when Insertion         => Etat_P.Insertion_P.Creer,
+               when Remplacement      => Etat_P.Remplacement_P.Creer,
                when Visuel            => Etat_P.Visuel_P.Creer
          );
    end Changer_D_Etat;
