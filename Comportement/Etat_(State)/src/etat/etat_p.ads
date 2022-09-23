@@ -11,7 +11,7 @@ package Etat_P
       Spark_Mode     => Off
 is
 
-   type Id_Etat_T is (Commande, Insertion);
+   type Id_Etat_T is (Commande, Insertion, Visuel);
 
    type Id_Touche_T is
       (

@@ -32,7 +32,7 @@ is
 
 private
 
-   type Prochain_Etat_T is (Pas_De_Changement, Commande, Insertion);
+   type Prochain_Etat_T is (Pas_De_Changement, Commande, Insertion, Visuel);
 
    type Transition_T is tagged
       record
