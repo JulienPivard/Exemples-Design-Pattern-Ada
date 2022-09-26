@@ -56,10 +56,8 @@ begin
 
    Bloc_Singleton_Bis :
    declare
-      Si_1 : Singleton_Bis_P.Singleton_T :=
-         Singleton_Bis_P.Recuperer_Singleton;
-      Si_2 : Singleton_Bis_P.Singleton_T :=
-         Singleton_Bis_P.Recuperer_Singleton;
+      Si_1 : Singleton_Bis_P.Singleton_T renames Singleton_Bis_P.Unique;
+      Si_2 : Singleton_Bis_P.Singleton_T renames Singleton_Bis_P.Unique;
    begin
       Ada.Text_IO.New_Line (Spacing => 1);
       Ada.Text_IO.Put_Line (Item => "====  Après modification de Si_1  ====");

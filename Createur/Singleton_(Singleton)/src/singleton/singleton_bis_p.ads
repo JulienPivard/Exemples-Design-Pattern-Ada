@@ -18,14 +18,12 @@ is
    type Singleton_T (<>) is tagged limited private;
    --  Représente un singleton avec un type discriminant.
 
-   function Recuperer_Singleton
-      return Singleton_T;
-   --  Permet de récupérer notre singleton.
-   --  @return Le singleton
+   Unique : constant Singleton_T;
+   --  Instance du singleton.
 
    procedure Changer_Nom
       (
-         This : in out Singleton_T;
+         This : in     Singleton_T;
          Nom  : in     String
       );
    --  Permet de changer l'attribut variable
@@ -48,6 +46,8 @@ private
       record
          null;
       end record;
+
+   Unique : constant Singleton_T := Singleton_T'(null record);
 
    ------------------------------
    protected Singleton_Protege is

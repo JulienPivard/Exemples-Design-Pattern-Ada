@@ -7,19 +7,9 @@ package body Singleton_Bis_P
 is
 
    ---------------------------------------------------------------------------
-   function Recuperer_Singleton
-      return Singleton_T
-   is
-   begin
-      Comptage_P.Compteur := Comptage_P.Compteur + 1;
-      return Singleton_T'(null record);
-   end Recuperer_Singleton;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
    procedure Changer_Nom
       (
-         This : in out Singleton_T;
+         This : in     Singleton_T;
          Nom  : in     String
       )
    is
