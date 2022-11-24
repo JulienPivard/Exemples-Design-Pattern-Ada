@@ -8,9 +8,9 @@ procedure Executer
 is
    C : Contexte_P.Action_T := Contexte_P.Action_1;
 
-   G_1 : Gestionnaire_P.Concret_1_P.Gestionnaire_Concret_T :=
+   G_1 : Gestionnaire_P.Concret_1_P.Maillon_T :=
       Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_3);
-   G_2 : Gestionnaire_P.Concret_2_P.Gestionnaire_Concret_T :=
+   G_2 : Gestionnaire_P.Concret_2_P.Maillon_T :=
       Gestionnaire_P.Concret_2_P.Creer (Action => Contexte_P.Action_1);
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
@@ -23,7 +23,13 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   Ada.Text_IO.Put (Item => "================= ");
+   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
+   Ada.Text_IO.New_Line (Spacing => 1);
    G_1.Gerer_Requete (Contexte => C);
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put (Item => "================= ");
+   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
    Ada.Text_IO.New_Line (Spacing => 1);
    G_2.Gerer_Requete (Contexte => C);
    Ada.Text_IO.New_Line (Spacing => 1);
@@ -31,12 +37,15 @@ begin
    G_1.Ajouter (Successeur => G_2);
    C := Contexte_P.Action_3;
 
+   Ada.Text_IO.Put (Item => "================= ");
+   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
+   Ada.Text_IO.New_Line (Spacing => 1);
    G_1.Gerer_Requete (Contexte => C);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Bloc_Ajout_1 :
    declare
-      G_X : Gestionnaire_P.Concret_1_P.Gestionnaire_Concret_T;
+      G_X : Gestionnaire_P.Concret_1_P.Maillon_T;
    begin
       G_X := Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_2);
       G_1.Ajouter (Successeur => G_X);
@@ -48,7 +57,7 @@ begin
 
    Bloc_Ajout_2 :
    declare
-      G_X : Gestionnaire_P.Concret_2_P.Gestionnaire_Concret_T;
+      G_X : Gestionnaire_P.Concret_2_P.Maillon_T;
    begin
       for I in Contexte_P.Action_T loop
          G_X := Gestionnaire_P.Concret_2_P.Creer (Action => I);
@@ -58,6 +67,9 @@ begin
 
    C := Contexte_P.Action_4;
 
+   Ada.Text_IO.Put (Item => "================= ");
+   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
+   Ada.Text_IO.New_Line (Spacing => 1);
    G_1.Gerer_Requete (Contexte => C);
    Ada.Text_IO.New_Line (Spacing => 1);
 

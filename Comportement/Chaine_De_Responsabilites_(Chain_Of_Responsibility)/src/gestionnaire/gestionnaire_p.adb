@@ -5,7 +5,7 @@ is
    ---------------------------------------------------------------------------
    procedure Gerer_Requete
       (
-         This     : in out Gestionnaire_T'Class;
+         This     : in out Chaine_De_Responsabilite_T'Class;
          Contexte : in     Contexte_P.Action_T
       )
    is
@@ -16,7 +16,7 @@ is
          --  car gestionnaire est une interface.
          Bloc_Activer_Successeur :
          declare
-            Successeur : Gestionnaire_T'Class := This.Lire_Successeur;
+            Successeur : Parent_T'Class := This.Lire_Successeur;
          begin
             Successeur.Gerer_Requete (Contexte => Contexte);
             This.Remplacer (Successeur => Successeur);
@@ -29,8 +29,8 @@ is
    overriding
    procedure Ajouter
       (
-         This       : in out Chaine_De_Responsabilite_T;
-         Successeur : in     Gestionnaire_T'Class
+         This       : in out Maillon_Abstrait_T;
+         Successeur : in     Chaine_De_Responsabilite_T'Class
       )
    is
    begin
@@ -45,7 +45,7 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Possede_Successeur
-      (This : in     Chaine_De_Responsabilite_T)
+      (This : in     Maillon_Abstrait_T)
       return Boolean
    is
    begin
@@ -56,8 +56,8 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Lire_Successeur
-      (This : in     Chaine_De_Responsabilite_T)
-      return Gestionnaire_T'Class
+      (This : in     Maillon_Abstrait_T)
+      return Chaine_De_Responsabilite_T'Class
    is
    begin
       return This.Successeur.Element;
@@ -68,8 +68,8 @@ is
    overriding
    procedure Remplacer
       (
-         This       : in out Chaine_De_Responsabilite_T;
-         Successeur : in     Gestionnaire_T'Class
+         This       : in out Maillon_Abstrait_T;
+         Successeur : in     Chaine_De_Responsabilite_T'Class
       )
    is
    begin

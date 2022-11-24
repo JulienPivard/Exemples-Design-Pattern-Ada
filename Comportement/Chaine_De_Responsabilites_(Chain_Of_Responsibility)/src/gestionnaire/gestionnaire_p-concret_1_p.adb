@@ -9,10 +9,10 @@ is
    ---------------------------------------------------------------------------
    function Creer
       (Action : in     Contexte_P.Action_T)
-      return Gestionnaire_Concret_T
+      return Maillon_T
    is
    begin
-      return R : Gestionnaire_Concret_T do
+      return R : Maillon_T do
          R.Action := Action;
       end return;
    end Creer;
@@ -24,7 +24,7 @@ is
    overriding
    procedure Faire_Action
       (
-         This     : in out Gestionnaire_Concret_T;
+         This     : in out Maillon_T;
          Contexte : in     Contexte_P.Action_T
       )
    is

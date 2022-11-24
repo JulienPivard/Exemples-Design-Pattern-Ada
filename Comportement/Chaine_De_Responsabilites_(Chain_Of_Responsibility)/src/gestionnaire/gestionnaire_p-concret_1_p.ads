@@ -13,22 +13,22 @@ package Gestionnaire_P.Concret_1_P
       Spark_Mode     => Off
 is
 
-   type Gestionnaire_Concret_T is new Chaine_De_Responsabilite_T with private;
+   type Maillon_T is new Maillon_Abstrait_T with private;
 
    function Creer
       (Action : in     Contexte_P.Action_T)
-      return Gestionnaire_Concret_T;
+      return Maillon_T;
 
    overriding
    procedure Faire_Action
       (
-         This     : in out Gestionnaire_Concret_T;
+         This     : in out Maillon_T;
          Contexte : in     Contexte_P.Action_T
       );
 
 private
 
-   type Gestionnaire_Concret_T is new Chaine_De_Responsabilite_T with
+   type Maillon_T is new Maillon_Abstrait_T with
       record
          Action : Contexte_P.Action_T;
       end record;
