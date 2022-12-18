@@ -19,9 +19,39 @@ is
             Successeur : Parent_T'Class := This.Lire_Successeur;
          begin
             Successeur.Gerer_Requete (Contexte => Contexte);
+            --  Si le contenu du successeur est modifié on le met à jour.
             This.Remplacer (Successeur => Successeur);
          end Bloc_Activer_Successeur;
       end if;
+   end Gerer_Requete;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Gerer_Requete
+      (
+         This     : in out Chaine_De_Responsabilite_T'Class;
+         Contexte : in     Contexte_P.Action_T
+      )
+      return Boolean
+   is
+      Responsable_Trouve : Boolean := False;
+   begin
+      Responsable_Trouve := This.Faire_Action (Contexte => Contexte);
+      if This.Possede_Successeur and then not Responsable_Trouve then
+         --  On n'as pas accès à un quelconque contenu
+         --  car gestionnaire est une interface.
+         Bloc_Activer_Successeur :
+         declare
+            Successeur : Parent_T'Class := This.Lire_Successeur;
+         begin
+            Responsable_Trouve :=
+               Successeur.Gerer_Requete (Contexte => Contexte);
+            --  Si le contenu du successeur est modifié on le met à jour.
+            This.Remplacer (Successeur => Successeur);
+         end Bloc_Activer_Successeur;
+      end if;
+
+      return Responsable_Trouve;
    end Gerer_Requete;
    ---------------------------------------------------------------------------
 

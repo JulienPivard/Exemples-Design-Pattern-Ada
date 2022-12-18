@@ -5,7 +5,7 @@
 --  des membres a exécuté une action. Une variante peut s'arrêter
 --  quand un des maillon correspond.
 --  @group Chaine de Responsabilité
-package Gestionnaire_P.Concret_2_P
+package Gestionnaire_P.Concret_5_P
    with
       Pure           => False,
       Preelaborate   => False,
@@ -40,4 +40,4 @@ private
          Action : Contexte_P.Action_T;
       end record;
 
-end Gestionnaire_P.Concret_2_P;
+end Gestionnaire_P.Concret_5_P;

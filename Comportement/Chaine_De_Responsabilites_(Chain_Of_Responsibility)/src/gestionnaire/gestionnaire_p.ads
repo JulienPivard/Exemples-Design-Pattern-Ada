@@ -47,12 +47,40 @@ is
          Contexte : in     Contexte_P.Action_T
       )
    is abstract;
+   --  Lance l'exécution du maillon de la chaine de responsabilité.
+   --  Cette variante n'indique pas si l'action est réussie.
+   --  @param This
+   --  Le maillon de la chaine de responsabilité.
+   --  @param Contexte
+   --  Le contexte de l'action à réaliser.
+
+   function Faire_Action
+      (
+         This     : in out Chaine_De_Responsabilite_T;
+         Contexte : in     Contexte_P.Action_T
+      )
+      return Boolean
+   is abstract;
+   --  Lance l'exécution du maillon de la chaine de responsabilité.
+   --  Cette variante indique si l'action est réussie.
+   --  @param This
+   --  Le maillon de la chaine de responsabilité.
+   --  @param Contexte
+   --  Le contexte de l'action à réaliser.
+   --  @return L'action a réussie.
 
    procedure Gerer_Requete
       (
          This     : in out Chaine_De_Responsabilite_T'Class;
          Contexte : in     Contexte_P.Action_T
       );
+
+   function Gerer_Requete
+      (
+         This     : in out Chaine_De_Responsabilite_T'Class;
+         Contexte : in     Contexte_P.Action_T
+      )
+      return Boolean;
 
    subtype Parent_T is Chaine_De_Responsabilite_T;
 
@@ -88,6 +116,15 @@ is
          This     : in out Maillon_Abstrait_T;
          Contexte : in     Contexte_P.Action_T
       )
+   is abstract;
+
+   overriding
+   function Faire_Action
+      (
+         This     : in out Maillon_Abstrait_T;
+         Contexte : in     Contexte_P.Action_T
+      )
+      return Boolean
    is abstract;
 
 private

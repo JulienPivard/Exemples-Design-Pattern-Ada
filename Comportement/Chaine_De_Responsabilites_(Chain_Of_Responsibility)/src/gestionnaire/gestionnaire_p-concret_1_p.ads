@@ -16,7 +16,6 @@ is
    type Maillon_T is new Maillon_Abstrait_T with private;
 
    function Creer
-      (Action : in     Contexte_P.Action_T)
       return Maillon_T;
 
    overriding
@@ -25,6 +24,14 @@ is
          This     : in out Maillon_T;
          Contexte : in     Contexte_P.Action_T
       );
+
+   overriding
+   function Faire_Action
+      (
+         This     : in out Maillon_T;
+         Contexte : in     Contexte_P.Action_T
+      )
+      return Boolean;
 
 private
 

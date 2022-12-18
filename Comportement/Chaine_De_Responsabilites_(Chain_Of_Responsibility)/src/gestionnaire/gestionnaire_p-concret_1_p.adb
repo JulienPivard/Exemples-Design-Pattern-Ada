@@ -8,12 +8,11 @@ is
 
    ---------------------------------------------------------------------------
    function Creer
-      (Action : in     Contexte_P.Action_T)
       return Maillon_T
    is
    begin
       return R : Maillon_T do
-         R.Action := Action;
+         R.Action := Contexte_P.Action_1;
       end return;
    end Creer;
    ---------------------------------------------------------------------------
@@ -30,12 +29,36 @@ is
    is
       use type Contexte_P.Action_T;
    begin
-      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Enclosing_Entity);
+      Ada.Text_IO.Put (Item => GNAT.Source_Info.Enclosing_Entity & " => ");
       if This.Action = Contexte then
          Ada.Text_IO.Put_Line (Item => Action_T'Image (This.Action));
       else
          Ada.Text_IO.Put_Line (Item => "Pas d'actions");
       end if;
+   end Faire_Action;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   function Faire_Action
+      (
+         This     : in out Maillon_T;
+         Contexte : in     Contexte_P.Action_T
+      )
+      return Boolean
+   is
+      use type Contexte_P.Action_T;
+
+      Action_Faisable : constant Boolean := This.Action = Contexte;
+   begin
+      Ada.Text_IO.Put (Item => GNAT.Source_Info.Enclosing_Entity & " => ");
+      if Action_Faisable then
+         Ada.Text_IO.Put_Line (Item => Action_T'Image (This.Action));
+      else
+         Ada.Text_IO.Put_Line (Item => "Pas d'actions");
+      end if;
+
+      return Action_Faisable;
    end Faire_Action;
    ---------------------------------------------------------------------------
 

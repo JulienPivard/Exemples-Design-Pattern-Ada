@@ -1,17 +1,26 @@
 with Contexte_P;
 with Gestionnaire_P.Concret_1_P;
 with Gestionnaire_P.Concret_2_P;
+with Gestionnaire_P.Concret_3_P;
+with Gestionnaire_P.Concret_4_P;
+with Gestionnaire_P.Concret_5_P;
 
 separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   C : Contexte_P.Action_T := Contexte_P.Action_1;
-
    G_1 : Gestionnaire_P.Concret_1_P.Maillon_T :=
-      Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_3);
+      Gestionnaire_P.Concret_1_P.Creer;
    G_2 : Gestionnaire_P.Concret_2_P.Maillon_T :=
-      Gestionnaire_P.Concret_2_P.Creer (Action => Contexte_P.Action_1);
+      Gestionnaire_P.Concret_2_P.Creer;
+   G_3 : Gestionnaire_P.Concret_3_P.Maillon_T :=
+      Gestionnaire_P.Concret_3_P.Creer;
+   G_4 : Gestionnaire_P.Concret_4_P.Maillon_T :=
+      Gestionnaire_P.Concret_4_P.Creer;
+   G_5 : Gestionnaire_P.Concret_5_P.Maillon_T :=
+      Gestionnaire_P.Concret_5_P.Creer;
+
+   Trouve : Boolean;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line
@@ -23,58 +32,37 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Ada.Text_IO.Put (Item => "================= ");
-   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
-   Ada.Text_IO.New_Line (Spacing => 1);
-   G_1.Gerer_Requete (Contexte => C);
-   Ada.Text_IO.New_Line (Spacing => 1);
-   Ada.Text_IO.Put (Item => "================= ");
-   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
-   Ada.Text_IO.New_Line (Spacing => 1);
-   G_2.Gerer_Requete (Contexte => C);
-   Ada.Text_IO.New_Line (Spacing => 1);
-
    G_1.Ajouter (Successeur => G_2);
-   C := Contexte_P.Action_3;
+   G_1.Ajouter (Successeur => G_3);
+   G_1.Ajouter (Successeur => G_4);
+   G_1.Ajouter (Successeur => G_5);
 
-   Ada.Text_IO.Put (Item => "================= ");
-   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
-   Ada.Text_IO.New_Line (Spacing => 1);
-   G_1.Gerer_Requete (Contexte => C);
-   Ada.Text_IO.New_Line (Spacing => 1);
+   for Action in Contexte_P.Action_T loop
+      Ada.Text_IO.Put
+         (Item => "======================================================== ");
+      Ada.Text_IO.Put
+         (Item => "Action sur chaine recherche [" & Action'Image & "]");
+      Ada.Text_IO.New_Line (Spacing => 1);
+      G_1.Gerer_Requete (Contexte => Action);
+      Ada.Text_IO.New_Line (Spacing => 1);
+   end loop;
 
-   Bloc_Ajout_1 :
-   declare
-      G_X : Gestionnaire_P.Concret_1_P.Maillon_T;
-   begin
-      G_X := Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_2);
-      G_1.Ajouter (Successeur => G_X);
-      G_X := Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_5);
-      G_1.Ajouter (Successeur => G_X);
-      G_X := Gestionnaire_P.Concret_1_P.Creer (Action => Contexte_P.Action_4);
-      G_1.Ajouter (Successeur => G_X);
-   end Bloc_Ajout_1;
-
-   Bloc_Ajout_2 :
-   declare
-      G_X : Gestionnaire_P.Concret_2_P.Maillon_T;
-   begin
-      for I in Contexte_P.Action_T loop
-         G_X := Gestionnaire_P.Concret_2_P.Creer (Action => I);
-         G_1.Ajouter (Successeur => G_X);
-      end loop;
-   end Bloc_Ajout_2;
-
-   C := Contexte_P.Action_4;
-
-   Ada.Text_IO.Put (Item => "================= ");
-   Ada.Text_IO.Put (Item => "Action sur chaine recherche [" & C'Image & "]");
-   Ada.Text_IO.New_Line (Spacing => 1);
-   G_1.Gerer_Requete (Contexte => C);
-   Ada.Text_IO.New_Line (Spacing => 1);
+   for Action in Contexte_P.Action_T loop
+      Ada.Text_IO.Put
+         (Item => "======================================================== ");
+      Ada.Text_IO.Put
+         (Item => "Action sur chaine recherche [" & Action'Image & "]");
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Trouve := G_1.Gerer_Requete (Contexte => Action);
+      Ada.Text_IO.Put (Item => "Trouve : " & Trouve'Image);
+      Ada.Text_IO.New_Line (Spacing => 1);
+   end loop;
 
    pragma Unreferenced (G_1);
    pragma Unreferenced (G_2);
+   pragma Unreferenced (G_3);
+   pragma Unreferenced (G_4);
+   pragma Unreferenced (G_5);
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
