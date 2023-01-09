@@ -168,6 +168,52 @@ private
       end record;
    --  Notre itérateur dans les deux sens.
 
+   overriding
+   function First
+      (It : in     Iterateur_T)
+      return Curseur_T;
+   --  Un curseur en position sur le premier élément.
+   --  @param It
+   --  Notre itérateur.
+   --  @return Le curseur en position initial.
+
+   overriding
+   function Next
+      (
+         It       : in     Iterateur_T;
+         Curseur  : in     Curseur_T
+      )
+      return Curseur_T;
+   --  Fait passer le curseur au prochain élément.
+   --  @param It
+   --  Notre itérateur.
+   --  @param Curseur
+   --  Le curseur.
+   --  @return Notre curseur un pas en avant.
+
+   overriding
+   function Last
+      (It : in     Iterateur_T)
+      return Curseur_T;
+   --  Un curseur en position sur le dernier élément.
+   --  @param It
+   --  Notre itérateur.
+   --  @return Le curseur en position initial.
+
+   overriding
+   function Previous
+      (
+         It       : in     Iterateur_T;
+         Curseur  : in     Curseur_T
+      )
+      return Curseur_T;
+   --  Fait passer le curseur à l'élément précédent.
+   --  @param It
+   --  Notre itérateur.
+   --  @param Curseur
+   --  Le curseur.
+   --  @return Notre curseur un pas en arrière.
+
    --------------
    overriding
    function First
@@ -181,10 +227,6 @@ private
                Est_Termine => False
             )
       );
-   --  Un curseur en position sur le premier élément.
-   --  @param It
-   --  Notre itérateur.
-   --  @return Le curseur en position initial.
 
    -------------
    overriding
@@ -208,12 +250,6 @@ private
                Est_Termine => not (Curseur.Position < Indice_T'Last)
             )
       );
-   --  Fait passer le curseur au prochain élément.
-   --  @param It
-   --  Notre itérateur.
-   --  @param Curseur
-   --  Le curseur.
-   --  @return Notre curseur un pas en avant.
 
    -------------
    overriding
@@ -228,10 +264,6 @@ private
                Est_Termine => False
             )
       );
-   --  Un curseur en position sur le dernier élément.
-   --  @param It
-   --  Notre itérateur.
-   --  @return Le curseur en position initial.
 
    -----------------
    overriding
@@ -255,11 +287,5 @@ private
                Est_Termine => not (Curseur.Position > Indice_T'First)
             )
       );
-   --  Fait passer le curseur à l'élément précédent.
-   --  @param It
-   --  Notre itérateur.
-   --  @param Curseur
-   --  Le curseur.
-   --  @return Notre curseur un pas en arrière.
 
 end Structure_P;
