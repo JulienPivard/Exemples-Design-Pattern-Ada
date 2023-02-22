@@ -10,8 +10,8 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   package Html_B_R  renames Builder_P.Html_P;
-   package Mark_B_R  renames Builder_P.Markdown_P;
+   package Html_B_R renames Builder_P.Html_P;
+   package Mark_B_R renames Builder_P.Markdown_P;
 
    Dir          : Directeur_P.Directeur_T;
    Monteur_Html : Html_B_R.Monteur_Html_T;
