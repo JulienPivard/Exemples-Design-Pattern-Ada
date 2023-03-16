@@ -33,25 +33,6 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   overriding
-   function Creer
-      (
-         Gauche : in     Valeur_Abstraite_T'Class;
-         Droite : in     Valeur_Abstraite_T'Class
-      )
-      return Addition_T
-   is
-      Resultat : constant Addition_T := Addition_T'
-         (
-            Gauche => Valeur_Stocke_P.To_Holder (New_Item => Gauche),
-            Droite => Valeur_Stocke_P.To_Holder (New_Item => Droite)
-         );
-   begin
-      return Resultat;
-   end Creer;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 

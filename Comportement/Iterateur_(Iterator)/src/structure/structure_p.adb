@@ -48,9 +48,8 @@ is
       return Iterateur_Interface_P.Reversible_Iterator'Class
    is
       pragma Unreferenced (This);
-      It : Iterateur_T;
    begin
-      return It;
+      return Iterateur_T'(null record);
    end Iterer;
    ---------------------------------------------------------------------------
 

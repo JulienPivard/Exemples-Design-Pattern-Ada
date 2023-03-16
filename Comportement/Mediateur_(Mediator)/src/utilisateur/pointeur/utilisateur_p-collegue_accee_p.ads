@@ -52,6 +52,11 @@ is
 
 private
 
+   function Creer_Parent
+      (Nom : in     Donnee_P.Contenu_T)
+      return Utilisateur_T
+   renames Creer;
+
    type Utilisateur_Collegue_T is new Utilisateur_T and
       Accee_P.Collegue_Abstrait_P.Collegue_T with
       record

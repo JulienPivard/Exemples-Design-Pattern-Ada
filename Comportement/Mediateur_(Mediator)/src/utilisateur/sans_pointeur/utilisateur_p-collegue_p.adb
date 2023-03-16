@@ -25,9 +25,9 @@ is
       (Nom : in     Donnee_P.Contenu_T)
       return Utilisateur_Collegue_T
    is
-      Resultat : constant Utilisateur_T := Creer (Nom => Nom);
    begin
-      return Utilisateur_Collegue_T'(Resultat with null record);
+      return Utilisateur_Collegue_T'
+         (Creer_Parent (Nom => Nom) with null record);
    end Creer;
    ---------------------------------------------------------------------------
 

@@ -47,6 +47,10 @@ private
          null;
       end record;
 
+   function Creer
+      return Transition_T
+   is (Transition_T'(null record));
+
    type Table_De_Transition_T is array
       (Etat_P.Id_Etat_T, Lettre_P.Id_Touche_T) of Prochain_Etat_T;
 

@@ -9,9 +9,13 @@ limited with Strategie_P;
 --  La résolution de ce problème utilise la stratégie de calcul
 --  abstraite calcul_distance.
 --  @group Probleme
-package Distance_P is
-
-   pragma Pure;
+package Distance_P
+   with
+      Pure           => True,
+      Preelaborate   => False,
+      Elaborate_Body => False,
+      Spark_Mode     => Off
+is
 
    type Probleme_T is tagged private;
    --  Le problème de distance entre deux points à résoudre.

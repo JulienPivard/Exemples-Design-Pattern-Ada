@@ -46,4 +46,9 @@ private
          Valeur : Data_P.Valeur_T := 0;
       end record;
 
+   function Creer
+      (Valeur : in     Data_P.Valeur_T)
+      return Constante_T
+   is (Constante_T'(Valeur => Valeur));
+
 end Valeur_P.Constante_P;

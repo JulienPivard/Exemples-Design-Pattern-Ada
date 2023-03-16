@@ -23,11 +23,11 @@ is
       (Nom : in     Donnee_P.Contenu_T)
       return Utilisateur_Collegue_T
    is
-      Resultat : constant Utilisateur_T := Creer (Nom => Nom);
    begin
       return Utilisateur_Collegue_T'
          (
-            Resultat with
+            Creer_Parent (Nom => Nom)
+            with
             Mediateur => null,
             Id        => Mediateur_P.Id_T'First
          );

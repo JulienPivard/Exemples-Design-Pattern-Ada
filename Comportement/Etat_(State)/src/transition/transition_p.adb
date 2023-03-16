@@ -46,16 +46,6 @@ is
       );
 
    ---------------------------------------------------------------------------
-   function Creer
-      return Transition_T
-   is
-      Transition : Transition_P.Transition_T;
-   begin
-      return Transition;
-   end Creer;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
    function Etat_Initial
       (This : in out Transition_T)
       return Etat_P.Etat_T'Class

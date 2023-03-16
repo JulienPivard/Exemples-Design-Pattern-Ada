@@ -37,6 +37,7 @@ is
          when Lettre_P.Lettre_Esc =>
             This.Etat.Reference.Presse_Esc;
       end case;
+
       This.Changer_D_Etat (Touche => Lettre);
    end Presser;
    ---------------------------------------------------------------------------

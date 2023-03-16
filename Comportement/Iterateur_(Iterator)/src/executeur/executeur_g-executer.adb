@@ -19,7 +19,7 @@ is
    begin
       Ada.Text_IO.Put_Line (Item => "Remplissage tableau.");
       Boucle_Remplissage :
-      for E of Structure loop
+      for E : Data_P.Element_T of Structure loop
          Valeur := 2 * Valeur;
          E := Valeur;
       end loop Boucle_Remplissage;
@@ -45,14 +45,14 @@ is
    begin
       Ada.Text_IO.Put_Line (Item => "Affichage contenu en ordre normale");
       Boucle_Affichage_En_Avant :
-      for E of Structure loop
+      for E : Data_P.Element_T of Structure loop
          Ada.Text_IO.Put (Item => Data_P.Element_T'Image (E));
       end loop Boucle_Affichage_En_Avant;
       Ada.Text_IO.New_Line (Spacing => 2);
 
       Ada.Text_IO.Put_Line (Item => "Affichage contenu en ordre inverse");
       Boucle_Affichage_En_Arriere :
-      for E of reverse Structure loop
+      for E : Data_P.Element_T of reverse Structure loop
          Ada.Text_IO.Put (Item => Data_P.Element_T'Image (E));
       end loop Boucle_Affichage_En_Arriere;
       Ada.Text_IO.New_Line (Spacing => 2);

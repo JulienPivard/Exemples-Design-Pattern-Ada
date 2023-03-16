@@ -42,4 +42,20 @@ private
          null;
       end record;
 
+   overriding
+   function Creer
+      (
+         Gauche : in     Valeur_Abstraite_T'Class;
+         Droite : in     Valeur_Abstraite_T'Class
+      )
+      return Addition_T
+   is
+      (
+         Addition_T'
+            (
+               Creer_Parent (Gauche => Gauche, Droite => Droite)
+               with null record
+            )
+      );
+
 end Valeur_P.Operateur_P.Addition_P;
