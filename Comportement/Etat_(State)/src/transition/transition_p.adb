@@ -78,7 +78,7 @@ is
       case Suivant is
          when Commande | Insertion | Remplacement | Visuel =>
             Ada.Text_IO.Put (Item => "----------- ");
-            Etat_IO.Put (Item => Suivant, Width => 10);
+            Etat_IO.Put (Item => Suivant, Width => 15);
             Ada.Text_IO.Put (Item => " -----------");
             Ada.Text_IO.New_Line (Spacing => 1);
          when Pas_De_Changement =>
