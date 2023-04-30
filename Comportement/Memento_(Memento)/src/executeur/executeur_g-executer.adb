@@ -94,34 +94,44 @@ is
 
    --------------------------------
    procedure Montrer_Utilisation_G is
+      ---------
       procedure Afficher is new Afficher_G
          (
             Valeur_Bis_G_T => Valeur_G_T,
             Auteur_Bis_G_T => Auteur_G_T,
             Lire_Valeur_G  => Lire_Valeur_G
          );
+      ---------
 
       U   : Auteur_G_T;
       M_1 : Memento_G_T;
       M_2 : Memento_G_T;
    begin
-      Ada.Text_IO.Put_Line (Item => "Sauvegarde l'utilisateur dans M1");
+      Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
       Modifier_G (This => U, Valeur => 5);
-      M_1 := Memoriser_G (This => U);
       Afficher (Utilisateur => U);
+      Ada.Text_IO.Put_Line (Item => "On sauvegarde dans M1");
+      M_1 := Memoriser_G (This => U);
 
-      Ada.Text_IO.Put_Line (Item => "Sauvegarde l'utilisateur dans M2");
-      Modifier_G (This => U, Valeur => 50);
+      Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
+      Modifier_G (This => U, Valeur => 42);
+      Afficher (Utilisateur => U);
+      Ada.Text_IO.Put_Line (Item => "On sauvegarde dans M2");
       M_2 := Memoriser_G (This => U);
+
+      Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
+      Modifier_G (This => U, Valeur => 9);
       Afficher (Utilisateur => U);
 
       Ada.Text_IO.New_Line (Spacing => 1);
 
-      Ada.Text_IO.Put_Line (Item => "Rétablit l'utilisateur depuis M1");
+      Ada.Text_IO.Put_Line
+         (Item => "On rétablit l'utilisateur à la valeur sauvegardé dans M1");
       Retablir_G (This => U, Memento => M_1);
       Afficher (Utilisateur => U);
 
-      Ada.Text_IO.Put_Line (Item => "Rétablit l'utilisateur depuis M2");
+      Ada.Text_IO.Put_Line
+         (Item => "On rétablit l'utilisateur à la valeur sauvegardé dans M2");
       Retablir_G (This => U, Memento => M_2);
       Afficher (Utilisateur => U);
    end Montrer_Utilisation_G;
@@ -171,13 +181,19 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_1;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 2);
 
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_2;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 2);
 
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_3;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
