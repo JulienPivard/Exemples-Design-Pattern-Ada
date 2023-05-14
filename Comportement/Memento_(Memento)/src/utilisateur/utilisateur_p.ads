@@ -1,3 +1,5 @@
+with Valeur_P;
+
 limited with Utilisateur_P.Memento_P;
 
 --  @summary
@@ -13,16 +15,13 @@ package Utilisateur_P
       Spark_Mode     => Off
 is
 
-   type Valeur_T is range -100 .. 100;
-   --  Valeur exemple.
-
    type Utilisateur_T is tagged private;
    --  L'utilisateur qui va avoir besoin de mémoriser des états.
 
    procedure Modifier
       (
          This   : in out Utilisateur_T;
-         Valeur : in     Valeur_T
+         Valeur : in     Valeur_P.Valeur_T
       );
    --  Modifie la valeur stocké dans l'utilisateur.
    --  @param This
@@ -32,7 +31,7 @@ is
 
    function Lire_Valeur
       (This : in     Utilisateur_T)
-      return Valeur_T;
+      return Valeur_P.Valeur_T;
    --  Lit la valeur stockée.
    --  @param This
    --  L'utilisateur.
@@ -61,7 +60,7 @@ private
 
    type Utilisateur_T is tagged
       record
-         Valeur : Valeur_T := Valeur_T'First;
+         Valeur : Valeur_P.Valeur_T := Valeur_P.Valeur_T'First;
          --  État interne de l'utilisateur.
       end record;
 

@@ -8,7 +8,7 @@ is
    procedure Modifier
       (
          This   : in out Utilisateur_T;
-         Valeur : in     Valeur_T
+         Valeur : in     Valeur_P.Valeur_T
       )
    is
    begin
@@ -19,7 +19,7 @@ is
    ---------------------------------------------------------------------------
    function Lire_Valeur
       (This : in     Utilisateur_T)
-      return Valeur_T
+      return Valeur_P.Valeur_T
    is
    begin
       return This.Valeur;
