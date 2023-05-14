@@ -103,36 +103,63 @@ is
          );
       ---------
 
+      package Alea_P is new Ada.Numerics.Discrete_Random
+         (Result_Subtype => Valeur_G_T);
+
+      Generateur : Alea_P.Generator;
+
       U   : Auteur_G_T;
       M_1 : Memento_G_T;
       M_2 : Memento_G_T;
    begin
+      Alea_P.Reset (Gen => Generateur);
+
       Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
-      Modifier_G (This => U, Valeur => 5);
+      Modifier_G
+         (
+            This   => U,
+            Valeur => Alea_P.Random (Gen => Generateur)
+         );
       Afficher (Utilisateur => U);
       Ada.Text_IO.Put_Line (Item => "On sauvegarde dans M1");
       M_1 := Memoriser_G (This => U);
 
       Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
-      Modifier_G (This => U, Valeur => 42);
+      Modifier_G
+         (
+            This   => U,
+            Valeur => Alea_P.Random (Gen => Generateur)
+         );
       Afficher (Utilisateur => U);
       Ada.Text_IO.Put_Line (Item => "On sauvegarde dans M2");
       M_2 := Memoriser_G (This => U);
 
       Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
-      Modifier_G (This => U, Valeur => 9);
+      Modifier_G
+         (
+            This   => U,
+            Valeur => Alea_P.Random (Gen => Generateur)
+         );
       Afficher (Utilisateur => U);
 
       Ada.Text_IO.New_Line (Spacing => 1);
 
       Ada.Text_IO.Put_Line
          (Item => "On rétablit l'utilisateur à la valeur sauvegardé dans M1");
-      Retablir_G (This => U, Memento => M_1);
+      Retablir_G
+         (
+            This    => U,
+            Memento => M_1
+         );
       Afficher (Utilisateur => U);
 
       Ada.Text_IO.Put_Line
          (Item => "On rétablit l'utilisateur à la valeur sauvegardé dans M2");
-      Retablir_G (This => U, Memento => M_2);
+      Retablir_G
+         (
+            This    => U,
+            Memento => M_2
+         );
       Afficher (Utilisateur => U);
    end Montrer_Utilisation_G;
    ---------------------------------------------------------------------------
