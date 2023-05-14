@@ -36,7 +36,8 @@ is
          Gauche : in     Valeur_Abstraite_T'Class;
          Droite : in     Valeur_Abstraite_T'Class
       )
-      return Operateur_T;
+      return Operateur_T
+   is abstract;
 
 private
 
@@ -50,20 +51,5 @@ private
          Gauche : Valeur_T := Valeur_Stocke_P.Empty_Holder;
          Droite : Valeur_T := Valeur_Stocke_P.Empty_Holder;
       end record;
-
-   function Creer
-      (
-         Gauche : in     Valeur_Abstraite_T'Class;
-         Droite : in     Valeur_Abstraite_T'Class
-      )
-      return Operateur_T
-   is
-      (
-         Operateur_T'
-            (
-               Gauche => Valeur_Stocke_P.To_Holder (New_Item => Gauche),
-               Droite => Valeur_Stocke_P.To_Holder (New_Item => Droite)
-            )
-      );
 
 end Valeur_P.Operateur_P;

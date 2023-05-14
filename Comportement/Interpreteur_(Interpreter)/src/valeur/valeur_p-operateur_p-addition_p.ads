@@ -53,8 +53,8 @@ private
       (
          Addition_T'
             (
-               Creer_Parent (Gauche => Gauche, Droite => Droite)
-               with null record
+               Gauche => Valeur_Stocke_P.To_Holder (New_Item => Gauche),
+               Droite => Valeur_Stocke_P.To_Holder (New_Item => Droite)
             )
       );
 
