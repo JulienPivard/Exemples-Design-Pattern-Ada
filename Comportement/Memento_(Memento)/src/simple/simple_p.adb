@@ -1,6 +1,6 @@
-with Utilisateur_P.Memento_P;
+with Simple_P.Memento_P;
 
-package body Utilisateur_P
+package body Simple_P
    with Spark_Mode => Off
 is
 
@@ -52,4 +52,4 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Utilisateur_P;
+end Simple_P;

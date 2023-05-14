@@ -1,7 +1,7 @@
 with Ada.Numerics.Discrete_Random;
 
-with Utilisateur_P;
-with Utilisateur_P.Memento_P;
+with Simple_P;
+with Simple_P.Memento_P;
 
 with Mem_P.Memento_P.Utilisateur_P;
 with Tout_En_Un_P;
@@ -192,12 +192,12 @@ is
    procedure Montrer_1 is new Montrer_Utilisation_G
       (
          Valeur_G_T    => Valeur_P.Valeur_T,
-         Memento_G_T   => Utilisateur_P.Memento_P.Memento_T,
-         Auteur_G_T    => Utilisateur_P.Utilisateur_T,
-         Modifier_G    => Utilisateur_P.Modifier,
-         Lire_Valeur_G => Utilisateur_P.Lire_Valeur,
-         Memoriser_G   => Utilisateur_P.Memoriser,
-         Retablir_G    => Utilisateur_P.Retablir
+         Memento_G_T   => Simple_P.Memento_P.Memento_T,
+         Auteur_G_T    => Simple_P.Utilisateur_T,
+         Modifier_G    => Simple_P.Modifier,
+         Lire_Valeur_G => Simple_P.Lire_Valeur,
+         Memoriser_G   => Simple_P.Memoriser,
+         Retablir_G    => Simple_P.Retablir
       );
 
    procedure Montrer_2 is new Montrer_Utilisation_G
@@ -245,7 +245,7 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Ada.Text_IO.Put_Line (Item => "--     Auteur simple connait mémento    --");
+   Ada.Text_IO.Put_Line (Item => "-- Auteur simple qui connait le mémento --");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_1;
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");

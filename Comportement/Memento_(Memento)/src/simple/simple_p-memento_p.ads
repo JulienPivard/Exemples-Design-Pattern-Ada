@@ -3,7 +3,7 @@
 --  @description
 --  Interface accessible à tout le monde extérieur du mémento.
 --  @group Mémento
-package Utilisateur_P.Memento_P
+package Simple_P.Memento_P
    with
       Pure           => True,
       Preelaborate   => False,
@@ -41,4 +41,4 @@ private
          --  L'état mémorisé.
       end record;
 
-end Utilisateur_P.Memento_P;
+end Simple_P.Memento_P;

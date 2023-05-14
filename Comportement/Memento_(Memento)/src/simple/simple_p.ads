@@ -1,13 +1,13 @@
 with Valeur_P;
 
-limited with Utilisateur_P.Memento_P;
+limited with Simple_P.Memento_P;
 
 --  @summary
 --  L'utilisateur du mémento.
 --  @description
 --  L'utilisateur du mémento.
 --  @group Memento
-package Utilisateur_P
+package Simple_P
    with
       Pure           => True,
       Preelaborate   => False,
@@ -64,4 +64,4 @@ private
          --  État interne de l'utilisateur.
       end record;
 
-end Utilisateur_P;
+end Simple_P;
