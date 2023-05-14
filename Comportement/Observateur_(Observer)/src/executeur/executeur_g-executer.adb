@@ -8,8 +8,8 @@ procedure Executer
 is
    G : constant Observateur_Graphe_P.Graphe_T   := Observateur_Graphe_P.Creer;
    C : constant Observateur_Chiffre_P.Chiffre_T := Observateur_Chiffre_P.Creer;
-   V : Valeurs_P.Concret_P.Sujet_T;
 
+   V : Valeurs_P.Concret_P.Sujet_T;
    T : Valeurs_P.Table_Valeurs_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
@@ -22,15 +22,35 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   Ada.Text_IO.Put_Line (Item => "On attache un observateur de [graphe]");
    V.Attache (Observateur => C);
+   Ada.Text_IO.Put_Line (Item => "On attache un observateur de [valeurs]");
    V.Attache (Observateur => G);
 
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.Put_Line
+      (Item => "  Modification des valeurs de l'objet surveillé");
+   Ada.Text_IO.Put_Line
+      (Item => "  Provoque La mise à jour des observateurs :");
    T := Valeurs_P.Table_Valeurs_T'(1 => 4, 2 => 32, 3 => 9, 4 => 55, 5 => 0);
    V.Modifier (Vals => T);
 
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.Put_Line
+      (Item => "  Modification des valeurs de l'objet surveillé");
+   Ada.Text_IO.Put_Line
+      (Item => "  Provoque La mise à jour des observateurs :");
    T := Valeurs_P.Table_Valeurs_T'(1 => 32, 2 => 0, 3 => 55, 4 => 4, 5 => 9);
    V.Modifier (Vals => T);
 
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.Put_Line
+      (Item => "  Modification des valeurs de l'objet surveillé");
+   Ada.Text_IO.Put_Line
+      (Item => "  Provoque La mise à jour des observateurs :");
    T := Valeurs_P.Table_Valeurs_T'(1 => 9, 2 => 36, 3 => 4, 4 => 19, 5 => 32);
    V.Modifier (Vals => T);
 
