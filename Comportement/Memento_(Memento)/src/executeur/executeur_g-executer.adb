@@ -4,7 +4,7 @@ with Utilisateur_P;
 with Utilisateur_P.Memento_P;
 
 with Mem_P.Memento_P.Utilisateur_P;
-with Mem_P.Auteur_P;
+with Tout_En_Un_P;
 
 with Valeur_P;
 with Auteur_P;
@@ -213,13 +213,13 @@ is
 
    procedure Montrer_3 is new Montrer_Utilisation_G
       (
-         Valeur_G_T    => Mem_P.Valeur_T,
-         Memento_G_T   => Mem_P.Auteur_P.Memento_T,
-         Auteur_G_T    => Mem_P.Auteur_P.Auteur_T,
-         Modifier_G    => Mem_P.Auteur_P.Modifier,
-         Lire_Valeur_G => Mem_P.Auteur_P.Lire_Valeur,
-         Memoriser_G   => Mem_P.Auteur_P.Memoriser,
-         Retablir_G    => Mem_P.Auteur_P.Retablir
+         Valeur_G_T    => Valeur_P.Valeur_T,
+         Memento_G_T   => Tout_En_Un_P.Memento_T,
+         Auteur_G_T    => Tout_En_Un_P.Auteur_T,
+         Modifier_G    => Tout_En_Un_P.Modifier,
+         Lire_Valeur_G => Tout_En_Un_P.Lire_Valeur,
+         Memoriser_G   => Tout_En_Un_P.Memoriser,
+         Retablir_G    => Tout_En_Un_P.Retablir
       );
 
    procedure Montrer_4 is new Montrer_Utilisation_G

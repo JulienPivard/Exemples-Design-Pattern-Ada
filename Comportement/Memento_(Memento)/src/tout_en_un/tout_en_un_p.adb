@@ -1,4 +1,4 @@
-package body Mem_P.Auteur_P
+package body Tout_En_Un_P
    with Spark_Mode => Off
 is
 
@@ -6,7 +6,7 @@ is
    procedure Modifier
       (
          This   : in out Auteur_T;
-         Valeur : in     Valeur_T
+         Valeur : in     Valeur_P.Valeur_T
       )
    is
    begin
@@ -17,7 +17,7 @@ is
    ---------------------------------------------------------------------------
    function Lire_Valeur
       (This : in     Auteur_T)
-      return Valeur_T
+      return Valeur_P.Valeur_T
    is
    begin
       return This.Valeur;
@@ -29,9 +29,8 @@ is
       (This : in     Auteur_T)
       return Memento_T
    is
-      Etat : constant Etat_P.Etat_T := Etat_P.Creer (Valeur => This.Valeur);
    begin
-      return Memento_T'(Etat => Etat);
+      return Memento_T'(Valeur => This.Valeur);
    end Memoriser;
    ---------------------------------------------------------------------------
 
@@ -42,9 +41,8 @@ is
          Memento : in     Memento_T
       )
    is
-      Etat : constant Etat_P.Etat_T := Memento.Etat;
    begin
-      This.Valeur := Etat_P.Lire_Valeur (Etat => Etat);
+      This.Valeur := Memento.Valeur;
    end Retablir;
    ---------------------------------------------------------------------------
 
@@ -52,4 +50,4 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Mem_P.Auteur_P;
+end Tout_En_Un_P;

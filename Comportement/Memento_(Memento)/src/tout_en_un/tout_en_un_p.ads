@@ -1,11 +1,11 @@
-private with Mem_P.Etat_P;
+with Valeur_P;
 
 --  @summary
 --  L'utilisateur du mémento.
 --  @description
 --  L'utilisateur du mémento.
 --  @group Memento
-package Mem_P.Auteur_P
+package Tout_En_Un_P
    with
       Pure           => True,
       Preelaborate   => False,
@@ -22,7 +22,7 @@ is
    procedure Modifier
       (
          This   : in out Auteur_T;
-         Valeur : in     Valeur_T
+         Valeur : in     Valeur_P.Valeur_T
       );
    --  Modifie la valeur stocké dans l'utilisateur.
    --  @param This
@@ -32,7 +32,7 @@ is
 
    function Lire_Valeur
       (This : in     Auteur_T)
-      return Valeur_T;
+      return Valeur_P.Valeur_T;
    --  Lit la valeur stockée.
    --  @param This
    --  L'utilisateur.
@@ -61,14 +61,14 @@ private
 
    type Memento_T is
       record
-         Etat : Etat_P.Etat_T;
+         Valeur : Valeur_P.Valeur_T;
          --  L'état sauvegardé.
       end record;
 
    type Auteur_T is tagged
       record
-         Valeur : Mem_P.Valeur_T;
+         Valeur : Valeur_P.Valeur_T;
          --  La structure interne de l'auteur.
       end record;
 
-end Mem_P.Auteur_P;
+end Tout_En_Un_P;
