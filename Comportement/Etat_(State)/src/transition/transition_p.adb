@@ -59,7 +59,10 @@ is
    end Etat_Initial;
    ---------------------------------------------------------------------------
 
-   package Etat_IO is new Ada.Text_IO.Enumeration_IO (Enum => Prochain_Etat_T);
+   package Etat_IO          is new Ada.Text_IO.Enumeration_IO
+      (Enum => Etat_P.Id_Etat_T);
+   package Prochain_Etat_IO is new Ada.Text_IO.Enumeration_IO
+      (Enum => Prochain_Etat_T);
 
    ---------------------------------------------------------------------------
    function Changer_D_Etat
@@ -77,9 +80,11 @@ is
    begin
       case Suivant is
          when Commande | Insertion | Remplacement | Visuel =>
-            Ada.Text_IO.Put (Item => "----------- ");
-            Etat_IO.Put (Item => Suivant, Width => 15);
-            Ada.Text_IO.Put (Item => " -----------");
+            Ada.Text_IO.Put      (Item => "----------- ");
+            Etat_IO.Put          (Item => Etat.Lire_Id, Width => 15);
+            Ada.Text_IO.Put      (Item => " => ");
+            Prochain_Etat_IO.Put (Item => Suivant,      Width => 15);
+            Ada.Text_IO.Put      (Item => " -----------");
             Ada.Text_IO.New_Line (Spacing => 1);
          when Pas_De_Changement =>
             null;
