@@ -192,28 +192,6 @@ is
    procedure Montrer_1 is new Montrer_Utilisation_G
       (
          Valeur_G_T    => Valeur_P.Valeur_T,
-         Memento_G_T   => Simple_P.Memento_P.Memento_T,
-         Auteur_G_T    => Simple_P.Utilisateur_T,
-         Modifier_G    => Simple_P.Modifier,
-         Lire_Valeur_G => Simple_P.Lire_Valeur,
-         Memoriser_G   => Simple_P.Memoriser,
-         Retablir_G    => Simple_P.Retablir
-      );
-
-   procedure Montrer_2 is new Montrer_Utilisation_G
-      (
-         Valeur_G_T    => Mem_P.Valeur_T,
-         Memento_G_T   => Mem_P.Memento_P.Memento_T,
-         Auteur_G_T    => Mem_P.Memento_P.Utilisateur_P.Utilisateur_T,
-         Modifier_G    => Mem_P.Memento_P.Utilisateur_P.Modifier,
-         Lire_Valeur_G => Mem_P.Memento_P.Utilisateur_P.Lire_Valeur,
-         Memoriser_G   => Mem_P.Memento_P.Utilisateur_P.Memoriser,
-         Retablir_G    => Mem_P.Memento_P.Utilisateur_P.Retablir
-      );
-
-   procedure Montrer_3 is new Montrer_Utilisation_G
-      (
-         Valeur_G_T    => Valeur_P.Valeur_T,
          Memento_G_T   => Tout_En_Un_P.Memento_T,
          Auteur_G_T    => Tout_En_Un_P.Auteur_T,
          Modifier_G    => Tout_En_Un_P.Modifier,
@@ -222,7 +200,18 @@ is
          Retablir_G    => Tout_En_Un_P.Retablir
       );
 
-   procedure Montrer_4 is new Montrer_Utilisation_G
+   procedure Montrer_2 is new Montrer_Utilisation_G
+      (
+         Valeur_G_T    => Valeur_P.Valeur_T,
+         Memento_G_T   => Simple_P.Memento_P.Memento_T,
+         Auteur_G_T    => Simple_P.Utilisateur_T,
+         Modifier_G    => Simple_P.Modifier,
+         Lire_Valeur_G => Simple_P.Lire_Valeur,
+         Memoriser_G   => Simple_P.Memoriser,
+         Retablir_G    => Simple_P.Retablir
+      );
+
+   procedure Montrer_3 is new Montrer_Utilisation_G
       (
          Valeur_G_T    => Valeur_P.Valeur_T,
          Memento_G_T   => Auteur_P.Memento_P.Memento_T,
@@ -231,6 +220,17 @@ is
          Lire_Valeur_G => Auteur_P.Lire_Valeur,
          Memoriser_G   => Auteur_P.Memento_P.Memoriser,
          Retablir_G    => Restaurer
+      );
+
+   procedure Montrer_5 is new Montrer_Utilisation_G
+      (
+         Valeur_G_T    => Mem_P.Valeur_T,
+         Memento_G_T   => Mem_P.Memento_P.Memento_T,
+         Auteur_G_T    => Mem_P.Memento_P.Utilisateur_P.Utilisateur_T,
+         Modifier_G    => Mem_P.Memento_P.Utilisateur_P.Modifier,
+         Lire_Valeur_G => Mem_P.Memento_P.Utilisateur_P.Lire_Valeur,
+         Memoriser_G   => Mem_P.Memento_P.Utilisateur_P.Memoriser,
+         Retablir_G    => Mem_P.Memento_P.Utilisateur_P.Retablir
       );
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
@@ -245,29 +245,29 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Ada.Text_IO.Put_Line (Item => "-- Auteur simple qui connait le mémento --");
+   Ada.Text_IO.Put_Line (Item => "--          Version tout en un          --");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_1;
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 2);
 
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "-- Auteur simple qui connait le mémento --");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_2;
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 2);
 
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Ada.Text_IO.Put_Line (Item => "--          Version tout en un          --");
+   Ada.Text_IO.Put_Line (Item => "--     Auteur simple mémento séparé     --");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_3;
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 2);
 
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Ada.Text_IO.Put_Line (Item => "--     Auteur simple mémento séparé     --");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
-   Montrer_4;
+   Montrer_5;
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
