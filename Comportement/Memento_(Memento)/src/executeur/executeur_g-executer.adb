@@ -1,8 +1,14 @@
+with Ada.Numerics.Discrete_Random;
+
 with Utilisateur_P;
 with Utilisateur_P.Memento_P;
 
 with Mem_P.Memento_P.Utilisateur_P;
 with Mem_P.Auteur_P;
+
+with Valeur_P;
+with Auteur_P;
+with Auteur_P.Memento_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -164,6 +170,25 @@ is
    end Montrer_Utilisation_G;
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   procedure Restaurer
+      (
+         Auteur : in out Auteur_P.Auteur_T;
+         This   : in     Auteur_P.Memento_P.Memento_T
+      );
+
+   -------------------
+   procedure Restaurer
+      (
+         Auteur : in out Auteur_P.Auteur_T;
+         This   : in     Auteur_P.Memento_P.Memento_T
+      )
+   is
+   begin
+      This.Restaurer (Auteur => Auteur);
+   end Restaurer;
+   ---------------------------------------------------------------------------
+
    procedure Montrer_1 is new Montrer_Utilisation_G
       (
          Valeur_G_T    => Utilisateur_P.Valeur_T,
@@ -196,6 +221,17 @@ is
          Memoriser_G   => Mem_P.Auteur_P.Memoriser,
          Retablir_G    => Mem_P.Auteur_P.Retablir
       );
+
+   procedure Montrer_4 is new Montrer_Utilisation_G
+      (
+         Valeur_G_T    => Valeur_P.Valeur_T,
+         Memento_G_T   => Auteur_P.Memento_P.Memento_T,
+         Auteur_G_T    => Auteur_P.Auteur_T,
+         Modifier_G    => Auteur_P.Modifier,
+         Lire_Valeur_G => Auteur_P.Lire_Valeur,
+         Memoriser_G   => Auteur_P.Memento_P.Memoriser,
+         Retablir_G    => Restaurer
+      );
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern mémento.");
@@ -221,6 +257,10 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Montrer_3;
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 2);
 
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Montrer_4;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
