@@ -100,5 +100,14 @@ begin
    B.Ajouter (Composant => B);
    Afficher (Texte => B);
 
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put_Line (Item => "-");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   B.Ajouter (Composant => C);
+   A.Ajouter (Composant => B);
+   B.Ajouter (Composant => A);
+   Afficher (Texte => B);
+
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
