@@ -15,6 +15,7 @@ is
 
    type Concret_T is new Composant_T with private;
 
+   not overriding
    function Initialiser
       (Text : in     String)
       return Concret_T;

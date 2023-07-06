@@ -72,6 +72,7 @@ begin
    Ada.Text_IO.Put_Line (Item => "-");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   B.Ajouter (Composant => C);
    A.Ajouter (Composant => B);
    Afficher (Texte => A);
 

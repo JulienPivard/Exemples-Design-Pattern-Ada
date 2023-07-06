@@ -5,6 +5,7 @@ package body Composant_P.Concret_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
    function Initialiser
       (Text : in     String)
       return Concret_T
