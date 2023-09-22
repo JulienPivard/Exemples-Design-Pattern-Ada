@@ -57,7 +57,7 @@ is
          end if;
       end loop Boucle_Suppression;
       if Trouve then
-         This.Nb_Observateurs := This.Nb_Observateurs + 1;
+         This.Nb_Observateurs    := This.Nb_Observateurs + 1;
          This.Observateurs (Pos) := R;
       end if;
    end Attache;
@@ -95,7 +95,7 @@ is
          end if;
       end loop Boucle_Suppression;
       if Trouve then
-         This.Nb_Observateurs := This.Nb_Observateurs - 1;
+         This.Nb_Observateurs    := This.Nb_Observateurs - 1;
          This.Observateurs (Pos) := R;
       end if;
    end Detache;
