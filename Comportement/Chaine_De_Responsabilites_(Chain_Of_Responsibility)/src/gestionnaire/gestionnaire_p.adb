@@ -42,6 +42,7 @@ is
          --  car gestionnaire est une interface.
          Bloc_Activer_Successeur :
          declare
+            --  On récupère le successeur, CE N'EST PAS UN POINTEUR.
             Successeur : Parent_T'Class := This.Lire_Successeur;
          begin
             Responsable_Trouve :=

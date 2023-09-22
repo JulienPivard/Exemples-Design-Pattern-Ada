@@ -37,24 +37,26 @@ begin
    G_1.Ajouter (Successeur => G_4);
    G_1.Ajouter (Successeur => G_5);
 
+   Ada.Text_IO.Put_Line (Item => "Version sans retour de réussite");
    for Action in Contexte_P.Action_T loop
       Ada.Text_IO.Put
          (Item => "======================================================== ");
       Ada.Text_IO.Put
-         (Item => "Action sur chaine recherche [" & Action'Image & "]");
+         (Item => "Action sur chaine recherchée [" & Action'Image & "]");
       Ada.Text_IO.New_Line (Spacing => 1);
       G_1.Gerer_Requete (Contexte => Action);
       Ada.Text_IO.New_Line (Spacing => 1);
    end loop;
 
+   Ada.Text_IO.Put_Line (Item => "Version avec un retour de réussite");
    for Action in Contexte_P.Action_T loop
       Ada.Text_IO.Put
          (Item => "======================================================== ");
       Ada.Text_IO.Put
-         (Item => "Action sur chaine recherche [" & Action'Image & "]");
+         (Item => "Action sur chaine recherchée [" & Action'Image & "]");
       Ada.Text_IO.New_Line (Spacing => 1);
       Trouve := G_1.Gerer_Requete (Contexte => Action);
-      Ada.Text_IO.Put (Item => "Trouve : " & Trouve'Image);
+      Ada.Text_IO.Put (Item => "Trouvé : " & Trouve'Image);
       Ada.Text_IO.New_Line (Spacing => 1);
    end loop;
 
