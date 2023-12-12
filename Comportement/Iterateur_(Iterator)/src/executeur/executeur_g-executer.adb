@@ -21,15 +21,25 @@ is
       Boucle_Remplissage :
       for E : Data_P.Element_T of Structure loop
          Valeur := 2 * Valeur;
-         E := Valeur;
+         E      := Valeur;
       end loop Boucle_Remplissage;
 
       Ada.Text_IO.Put_Line (Item => "Affichage pour vérifier.");
+      Ada.Text_IO.Put      (Item => "Valeurs : ");
       Boucle_Verification :
       for I in Structure_P.Indice_T loop
          Valeur := Structure.Lire_Element (Position => I);
          Ada.Text_IO.Put (Item => Data_P.Element_T'Image (Valeur));
       end loop Boucle_Verification;
+
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "   ID   : ");
+
+      Boucle_ID :
+      for I in Structure_P.Indice_T loop
+         Valeur := Structure.Lire_Element (Position => I);
+         Ada.Text_IO.Put (Item => " " & Structure_P.Indice_T'Image (I));
+      end loop Boucle_ID;
 
       Ada.Text_IO.New_Line (Spacing => 3);
    end Initialiser;

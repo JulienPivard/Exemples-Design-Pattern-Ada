@@ -156,9 +156,11 @@ private
 
    type Curseur_T is
       record
-         Position    : Indice_T := Indice_T'First;
+         Position    : Indice_T'Base := Indice_T'First;
          --  La position dans les itérations.
-         Est_Termine : Boolean  := False;
+         --  On utilise le type de base de Indice_T
+         --  pour éviter les dépassements.
+         Est_Termine : Boolean       := False;
          --  Le parcours est terminé.
       end record;
 
@@ -240,14 +242,8 @@ private
       (
          Curseur_T'
             (
-               Position    =>
-                  (
-                     if Curseur.Position < Indice_T'Last then
-                        Curseur.Position + 1
-                     else
-                        Curseur.Position
-                  ),
-               Est_Termine => not (Curseur.Position < Indice_T'Last)
+               Position    => Curseur.Position + 1,
+               Est_Termine => Curseur.Position >= Indice_T'Last
             )
       );
 
@@ -277,14 +273,8 @@ private
       (
          Curseur_T'
             (
-               Position    =>
-                  (
-                     if Curseur.Position > Indice_T'First then
-                        Curseur.Position - 1
-                     else
-                        Curseur.Position
-                  ),
-               Est_Termine => not (Curseur.Position > Indice_T'First)
+               Position    => Curseur.Position - 1,
+               Est_Termine => Curseur.Position <= Indice_T'First
             )
       );
 
