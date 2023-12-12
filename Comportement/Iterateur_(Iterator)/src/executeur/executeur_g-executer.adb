@@ -18,6 +18,7 @@ is
       Valeur : Data_P.Element_T := 1;
    begin
       Ada.Text_IO.Put_Line (Item => "Remplissage tableau.");
+
       Boucle_Remplissage :
       for E : Data_P.Element_T of Structure loop
          Valeur := 2 * Valeur;
@@ -26,6 +27,7 @@ is
 
       Ada.Text_IO.Put_Line (Item => "Affichage pour vérifier.");
       Ada.Text_IO.Put      (Item => "Valeurs : ");
+
       Boucle_Verification :
       for I in Structure_P.Indice_T loop
          Valeur := Structure.Lire_Element (Position => I);
@@ -55,7 +57,7 @@ is
    begin
       Ada.Text_IO.Put_Line (Item => "Affichage contenu en ordre normale");
       Boucle_Affichage_En_Avant :
-      for E : Data_P.Element_T of Structure loop
+      for E : Data_P.Element_T of         Structure loop
          Ada.Text_IO.Put (Item => Data_P.Element_T'Image (E));
       end loop Boucle_Affichage_En_Avant;
       Ada.Text_IO.New_Line (Spacing => 2);
@@ -74,7 +76,7 @@ is
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern itérateur.");
-   Ada.Text_IO.Put_Line (Item => "En utilisant les mécanismes du langage.");
+   Ada.Text_IO.Put_Line (Item => "En utilisant les mécanismes du langage.   ");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
