@@ -53,6 +53,7 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Afficher (Texte => C);
+   --  Affiché sans rien.
 
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "-");
@@ -60,6 +61,7 @@ begin
 
    B.Ajouter (Composant => C);
    Afficher (Texte => B);
+   --  Texte affiché avec une boite autour.
 
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "-");
@@ -67,6 +69,7 @@ begin
 
    A.Ajouter (Composant => C);
    Afficher (Texte => A);
+   --  Texte affiché avec un ascenseur.
 
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "-");
@@ -75,6 +78,7 @@ begin
    B.Ajouter (Composant => C);
    A.Ajouter (Composant => B);
    Afficher (Texte => A);
+   --  Texte affiché avec une boite et un ascenseur à côté.
 
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "-");
@@ -83,6 +87,7 @@ begin
    A.Ajouter (Composant => C);
    B.Ajouter (Composant => A);
    Afficher (Texte => B);
+   --  Texte affiché avec un ascenseur dans une boite.
 
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "-");
@@ -91,6 +96,7 @@ begin
    B.Ajouter (Composant => C);
    B.Ajouter (Composant => B);
    Afficher (Texte => B);
+   --  Texte affiché avec deux boites.
 
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "-");
@@ -100,6 +106,7 @@ begin
    B.Ajouter (Composant => A);
    B.Ajouter (Composant => B);
    Afficher (Texte => B);
+   --  Texte affiché avec un ascenseur dans une boite dans une boite.
 
    Ada.Text_IO.New_Line (Spacing => 1);
    Ada.Text_IO.Put_Line (Item => "-");
@@ -109,6 +116,7 @@ begin
    A.Ajouter (Composant => B);
    B.Ajouter (Composant => A);
    Afficher (Texte => B);
+   --  Texte affiché avec une boite à côté d'un ascenseur dans une boite.
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
