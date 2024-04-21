@@ -2,7 +2,7 @@ with Ada.Text_IO;
 
 with Comptage_P;
 
-package body Singleton_P
+package body Singleton_P.Instance_P
    with Spark_Mode => Off
 is
 
@@ -17,6 +17,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
    procedure Changer_Nom
       (
          This : in out Singleton_T;
@@ -29,13 +30,14 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
    procedure Afficher
       (This : in     Singleton_T)
    is
       Nom : constant String := Nom_R.To_String (Source => This.Nom);
    begin
-      Ada.Text_IO.Put      (Item => Nom);
-      Ada.Text_IO.Put      (Item => " | ");
+      Ada.Text_IO.Put (Item => "[" & Nom & "]");
+      Ada.Text_IO.Put (Item => " | ");
 
       Ada.Text_IO.Put_Line
          (
@@ -49,4 +51,4 @@ is
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 
-end Singleton_P;
+end Singleton_P.Instance_P;

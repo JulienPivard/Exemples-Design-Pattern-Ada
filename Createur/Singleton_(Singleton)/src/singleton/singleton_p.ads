@@ -1,23 +1,22 @@
-private with Ada.Strings.Unbounded;
-
 --  @summary
---  Représentation d'un singleton.
+--  Exemple de design pattern Singleton.
 --  @description
---  Le singleton est bloqué en création avec le discriminant.
+--  Le singleton descendra d'une classe abstraite, permettant de
+--  manipuler ses descendants.
 --  @group Créateur
 package Singleton_P
    with
-      Pure           => False,
+      Pure           => True,
       Preelaborate   => False,
-      Elaborate_Body => True,
+      Elaborate_Body => False,
       Spark_Mode     => Off
 is
 
-   type Singleton_T (<>) is tagged limited private;
+   type Singleton_Interface_T is limited interface;
    --  Représente un singleton avec un type discriminant.
 
    type Accesseur_T
-      (Singleton : not null access Singleton_T)
+      (Singleton : not null access Singleton_Interface_T'Class)
    is limited private
       with Implicit_Dereference => Singleton;
    --  Accesseur protégeant le pointeur. Aucune déallocation
@@ -25,16 +24,12 @@ is
    --  un discriminant en fait un pointeur constant. Le contenu
    --  pointé peut, par contre, être modifié.
 
-   function Recuperer_Singleton
-      return Accesseur_T;
-   --  Permet de récupérer notre singleton.
-   --  @return Le singleton
-
    procedure Changer_Nom
       (
-         This : in out Singleton_T;
+         This : in out Singleton_Interface_T;
          Nom  : in     String
-      );
+      )
+   is abstract;
    --  Permet de changer l'attribut variable
    --  @param This
    --  Le singleton
@@ -42,25 +37,16 @@ is
    --  La nouvelle valeur de l'attribut.
 
    procedure Afficher
-      (This : in     Singleton_T);
+      (This : in     Singleton_Interface_T)
+   is abstract;
    --  Affiche le contenu du singleton.
    --  @param This
    --  Le singleton à afficher.
 
 private
 
-   package Nom_R renames Ada.Strings.Unbounded;
-
-   type Singleton_T is tagged limited
-      record
-         Nom : Nom_R.Unbounded_String;
-      end record;
-
-   Unique : aliased Singleton_T;
-   --  Singleton
-
    type Accesseur_T
-      (Singleton : not null access Singleton_T)
+      (Singleton : not null access Singleton_Interface_T'Class)
    is limited null record;
 
 end Singleton_P;

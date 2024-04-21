@@ -2,6 +2,7 @@ with Ada.Text_IO;
 
 with Singleton_Bis_P;
 with Singleton_P;
+with Singleton_P.Instance_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -10,8 +11,8 @@ is
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern singleton");
-   Ada.Text_IO.Put_Line (Item => "S1 et S2 sont deux accès différents ");
-   Ada.Text_IO.Put_Line (Item => "au même singleton.");
+   Ada.Text_IO.Put_Line (Item => "S1 et S2 sont deux variables différentes ");
+   Ada.Text_IO.Put_Line (Item => "mais qui accèdent au même singleton.");
    Ada.Text_IO.Put_Line (Item => "Le second exemple avec Si_1 et Si_2 est");
    Ada.Text_IO.Put_Line (Item => "une version sans pointeurs. Les deux");
    Ada.Text_IO.Put_Line (Item => "objets modifie le même singleton.");
@@ -21,9 +22,9 @@ begin
    Bloc_Singleton_Access :
    declare
       S1 : constant Singleton_P.Accesseur_T :=
-         Singleton_P.Recuperer_Singleton;
+         Singleton_P.Instance_P.Recuperer_Singleton;
       S2 : constant Singleton_P.Accesseur_T :=
-         Singleton_P.Recuperer_Singleton;
+         Singleton_P.Instance_P.Recuperer_Singleton;
    begin
       Ada.Text_IO.New_Line (Spacing => 1);
       Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
