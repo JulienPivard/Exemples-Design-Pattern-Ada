@@ -15,6 +15,14 @@ is
    type Singleton_Interface_T is limited interface;
    --  Représente un singleton avec un type discriminant.
 
+   --  On peut aussi définir le singleton comme ça
+   --  type Singleton_Interface_T is abstract tagged limited private;
+   --  et ajouter cette définition en partie privée :
+   --  type Singleton_Interface_T is abstract tagged limited
+   --     record
+   --        null;
+   --     end record;
+
    type Accesseur_T
       (Singleton : not null access Singleton_Interface_T'Class)
    is limited private
