@@ -11,7 +11,6 @@ is
       return Accesseur_T
    is
    begin
-      Comptage_P.Compteur := Comptage_P.Compteur + 1;
       return Accesseur_T'(Singleton => Unique'Access);
    end Recuperer_Singleton;
    ---------------------------------------------------------------------------
@@ -25,6 +24,7 @@ is
       )
    is
    begin
+      Comptage_P.Compteur := Comptage_P.Compteur + 1;
       This.Nom := Nom_R.To_Unbounded_String (Source => Nom);
    end Changer_Nom;
    ---------------------------------------------------------------------------
@@ -42,7 +42,7 @@ is
       Ada.Text_IO.Put_Line
          (
             Item => "Nb instances lues : " &
-               Comptage_P.Compteur'Img & " fois"
+               Comptage_P.Compteur'Image & " fois"
          );
    end Afficher;
    ---------------------------------------------------------------------------
