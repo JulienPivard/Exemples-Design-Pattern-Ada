@@ -15,7 +15,8 @@ package Singleton_P.Protege_P
       Spark_Mode     => Off
 is
 
-   type Singleton_T (<>) is synchronized new Singleton_Interface_T with private;
+   type Singleton_T (<>) is synchronized
+      new Singleton_Interface_T with private;
    --  Représente un singleton avec un type discriminant.
 
    function Recuperer_Singleton
