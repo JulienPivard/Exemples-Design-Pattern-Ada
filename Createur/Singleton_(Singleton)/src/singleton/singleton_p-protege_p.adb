@@ -2,31 +2,18 @@ with Ada.Text_IO;
 
 with Comptage_P;
 
-package body Singleton_Bis_P
+package body Singleton_P.Protege_P
    with Spark_Mode => Off
 is
 
    ---------------------------------------------------------------------------
-   procedure Changer_Nom
-      (
-         This : in     Singleton_T;
-         Nom  : in     String
-      )
+   function Recuperer_Singleton
+      return Accesseur_T
    is
-      pragma Unreferenced (This);
    begin
-      Singleton_Protege.Changer (Nom => Nom);
-   end Changer_Nom;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Afficher
-      (This : in     Singleton_T)
-   is
-      pragma Unreferenced (This);
-   begin
-      Singleton_Protege.Afficher;
-   end Afficher;
+      Comptage_P.Compteur := Comptage_P.Compteur + 1;
+      return Accesseur_T'(Singleton => Unique'Access);
+   end Recuperer_Singleton;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -34,14 +21,14 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   protected body Singleton_Protege is
+   protected body Singleton_T is
       ---------------------
-      procedure Changer
+      procedure Changer_Nom
          (Nom : in     String)
       is
       begin
-         Singleton_Protege.Nom := Nom_R.To_Unbounded_String (Source => Nom);
-      end Changer;
+         Singleton_T.Nom := Nom_R.To_Unbounded_String (Source => Nom);
+      end Changer_Nom;
       ---------------------
 
       ---------------------
@@ -57,7 +44,7 @@ is
             );
       end Afficher;
       ---------------------
-   end Singleton_Protege;
+   end Singleton_T;
    ---------------------------------------------------------------------------
 
-end Singleton_Bis_P;
+end Singleton_P.Protege_P;

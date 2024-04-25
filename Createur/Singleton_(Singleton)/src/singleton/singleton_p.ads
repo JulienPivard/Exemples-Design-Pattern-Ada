@@ -45,7 +45,7 @@ is
    --  La nouvelle valeur de l'attribut.
 
    procedure Afficher
-      (This : in     Singleton_Interface_T)
+      (This : in out Singleton_Interface_T)
    is abstract;
    --  Affiche le contenu du singleton.
    --  @param This

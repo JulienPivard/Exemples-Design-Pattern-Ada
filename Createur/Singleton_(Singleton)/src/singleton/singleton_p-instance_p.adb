@@ -32,7 +32,7 @@ is
    ---------------------------------------------------------------------------
    overriding
    procedure Afficher
-      (This : in     Singleton_T)
+      (This : in out Singleton_T)
    is
       Nom : constant String := Nom_R.To_String (Source => This.Nom);
    begin

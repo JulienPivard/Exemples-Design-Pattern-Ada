@@ -1,8 +1,10 @@
 with Ada.Text_IO;
 
-with Singleton_Bis_P;
+with Faire_Action;
+
 with Singleton_P;
 with Singleton_P.Instance_P;
+with Singleton_P.Protege_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -26,27 +28,11 @@ begin
       S2 : constant Singleton_P.Accesseur_T :=
          Singleton_P.Instance_P.Recuperer_Singleton;
    begin
-      Ada.Text_IO.New_Line (Spacing => 1);
-      Ada.Text_IO.Put_Line (Item => "====  Après modification de S1  ====");
-      Ada.Text_IO.New_Line (Spacing => 1);
-
-      S1.Changer_Nom (Nom => "Roulecoule");
-
-      Ada.Text_IO.Put (Item => "S1 : ");
-      S1.Afficher;
-      Ada.Text_IO.Put (Item => "S2 : ");
-      S2.Afficher;
-
-      Ada.Text_IO.New_Line (Spacing => 1);
-      Ada.Text_IO.Put_Line (Item => "====  Après modification de S2  ====");
-      Ada.Text_IO.New_Line (Spacing => 1);
-
-      S2.Changer_Nom (Nom => "T'inquiète mec !");
-
-      Ada.Text_IO.Put (Item => "S1 : ");
-      S1.Afficher;
-      Ada.Text_IO.Put (Item => "S2 : ");
-      S2.Afficher;
+      Faire_Action
+         (
+            S1 => S1,
+            S2 => S2
+         );
    end Bloc_Singleton_Access;
 
    Ada.Text_IO.New_Line (Spacing => 2);
@@ -57,30 +43,16 @@ begin
 
    Bloc_Singleton_Bis :
    declare
-      Si_1 : Singleton_Bis_P.Singleton_T renames Singleton_Bis_P.Unique;
-      Si_2 : Singleton_Bis_P.Singleton_T renames Singleton_Bis_P.Unique;
+      Si_1 : constant Singleton_P.Accesseur_T :=
+         Singleton_P.Protege_P.Recuperer_Singleton;
+      Si_2 : constant Singleton_P.Accesseur_T :=
+         Singleton_P.Protege_P.Recuperer_Singleton;
    begin
-      Ada.Text_IO.New_Line (Spacing => 1);
-      Ada.Text_IO.Put_Line (Item => "====  Après modification de Si_1  ====");
-      Ada.Text_IO.New_Line (Spacing => 1);
-
-      Si_1.Changer_Nom (Nom => "Roulecoule");
-
-      Ada.Text_IO.Put (Item => "Si_1 : ");
-      Si_1.Afficher;
-      Ada.Text_IO.Put (Item => "Si_2 : ");
-      Si_2.Afficher;
-
-      Ada.Text_IO.New_Line (Spacing => 1);
-      Ada.Text_IO.Put_Line (Item => "====  Après modification de Si_2  ====");
-      Ada.Text_IO.New_Line (Spacing => 1);
-
-      Si_2.Changer_Nom (Nom => "T'inquiète mec !");
-
-      Ada.Text_IO.Put (Item => "Si_1 : ");
-      Si_1.Afficher;
-      Ada.Text_IO.Put (Item => "Si_2 : ");
-      Si_2.Afficher;
+      Faire_Action
+         (
+            S1 => Si_1,
+            S2 => Si_2
+         );
    end Bloc_Singleton_Bis;
 
    Ada.Text_IO.New_Line (Spacing => 2);

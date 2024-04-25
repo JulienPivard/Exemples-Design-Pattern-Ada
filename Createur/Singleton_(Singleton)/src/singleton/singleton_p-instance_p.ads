@@ -35,7 +35,7 @@ is
 
    overriding
    procedure Afficher
-      (This : in     Singleton_T);
+      (This : in out Singleton_T);
    --  Affiche le contenu du singleton.
    --  @param This
    --  Le singleton à afficher.
