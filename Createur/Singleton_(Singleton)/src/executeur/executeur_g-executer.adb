@@ -16,7 +16,7 @@ begin
    Ada.Text_IO.Put_Line (Item => "S1 et S2 sont deux variables différentes ");
    Ada.Text_IO.Put_Line (Item => "mais qui accèdent au même singleton.");
    Ada.Text_IO.Put_Line (Item => "Le second exemple avec Si_1 et Si_2 est");
-   Ada.Text_IO.Put_Line (Item => "une version sans pointeurs. Les deux");
+   Ada.Text_IO.Put_Line (Item => "une version task safe. Les deux");
    Ada.Text_IO.Put_Line (Item => "objets modifie le même singleton.");
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);

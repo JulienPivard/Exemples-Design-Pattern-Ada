@@ -16,12 +16,16 @@ is
    --  Représente un singleton avec un type discriminant.
 
    --  On peut aussi définir le singleton comme ça
-   --  type Singleton_Interface_T is abstract tagged limited private;
+   --  type Singleton_Abstrait_T is abstract tagged limited private;
+   --
    --  et ajouter cette définition en partie privée :
-   --  type Singleton_Interface_T is abstract tagged limited
+   --  type Singleton_Abstrait_T is abstract tagged limited
    --     record
    --        null;
    --     end record;
+   --
+   --  A noter que cette definition ne fonctionnera pas avec
+   --  l'implémentation en objet protégé qui exige une interface..
 
    type Accesseur_T
       (Singleton : not null access Singleton_Interface_T'Class)
