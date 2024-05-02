@@ -21,7 +21,7 @@ is
 
    function Recuperer_Singleton
       return Accesseur_T;
-   --  Permet de récupérer notre singleton.
+   --  Permet de récupérer l'instance notre singleton.
    --  @return Le singleton
 
 private

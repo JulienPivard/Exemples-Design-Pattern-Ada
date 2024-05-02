@@ -41,7 +41,7 @@ begin
    Ada.Text_IO.Put_Line (Item => "===============================");
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Bloc_Singleton_Bis :
+   Bloc_Singleton_Protege :
    declare
       Si_1 : constant Singleton_P.Accesseur_T :=
          Singleton_P.Protege_P.Recuperer_Singleton;
@@ -53,7 +53,7 @@ begin
             S1 => Si_1,
             S2 => Si_2
          );
-   end Bloc_Singleton_Bis;
+   end Bloc_Singleton_Protege;
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
