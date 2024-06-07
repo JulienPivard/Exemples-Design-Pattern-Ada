@@ -8,12 +8,12 @@ is
       (
          This      : in out Utilisateur_Collegue_T;
          Mediateur : in     Accee_P.Mediateur_A;
-         Id        : in     Mediateur_P.ID_T
+         ID        : in     Mediateur_P.ID_T
       )
    is
    begin
       This.Mediateur := Mediateur;
-      This.ID        := Id;
+      This.ID        := ID;
    end Ajouter;
    ---------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ is
    is
    begin
       Utilisateur_T (This).Envoyer (Message => Message);
-      This.Mediateur.all.Signaler (Id => This.ID);
+      This.Mediateur.all.Signaler (ID => This.ID);
    end Envoyer;
    ---------------------------------------------------------------------------
 

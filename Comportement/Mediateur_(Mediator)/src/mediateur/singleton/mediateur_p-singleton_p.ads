@@ -21,12 +21,12 @@ is
    procedure Signaler
       (
          This : in out Mediateur_Concret_T;
-         Id   : in     ID_T
+         ID   : in     ID_T
       );
    --  Permet à un des collègue de signaler au médiateur qu'il a été modifié.
    --  @param This
    --  Le médiateur.
-   --  @param Id
+   --  @param ID
    --  Identifiant unique du collègue.
 
    not overriding
@@ -59,10 +59,10 @@ private
    protected Mediateur is
       ---------
       procedure Signaler
-         (Id : in     ID_T);
+         (ID : in     ID_T);
       --  Permet à un des collègue de signaler au
       --  médiateur qu'il a été modifié.
-      --  @param Id
+      --  @param ID
       --  Identifiant unique du collègue.
 
       ---------
@@ -81,7 +81,7 @@ private
       --  Le premier utilisateur.
       U_2 : Collegue_T;
       --  Le deuxième utilisateur.
-      Pos : ID_T := ID_T'First;
+      Pos : ID_T := Pas_D_ID;
       --  Position mémorisé du dernier utilisateur libre.
    end Mediateur;
 

@@ -23,14 +23,14 @@ package Utilisateur_Singleton_P.Collegue_G is
       (
          This      : in out Utilisateur_Collegue_T;
          Mediateur : in     Mediateur_P.Mediateur_T'Class;
-         Id        : in     Mediateur_P.ID_T
+         ID        : in     Mediateur_P.ID_T
       );
    --  Le médiateur se signal à son collègue.
    --  @param This
    --  La classe qui a besoin de collaborer.
    --  @param Mediateur
    --  Le médiateur.
-   --  @param Id
+   --  @param ID
    --  L'identifiant unique connu du médiateur.
 
    overriding
@@ -100,12 +100,12 @@ private
       procedure Ajouter
          (
             Mediateur : in     Mediateur_P.Mediateur_T'Class;
-            Id        : in     Mediateur_P.ID_T
+            ID        : in     Mediateur_P.ID_T
          );
       --  Le médiateur se signal à son collègue.
       --  @param Mediateur
       --  Le médiateur.
-      --  @param Id
+      --  @param ID
       --  L'identifiant unique connu du médiateur.
 
       procedure Changer_Nom
@@ -135,7 +135,7 @@ private
       --  Lit le médiateur.
       --  @return Le médiateur.
 
-      function Lire_Id
+      function Lire_ID
          return Mediateur_P.ID_T;
       --  Lit l'identifiant que le médiateur à donné.
       --  @return L'identifiant du médiateur.
@@ -146,7 +146,7 @@ private
       --  Le contenu du message écrit par l'utilisateur.
       Mediateur_H  : Mediateur_T        := Mediateur_Vide;
       --  Le médiateur à contacter.
-      Id_Mediateur : Mediateur_P.ID_T   := Mediateur_P.Pas_D_ID;
+      ID_Mediateur : Mediateur_P.ID_T   := Mediateur_P.Pas_D_ID;
       --  Identifiant assigné par le médiateur.
    end Utilisateur;
 

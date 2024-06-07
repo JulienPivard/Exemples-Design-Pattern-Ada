@@ -20,7 +20,7 @@ is
       (
          This      : in out Collegue_T;
          Mediateur : in     Mediateur_A;
-         Id        : in     Mediateur_P.ID_T
+         ID        : in     Mediateur_P.ID_T
       )
    is abstract;
    --  Le médiateur se signal à son collègue.
@@ -28,7 +28,7 @@ is
    --  La classe qui a besoin de collaborer.
    --  @param Mediateur
    --  Le médiateur.
-   --  @param Id
+   --  @param ID
    --  L'identifiant unique connu du médiateur.
 
 end Accee_P.Collegue_Abstrait_P;

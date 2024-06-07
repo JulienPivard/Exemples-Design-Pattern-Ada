@@ -9,11 +9,11 @@ is
    procedure Signaler
       (
          This : in out Concret_T;
-         Id   : in     ID_T
+         ID   : in     ID_T
       )
    is
    begin
-      case Id is
+      case ID.ID is
          when 1 =>
             This.U_2.Utilisateur.Afficher (Recu => This.U_1.Utilisateur);
          when 2 =>
@@ -27,19 +27,27 @@ is
       (
          This : in out Concret_T;
          Nom  : in     Donnee_P.Contenu_T;
-         Id   :    out ID_T
+         ID   :    out ID_T
       )
    is
    begin
-      Id := This.Pos;
-      case This.Pos is
+      if not This.Pos.Est_Valide then
+         This.Pos := ID_T'
+            (
+               Est_Valide => True,
+               ID         => ID_G_T'First
+            );
+      end if;
+
+      ID := This.Pos;
+      case This.Pos.ID is
          when 1 =>
             This.U_1 := Collegue_T'
                (
                   Utilisateur => Utilisateur_P.Collegue_P.Creer (Nom => Nom),
                   Initialise  => True
                );
-            This.Pos := This.Pos + 1;
+            This.Pos.ID := This.Pos.ID + 1;
          when 2 =>
             This.U_2 := Collegue_T'
                (
@@ -61,13 +69,13 @@ is
    is
       pragma Unreferenced (Destinataire);
    begin
-      case Envoyeur is
+      case Envoyeur.ID is
          when 1 =>
             Envoyer (Collegue => This.U_1, Message => Message);
          when 2 =>
             Envoyer (Collegue => This.U_2, Message => Message);
       end case;
-      This.Signaler (Id => Envoyeur);
+      This.Signaler (ID => Envoyeur);
    end Envoyer;
    ---------------------------------------------------------------------------
 

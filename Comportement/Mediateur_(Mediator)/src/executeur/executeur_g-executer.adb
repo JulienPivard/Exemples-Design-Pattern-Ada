@@ -53,8 +53,8 @@ begin
    begin
       Ada.Text_IO.Put_Line (Item => "Version du médiateur sans pointeurs");
       Ada.Text_IO.Put_Line (Item => "----");
-      M.Inscrire (Nom => "Morgane             ", Id => U_1);
-      M.Inscrire (Nom => "Cassandre           ", Id => U_2);
+      M.Inscrire (Nom => "Morgane             ", ID => U_1);
+      M.Inscrire (Nom => "Cassandre           ", ID => U_2);
 
       M.Envoyer
          (

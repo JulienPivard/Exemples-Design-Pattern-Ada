@@ -22,7 +22,7 @@ is
    procedure Signaler
       (
          This : in out Concret_T;
-         Id   : in     ID_T
+         ID   : in     ID_T
       );
 
    not overriding
@@ -30,14 +30,14 @@ is
       (
          This : in out Concret_T;
          Nom  : in     Donnee_P.Contenu_T;
-         Id   :    out ID_T
+         ID   :    out ID_T
       );
    --  Crée un utilisateur qui sera géré par le médiateur.
    --  @param This
    --  Le médiateur.
    --  @param Nom
    --  Le nom de l'utilisateur à ajouter.
-   --  @param Id
+   --  @param ID
    --  L'identifiant donné à l'utilisateur.
 
    not overriding
@@ -78,7 +78,7 @@ private
          --  Le premier utilisateur.
          U_2 : Collegue_T;
          --  Le deuxième utilisateur.
-         Pos : ID_T := ID_T'First;
+         Pos : ID_T := Pas_D_ID;
          --  Position mémorisé du dernier utilisateur libre.
       end record;
 

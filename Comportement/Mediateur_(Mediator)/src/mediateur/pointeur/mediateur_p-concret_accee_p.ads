@@ -21,7 +21,7 @@ is
    procedure Signaler
       (
          This : in out Concret_T;
-         Id   : in     ID_T
+         ID   : in     ID_T
       );
 
    not overriding
@@ -39,7 +39,7 @@ private
          --  Le premier utilisateur.
          U_2 : Utilisateur_P.Collegue_Accee_P.Utilisateur_Collegue_A;
          --  Le deuxième utilisateur.
-         Pos : ID_T := ID_T'First;
+         Pos : ID_T := Pas_D_ID;
       end record;
 
 end Mediateur_P.Concret_Accee_P;

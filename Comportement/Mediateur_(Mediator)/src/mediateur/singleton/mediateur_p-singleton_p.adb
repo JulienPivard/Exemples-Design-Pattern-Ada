@@ -7,12 +7,12 @@ is
    procedure Signaler
       (
          This : in out Mediateur_Concret_T;
-         Id   : in     ID_T
+         ID   : in     ID_T
       )
    is
       pragma Unreferenced (This);
    begin
-      Mediateur.Signaler (Id => Id);
+      Mediateur.Signaler (ID => ID);
    end Signaler;
    ---------------------------------------------------------------------------
 
@@ -40,14 +40,14 @@ is
    protected body Mediateur is
       ------------------
       procedure Signaler
-         (Id : in     ID_T)
+         (ID : in     ID_T)
       is
          User_1 : Utilisateur_Singleton_P.Utilisateur_T'Class renames
             U_1.Utilisateur.Element;
          User_2 : Utilisateur_Singleton_P.Utilisateur_T'Class renames
             U_2.Utilisateur.Element;
       begin
-         case Id is
+         case ID.ID is
             when 1 => User_2.Afficher (Recu => User_1);
             when 2 => User_1.Afficher (Recu => User_2);
          end case;
@@ -62,16 +62,24 @@ is
          )
       is
       begin
+         if not Pos.Est_Valide then
+            Pos := ID_T'
+               (
+                  Est_Valide => True,
+                  ID         => ID_G_T'First
+               );
+         end if;
+
          Utilisateur.Ajouter
             (
                Mediateur => Mediateur_V,
-               Id        => Pos
+               ID        => Pos
             );
-         case Pos is
+         case Pos.ID is
             when 1 =>
                U_1.Utilisateur :=
                   Utilisateur_Holders_P.To_Holder (New_Item => Utilisateur);
-               Pos := Pos + 1;
+               Pos.ID := Pos.ID + 1;
             when 2 =>
                U_2.Utilisateur :=
                   Utilisateur_Holders_P.To_Holder (New_Item => Utilisateur);

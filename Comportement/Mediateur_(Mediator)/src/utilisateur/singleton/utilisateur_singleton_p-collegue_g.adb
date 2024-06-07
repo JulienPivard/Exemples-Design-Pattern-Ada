@@ -11,7 +11,7 @@ is
       (
          This      : in out Utilisateur_Collegue_T;
          Mediateur : in     Mediateur_P.Mediateur_T'Class;
-         Id        : in     Mediateur_P.ID_T
+         ID        : in     Mediateur_P.ID_T
       )
    is
       pragma Unreferenced (This);
@@ -19,7 +19,7 @@ is
       Utilisateur.Ajouter
          (
             Mediateur => Mediateur,
-            Id        => Id
+            ID        => ID
          );
    end Ajouter;
    ---------------------------------------------------------------------------
@@ -49,7 +49,7 @@ is
       Mediateur : Mediateur_T := Utilisateur.Lire_Mediateur;
    begin
       Utilisateur.Changer_Contenu (Message => Message);
-      Mediateur.Reference.Signaler (Id => Utilisateur.Lire_Id);
+      Mediateur.Reference.Signaler (ID => Utilisateur.Lire_ID);
    end Envoyer;
    ---------------------------------------------------------------------------
 
@@ -116,12 +116,12 @@ is
       procedure Ajouter
          (
             Mediateur : in     Mediateur_P.Mediateur_T'Class;
-            Id        : in     Mediateur_P.ID_T
+            ID        : in     Mediateur_P.ID_T
          )
       is
       begin
          Mediateur_H  := Mediateur_Holder_P.To_Holder (New_Item => Mediateur);
-         Id_Mediateur := Id;
+         ID_Mediateur := ID;
       end Ajouter;
       -----------------
 
@@ -171,12 +171,12 @@ is
       -----------------
 
       -----------------
-      function Lire_Id
+      function Lire_ID
          return Mediateur_P.ID_T
       is
       begin
-         return Id_Mediateur;
-      end Lire_Id;
+         return ID_Mediateur;
+      end Lire_ID;
       -----------------
    end Utilisateur;
    ---------------------------------------------------------------------------

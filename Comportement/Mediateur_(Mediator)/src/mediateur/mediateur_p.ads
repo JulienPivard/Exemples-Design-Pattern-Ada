@@ -22,19 +22,29 @@ is
    procedure Signaler
       (
          This : in out Mediateur_T;
-         Id   : in     ID_T
+         ID   : in     ID_T
       )
    is abstract;
    --  Permet à un collègue de signaler qu'un changement est intervenu.
    --  @param This
    --  Le médiateur.
-   --  @param Id
+   --  @param ID
    --  L'identifiant de celui qui signal le changement.
 
 private
 
-   type ID_T is range 1 .. 2;
+   type ID_G_T is range 1 .. 2;
 
-   Pas_D_ID : constant ID_T := 1;
+   type ID_T (Est_Valide : Boolean := False) is
+      record
+         case Est_Valide is
+            when True  =>
+               ID : ID_G_T := ID_G_T'First;
+            when False =>
+               null;
+         end case;
+      end record;
+
+   Pas_D_ID : constant ID_T := ID_T'(Est_Valide => False);
 
 end Mediateur_P;
