@@ -7,7 +7,7 @@ is
    procedure Signaler
       (
          This : in out Mediateur_Concret_T;
-         Id   : in     Id_T
+         Id   : in     ID_T
       )
    is
       pragma Unreferenced (This);
@@ -40,7 +40,7 @@ is
    protected body Mediateur is
       ------------------
       procedure Signaler
-         (Id : in     Id_T)
+         (Id : in     ID_T)
       is
          User_1 : Utilisateur_Singleton_P.Utilisateur_T'Class renames
             U_1.Utilisateur.Element;

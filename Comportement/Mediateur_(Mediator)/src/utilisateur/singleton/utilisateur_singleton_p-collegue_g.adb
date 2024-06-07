@@ -11,7 +11,7 @@ is
       (
          This      : in out Utilisateur_Collegue_T;
          Mediateur : in     Mediateur_P.Mediateur_T'Class;
-         Id        : in     Mediateur_P.Id_T
+         Id        : in     Mediateur_P.ID_T
       )
    is
       pragma Unreferenced (This);
@@ -116,7 +116,7 @@ is
       procedure Ajouter
          (
             Mediateur : in     Mediateur_P.Mediateur_T'Class;
-            Id        : in     Mediateur_P.Id_T
+            Id        : in     Mediateur_P.ID_T
          )
       is
       begin
@@ -172,7 +172,7 @@ is
 
       -----------------
       function Lire_Id
-         return Mediateur_P.Id_T
+         return Mediateur_P.ID_T
       is
       begin
          return Id_Mediateur;

@@ -9,7 +9,7 @@ is
    procedure Signaler
       (
          This : in out Concret_T;
-         Id   : in     Id_T
+         Id   : in     ID_T
       )
    is
    begin
@@ -27,7 +27,7 @@ is
       (
          This : in out Concret_T;
          Nom  : in     Donnee_P.Contenu_T;
-         Id   :    out Id_T
+         Id   :    out ID_T
       )
    is
    begin
@@ -54,8 +54,8 @@ is
    procedure Envoyer
       (
          This         : in out Concret_T;
-         Envoyeur     : in     Id_T;
-         Destinataire : in     Id_T;
+         Envoyeur     : in     ID_T;
+         Destinataire : in     ID_T;
          Message      : in     Donnee_P.Contenu_T
       )
    is

@@ -22,7 +22,7 @@ is
       (
          This      : in out Collegue_T;
          Mediateur : in     Mediateur_P.Mediateur_T'Class;
-         Id        : in     Mediateur_P.Id_T
+         Id        : in     Mediateur_P.ID_T
       )
    is abstract;
    --  Le médiateur se signal à son collègue.

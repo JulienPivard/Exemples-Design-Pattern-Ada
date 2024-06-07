@@ -46,8 +46,8 @@ begin
 
    Bloc_Demo_Sans_Access :
    declare
-      U_1 : Mediateur_P.Id_T;
-      U_2 : Mediateur_P.Id_T;
+      U_1 : Mediateur_P.ID_T;
+      U_2 : Mediateur_P.ID_T;
 
       M : Mediateur_P.Concret_P.Concret_T;
    begin

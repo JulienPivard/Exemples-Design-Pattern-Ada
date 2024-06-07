@@ -21,7 +21,7 @@ is
    procedure Signaler
       (
          This : in out Mediateur_Concret_T;
-         Id   : in     Id_T
+         Id   : in     ID_T
       );
    --  Permet à un des collègue de signaler au médiateur qu'il a été modifié.
    --  @param This
@@ -59,7 +59,7 @@ private
    protected Mediateur is
       ---------
       procedure Signaler
-         (Id : in     Id_T);
+         (Id : in     ID_T);
       --  Permet à un des collègue de signaler au
       --  médiateur qu'il a été modifié.
       --  @param Id
@@ -81,7 +81,7 @@ private
       --  Le premier utilisateur.
       U_2 : Collegue_T;
       --  Le deuxième utilisateur.
-      Pos : Id_T := Id_T'First;
+      Pos : ID_T := ID_T'First;
       --  Position mémorisé du dernier utilisateur libre.
    end Mediateur;
 

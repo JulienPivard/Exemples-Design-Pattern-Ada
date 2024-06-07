@@ -7,7 +7,7 @@ is
    procedure Signaler
       (
          This : in out Concret_T;
-         Id   : in     Id_T
+         Id   : in     ID_T
       )
    is
    begin

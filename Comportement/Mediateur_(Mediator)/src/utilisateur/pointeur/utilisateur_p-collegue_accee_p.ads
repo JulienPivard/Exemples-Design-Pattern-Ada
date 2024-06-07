@@ -23,7 +23,7 @@ is
       (
          This      : in out Utilisateur_Collegue_T;
          Mediateur : in     Accee_P.Mediateur_A;
-         Id        : in     Mediateur_P.Id_T
+         Id        : in     Mediateur_P.ID_T
       );
 
    overriding
@@ -62,7 +62,7 @@ private
       record
          Mediateur : Accee_P.Mediateur_A;
          --  Le médiateur.
-         Id        : Mediateur_P.Id_T;
+         ID        : Mediateur_P.ID_T;
          --  L'identifiant associé.
       end record;
 

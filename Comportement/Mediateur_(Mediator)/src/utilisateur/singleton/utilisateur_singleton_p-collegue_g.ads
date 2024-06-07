@@ -23,7 +23,7 @@ package Utilisateur_Singleton_P.Collegue_G is
       (
          This      : in out Utilisateur_Collegue_T;
          Mediateur : in     Mediateur_P.Mediateur_T'Class;
-         Id        : in     Mediateur_P.Id_T
+         Id        : in     Mediateur_P.ID_T
       );
    --  Le médiateur se signal à son collègue.
    --  @param This
@@ -100,7 +100,7 @@ private
       procedure Ajouter
          (
             Mediateur : in     Mediateur_P.Mediateur_T'Class;
-            Id        : in     Mediateur_P.Id_T
+            Id        : in     Mediateur_P.ID_T
          );
       --  Le médiateur se signal à son collègue.
       --  @param Mediateur
@@ -136,7 +136,7 @@ private
       --  @return Le médiateur.
 
       function Lire_Id
-         return Mediateur_P.Id_T;
+         return Mediateur_P.ID_T;
       --  Lit l'identifiant que le médiateur à donné.
       --  @return L'identifiant du médiateur.
    private
@@ -146,7 +146,7 @@ private
       --  Le contenu du message écrit par l'utilisateur.
       Mediateur_H  : Mediateur_T        := Mediateur_Vide;
       --  Le médiateur à contacter.
-      Id_Mediateur : Mediateur_P.Id_T   := Mediateur_P.Id_T'First;
+      Id_Mediateur : Mediateur_P.ID_T   := Mediateur_P.Pas_D_ID;
       --  Identifiant assigné par le médiateur.
    end Utilisateur;
 
