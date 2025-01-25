@@ -33,7 +33,14 @@ begin
       (Item => "  Modification des valeurs de l'objet surveillé");
    Ada.Text_IO.Put_Line
       (Item => "  Provoque La mise à jour des observateurs :");
-   T := Valeurs_P.Table_Valeurs_T'(1 => 4, 2 => 32, 3 => 9, 4 => 55, 5 => 0);
+   T := Valeurs_P.Table_Valeurs_T'
+      (
+         1 => 4,
+         2 => 32,
+         3 => 9,
+         4 => 55,
+         5 => 0
+      );
    V.Modifier (Vals => T);
 
    Ada.Text_IO.New_Line (Spacing => 1);
@@ -42,7 +49,14 @@ begin
       (Item => "  Modification des valeurs de l'objet surveillé");
    Ada.Text_IO.Put_Line
       (Item => "  Provoque La mise à jour des observateurs :");
-   T := Valeurs_P.Table_Valeurs_T'(1 => 32, 2 => 0, 3 => 55, 4 => 4, 5 => 9);
+   T := Valeurs_P.Table_Valeurs_T'
+      (
+         1 => 32,
+         2 => 0,
+         3 => 55,
+         4 => 4,
+         5 => 9
+      );
    V.Modifier (Vals => T);
 
    Ada.Text_IO.New_Line (Spacing => 1);
@@ -51,7 +65,14 @@ begin
       (Item => "  Modification des valeurs de l'objet surveillé");
    Ada.Text_IO.Put_Line
       (Item => "  Provoque La mise à jour des observateurs :");
-   T := Valeurs_P.Table_Valeurs_T'(1 => 9, 2 => 36, 3 => 4, 4 => 19, 5 => 32);
+   T := Valeurs_P.Table_Valeurs_T'
+      (
+         1 => 9,
+         2 => 36,
+         3 => 4,
+         4 => 19,
+         5 => 32
+      );
    V.Modifier (Vals => T);
 
    pragma Unreferenced (V);
