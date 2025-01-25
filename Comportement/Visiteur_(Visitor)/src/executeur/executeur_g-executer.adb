@@ -71,10 +71,13 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   Ada.Text_IO.Put_Line (Item => "======  Visiteur générateur ======");
    Execution (Visiteur => Gen);
    Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put_Line (Item => "======  Visiteur vérification ======");
    Execution (Visiteur => Ver);
    Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put_Line (Item => "======  Visiteur instrumentation ======");
    Execution (Visiteur => Inst);
 
    Inst.Afficher;
