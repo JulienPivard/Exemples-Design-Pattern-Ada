@@ -18,15 +18,15 @@ is
    procedure Test_De_L_Age
       (P : in     Prototype_P.Prototype_T'Class)
    is
-      A        : Prototype_P.Age_T              := P.Lire_Age;
-      P_Test   : Prototype_P.Prototype_T'Class  := P.Clone;
+      A      : Prototype_P.Age_T             := P.Lire_Age;
+      P_Test : Prototype_P.Prototype_T'Class := P.Clone;
 
       use type Prototype_P.Age_T;
    begin
       Boucle_Ages :
       loop
          P_Test := P.Clone;
-         P_Test.Changer_Age   (Age     => A);
+         P_Test.Changer_Age (Age => A);
 
          Ada.Text_IO.Put      (Item    => "Test de l'age : ");
          Ada.Text_IO.Put      (Item    => P_Test.Lire_Age'Image);
