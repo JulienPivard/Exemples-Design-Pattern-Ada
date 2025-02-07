@@ -37,9 +37,9 @@ is
       (This : in out Remplacement_T);
 
    overriding
-   function Lire_Id
+   function Lire_ID
       (This : in     Remplacement_T)
-      return Id_Etat_T;
+      return ID_Etat_T;
 
 private
 
@@ -53,9 +53,9 @@ private
    is (Remplacement_T'(null record));
 
    overriding
-   function Lire_Id
+   function Lire_ID
       (This : in     Remplacement_T)
-      return Id_Etat_T
+      return ID_Etat_T
    is (Remplacement);
 
 end Etat_P.Remplacement_P;

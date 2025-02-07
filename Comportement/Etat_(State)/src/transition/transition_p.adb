@@ -60,7 +60,7 @@ is
    ---------------------------------------------------------------------------
 
    package Etat_IO          is new Ada.Text_IO.Enumeration_IO
-      (Enum => Etat_P.Id_Etat_T);
+      (Enum => Etat_P.ID_Etat_T);
    package Prochain_Etat_IO is new Ada.Text_IO.Enumeration_IO
       (Enum => Prochain_Etat_T);
 
@@ -69,19 +69,19 @@ is
       (
          This   : in out Transition_T;
          Etat   : in     Etat_P.Etat_T'Class;
-         Touche : in     Lettre_P.Id_Touche_T
+         Touche : in     Lettre_P.ID_Touche_T
       )
       return Etat_P.Etat_T'Class
    is
       pragma Unreferenced (This);
 
       Suivant : constant Prochain_Etat_T :=
-         Prochain_Etat (Etat.Lire_Id, Touche);
+         Prochain_Etat (Etat.Lire_ID, Touche);
    begin
       case Suivant is
          when Commande | Insertion | Remplacement | Visuel =>
             Ada.Text_IO.Put      (Item => "----------- ");
-            Etat_IO.Put          (Item => Etat.Lire_Id, Width => 15);
+            Etat_IO.Put          (Item => Etat.Lire_ID, Width => 15);
             Ada.Text_IO.Put      (Item => " => ");
             Prochain_Etat_IO.Put (Item => Suivant,      Width => 15);
             Ada.Text_IO.Put      (Item => " -----------");

@@ -11,7 +11,7 @@ package Lettre_P
       Spark_Mode     => Off
 is
 
-   type Id_Touche_T is
+   type ID_Touche_T is
       (
          Lettre_E,
          Lettre_I,

@@ -21,7 +21,7 @@ is
    procedure Presser
       (
          This   : in out Utilisateur_T;
-         Lettre : in     Lettre_P.Id_Touche_T
+         Lettre : in     Lettre_P.ID_Touche_T
       )
    is
    begin
@@ -50,7 +50,7 @@ is
    procedure Changer_D_Etat
       (
          This   : in out Utilisateur_T;
-         Touche : in     Lettre_P.Id_Touche_T
+         Touche : in     Lettre_P.ID_Touche_T
       )
    is
       Etat : constant Etat_P.Etat_T'Class := This.Transition.Changer_D_Etat

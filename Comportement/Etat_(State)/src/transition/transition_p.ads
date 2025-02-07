@@ -29,7 +29,7 @@ is
       (
          This   : in out Transition_T;
          Etat   : in     Etat_P.Etat_T'Class;
-         Touche : in     Lettre_P.Id_Touche_T
+         Touche : in     Lettre_P.ID_Touche_T
       )
       return Etat_P.Etat_T'Class;
    --  Le nouvel état après avoir pressé une touche
@@ -68,7 +68,7 @@ private
    is (Transition_T'(null record));
 
    type Table_De_Transition_T is array
-      (Etat_P.Id_Etat_T, Lettre_P.Id_Touche_T) of Prochain_Etat_T;
+      (Etat_P.ID_Etat_T, Lettre_P.ID_Touche_T) of Prochain_Etat_T;
    --  La table des transitions d'un état actuel en fonction de
    --  la touche pressée.
 

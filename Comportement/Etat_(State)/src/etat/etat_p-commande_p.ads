@@ -37,9 +37,9 @@ is
       (This : in out Commande_T);
 
    overriding
-   function Lire_Id
+   function Lire_ID
       (This : in     Commande_T)
-      return Id_Etat_T;
+      return ID_Etat_T;
 
 private
 
@@ -53,9 +53,9 @@ private
    is (Commande_T'(null record));
 
    overriding
-   function Lire_Id
+   function Lire_ID
       (This : in     Commande_T)
-      return Id_Etat_T
+      return ID_Etat_T
    is (Commande);
 
 end Etat_P.Commande_P;

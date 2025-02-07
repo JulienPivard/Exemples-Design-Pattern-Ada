@@ -11,7 +11,7 @@ package Etat_P
       Spark_Mode     => Off
 is
 
-   type Id_Etat_T is
+   type ID_Etat_T is
       (
          Commande,
          --  L'état commande.
@@ -49,9 +49,9 @@ is
       (This : in out Etat_T)
    is abstract;
 
-   function Lire_Id
+   function Lire_ID
       (This : in     Etat_T)
-      return Id_Etat_T
+      return ID_Etat_T
    is abstract;
    --  Lit l'identifiant unique de l'état.
    --  @param This
