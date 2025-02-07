@@ -1,5 +1,5 @@
 --  vim:filetype=ada
---  Dernière modification : Mercredi 04 décembre[12] 2024
+--  Dernière modification : Vendredi 07 février[02] 2025
 --  Auteur : PIVARD Julien
 
 pragma Initialize_Scalars;
@@ -67,10 +67,10 @@ pragma Restrictions (No_Implicit_Dynamic_Code);
 pragma Restrictions (No_Anonymous_Allocators);
 --  Aucune allocation de mémoire par un type pointeur anonyme.
 pragma Restrictions (No_Implicit_Heap_Allocations);
-pragma Restrictions (No_Local_Allocators);
+--  pragma Restrictions (No_Local_Allocators);
 --  Uniquement des allocations (new nom_type) globales sont
 --  autorisées.
-pragma Restrictions (No_Standard_Allocators_After_Elaboration);
+--  pragma Restrictions (No_Standard_Allocators_After_Elaboration);
 --  Les allocations mémoire ne sont autorisé que pendant l'élaboration.
 
 pragma Restrictions (No_Recursion);
