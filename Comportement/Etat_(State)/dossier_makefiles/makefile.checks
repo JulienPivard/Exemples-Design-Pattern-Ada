@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 16 janvier[01] 2022
+# Dernière modification : Lundi 02 décembre[12] 2024
 
 # Les options sont désactivée si vide
 ifeq ($(MODE_COMPILE), )
@@ -11,9 +11,6 @@ ifeq ($(NIVEAU_OPTIMI), )
 endif
 ifeq ($(ACTIVER_VERB), )
     ACTIVER_VERB	= false
-endif
-ifeq ($(ACTIVER_STRICT), )
-    ACTIVER_STRICT	= false
 endif
 ifeq ($(ACTIVER_WARN_SONT_ERREURS), )
     ACTIVER_WARN_SONT_ERREURS	= false
@@ -26,13 +23,13 @@ ifeq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), )
 endif
 
 # On notifie si le nom de l'app n'est pas changé
-ifeq ($(NOMAPP), nomapplication)
-    $(info makefile.conf:24: ***    Le nom du programme [NOMAPP] doit être changé)
+ifeq ($(NOM_APP), nomapplication)
+    $(info makefile.conf:24: ***    Le nom du programme [NOM_APP] doit être changé)
 endif
 
 # On notifie si le nom de l'app est vide.
-ifeq ($(NOMAPP), )
-    $(info makefile.conf:24: ***    Le nom du programme [NOMAPP] est vide)
+ifeq ($(NOM_APP), )
+    $(info makefile.conf:24: ***    Le nom du programme [NOM_APP] est vide)
 endif
 
 # On vérifie que MODE_COMPILE vaut bien [dev|deb|rel]
@@ -51,14 +48,6 @@ endif
 ifneq ($(ACTIVER_VERB), true)
   ifneq ($(ACTIVER_VERB), false)
     $(info makefile.conf:32: *** [ACTIVER_VERB] doit être true ou false)
-    $(error Compilation impossible)
-  endif
-endif
-
-# On vérifie que ACTIVER_STRICT vaut bien [true|false]
-ifneq ($(ACTIVER_STRICT), true)
-  ifneq ($(ACTIVER_STRICT), false)
-    $(info makefile.conf:36: *** [ACTIVER_STRICT] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -114,13 +103,6 @@ ifeq ($(ACTIVER_VERB), true)
     VERBEUX	= oui
 else
     VERBEUX	= non
-endif
-
-# Pour activer le mode strict
-ifeq ($(ACTIVER_STRICT), true)
-    STRICT	= oui
-else
-    STRICT	= non
 endif
 
 # Pour activer le mode avertissements deviennent des erreurs

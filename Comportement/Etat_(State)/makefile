@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 13 juin[06] 2022
+# Dernière modification : Mercredi 04 décembre[12] 2024
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -18,7 +18,10 @@ else
     include ./makefile.conf
 endif
 include ./$(DOSSIER_MAKE)/makefile.checks
-include ./dossier_makefiles/makefile.template
+include ./$(DOSSIER_MAKE)/makefile.template
+ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
+    include ./$(DOSSIER_MAKE)/makefile_tests_unitaires
+endif
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
@@ -40,13 +43,13 @@ makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
 ###################
 .PHONY: run
 run: $(DEPEND)
-	$(RESLT_COMPIL) $(ARGUMENTSAPPLI)
+	$(RESLT_COMPIL) $(ARGUMENTS_APPLI)
 
 ###################
 .PHONY: compiler
 compiler: makefile.conf build
 	@echo " ───────────────────────────────"
-	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
+	@echo " [OK] Compilation du programme : [ $(NOM_APP) ] terminé"
 	@echo "  "
 
 ###################
@@ -62,19 +65,19 @@ prod: makefile.conf $(FAIRE_INITIALISATION)
 .PHONY: doc
 doc: makefile.conf $(FAIRE_INITIALISATION)
 	which $(GNAT_DOC)
-	$(GNAT_DOC) -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
+	$(GNAT_DOC) -P$(GPR) $(OPT_GPR) $(OPT_DOCUMENT)
 
 ###################
 .PHONY: prove
 prove: makefile.conf $(FAIRE_INITIALISATION)
 	which $(GNATPROVE)
-	$(GNATPROVE) -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
+	$(GNATPROVE) -P$(GPR) $(OPT_GPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
 check: makefile.conf $(FAIRE_INITIALISATION)
 	which $(GNATCHECK)
-	$(GNATCHECK) -P$(GPR) $(OPTGPR) $(OPT_CHECK)
+	$(GNATCHECK) -P$(GPR) $(OPT_GPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
@@ -85,7 +88,7 @@ pretty: makefile.conf $(FAIRE_INITIALISATION)
 ###################
 .PHONY: cleandoc
 cleandoc: makefile.conf
-	$(RM) $(OPTRM) doc
+	$(RM) $(OPT_RM) doc
 
 ###################
 .PHONY: help
@@ -116,3 +119,9 @@ help: makefile.conf
 	@echo " - maj_sous_modules	: Met à jour les sous modules"
 	@echo " "
 	@echo " - version_makefile	: La version des makefiles."
+ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
+	@echo " "
+	@echo " - tests_unitaire	: Compile les tests unitaire."
+	@echo "    - compiler_tests_unitaire"
+	@echo " - run_tests_unitaire	: Execute les tests unitaires."
+endif

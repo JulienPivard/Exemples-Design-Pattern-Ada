@@ -1,17 +1,21 @@
---  Dernière modification : Mercredi 25 mai[05] 2022
+--  Dernière modification : Lundi 02 décembre[12] 2024
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
 --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/elaboration_order_handling_in_gnat.html
 project Build is
 
-   --  Les énumérations sont des types accepté.
-   type Mode_Compilation_T    is ("debug",  "dev", "release");
+   type Mode_Compilation_T    is
+      (
+         "debug",
+         "dev",
+         "release",
+         "tests_unitaire"
+      );
 
    type Niveau_Optimisation_T is ("defaut", "O0", "O1", "O2", "O3");
 
    type Verbeux_T             is ("non", "oui");
-   type Strict_T              is ("non", "oui");
    type Sorte_Avertissement_T is ("non", "oui");
    type Afficher_La_Stack_T   is ("non", "oui");
    type Afficher_Ordre_Elab_T is ("non", "oui");
@@ -23,7 +27,6 @@ project Build is
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
    Mode_Compilation  : Mode_Compilation_T := External ("mode",    "dev");
    Verbeux           : Verbeux_T          := External ("verbeux", "non");
-   Strict            : Strict_T           := External ("strict",  "non");
 
    Niveau_Optimisation        : Niveau_Optimisation_T :=
       External ("niv_opti",                 "defaut");
@@ -34,13 +37,10 @@ project Build is
    Afficher_Ordre_Elaboration : Afficher_Ordre_Elab_T :=
       External ("afficher_ordre_elaboration",  "non");
 
-   Fichier_Principal := "client.adb";
-   Nom_Executable    := "executable";
-
    --  Le langage du code source de la librairie.
    for Languages                 use ("Ada");
    --  Le nom du fichier qui contient la procédure principale.
-   for Main                      use (Fichier_Principal);
+   for Main                      use ("client.adb");
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
@@ -129,22 +129,28 @@ project Build is
          --           les noms de variables.
       );
 
-   --  gnatu : Liste toutes les unitées utilisé pour cette compilation
-   --  gnatv : Active le mode verbose
-   --  gnatR : Pour afficher informations de représentation pour les
-   --          types et objets déclarés [0|1|2|3]
-   --  0 : Rien
-   --  1 : les informations de taille et d'alignement sont listées
-   --       pour les types tableau et de record déclarés.
-   --  2 : les informations de taille et d'alignement sont listées
-   --       pour tous les types et objets déclarés.
-   --  3 : inclut des expressions symboliques pour les valeurs qui
-   --       sont calculées au moment de l'exécution pour toute une
-   --       variété de record
    case Verbeux is
       when "oui" =>
-         Options_Compiler :=
-            Options_Compiler & ("-gnatu", "-gnatv", "-gnatR3");
+         Options_Compiler := Options_Compiler &
+            (
+               "-gnatu",
+               --  gnatu : Liste toutes les unitées utilisé
+               --          pour cette compilation
+               "-gnatv",
+               --  gnatv : Active le mode verbose
+               "-gnatR3"
+               --  gnatR : Pour afficher informations de représentation
+               --          pour les types et objets déclarés [0|1|2|3]
+               --  0 : Rien
+               --  1 : les informations de taille et d'alignement sont
+               --       listées pour les types tableau et de record
+               --       déclarés.
+               --  2 : les informations de taille et d'alignement sont
+               --       listées pour tous les types et objets déclarés.
+               --  3 : inclut des expressions symboliques pour les
+               --       valeurs qui sont calculées au moment de
+               --       l'exécution pour toute une variété de record
+            );
       when "non" =>
          null;
    end case;
@@ -155,14 +161,6 @@ project Build is
    case Afficher_Ordre_Elaboration is
       when "oui" =>
          Options_Compiler := Options_Compiler & ("-gnatel");
-      when "non" =>
-         null;
-   end case;
-
-   --  gnatg : applique -gnatwae et -gnatyg pour coller au style du code GNAT
-   case Strict is
-      when "oui" =>
-         Options_Compiler := Options_Compiler & ("-gnatg");
       when "non" =>
          null;
    end case;
@@ -215,7 +213,7 @@ project Build is
 
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
-         when "debug" =>
+         when "debug" | "tests_unitaire" =>
             --  -g : Active le mode debug.
             Options_Builder := Options_Builder & ("-g");
          when "release" | "dev" =>
@@ -226,7 +224,7 @@ project Build is
       --  for Global_Configuration_Pragmas use "./gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
-      for Executable ("client.adb") use Nom_Executable;
+      for Executable ("client.adb") use "executable";
       --  for Executable_Suffix         use ".exe";
    end Builder;
    ----------------------------------------------------------------------------
@@ -252,12 +250,28 @@ project Build is
          when "release" =>
             --  -gnatn : Active les pragma Inline (optimisation)
             Options_Compiler := Options_Compiler & ("-gnatn");
+         when "tests_unitaire" =>
+            Options_Compiler := Options_Compiler &
+               (
+                  "-g",
+                  --  -g : Compile l'executable pour le debug.
+                  "-gnata",
+                  --  -gnata : active les assertions. Pragma assert,
+                  --           debug, Check, Precondition, et Postcondition
+                  "--coverage",
+                  --  --coverage : Facilité qui implique les options :
+                  --               -fprofile-arcs
+                  --               -ftest-coverage
+                  "-gnateS"
+                  --  -gnateS : Génère les fichiers SCO
+                  --            (Source Coverage Obligation)
+               );
       end case;
 
       case Niveau_Optimisation is
          when "defaut" =>
             case Mode_Compilation is
-               when "dev" | "debug" =>
+               when "dev" | "debug" | "tests_unitaire" =>
                   Options_Compiler := Options_Compiler & ("-O0");
                when "release"       =>
                   Options_Compiler := Options_Compiler & ("-O3");
@@ -338,7 +352,7 @@ project Build is
             --  -E : Active le stockage de la pile d'appel
             --       de l'exception.
             Options_Binder := Options_Binder & ("-E");
-         when "debug" =>
+         when "debug" | "tests_unitaire" =>
             --  -E : Active le stockage de la pile d'appel
             --       de l'exception.
             --  -Es : Active l'affichage lisible du tracé des
@@ -381,85 +395,14 @@ project Build is
       case Mode_Compilation is
          when "debug" =>
             for Default_Switches ("Ada") use ("-g");
+         when "tests_unitaire" =>
+            --  --coverage : Ajout implicitement l'option -fprofile-arcs
+            --               qui permet de généré les *.gcda
+            for Default_Switches ("Ada") use ("-g", "--coverage");
          when "release" | "dev" =>
             null;
       end case;
    end Linker;
-   ----------------------------------------------------------------------------
-
-   --  Configuration pour le formatage de sources
-   --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
-   ----------------------------------------------------------------------------
-   package Pretty_Printer is
-      for Default_Switches ("Ada") use
-         (
-            "--alignment",
-            --  Active l'alignement des constructions :, :=, =>, at.
-            "--name-mixed-case",
-            --  les noms doivent suivre la règle de casse mixte.
-            "--attribute-mixed-case",
-            --  Les attributs doivent suivre la règle de casse mixte.
-            "--keyword-lower-case",
-            --  Les mots clef doivent être en minuscule.
-            "--enum-mixed-case",
-            --  Les énumérations doivent suivre la règle de casse mixte.
-            --  Outrepasse l'option -n
-            "--type-mixed-case",
-            --  Les noms des type doivent suivre la règle de casse mixte.
-            --  Outrepasse l'option -n
-            "--number-mixed-case",
-            --  Les noms des nombres doivent suivre la règle de casse mixte.
-            --  Outrepasse l'option -n
-            "--pragma-mixed-case",
-            --  Les pragma doivent suivre la règle de casse mixte.
-            "--dictionary=./exception_case",
-            --  Les exceptions aux règles de casse.
-            "--comments-gnat-indentation",
-            --  Indentation des commentaires suit les règles de gnat.
-            "--comments-gnat-beginning",
-            --  Obligatoirement deux espaces avant un caractère non blanc.
-            "--no-end-id",
-            --  N'ajoute pas l'identifiant en commentaire sur la ligne du end
-            "--separate-loop-then",
-            --  loop et then sont mis sur une ligne séparé.
-            "--use-on-new-line",
-            --  Les instructions avec use commencent sur une nouvelle ligne.
-            "--insert-blank-lines",
-            --  Insère des lignes vide quand il le juge utile.
-            "--max-line-length=80",
-            --  Longueur maximum d'une ligne.
-            "--indentation=3",
-            --  Hauteur des indentations.
-            "--indent-continuation=3",
-            --  Hauteur des indentations pour les continuité de lignes.
-            "--decimal-grouping=3",
-            --  Ajoute des _ tous les x caractères 10000 => 10_000
-            "--based-grouping=4",
-            --  Ajoute des _ ce qui donne : 16#1000FFFE# => 16#1000_FFFE#
-            "--split-line-before-record",
-            --  Passe à la ligne avant la déclaration d'un record
-            "--split-line-before-op",
-            --  Coupe la ligne avant l'opérateur dans les opérations si
-            --  il y a besoin de couper.
-            "--call_threshold=1",
-            --  Si le nombre de paramètres associatif est supérieur alors
-            --  on passe une ligne pour chacun.
-            "--par_threshold=1",
-            --  Même chose mais pour les paramètres sans association.
-            "--vertical-named-aggregates",
-            --  Chaque paramètres d'un agrégat associatif est sur sa ligne.
-            "--vertical-case-alternatives",
-            --  Passe des lignes supplémentaires dans les case.
-            "--replace-force-backup",
-            --  Le fichier d'origine est sauvegardé.
-            "--eol=unix",
-            --  Fin de ligne unix.
-            "--wide-character-encoding=8",
-            --  Défini l'encodage des caractères du fichier.
-            "-N"
-            --  Pas de tabulation dans les commentaires.
-         );
-   end Pretty_Printer;
    ----------------------------------------------------------------------------
 
    --  Configuration pour GPS.
