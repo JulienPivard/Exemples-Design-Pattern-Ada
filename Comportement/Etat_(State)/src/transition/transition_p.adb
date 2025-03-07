@@ -13,35 +13,35 @@ is
       (
          Etat_P.Commande  =>
             (
-               Lettre_P.Lettre_E   => Pas_De_Changement,
-               Lettre_P.Lettre_I   => Insertion,
-               Lettre_P.Lettre_V   => Visuel,
-               Lettre_P.Lettre_R   => Remplacement,
-               Lettre_P.Lettre_Esc => Pas_De_Changement
+               Lettre_P.Lettre_E   => Pas_De_Changement_E,
+               Lettre_P.Lettre_I   => Insertion_E,
+               Lettre_P.Lettre_V   => Visuel_E,
+               Lettre_P.Lettre_R   => Remplacement_E,
+               Lettre_P.Lettre_Esc => Pas_De_Changement_E
             ),
          Etat_P.Insertion =>
             (
-               Lettre_P.Lettre_E   => Pas_De_Changement,
-               Lettre_P.Lettre_I   => Pas_De_Changement,
-               Lettre_P.Lettre_V   => Pas_De_Changement,
-               Lettre_P.Lettre_R   => Pas_De_Changement,
-               Lettre_P.Lettre_Esc => Commande
+               Lettre_P.Lettre_E   => Pas_De_Changement_E,
+               Lettre_P.Lettre_I   => Pas_De_Changement_E,
+               Lettre_P.Lettre_V   => Pas_De_Changement_E,
+               Lettre_P.Lettre_R   => Pas_De_Changement_E,
+               Lettre_P.Lettre_Esc => Commande_E
             ),
          Etat_P.Remplacement =>
             (
-               Lettre_P.Lettre_E   => Pas_De_Changement,
-               Lettre_P.Lettre_I   => Pas_De_Changement,
-               Lettre_P.Lettre_V   => Pas_De_Changement,
-               Lettre_P.Lettre_R   => Pas_De_Changement,
-               Lettre_P.Lettre_Esc => Commande
+               Lettre_P.Lettre_E   => Pas_De_Changement_E,
+               Lettre_P.Lettre_I   => Pas_De_Changement_E,
+               Lettre_P.Lettre_V   => Pas_De_Changement_E,
+               Lettre_P.Lettre_R   => Pas_De_Changement_E,
+               Lettre_P.Lettre_Esc => Commande_E
             ),
          Etat_P.Visuel =>
             (
-               Lettre_P.Lettre_E   => Pas_De_Changement,
-               Lettre_P.Lettre_I   => Pas_De_Changement,
-               Lettre_P.Lettre_V   => Pas_De_Changement,
-               Lettre_P.Lettre_R   => Pas_De_Changement,
-               Lettre_P.Lettre_Esc => Commande
+               Lettre_P.Lettre_E   => Pas_De_Changement_E,
+               Lettre_P.Lettre_I   => Pas_De_Changement_E,
+               Lettre_P.Lettre_V   => Pas_De_Changement_E,
+               Lettre_P.Lettre_R   => Pas_De_Changement_E,
+               Lettre_P.Lettre_Esc => Commande_E
             )
       );
 
@@ -79,25 +79,26 @@ is
          Prochain_Etat (Etat.Lire_ID, Touche);
    begin
       case Suivant is
-         when Commande | Insertion | Remplacement | Visuel =>
+         when Commande_E | Insertion_E | Remplacement_E | Visuel_E =>
             Ada.Text_IO.Put      (Item => "----------- ");
             Etat_IO.Put          (Item => Etat.Lire_ID, Width => 15);
             Ada.Text_IO.Put      (Item => " => ");
             Prochain_Etat_IO.Put (Item => Suivant,      Width => 15);
             Ada.Text_IO.Put      (Item => " -----------");
             Ada.Text_IO.New_Line (Spacing => 1);
-         when Pas_De_Changement =>
+
+         when Pas_De_Changement_E =>
             null;
       end case;
 
       return
          (
             case Suivant is
-               when Pas_De_Changement => Etat,
-               when Commande          => Etat_P.Commande_P.Creer,
-               when Insertion         => Etat_P.Insertion_P.Creer,
-               when Remplacement      => Etat_P.Remplacement_P.Creer,
-               when Visuel            => Etat_P.Visuel_P.Creer
+               when Pas_De_Changement_E => Etat,
+               when Commande_E          => Etat_P.Commande_P.Creer,
+               when Insertion_E         => Etat_P.Insertion_P.Creer,
+               when Remplacement_E      => Etat_P.Remplacement_P.Creer,
+               when Visuel_E            => Etat_P.Visuel_P.Creer
          );
    end Changer_D_Etat;
    ---------------------------------------------------------------------------

@@ -20,10 +20,16 @@ is
 
    function Creer
       return Transition_T;
+   --  Crée un gestionnaire de transitions.
+   --  @return Le gestionnaire de transitions.
 
    function Etat_Initial
       (This : in out Transition_T)
       return Etat_P.Etat_T'Class;
+   --  Génère l'état initial.
+   --  @param This
+   --  L'objet qui gère les transitions.
+   --  @return L'état initial avant toute transition.
 
    function Changer_D_Etat
       (
@@ -40,20 +46,21 @@ is
    --  L'état actuel.
    --  @param Touche
    --  La touche pressée.
+   --  @return Le nouvel état.
 
 private
 
    type Prochain_Etat_T is
       (
-         Pas_De_Changement,
+         Pas_De_Changement_E,
          --  Pas de changement de l'état en cours.
-         Commande,
+         Commande_E,
          --  On passe d'un état vers l'état commande.
-         Insertion,
+         Insertion_E,
          --  On passe d'un état vers l'état insertion.
-         Remplacement,
+         Remplacement_E,
          --  On passe d'un état vers l'état remplacement.
-         Visuel
+         Visuel_E
          --  On passe d'un état vers l'état visuel.
       );
    --  Indique quel sera le prochain état à la fin de l'exécution.
