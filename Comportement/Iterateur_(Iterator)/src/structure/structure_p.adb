@@ -3,7 +3,7 @@ package body Structure_P
 is
 
    ---------------------------------------------------------------------------
-   function Lire_Element
+   function Lire
       (
          This     : in     Structure_T;
          Position : in     Indice_T
@@ -12,7 +12,7 @@ is
    is
    begin
       return This.Elements (Position);
-   end Lire_Element;
+   end Lire;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

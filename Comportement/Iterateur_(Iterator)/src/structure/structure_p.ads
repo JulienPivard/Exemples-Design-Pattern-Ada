@@ -28,7 +28,7 @@ is
    --  La structure itérative. On utilise les facilité du langage
    --  pour mettre en place le pattern itérateur.
 
-   function Lire_Element
+   function Lire
       (
          This     : in     Structure_T;
          Position : in     Indice_T

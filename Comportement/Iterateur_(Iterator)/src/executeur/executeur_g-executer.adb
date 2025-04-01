@@ -28,20 +28,20 @@ is
       Ada.Text_IO.Put_Line (Item => "Affichage pour vérifier.");
       Ada.Text_IO.Put      (Item => "Valeurs : ");
 
-      Boucle_Verification :
+      Boucle_Afficher_Contenu :
       for I in Structure_P.Indice_T loop
          Valeur := Structure.Lire_Element (Position => I);
          Ada.Text_IO.Put (Item => Data_P.Element_T'Image (Valeur));
-      end loop Boucle_Verification;
+      end loop Boucle_Afficher_Contenu;
 
       Ada.Text_IO.New_Line (Spacing => 1);
       Ada.Text_IO.Put      (Item    => "   ID   : ");
 
-      Boucle_ID :
+      Boucle_Afficher_ID :
       for I in Structure_P.Indice_T loop
          Valeur := Structure.Lire_Element (Position => I);
          Ada.Text_IO.Put (Item => " " & Structure_P.Indice_T'Image (I));
-      end loop Boucle_ID;
+      end loop Boucle_Afficher_ID;
 
       Ada.Text_IO.New_Line (Spacing => 3);
    end Initialiser;
