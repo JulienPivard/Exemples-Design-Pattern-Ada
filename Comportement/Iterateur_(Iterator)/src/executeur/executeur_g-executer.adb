@@ -93,5 +93,11 @@ begin
    Initialiser (Structure => E);
    Iterer      (Structure => E);
 
+   E (2) := 777;
+   --  On peux utiliser l'assignation simplifié
+   --  au lieu de E.Modifier (Position => 2, Valeur => 777);
+
+   Iterer (Structure => E);
+
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;
