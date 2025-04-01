@@ -131,6 +131,19 @@ is
    --  La position de l'objet à récupérer.
    --  @return Un pointeur protégé sur la variable.
 
+   function Lire_Ecrire
+      (
+         This     : in out Structure_T;
+         Position : in     Indice_T
+      )
+      return Modifieur_T;
+   --  Accesseur sur une variable au travers d'un pointeur protégé.
+   --  @param This
+   --  Notre objet contenant les instances.
+   --  @param Position
+   --  La position de l'objet à récupérer.
+   --  @return Un pointeur protégé sur la variable.
+
 private
 
    type Table_Elements_T is array (Indice_T) of aliased Data_P.Element_T;

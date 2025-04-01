@@ -30,7 +30,9 @@ is
 
       Boucle_Afficher_Contenu :
       for I in Structure_P.Indice_T loop
-         Valeur := Structure.Lire_Element (Position => I);
+         Valeur := Structure (I);
+         --  On peut utiliser la version simplifié de la lecture de valeur
+         --  au lieu de : Structure.Lire_Element (Position => I);
          Ada.Text_IO.Put (Item => Data_P.Element_T'Image (Valeur));
       end loop Boucle_Afficher_Contenu;
 
@@ -39,7 +41,7 @@ is
 
       Boucle_Afficher_ID :
       for I in Structure_P.Indice_T loop
-         Valeur := Structure.Lire_Element (Position => I);
+         Valeur := Structure (I);
          Ada.Text_IO.Put (Item => " " & Structure_P.Indice_T'Image (I));
       end loop Boucle_Afficher_ID;
 
