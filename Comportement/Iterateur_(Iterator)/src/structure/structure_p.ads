@@ -35,6 +35,8 @@ is
       )
       return Data_P.Element_T;
    --  Lit l'élément dans la structure.
+   --  Cette version permet d'écrire Val := S (X);
+   --  au lieu de : Val := S.Lire_Element (Position => X);
    --  @param This
    --  Le container de valeurs.
    --  @param Position
@@ -138,6 +140,8 @@ is
       )
       return Modifieur_T;
    --  Accesseur sur une variable au travers d'un pointeur protégé.
+   --  Cette version permet d'écrire S (X) := Val;
+   --  au lieu de S.Modifier (Position => X, Valeur => Val);
    --  @param This
    --  Notre objet contenant les instances.
    --  @param Position
