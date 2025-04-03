@@ -53,6 +53,16 @@ is
          Touche : in     Lettre_P.ID_Touche_T
       )
    is
+      Il_Faut_Changer_D_Etat : constant Boolean :=
+         This.Transition.Il_Faut_Changer_D_Etat
+            (
+               Etat   => This.Etat.Element,
+               Touche => Touche
+            );
+   begin
+      if Il_Faut_Changer_D_Etat then
+         Bloc_Changer_D_Etat :
+         declare
       Etat : constant Etat_P.Etat_T'Class := This.Transition.Changer_D_Etat
          (
             Etat   => This.Etat.Element,
@@ -60,6 +70,8 @@ is
          );
    begin
       This.Etat.Replace_Element (New_Item => Etat);
+         end Bloc_Changer_D_Etat;
+      end if;
    end Changer_D_Etat;
    ---------------------------------------------------------------------------
 
