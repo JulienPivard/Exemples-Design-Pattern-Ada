@@ -104,6 +104,24 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Il_Faut_Changer_D_Etat
+      (
+         This   : in out Transition_T;
+         Etat   : in     Etat_P.Etat_T'Class;
+         Touche : in     Lettre_P.ID_Touche_T
+      )
+      return Boolean
+   is
+      pragma Unreferenced (This);
+
+      Suivant : constant Prochain_Etat_T :=
+         Prochain_Etat (Etat.Lire_ID, Touche);
+   begin
+      return Suivant /= Pas_De_Changement_E;
+   end Il_Faut_Changer_D_Etat;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
    ---------------------------------------------------------------------------
 

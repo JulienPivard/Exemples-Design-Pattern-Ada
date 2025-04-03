@@ -48,6 +48,23 @@ is
    --  La touche pressée.
    --  @return Le nouvel état.
 
+   function Il_Faut_Changer_D_Etat
+      (
+         This   : in out Transition_T;
+         Etat   : in     Etat_P.Etat_T'Class;
+         Touche : in     Lettre_P.ID_Touche_T
+      )
+      return Boolean;
+   --  Tests si l'état va changer en fonction de
+   --  la touche pressée et de l'état en cours.
+   --  @param This
+   --  L'objet qui gère les transitions.
+   --  @param Etat
+   --  L'état actuel.
+   --  @param Touche
+   --  La touche pressée.
+   --  @return Il faut changer d'état.
+
 private
 
    type Prochain_Etat_T is
