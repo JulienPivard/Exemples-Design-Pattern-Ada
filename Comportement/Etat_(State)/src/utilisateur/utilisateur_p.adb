@@ -63,13 +63,13 @@ is
       if Il_Faut_Changer_D_Etat then
          Bloc_Changer_D_Etat :
          declare
-      Etat : constant Etat_P.Etat_T'Class := This.Transition.Changer_D_Etat
-         (
-            Etat   => This.Etat.Element,
-            Touche => Touche
-         );
-   begin
-      This.Etat.Replace_Element (New_Item => Etat);
+            Etat : constant Etat_P.Etat_T'Class := This.Transition.Changer_D_Etat
+                  (
+                     Etat   => This.Etat.Element,
+                     Touche => Touche
+                  );
+         begin
+            This.Etat.Replace_Element (New_Item => Etat);
          end Bloc_Changer_D_Etat;
       end if;
    end Changer_D_Etat;
