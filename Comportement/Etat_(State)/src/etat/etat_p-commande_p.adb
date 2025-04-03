@@ -1,8 +1,12 @@
 with Ada.Text_IO;
 
+with GNAT.Source_Info;
+
 package body Etat_P.Commande_P
    with Spark_Mode => Off
 is
+
+   Nom : constant String := "  Commande  ";
 
    ---------------------------------------------------------------------------
    overriding
@@ -11,7 +15,8 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Commande  : <E>");
+      Ada.Text_IO.Put      (Item => Nom & " :  <E>  ");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
    end Presse_E;
    ---------------------------------------------------------------------------
 
@@ -22,7 +27,8 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Commande  : <I>");
+      Ada.Text_IO.Put      (Item => Nom & " :  <I>  ");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
    end Presse_I;
    ---------------------------------------------------------------------------
 
@@ -33,7 +39,8 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Commande  : <V>");
+      Ada.Text_IO.Put      (Item => Nom & " :  <V>  ");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
    end Presse_V;
    ---------------------------------------------------------------------------
 
@@ -44,7 +51,8 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Commande  : <R>");
+      Ada.Text_IO.Put      (Item => Nom & " :  <R>  ");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
    end Presse_R;
    ---------------------------------------------------------------------------
 
@@ -55,7 +63,8 @@ is
    is
       pragma Unreferenced (This);
    begin
-      Ada.Text_IO.Put_Line (Item => "Commande  : <ESC>");
+      Ada.Text_IO.Put      (Item => Nom & " : <ESC> ");
+      Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
    end Presse_Esc;
    ---------------------------------------------------------------------------
 

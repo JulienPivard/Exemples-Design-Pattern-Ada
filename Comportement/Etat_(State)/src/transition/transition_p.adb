@@ -1,5 +1,7 @@
 with Ada.Text_IO;
 
+with GNAT.Source_Info;
+
 with Etat_P.Commande_P;
 with Etat_P.Insertion_P;
 with Etat_P.Remplacement_P;
@@ -84,7 +86,8 @@ is
             Etat_IO.Put          (Item => Etat.Lire_ID, Width => 15);
             Ada.Text_IO.Put      (Item => " => ");
             Prochain_Etat_IO.Put (Item => Suivant,      Width => 15);
-            Ada.Text_IO.Put      (Item => " -----------");
+            Ada.Text_IO.Put      (Item => " ----------- ");
+            Ada.Text_IO.Put      (Item => GNAT.Source_Info.Source_Location);
             Ada.Text_IO.New_Line (Spacing => 1);
 
          when Pas_De_Changement_E =>
