@@ -24,7 +24,7 @@ is
    --  @return Le gestionnaire de transitions.
 
    function Etat_Initial
-      (This : in out Transition_T)
+      (This : in     Transition_T)
       return Etat_P.Etat_T'Class;
    --  Génère l'état initial.
    --  @param This
@@ -33,7 +33,7 @@ is
 
    function Changer_D_Etat
       (
-         This   : in out Transition_T;
+         This   : in     Transition_T;
          Etat   : in     Etat_P.Etat_T'Class;
          Touche : in     Lettre_P.ID_Touche_T
       )
@@ -50,7 +50,7 @@ is
 
    function Il_Faut_Changer_D_Etat
       (
-         This   : in out Transition_T;
+         This   : in     Transition_T;
          Etat   : in     Etat_P.Etat_T'Class;
          Touche : in     Lettre_P.ID_Touche_T
       )

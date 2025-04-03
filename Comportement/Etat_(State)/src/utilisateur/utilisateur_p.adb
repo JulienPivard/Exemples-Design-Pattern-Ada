@@ -6,8 +6,9 @@ is
    function Creer
       return Utilisateur_T
    is
-      Transition : Transition_P.Transition_T := Transition_P.Creer;
-      Etat       : Etat_P.Etat_T'Class       := Transition.Etat_Initial;
+      Transition : constant Transition_P.Transition_T := Transition_P.Creer;
+
+      Etat : Etat_P.Etat_T'Class := Transition.Etat_Initial;
    begin
       return Utilisateur_T'
          (
