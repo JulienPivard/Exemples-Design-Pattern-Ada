@@ -17,7 +17,9 @@ package Structure_P
       Spark_Mode     => Off
 is
 
-   type Indice_T is range 1 .. 10;
+   type NB_Elements_T is range 0 .. 10;
+
+   subtype Indice_T is NB_Elements_T range 1 .. NB_Elements_T'Last;
 
    type Structure_T is tagged private
       with
@@ -171,19 +173,24 @@ private
       (Donnee : not null access          Data_P.Element_T)
    is limited null record;
 
-   type Curseur_T is
+   type Curseur_T (Pointe_Un_Element : Boolean := False) is
       record
-         Position    : Indice_T'Base := Indice_T'First;
-         --  La position dans les itérations.
-         --  On utilise le type de base de Indice_T
-         --  pour éviter les dépassements.
-         Est_Termine : Boolean       := False;
-         --  Le parcours est terminé.
+         case Pointe_Un_Element is
+            when True =>
+               Position : Indice_T'Base := Indice_T'First;
+               --  La position dans les itérations.
+               --  On utilise le type de base de Indice_T
+               --  pour éviter les dépassements.
+            when False =>
+               null;
+         end case;
       end record;
 
    type Iterateur_T is new Iterateur_Interface_P.Reversible_Iterator with
       record
-         null;
+         Debut       : Indice_T      := 1;
+         Fin         : NB_Elements_T := 0;
+         NB_Elements : NB_Elements_T := 0;
       end record;
    --  Notre itérateur dans les deux sens.
 
@@ -232,67 +239,5 @@ private
    --  @param Curseur
    --  Le curseur.
    --  @return Notre curseur un pas en arrière.
-
-   --------------
-   overriding
-   function First
-      (It : in     Iterateur_T)
-      return Curseur_T
-   is
-      (
-         Curseur_T'
-            (
-               Position    => Indice_T'First,
-               Est_Termine => False
-            )
-      );
-
-   -------------
-   overriding
-   function Next
-      (
-         It       : in     Iterateur_T;
-         Curseur  : in     Curseur_T
-      )
-      return Curseur_T
-   is
-      (
-         Curseur_T'
-            (
-               Position    => Curseur.Position + 1,
-               Est_Termine => Curseur.Position >= Indice_T'Last
-            )
-      );
-
-   -------------
-   overriding
-   function Last
-      (It : in     Iterateur_T)
-      return Curseur_T
-   is
-      (
-         Curseur_T'
-            (
-               Position    => Indice_T'Last,
-               Est_Termine => False
-            )
-      );
-
-   -----------------
-   overriding
-   function Previous
-      (
-         It       : in     Iterateur_T;
-         Curseur  : in     Curseur_T
-      )
-      return Curseur_T
-   is
-      (
-         Curseur_T'
-            (
-               Position    => Curseur.Position - 1,
-               Est_Termine => Curseur.Position <= Indice_T'First
-            )
-      );
 
 end Structure_P;
