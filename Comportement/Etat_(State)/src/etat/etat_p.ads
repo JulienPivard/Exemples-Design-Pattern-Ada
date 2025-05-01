@@ -26,7 +26,7 @@ is
 
    type Etat_T is interface;
    --  Un état d'interprétation des touches du clavier.
-   --  Chaque enfant de cette classe pourra interprété
+   --  Chaque enfant de cette classe pourra interpréter
    --  l'appuie sur les touches à sa façon.
 
    procedure Presse_E
