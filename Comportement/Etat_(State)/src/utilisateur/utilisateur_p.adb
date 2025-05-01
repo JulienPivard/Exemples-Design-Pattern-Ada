@@ -8,7 +8,7 @@ is
    is
       Transition : constant Transition_P.Transition_T := Transition_P.Creer;
 
-      Etat : Etat_P.Etat_T'Class := Transition.Etat_Initial;
+      Etat : constant Etat_P.Etat_T'Class := Transition.Etat_Initial;
    begin
       return Utilisateur_T'
          (
