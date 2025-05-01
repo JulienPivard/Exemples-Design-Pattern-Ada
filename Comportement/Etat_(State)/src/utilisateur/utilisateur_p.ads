@@ -37,10 +37,11 @@ private
          Touche : in     Lettre_P.ID_Touche_T
       );
 
-   use type Etat_P.Etat_T;
-
    package Etat_Holder_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Etat_P.Etat_T'Class);
+      (
+         Element_Type => Etat_P.Etat_T'Class,
+         "="          => Etat_P."="
+      );
 
    subtype Etat_T is Etat_Holder_P.Holder;
 
