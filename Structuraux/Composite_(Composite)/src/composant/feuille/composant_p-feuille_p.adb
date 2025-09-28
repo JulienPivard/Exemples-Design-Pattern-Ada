@@ -84,8 +84,15 @@ is
       (This : in     Feuille_T)
       return String
    is
+      Valeur : constant String := This.Valeur'Image;
    begin
-      return This.Valeur'Image;
+      return
+         (
+            if Valeur'Length > 0 then
+               Valeur (Valeur'First + 1 .. Valeur'Last)
+            else
+               Valeur
+         );
    end Image;
    ---------------------------------------------------------------------------
 
