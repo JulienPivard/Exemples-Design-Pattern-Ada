@@ -30,8 +30,8 @@ is
    overriding
    procedure Supprimer
       (
-         This   : in out Composite_T;
-         Valeur : in     Valeur_P.Valeur_T
+         This     : in out Composite_T;
+         Position : in     ID_T
       );
 
    overriding

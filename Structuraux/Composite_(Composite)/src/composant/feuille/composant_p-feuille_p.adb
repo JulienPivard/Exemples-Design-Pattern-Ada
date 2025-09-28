@@ -44,12 +44,12 @@ is
    overriding
    procedure Supprimer
       (
-         This   : in out Feuille_T;
-         Valeur : in     Valeur_P.Valeur_T
+         This     : in out Feuille_T;
+         Position : in     ID_T
       )
    is
    begin
-      raise E_Suppression_Impossible with "Impossible de supprimer";
+      null;
    end Supprimer;
    ---------------------------------------------------------------------------
 

@@ -43,17 +43,25 @@ is
    overriding
    procedure Supprimer
       (
-         This   : in out Composite_T;
-         Valeur : in     Valeur_P.Valeur_T
+         This     : in out Composite_T;
+         Position : in     ID_T
       )
    is
    begin
-      if not This.Enfant_1.Is_Empty then
-         This.Enfant_1.Reference.Supprimer (Valeur => Valeur);
-      end if;
-      if not This.Enfant_2.Is_Empty then
-         This.Enfant_2.Reference.Supprimer (Valeur => Valeur);
-      end if;
+      case Position is
+         when 1 =>
+            if not This.Enfant_1.Is_Empty then
+               This.Enfant_1.Reference.Supprimer (Position => 1);
+               This.Enfant_1.Reference.Supprimer (Position => 2);
+               This.Enfant_1.Clear;
+            end if;
+         when 2 =>
+            if not This.Enfant_2.Is_Empty then
+               This.Enfant_2.Reference.Supprimer (Position => 1);
+               This.Enfant_2.Reference.Supprimer (Position => 2);
+               This.Enfant_2.Clear;
+            end if;
+      end case;
    end Supprimer;
    ---------------------------------------------------------------------------
 

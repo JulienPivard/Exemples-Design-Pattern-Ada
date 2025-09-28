@@ -1,5 +1,3 @@
-with Valeur_P;
-
 --  @summary
 --  Démonstration du pattern Composite.
 --  @description
@@ -32,8 +30,8 @@ is
 
    procedure Supprimer
       (
-         This   : in out Composant_T;
-         Valeur : in     Valeur_P.Valeur_T
+         This     : in out Composant_T;
+         Position : in     ID_T
       )
    is abstract;
 
