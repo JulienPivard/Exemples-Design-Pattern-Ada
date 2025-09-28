@@ -34,12 +34,12 @@ is
       )
    is abstract;
 
-   type Id_T is range 1 .. 2;
+   type ID_T is range 1 .. 2;
 
    function Lire_Enfant
       (
          This     : in     Composant_T;
-         Position : in     Id_T
+         Position : in     ID_T
       )
       return Composant_T'Class
    is abstract;

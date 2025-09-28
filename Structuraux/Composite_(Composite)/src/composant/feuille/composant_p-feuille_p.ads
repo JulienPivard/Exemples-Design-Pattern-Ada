@@ -42,7 +42,7 @@ is
    function Lire_Enfant
       (
          This     : in     Feuille_T;
-         Position : in     Id_T
+         Position : in     ID_T
       )
       return Composant_T'Class;
 
