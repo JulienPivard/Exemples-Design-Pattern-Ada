@@ -1,3 +1,5 @@
+with Valeur_P;
+
 --  @summary
 --  Démonstration du pattern Composite.
 --  @description
@@ -14,8 +16,9 @@ is
 
    type Composant_T is interface;
 
-   procedure Faire
+   function Faire
       (This : in     Composant_T)
+      return Valeur_P.Valeur_T
    is abstract;
 
    type ID_T is range 1 .. 2;
@@ -48,6 +51,11 @@ is
    function Lire_Nb_Enfants
       (This : in     Composant_T)
       return Nb_Enfants_T
+   is abstract;
+
+   function Image
+      (This : in     Composant_T)
+      return String
    is abstract;
 
 end Composant_P;

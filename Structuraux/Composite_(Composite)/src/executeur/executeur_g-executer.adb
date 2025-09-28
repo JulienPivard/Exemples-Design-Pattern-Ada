@@ -8,6 +8,8 @@ procedure Executer
 is
    use type Valeur_P.Valeur_T;
 
+   Resultat : Valeur_P.Valeur_T;
+
    C : Composant_P.Composite_P.Composite_T;
 begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
@@ -35,7 +37,9 @@ begin
          );
    end Bloc_Premier_Ajout;
 
-   C.Faire;
+   Resultat := C.Faire;
+   Ada.Text_IO.Put_Line (Item => C.Image);
+   Ada.Text_IO.Put_Line (Item => "Résultat = " & Resultat'Image);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Bloc_Second_Ajout :
@@ -72,7 +76,9 @@ begin
       C := C_3;
    end Bloc_Second_Ajout;
 
-   C.Faire;
+   Resultat := C.Faire;
+   Ada.Text_IO.Put_Line (Item => C.Image);
+   Ada.Text_IO.Put_Line (Item => "Résultat = " & Resultat'Image);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Bloc_Troisieme_Ajout :
@@ -109,7 +115,9 @@ begin
       C := C_3;
    end Bloc_Troisieme_Ajout;
 
-   C.Faire;
+   Resultat := C.Faire;
+   Ada.Text_IO.Put_Line (Item => C.Image);
+   Ada.Text_IO.Put_Line (Item => "Résultat = " & Resultat'Image);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Bloc_Quatrieme_Ajout :
@@ -146,7 +154,9 @@ begin
       C := C_3;
    end Bloc_Quatrieme_Ajout;
 
-   C.Faire;
+   Resultat := C.Faire;
+   Ada.Text_IO.Put_Line (Item => C.Image);
+   Ada.Text_IO.Put_Line (Item => "Résultat = " & Resultat'Image);
 
    Ada.Text_IO.New_Line (Spacing => 2);
 end Executer;

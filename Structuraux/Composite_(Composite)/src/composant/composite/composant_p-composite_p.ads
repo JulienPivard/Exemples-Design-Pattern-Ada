@@ -16,8 +16,9 @@ is
    type Composite_T is new Composant_T with private;
 
    overriding
-   procedure Faire
-      (This : in     Composite_T);
+   function Faire
+      (This : in     Composite_T)
+      return Valeur_P.Valeur_T;
 
    overriding
    procedure Ajouter
@@ -47,6 +48,11 @@ is
       (This : in     Composite_T)
       return Nb_Enfants_T;
 
+   overriding
+   function Image
+      (This : in     Composite_T)
+      return String;
+
 private
 
    type Composite_T is new Composant_T with
@@ -54,5 +60,13 @@ private
          Enfant_1 : Holder_P.Holder := Holder_P.Empty_Holder;
          Enfant_2 : Holder_P.Holder := Holder_P.Empty_Holder;
       end record;
+
+   function Lire_Gauche
+      (This : in     Composite_T)
+      return String;
+
+   function Lire_Droite
+      (This : in     Composite_T)
+      return String;
 
 end Composant_P.Composite_P;

@@ -1,5 +1,3 @@
-with Ada.Text_IO;
-
 package body Composant_P.Feuille_P
    with Spark_Mode => Off
 is
@@ -17,12 +15,12 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Faire
+   function Faire
       (This : in     Feuille_T)
+      return Valeur_P.Valeur_T
    is
    begin
-      Ada.Text_IO.Put_Line
-         (Item => "Enfant " & Valeur_P.Valeur_T'Image (This.Valeur));
+      return This.Valeur;
    end Faire;
    ---------------------------------------------------------------------------
 
@@ -78,6 +76,17 @@ is
    begin
       return 0;
    end Lire_Nb_Enfants;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
+   function Image
+      (This : in     Feuille_T)
+      return String
+   is
+   begin
+      return This.Valeur'Image;
+   end Image;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

@@ -13,4 +13,6 @@ is
 
    type Valeur_T is range -100 .. 100;
 
+   Neutre : constant Valeur_T := 0;
+
 end Valeur_P;

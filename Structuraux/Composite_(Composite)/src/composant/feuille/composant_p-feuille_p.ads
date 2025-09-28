@@ -5,9 +5,9 @@
 --  @group Composite
 package Composant_P.Feuille_P
    with
-      Pure           => False,
+      Pure           => True,
       Preelaborate   => False,
-      Elaborate_Body => True,
+      Elaborate_Body => False,
       Spark_Mode     => Off
 is
 
@@ -21,8 +21,9 @@ is
       return Feuille_T;
 
    overriding
-   procedure Faire
-      (This : in     Feuille_T);
+   function Faire
+      (This : in     Feuille_T)
+      return Valeur_P.Valeur_T;
 
    overriding
    procedure Ajouter
@@ -51,6 +52,11 @@ is
    function Lire_Nb_Enfants
       (This : in     Feuille_T)
       return Nb_Enfants_T;
+
+   overriding
+   function Image
+      (This : in     Feuille_T)
+      return String;
 
 private
 

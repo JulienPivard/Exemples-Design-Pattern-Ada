@@ -1,22 +1,26 @@
-with Ada.Text_IO;
-
 package body Composant_P.Composite_P
    with Spark_Mode => Off
 is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Faire
+   function Faire
       (This : in     Composite_T)
+      return Valeur_P.Valeur_T
    is
+      use type Valeur_P.Valeur_T;
+
+      Resultat_Gauche : Valeur_P.Valeur_T := Valeur_P.Neutre;
+      Resultat_Droite : Valeur_P.Valeur_T := Valeur_P.Neutre;
    begin
-      Ada.Text_IO.Put_Line (Item => "+");
       if not This.Enfant_1.Is_Empty then
-         This.Enfant_1.Element.Faire;
+         Resultat_Gauche := This.Enfant_1.Element.Faire;
       end if;
       if not This.Enfant_2.Is_Empty then
-         This.Enfant_2.Element.Faire;
+         Resultat_Droite := This.Enfant_2.Element.Faire;
       end if;
+
+      return Resultat_Gauche + Resultat_Droite;
    end Faire;
    ---------------------------------------------------------------------------
 
@@ -106,7 +110,46 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   overriding
+   function Image
+      (This : in     Composite_T)
+      return String
+   is
+   begin
+      return "(" & This.Lire_Gauche & " + " & This.Lire_Droite & ")";
+   end Image;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Lire_Gauche
+      (This : in     Composite_T)
+      return String
+   is
+   begin
+      if This.Enfant_1.Is_Empty then
+         return "";
+      else
+         return This.Enfant_1.Element.Image;
+      end if;
+   end Lire_Gauche;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Lire_Droite
+      (This : in     Composite_T)
+      return String
+   is
+   begin
+      if This.Enfant_2.Is_Empty then
+         return "";
+      else
+         return This.Enfant_2.Element.Image;
+      end if;
+   end Lire_Droite;
    ---------------------------------------------------------------------------
 
 end Composant_P.Composite_P;
