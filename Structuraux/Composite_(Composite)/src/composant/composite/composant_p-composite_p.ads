@@ -1,4 +1,4 @@
-private with Ada.Containers.Indefinite_Holders;
+private with Composant_P.Holder_P;
 
 --  @summary
 --  Démonstration du pattern Composite.
@@ -49,13 +49,10 @@ is
 
 private
 
-   package Enfant_P is new Ada.Containers.Indefinite_Holders
-      (Element_Type => Composant_T'Class);
-
    type Composite_T is new Composant_T with
       record
-         Enfant_1 : Enfant_P.Holder := Enfant_P.Empty_Holder;
-         Enfant_2 : Enfant_P.Holder := Enfant_P.Empty_Holder;
+         Enfant_1 : Holder_P.Holder := Holder_P.Empty_Holder;
+         Enfant_2 : Holder_P.Holder := Holder_P.Empty_Holder;
       end record;
 
 end Composant_P.Composite_P;

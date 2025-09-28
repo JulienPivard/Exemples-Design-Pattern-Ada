@@ -32,9 +32,9 @@ is
    begin
       case Position is
          when 1 =>
-            This.Enfant_1 := Enfant_P.To_Holder (New_Item => Compoant);
+            This.Enfant_1 := Holder_P.To_Holder (New_Item => Compoant);
          when 2 =>
-            This.Enfant_2 := Enfant_P.To_Holder (New_Item => Compoant);
+            This.Enfant_2 := Holder_P.To_Holder (New_Item => Compoant);
       end case;
    end Ajouter;
    ---------------------------------------------------------------------------
