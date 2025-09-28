@@ -20,13 +20,6 @@ is
       (This : in     Composant_T)
    is abstract;
 
-   procedure Ajouter
-      (
-         This   : in out Composant_T;
-         Valeur : in     Valeur_P.Valeur_T
-      )
-   is abstract;
-
    type ID_T is range 1 .. 2;
 
    procedure Ajouter

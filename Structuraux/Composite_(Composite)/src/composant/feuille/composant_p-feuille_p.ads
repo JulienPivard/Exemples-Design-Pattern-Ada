@@ -27,13 +27,6 @@ is
    overriding
    procedure Ajouter
       (
-         This   : in out Feuille_T;
-         Valeur : in     Valeur_P.Valeur_T
-      );
-
-   overriding
-   procedure Ajouter
-      (
          This     : in out Feuille_T;
          Compoant : in     Composant_T'Class;
          Position : in     ID_T

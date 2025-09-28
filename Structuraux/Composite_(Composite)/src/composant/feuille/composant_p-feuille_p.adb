@@ -30,19 +30,6 @@ is
    overriding
    procedure Ajouter
       (
-         This   : in out Feuille_T;
-         Valeur : in     Valeur_P.Valeur_T
-      )
-   is
-   begin
-      raise E_Ajout_Impossible with "Impossible d'ajouter à une feuille";
-   end Ajouter;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   overriding
-   procedure Ajouter
-      (
          This     : in out Feuille_T;
          Compoant : in     Composant_T'Class;
          Position : in     ID_T
