@@ -32,6 +32,14 @@ is
       );
 
    overriding
+   procedure Ajouter
+      (
+         This     : in out Feuille_T;
+         Compoant : in     Composant_T'Class;
+         Position : in     ID_T
+      );
+
+   overriding
    procedure Supprimer
       (
          This   : in out Feuille_T;

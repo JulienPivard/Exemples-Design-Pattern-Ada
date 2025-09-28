@@ -29,6 +29,14 @@ is
 
    type ID_T is range 1 .. 2;
 
+   procedure Ajouter
+      (
+         This     : in out Composant_T;
+         Compoant : in     Composant_T'Class;
+         Position : in     ID_T
+      )
+   is abstract;
+
    procedure Supprimer
       (
          This   : in out Composant_T;

@@ -89,6 +89,25 @@ is
 
    ---------------------------------------------------------------------------
    overriding
+   procedure Ajouter
+      (
+         This     : in out Composite_T;
+         Compoant : in     Composant_T'Class;
+         Position : in     ID_T
+      )
+   is
+   begin
+      case Position is
+         when 1 =>
+            This.Enfant_1 := Enfant_P.To_Holder (New_Item => Compoant);
+         when 2 =>
+            This.Enfant_2 := Enfant_P.To_Holder (New_Item => Compoant);
+      end case;
+   end Ajouter;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   overriding
    procedure Supprimer
       (
          This   : in out Composite_T;
