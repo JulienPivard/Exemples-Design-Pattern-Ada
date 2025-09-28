@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 13 juin[06] 2022
+# Dernière modification : Jeudi 25 septembre[09] 2025
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -18,14 +18,22 @@ else
     include ./makefile.conf
 endif
 include ./$(DOSSIER_MAKE)/makefile.checks
-include ./dossier_makefiles/makefile.template
+include ./$(DOSSIER_MAKE)/makefile.template
 
-# Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
-# en dépendance.
+# Vérifie si le binaire existe. Sinon il ajoute
+# la cible de compilation en dépendance.
 ifeq ($(wildcard $(RESLT_COMPIL)), )
     DEPEND	= compiler
 else
     DEPEND	=
+endif
+
+# Vérifie si le binaire existe. Sinon il ajoute
+# la cible de compilation en dépendance.
+ifeq ($(wildcard $(RESLT_COMPIL_PROD)), )
+    DEPEND_PROD	= prod
+else
+    DEPEND_PROD	=
 endif
 
 ###################
@@ -33,69 +41,85 @@ $(DOSSIER_MAKE)/makefile.conf.tmpl:
 
 ###################
 makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
-	cp ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
-	chmod u+w ./makefile.conf
+	$(COPIE) ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
+	$(CHANGE_DROITS) u+w ./makefile.conf
 	@echo " "
 
 ###################
 .PHONY: run
 run: $(DEPEND)
-	$(RESLT_COMPIL) $(ARGUMENTSAPPLI)
+	$(RESLT_COMPIL) $(ARGUMENTS_APPLI)
+
+###################
+.PHONY: run_prod
+run_prod: $(DEPEND_PROD)
+	$(RESLT_COMPIL_PROD) $(ARGUMENTS_APPLI)
 
 ###################
 .PHONY: compiler
-compiler: makefile.conf build
+compiler: makefile.conf avant_build build
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ]"
+	@echo " ─────────────────────────────────────────────────────────────────"
 	@echo " ───────────────────────────────"
-	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
+	@echo " [OK] Compilation du programme : [ $(NOM_APP) ] terminé"
 	@echo "  "
 
 ###################
 .PHONY: prod
-prod: makefile.conf $(FAIRE_INITIALISATION)
-	which $(COMPILATEUR)
-	$(CC) -P$(GPR) $(OPT_GPR_PROD)
+prod: makefile.conf avant_build build_prod
 	@echo " ─────────────────────────────────────────────────────────────────"
 	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
+.PHONY: build
+build:
+	$(CC) $(VERBOSITE_ANALYSE_GPR) -P$(GPR) $(SCENARIOS_GPR)
+
+###################
+.PHONY: build_prod
+build_prod:
+	$(CC) $(VERBOSITE_ANALYSE_GPR) -P$(GPR) $(SCENARIOS_GPR_PROD)
+
+###################
 .PHONY: doc
 doc: makefile.conf $(FAIRE_INITIALISATION)
-	which $(GNAT_DOC)
-	$(GNAT_DOC) -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
+	$(WHICH) $(GNAT_DOC)
+	$(GNAT_DOC) -P$(GPR) $(SCENARIOS_GPR) $(OPT_DOCUMENT)
 
 ###################
 .PHONY: prove
 prove: makefile.conf $(FAIRE_INITIALISATION)
-	which $(GNATPROVE)
-	$(GNATPROVE) -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
+	$(WHICH) $(GNATPROVE)
+	$(GNATPROVE) -P$(GPR) $(SCENARIOS_GPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
 check: makefile.conf $(FAIRE_INITIALISATION)
-	which $(GNATCHECK)
-	$(GNATCHECK) -P$(GPR) $(OPTGPR) $(OPT_CHECK)
+	$(WHICH) $(GNATCHECK)
+	$(GNATCHECK) -P$(GPR) $(SCENARIOS_GPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
 pretty: makefile.conf $(FAIRE_INITIALISATION)
-	which $(GNATPP)
+	$(WHICH) $(GNATPP)
 	$(GNATPP) -P$(GPR) $(Fichier)
 
 ###################
 .PHONY: cleandoc
 cleandoc: makefile.conf
-	$(RM) $(OPTRM) doc
+	$(RM) $(OPT_RM) doc
 
 ###################
 .PHONY: help
 help: makefile.conf
 	@echo "Liste des commandes :"
 	@echo " - all			: Compile l'application."
-	@echo "    - build"
 	@echo "    - compiler"
 	@echo " - prod			: Compile avec l'option release active."
 	@echo " - run			: Execute l'application avec les paramètres défini."
+	@echo " - runprod		: Execute l'application de prod avec les paramètres défini."
 	@echo " - doc			: Génère la documentation du programme."
 	@echo " "
 	@echo " - clean 		: Efface tous les fichiers généré par le compilateur sauf les exécutables."
