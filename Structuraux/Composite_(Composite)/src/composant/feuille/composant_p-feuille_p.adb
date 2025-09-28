@@ -68,14 +68,14 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   function Lire_Nb_Enfants
+   function Lire_NB_Enfants
       (This : in     Feuille_T)
-      return Nb_Enfants_T
+      return NB_Enfants_T
    is
       pragma Unreferenced (This);
    begin
       return 0;
-   end Lire_Nb_Enfants;
+   end Lire_NB_Enfants;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

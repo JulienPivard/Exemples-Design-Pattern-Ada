@@ -46,11 +46,11 @@ is
       return Composant_T'Class
    is abstract;
 
-   type Nb_Enfants_T is range 0 .. 2**31 - 1;
+   type NB_Enfants_T is range 0 .. 2**31 - 1;
 
-   function Lire_Nb_Enfants
+   function Lire_NB_Enfants
       (This : in     Composant_T)
-      return Nb_Enfants_T
+      return NB_Enfants_T
    is abstract;
 
    function Image

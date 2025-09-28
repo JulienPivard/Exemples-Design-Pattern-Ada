@@ -44,9 +44,9 @@ is
       return Composant_T'Class;
 
    overriding
-   function Lire_Nb_Enfants
+   function Lire_NB_Enfants
       (This : in     Composite_T)
-      return Nb_Enfants_T;
+      return NB_Enfants_T;
 
    overriding
    function Image

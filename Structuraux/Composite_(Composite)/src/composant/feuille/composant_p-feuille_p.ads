@@ -11,8 +11,7 @@ package Composant_P.Feuille_P
       Spark_Mode     => Off
 is
 
-   E_Ajout_Impossible       : exception;
-   E_Suppression_Impossible : exception;
+   E_Ajout_Impossible : exception;
 
    type Feuille_T is new Composant_T with private;
 
@@ -49,9 +48,9 @@ is
       return Composant_T'Class;
 
    overriding
-   function Lire_Nb_Enfants
+   function Lire_NB_Enfants
       (This : in     Feuille_T)
-      return Nb_Enfants_T;
+      return NB_Enfants_T;
 
    overriding
    function Image

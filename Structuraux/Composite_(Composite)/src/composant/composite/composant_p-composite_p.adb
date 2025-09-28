@@ -10,16 +10,21 @@ is
    is
       use type Valeur_P.Valeur_T;
 
-      Resultat_Gauche : Valeur_P.Valeur_T := Valeur_P.Neutre;
-      Resultat_Droite : Valeur_P.Valeur_T := Valeur_P.Neutre;
+      Resultat_Gauche : constant Valeur_P.Valeur_T :=
+         (
+            if This.Enfant_1.Is_Empty then
+               Valeur_P.Neutre
+            else
+               This.Enfant_1.Element.Faire
+         );
+      Resultat_Droite : constant Valeur_P.Valeur_T :=
+         (
+            if This.Enfant_2.Is_Empty then
+               Valeur_P.Neutre
+            else
+               This.Enfant_2.Element.Faire
+         );
    begin
-      if not This.Enfant_1.Is_Empty then
-         Resultat_Gauche := This.Enfant_1.Element.Faire;
-      end if;
-      if not This.Enfant_2.Is_Empty then
-         Resultat_Droite := This.Enfant_2.Element.Faire;
-      end if;
-
       return Resultat_Gauche + Resultat_Droite;
    end Faire;
    ---------------------------------------------------------------------------
@@ -93,20 +98,27 @@ is
 
    ---------------------------------------------------------------------------
    overriding
-   function Lire_Nb_Enfants
+   function Lire_NB_Enfants
       (This : in     Composite_T)
-      return Nb_Enfants_T
+      return NB_Enfants_T
    is
-      Nb_Enfants : Nb_Enfants_T := 0;
+      NB_Enfants_Gauche : constant NB_Enfants_T :=
+         (
+            if This.Enfant_1.Is_Empty then
+               0
+            else
+               This.Enfant_1.Element.Lire_NB_Enfants + 1
+         );
+      NB_Enfants_Droite : constant NB_Enfants_T :=
+         (
+            if This.Enfant_2.Is_Empty then
+               0
+            else
+               This.Enfant_2.Element.Lire_NB_Enfants + 1
+         );
    begin
-      if not This.Enfant_1.Is_Empty then
-         Nb_Enfants := Nb_Enfants + This.Enfant_1.Element.Lire_Nb_Enfants + 1;
-      end if;
-      if not This.Enfant_2.Is_Empty then
-         Nb_Enfants := Nb_Enfants + This.Enfant_2.Element.Lire_Nb_Enfants + 1;
-      end if;
-      return Nb_Enfants;
-   end Lire_Nb_Enfants;
+      return NB_Enfants_Gauche + NB_Enfants_Droite;
+   end Lire_NB_Enfants;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -129,12 +141,9 @@ is
       (This : in     Composite_T)
       return String
    is
+      Vide : constant Boolean := This.Enfant_1.Is_Empty;
    begin
-      if This.Enfant_1.Is_Empty then
-         return "";
-      else
-         return This.Enfant_1.Element.Image;
-      end if;
+      return (if Vide then "" else This.Enfant_1.Element.Image);
    end Lire_Gauche;
    ---------------------------------------------------------------------------
 
@@ -143,12 +152,9 @@ is
       (This : in     Composite_T)
       return String
    is
+      Vide : constant Boolean := This.Enfant_2.Is_Empty;
    begin
-      if This.Enfant_2.Is_Empty then
-         return "";
-      else
-         return This.Enfant_2.Element.Image;
-      end if;
+      return (if Vide then "" else This.Enfant_2.Element.Image);
    end Lire_Droite;
    ---------------------------------------------------------------------------
 
