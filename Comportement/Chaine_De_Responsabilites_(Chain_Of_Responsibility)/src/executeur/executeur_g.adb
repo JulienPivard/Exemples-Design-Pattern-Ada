@@ -1,5 +1,5 @@
-with Ada.Text_IO;
 with Ada.Directories;
+with Ada.Text_IO;
 
 package body Executeur_G is
 
@@ -31,15 +31,34 @@ package body Executeur_G is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Verifier_Nombre_D_Arguments is
+   function Verifier_Nombre_D_Arguments_Est_Valide
+      return Boolean
+   is
+      subtype Intervale_Valide_T is NB_Args_T range
+         Nombre_D_Arguments_Min .. Nombre_D_Arguments_Max;
+
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Membership_Tests",
+            "Test d'un intervalle, plus lisible."
+         );
+      Resultat : Boolean := NB_Args in Intervale_Valide_T;
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Membership_Tests"
+         );
    begin
       Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Success);
 
-      if Nb_Args = 0 and then Nombre_D_Arguments_Min > 0 then
+      if NB_Args = 0 and then Nombre_D_Arguments_Min > 0 then
          Afficher_Aide;
-         raise Pas_Assez_D_Arguments_E;
+         Resultat := False;
 
-      elsif Nb_Args > Nombre_D_Arguments_Max then
+      elsif NB_Args > Nombre_D_Arguments_Max then
          Afficher_Aide;
          W_W_IO_R.Put
             (File => W_W_IO_R.Standard_Error, Item => "Trop d'arguments. ");
@@ -48,19 +67,40 @@ package body Executeur_G is
                File => W_W_IO_R.Standard_Error,
                Item => "Les arguments suivants sont invalide : "
             );
-         for I in Arguments_En_Trop_T loop
-            Ada.Text_IO.Put
-               (File => Ada.Text_IO.Standard_Error, Item => "  - ");
-            Ada.Text_IO.Put_Line
-               (
-                  File => Ada.Text_IO.Standard_Error,
-                  Item => Ada.Command_Line.Argument (Number => I)
-               );
-         end loop;
-         Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
-         raise Trop_D_Arguments_E;
+         Bloc_Afficher_Arguments_En_Trop :
+         declare
+            subtype Arguments_En_Trop_T is NB_Args_T range
+               NB_Args_Max + 1 .. NB_Args;
+            --  L'intervalle des arguments en trop.
+         begin
+            for I in Arguments_En_Trop_T loop
+               Ada.Text_IO.Put
+                  (File => Ada.Text_IO.Standard_Error, Item => "  - ");
+               pragma Annotate
+                  (
+                     gnatcheck,
+                     Exempt_On,
+                     "Predefined_Numeric_Types",
+                     "impossible de ne pas convertir I en Natural"
+                  );
+               Ada.Text_IO.Put_Line
+                  (
+                     File => Ada.Text_IO.Standard_Error,
+                     Item => Ada.Command_Line.Argument (Number => Natural (I))
+                  );
+               pragma Annotate
+                  (
+                     gnatcheck,
+                     Exempt_Off,
+                     "Predefined_Numeric_Types"
+                  );
+            end loop;
+         end Bloc_Afficher_Arguments_En_Trop;
 
-      elsif Nb_Args < Nombre_D_Arguments_Min then
+         Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
+         Resultat := False;
+
+      elsif NB_Args < Nombre_D_Arguments_Min then
          Afficher_Aide;
          W_W_IO_R.Put_Line
             (
@@ -68,10 +108,14 @@ package body Executeur_G is
                Item => "Vous devez donner au moins le [argument]."
             );
          Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
-         raise Pas_Assez_D_Arguments_E;
+         Resultat := False;
 
+      else
+         Resultat := True;
       end if;
-   end Verifier_Nombre_D_Arguments;
+
+      return Resultat;
+   end Verifier_Nombre_D_Arguments_Est_Valide;
    ---------------------------------------------------------------------------
 
 end Executeur_G;
