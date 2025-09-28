@@ -27,14 +27,14 @@ is
       )
    is abstract;
 
+   type ID_T is range 1 .. 2;
+
    procedure Supprimer
       (
          This   : in out Composant_T;
          Valeur : in     Valeur_P.Valeur_T
       )
    is abstract;
-
-   type ID_T is range 1 .. 2;
 
    function Lire_Enfant
       (
@@ -44,7 +44,7 @@ is
       return Composant_T'Class
    is abstract;
 
-   type Nb_Enfants_T is range 0 .. 1_000;
+   type Nb_Enfants_T is range 0 .. 2**31 - 1;
 
    function Lire_Nb_Enfants
       (This : in     Composant_T)
