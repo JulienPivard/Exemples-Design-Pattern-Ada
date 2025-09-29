@@ -1,26 +1,250 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 25 mai[05] 2022
+--           Dernière modification : Lundi 29 septembre[09] 2025
 --                                                                          --
 ------------------------------------------------------------------------------
+with Ada.Command_Line;
+with Ada.Exceptions;
+with Ada.Numerics.Discrete_Random;
 with Ada.Text_IO;
 
-with GNAT.Compiler_Version;
 with GNAT.Source_Info;
 
-with Executeur_G;
+with Version_Compilateur_P;
+
+with Simple_P;
+with Simple_P.Memento_P;
+
+with Mem_P.Memento_P.Utilisateur_P;
+with Tout_En_Un_P;
+
+with Valeur_P;
+with Auteur_P;
+with Auteur_P.Memento_P;
 
 procedure Client is
+   ---------------------------------------------------------------------------
+   generic
+      type Valeur_Bis_G_T  is range <>;
+      --  Contenu.
 
-   package Version_Compilateur_P is new GNAT.Compiler_Version;
-   package Executeur_P           is new Executeur_G
+      type Auteur_Bis_G_T  is tagged private;
+      --  Classe utilisatrice de memento.
+
+      with function Lire_Valeur_G
+         (This : in     Auteur_Bis_G_T)
+         return Valeur_Bis_G_T;
+      --  Lit la valeur stockée.
+      --  @param This
+      --  L'utilisateur.
+      --  @return La valeur dans l'auteur.
+
+   procedure Afficher_G
+      (Utilisateur : in     Auteur_Bis_G_T);
+   --  Affiche le contenu de l'auteur.
+   --  @param Utilisateur
+   --  L'utilisateur à afficher.
+
+   --------------------
+   procedure Afficher_G
+      (Utilisateur : in     Auteur_Bis_G_T)
+   is
+      V : constant Valeur_Bis_G_T := Lire_Valeur_G (This => Utilisateur);
+   begin
+      Ada.Text_IO.Put_Line (Item => "Valeur : " & V'Image);
+   end Afficher_G;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   generic
+      type Valeur_G_T  is range <>;
+      --  Contenu.
+
+      type Memento_G_T is private;
+      --  Memento d'un état de l'auteur.
+
+      type Auteur_G_T  is tagged private;
+      --  Classe utilisatrice de memento.
+
+      with procedure Modifier_G
+         (
+            This   : in out Auteur_G_T;
+            Valeur : in     Valeur_G_T
+         );
+      --  Modifie la valeur stocké dans l'auteur.
+      --  @param This
+      --  L'utilisateur.
+      --  @param Valeur
+      --  La valeur à stocker.
+
+      with function Lire_Valeur_G
+         (This : in     Auteur_G_T)
+         return Valeur_G_T;
+      --  Lit la valeur stockée.
+      --  @param This
+      --  L'utilisateur.
+      --  @return La valeur dans l'auteur.
+
+      with function Memoriser_G
+         (This : in     Auteur_G_T)
+         return Memento_G_T;
+      --  Mémorise l'état actuelle de l'auteur.
+      --  @param This
+      --  L'auteur.
+      --  @return L'état de l'auteur à un instant donné.
+
+      with procedure Retablir_G
+         (
+            This    : in out Auteur_G_T;
+            Memento : in     Memento_G_T
+         );
+      --  Remet l'auteur dans l'état qu'il avait au moment donné.
+      --  @param This
+      --  L'auteur.
+      --  @param Memento
+      --  L'état à rétablir.
+
+   procedure Montrer_Utilisation_G;
+   --  Démonstration de l'utilisation des différents Memento.
+
+   --------------------------------
+   procedure Montrer_Utilisation_G is
+      ---------
+      procedure Afficher is new Afficher_G
+         (
+            Valeur_Bis_G_T => Valeur_G_T,
+            Auteur_Bis_G_T => Auteur_G_T,
+            Lire_Valeur_G  => Lire_Valeur_G
+         );
+      ---------
+
+      package Alea_P is new Ada.Numerics.Discrete_Random
+         (Result_Subtype => Valeur_G_T);
+
+      Generateur : Alea_P.Generator;
+
+      U   : Auteur_G_T;
+      M_1 : Memento_G_T;
+      M_2 : Memento_G_T;
+   begin
+      Alea_P.Reset (Gen => Generateur);
+
+      Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
+      Modifier_G
+         (
+            This   => U,
+            Valeur => Alea_P.Random (Gen => Generateur)
+         );
+      Afficher (Utilisateur => U);
+      Ada.Text_IO.Put_Line (Item => "On sauvegarde dans M1");
+      M_1 := Memoriser_G (This => U);
+
+      Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
+      Modifier_G
+         (
+            This   => U,
+            Valeur => Alea_P.Random (Gen => Generateur)
+         );
+      Afficher (Utilisateur => U);
+      Ada.Text_IO.Put_Line (Item => "On sauvegarde dans M2");
+      M_2 := Memoriser_G (This => U);
+
+      Ada.Text_IO.Put_Line (Item => "On met l'utilisateur à valeur");
+      Modifier_G
+         (
+            This   => U,
+            Valeur => Alea_P.Random (Gen => Generateur)
+         );
+      Afficher (Utilisateur => U);
+
+      Ada.Text_IO.New_Line (Spacing => 1);
+
+      Ada.Text_IO.Put_Line
+         (Item => "On rétablit l'utilisateur à la valeur sauvegardé dans M1");
+      Retablir_G
+         (
+            This    => U,
+            Memento => M_1
+         );
+      Afficher (Utilisateur => U);
+
+      Ada.Text_IO.Put_Line
+         (Item => "On rétablit l'utilisateur à la valeur sauvegardé dans M2");
+      Retablir_G
+         (
+            This    => U,
+            Memento => M_2
+         );
+      Afficher (Utilisateur => U);
+   end Montrer_Utilisation_G;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Restaurer
       (
-         Nombre_D_Arguments_Min => 0,
-         Nombre_D_Arguments_Max => 0
+         Auteur : in out Auteur_P.Auteur_T;
+         This   : in     Auteur_P.Memento_P.Memento_T
       );
 
+   -------------------
+   procedure Restaurer
+      (
+         Auteur : in out Auteur_P.Auteur_T;
+         This   : in     Auteur_P.Memento_P.Memento_T
+      )
+   is
+   begin
+      This.Restaurer (Auteur => Auteur);
+   end Restaurer;
+   ---------------------------------------------------------------------------
+
+   procedure Montrer_1 is new Montrer_Utilisation_G
+      (
+         Valeur_G_T    => Valeur_P.Valeur_T,
+         Memento_G_T   => Tout_En_Un_P.Memento_T,
+         Auteur_G_T    => Tout_En_Un_P.Auteur_T,
+         Modifier_G    => Tout_En_Un_P.Modifier,
+         Lire_Valeur_G => Tout_En_Un_P.Lire_Valeur,
+         Memoriser_G   => Tout_En_Un_P.Memoriser,
+         Retablir_G    => Tout_En_Un_P.Retablir
+      );
+
+   procedure Montrer_2 is new Montrer_Utilisation_G
+      (
+         Valeur_G_T    => Valeur_P.Valeur_T,
+         Memento_G_T   => Simple_P.Memento_P.Memento_T,
+         Auteur_G_T    => Simple_P.Utilisateur_T,
+         Modifier_G    => Simple_P.Modifier,
+         Lire_Valeur_G => Simple_P.Lire_Valeur,
+         Memoriser_G   => Simple_P.Memoriser,
+         Retablir_G    => Simple_P.Retablir
+      );
+
+   procedure Montrer_3 is new Montrer_Utilisation_G
+      (
+         Valeur_G_T    => Valeur_P.Valeur_T,
+         Memento_G_T   => Auteur_P.Memento_P.Memento_T,
+         Auteur_G_T    => Auteur_P.Auteur_T,
+         Modifier_G    => Auteur_P.Modifier,
+         Lire_Valeur_G => Auteur_P.Lire_Valeur,
+         Memoriser_G   => Auteur_P.Memento_P.Memoriser,
+         Retablir_G    => Restaurer
+      );
+
+   procedure Montrer_5 is new Montrer_Utilisation_G
+      (
+         Valeur_G_T    => Mem_P.Valeur_T,
+         Memento_G_T   => Mem_P.Memento_P.Memento_T,
+         Auteur_G_T    => Mem_P.Memento_P.Utilisateur_P.Utilisateur_T,
+         Modifier_G    => Mem_P.Memento_P.Utilisateur_P.Modifier,
+         Lire_Valeur_G => Mem_P.Memento_P.Utilisateur_P.Lire_Valeur,
+         Memoriser_G   => Mem_P.Memento_P.Utilisateur_P.Memoriser,
+         Retablir_G    => Mem_P.Memento_P.Utilisateur_P.Retablir
+      );
 begin
+   Ada.Command_Line.Set_Exit_Status
+      (Code => Ada.Command_Line.Success);
 
    Ada.Text_IO.Put      (Item => "+---------------------+");
    Ada.Text_IO.Put_Line (Item => " - - - - - - - - - - - ");
@@ -37,17 +261,53 @@ begin
 
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Executeur_P.Verifier_Nombre_D_Arguments;
-   Executeur_P.Executer;
+   --  Ada.Text_IO.Put      (Item => "Procédure : [");
+   --  Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
+   --  Ada.Text_IO.Put      (Item => "], une instance de : ");
+   --  Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
+
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern mémento.");
+   Ada.Text_IO.Put_Line (Item => "Enregistrer facilement l'état d'un objet");
+   Ada.Text_IO.Put_Line (Item => "pour pouvoir le rétablir après.");
+   Ada.Text_IO.Put_Line (Item => "3 constructions différentes du memento.");
+   Ada.Text_IO.Put_Line (Item => "Ce sont des tests d'organisation du code");
+   Ada.Text_IO.Put_Line (Item => "pour répondre au mieux aux contraintes");
+   Ada.Text_IO.Put_Line (Item => "du modèle.");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "--          Version tout en un          --");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Montrer_1;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 2);
+
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "-- Auteur simple qui connait le mémento --");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Montrer_2;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 2);
+
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "--     Auteur simple mémento séparé     --");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Montrer_3;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 2);
+
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Montrer_5;
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 2);
 
 exception
-   when Executeur_P.Trop_D_Arguments_E =>
-      null;
-   when Executeur_P.Pas_Assez_D_Arguments_E =>
-      null;
-   when Executeur_P.Option_Incorrect_E =>
-      null;
-   when Executeur_P.Valeur_Option_Incorrect_E =>
-      null;
-
+   when E : others =>
+      Ada.Text_IO.Put_Line
+         (Item => Ada.Exceptions.Exception_Information (X => E));
+      Ada.Command_Line.Set_Exit_Status
+         (Code => Ada.Command_Line.Failure);
 end Client;
