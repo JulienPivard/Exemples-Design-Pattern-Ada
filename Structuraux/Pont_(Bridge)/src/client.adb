@@ -1,26 +1,26 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 25 mai[05] 2022
+--           Dernière modification : Lundi 29 septembre[09] 2025
 --                                                                          --
 ------------------------------------------------------------------------------
+with Ada.Command_Line;
+with Ada.Exceptions;
 with Ada.Text_IO;
 
-with GNAT.Compiler_Version;
 with GNAT.Source_Info;
 
-with Executeur_G;
+with Version_Compilateur_P;
+
+with Abstraction_P;
+with Abstraction_P.Fenetre_P;
 
 procedure Client is
-
-   package Version_Compilateur_P is new GNAT.Compiler_Version;
-   package Executeur_P           is new Executeur_G
-      (
-         Nombre_D_Arguments_Min => 0,
-         Nombre_D_Arguments_Max => 0
-      );
-
+   A : Abstraction_P.Abstraction_T;
+   F : Abstraction_P.Fenetre_P.Fenetre_T;
 begin
+   Ada.Command_Line.Set_Exit_Status
+      (Code => Ada.Command_Line.Success);
 
    Ada.Text_IO.Put      (Item => "+---------------------+");
    Ada.Text_IO.Put_Line (Item => " - - - - - - - - - - - ");
@@ -37,17 +37,42 @@ begin
 
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Executeur_P.Verifier_Nombre_D_Arguments;
-   Executeur_P.Executer;
+   --  Ada.Text_IO.Put      (Item => "Procédure : [");
+   --  Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
+   --  Ada.Text_IO.Put      (Item => "], une instance de : ");
+   --  Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
+
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern pont.");
+   Ada.Text_IO.Put_Line (Item => "Une abstraction avec deux impl différentes");
+   Ada.Text_IO.Put_Line (Item => "et une spécialisation de l'abstraction.");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.Put_Line (Item => "Pont Operation 1 sur abstraction");
+   A.Initialiser (Sorte => 1);
+   A.Operation;
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.Put_Line (Item => "Pont Operation 2 sur abstraction");
+   A.Initialiser (Sorte => 2);
+   A.Operation;
+   Ada.Text_IO.New_Line (Spacing => 1);
+
+   Ada.Text_IO.Put_Line (Item => "Pont Operation 1 sur fenêtre");
+   F.Initialiser (Sorte => 1);
+   F.Operation;
+   F.Faire_Fenetre;
+
+   pragma Unreferenced (A);
+   pragma Unreferenced (F);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 
 exception
-   when Executeur_P.Trop_D_Arguments_E =>
-      null;
-   when Executeur_P.Pas_Assez_D_Arguments_E =>
-      null;
-   when Executeur_P.Option_Incorrect_E =>
-      null;
-   when Executeur_P.Valeur_Option_Incorrect_E =>
-      null;
-
+   when E : others =>
+      Ada.Text_IO.Put_Line
+         (Item => Ada.Exceptions.Exception_Information (X => E));
+      Ada.Command_Line.Set_Exit_Status
+         (Code => Ada.Command_Line.Failure);
 end Client;
