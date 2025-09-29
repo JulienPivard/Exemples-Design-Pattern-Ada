@@ -1,8 +1,11 @@
+with Ada.Characters.Latin_1;
 with Ada.Strings.Fixed;
 
 package body Composant_P.Concret_P
    with Spark_Mode => Off
 is
+
+   package ASCII_R renames Ada.Characters.Latin_1;
 
    ---------------------------------------------------------------------------
    not overriding
@@ -58,7 +61,7 @@ is
             Pos : constant Integer := Ada.Strings.Fixed.Index
                (
                   Source  => Str (Debut .. Fin),
-                  Pattern => "" & ASCII.LF
+                  Pattern => "" & ASCII_R.LF
                );
          begin
             if Pos /= 0 then
@@ -66,7 +69,7 @@ is
             end if;
          end Bloc_Trouver_Saut_De_Ligne;
 
-         if Fin = Debut and then Str (Debut) = ASCII.LF then
+         if Fin = Debut and then Str (Debut) = ASCII_R.LF then
             Resultat (I) := Texte_P.Ligne_T'(others => ' ');
          else
             Ada.Strings.Fixed.Move
