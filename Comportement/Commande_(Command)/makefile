@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 25 septembre[09] 2025
+# Dernière modification : Lundi 29 septembre[09] 2025
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -37,15 +37,6 @@ else
 endif
 
 ###################
-$(DOSSIER_MAKE)/makefile.conf.tmpl:
-
-###################
-makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
-	$(COPIE) ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
-	$(CHANGE_DROITS) u+w ./makefile.conf
-	@echo " "
-
-###################
 .PHONY: run
 run: $(DEPEND)
 	$(RESLT_COMPIL) $(ARGUMENTS_APPLI)
@@ -54,6 +45,15 @@ run: $(DEPEND)
 .PHONY: run_prod
 run_prod: $(DEPEND_PROD)
 	$(RESLT_COMPIL_PROD) $(ARGUMENTS_APPLI)
+
+###################
+$(DOSSIER_MAKE)/makefile.conf.tmpl:
+
+###################
+makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
+	$(COPIE) ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
+	$(CHANGE_DROITS) u+w ./makefile.conf
+	@echo " "
 
 ###################
 .PHONY: compiler
