@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 16 janvier[01] 2022
+# Dernière modification : Mercredi 24 septembre[09] 2025
 
 # Les options sont désactivée si vide
 ifeq ($(MODE_COMPILE), )
@@ -11,9 +11,6 @@ ifeq ($(NIVEAU_OPTIMI), )
 endif
 ifeq ($(ACTIVER_VERB), )
     ACTIVER_VERB	= false
-endif
-ifeq ($(ACTIVER_STRICT), )
-    ACTIVER_STRICT	= false
 endif
 ifeq ($(ACTIVER_WARN_SONT_ERREURS), )
     ACTIVER_WARN_SONT_ERREURS	= false
@@ -26,39 +23,31 @@ ifeq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), )
 endif
 
 # On notifie si le nom de l'app n'est pas changé
-ifeq ($(NOMAPP), nomapplication)
-    $(info makefile.conf:24: ***    Le nom du programme [NOMAPP] doit être changé)
+ifeq ($(NOM_APP), nomapplication)
+    $(info makefile.conf:26: ***    Le nom du programme [NOM_APP] doit être changé)
 endif
 
 # On notifie si le nom de l'app est vide.
-ifeq ($(NOMAPP), )
-    $(info makefile.conf:24: ***    Le nom du programme [NOMAPP] est vide)
+ifeq ($(NOM_APP), )
+    $(info makefile.conf:26: ***    Le nom du programme [NOM_APP] est vide)
 endif
 
 # On vérifie que MODE_COMPILE vaut bien [dev|deb|rel]
 ifneq ($(MODE_COMPILE), $(filter $(MODE_COMPILE), dev deb rel))
-  $(info makefile.conf:28: *** [MODE_COMPILE] doit être dev rel, ou deb)
+  $(info makefile.conf:30: *** [MODE_COMPILE] doit être dev rel, ou deb)
   $(error Compilation impossible)
 endif
 
 # On vérifie que NIVEAU_OPTIMI vaut bien [defaut|0|1|2|3]
 ifneq ($(NIVEAU_OPTIMI), $(filter $(NIVEAU_OPTIMI), defaut 0 1 2 3))
-  $(info makefile.conf:76: *** [NIVEAU_OPTIMI] doit être defaut ou 0, 1, 2, 3)
+  $(info makefile.conf:74: *** [NIVEAU_OPTIMI] doit être defaut ou 0, 1, 2, 3)
   $(error Compilation impossible)
 endif
 
 # On vérifie que ACTIVER_VERB vaut bien [true|false]
 ifneq ($(ACTIVER_VERB), true)
   ifneq ($(ACTIVER_VERB), false)
-    $(info makefile.conf:32: *** [ACTIVER_VERB] doit être true ou false)
-    $(error Compilation impossible)
-  endif
-endif
-
-# On vérifie que ACTIVER_STRICT vaut bien [true|false]
-ifneq ($(ACTIVER_STRICT), true)
-  ifneq ($(ACTIVER_STRICT), false)
-    $(info makefile.conf:36: *** [ACTIVER_STRICT] doit être true ou false)
+    $(info makefile.conf:34: *** [ACTIVER_VERB] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -66,7 +55,7 @@ endif
 # On vérifie que ACTIVER_WARN_SONT_ERREURS vaut bien [true|false]
 ifneq ($(ACTIVER_WARN_SONT_ERREURS), true)
   ifneq ($(ACTIVER_WARN_SONT_ERREURS), false)
-    $(info makefile.conf:40: *** [ACTIVER_WARN_SONT_ERREURS] doit être true ou false)
+    $(info makefile.conf:38: *** [ACTIVER_WARN_SONT_ERREURS] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -74,7 +63,7 @@ endif
 # On vérifie que ACTIVER_AFFICHER_LA_STACK vaut bien [true|false]
 ifneq ($(ACTIVER_AFFICHER_LA_STACK), true)
   ifneq ($(ACTIVER_AFFICHER_LA_STACK), false)
-    $(info makefile.conf:44: *** [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
+    $(info makefile.conf:42: *** [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -82,9 +71,14 @@ endif
 # On vérifie que ACTIVER_AFFICHER_ORDRE_ELABORATION vaut bien [true|false]
 ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
   ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), false)
-    $(info makefile.conf:49: *** [ACTIVER_AFFICHER_ORDRE_ELABORATION] doit être true ou false)
+    $(info makefile.conf:47: *** [ACTIVER_AFFICHER_ORDRE_ELABORATION] doit être true ou false)
     $(error Compilation impossible)
   endif
+endif
+
+ifneq ($(NIVEAU_VERBOSITE_GPRBUILD), $(filter $(NIVEAU_VERBOSITE_GPRBUILD), rien faible moyen haute))
+  $(info makefile.conf:78: *** [NIVEAU_VERBOSITE_GPRBUILD] doit être : rien, faible, moyen ou haute)
+  $(error Compilation impossible)
 endif
 
 # Pour activer le mode debug
@@ -114,13 +108,6 @@ ifeq ($(ACTIVER_VERB), true)
     VERBEUX	= oui
 else
     VERBEUX	= non
-endif
-
-# Pour activer le mode strict
-ifeq ($(ACTIVER_STRICT), true)
-    STRICT	= oui
-else
-    STRICT	= non
 endif
 
 # Pour activer le mode avertissements deviennent des erreurs
@@ -161,7 +148,7 @@ endif
 
 # Vérification de la valeur du niveau de preuve
 ifneq ($(NIVEAU_PREUVE), $(filter $(NIVEAU_PREUVE), 0 1 2 3 4))
-    $(info makefile.conf:58 *** [NIVEAU_PREUVE] Le niveau doit etre entre 0 et 4)
+    $(info makefile.conf:56 *** [NIVEAU_PREUVE] Le niveau doit etre entre 0 et 4)
     $(error Compilation impossible)
 else
     NIVEAU	= --level=$(NIVEAU_PREUVE)
@@ -169,7 +156,7 @@ endif
 
 # Vérification de la valeur de l'affichage des messages de gnatprove
 ifneq ($(AFFICHAGE_MESSAGES), $(filter $(AFFICHAGE_MESSAGES), fail all provers statistics))
-    $(info makefile.conf:61: *** [AFFICHAGE_MESSAGES] doit être fail, all, provers ou statistics)
+    $(info makefile.conf:59: *** [AFFICHAGE_MESSAGES] doit être fail, all, provers ou statistics)
     $(error Compilation impossible)
 else
     RAPPORT	= --report=$(AFFICHAGE_MESSAGES)
@@ -177,8 +164,19 @@ endif
 
 # Vérification de la valeur du mode d'exaction de gnatprove
 ifneq ($(MODE_EXECUTION_PREUVE), $(filter $(MODE_EXECUTION_PREUVE), check check_all stone flow bronze prove all silver gold))
-    $(info makefile.conf:68: *** [MODE_EXECUTION_PREUVE] doit être check, check_all/stone, flow/bronze, prove ou all/silver/gold)
+    $(info makefile.conf:66: *** [MODE_EXECUTION_PREUVE] doit être check, check_all/stone, flow/bronze, prove ou all/silver/gold)
     $(error Compilation impossible)
 else
     MODE_EXE	= --mode=$(MODE_EXECUTION_PREUVE)
+endif
+
+# Pour activer le mode debug
+ifeq ($(NIVEAU_VERBOSITE_GPRBUILD), faible)
+    VERBOSITE_ANALYSE_GPR	= -vl
+else ifeq ($(NIVEAU_VERBOSITE_GPRBUILD), moyen)
+    VERBOSITE_ANALYSE_GPR	= -vm
+else ifeq ($(NIVEAU_VERBOSITE_GPRBUILD), haute)
+    VERBOSITE_ANALYSE_GPR	= -vh
+else
+    VERBOSITE_ANALYSE_GPR	=
 endif
