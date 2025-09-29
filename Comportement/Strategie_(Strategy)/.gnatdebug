@@ -1,0 +1,80 @@
+--  vim:filetype=conf
+--  Active tous les logs avec le signe +
+--  sinon ils sont inactif par défaut
+
+>&1
+--  Redirige vers la sortie standard.
+
+--  >fichier_de_log.log
+--  Redirige vers le fichier log.
+--  Si absent redirige vers la sortie standard.
+--  $$ est automatiquement remplacé par le PID du programme.
+--  $D est automatiquement remplacé par la date du jour.
+--  $T est automatiquement remplacé par la date et l'heure du jour.
+--  Les autres pattern de la fome $name, ${name}, ou $(name) sont
+--  remplacé par la valeur de la variable d'environnement
+--  correspondante, si elle existe.
+--  Si “>>” on ajoute les log au fichier désigné.
+--  sinon si on utilise “>” le contenu du fichier est écrasé.
+
+-----------------------------------------------------------------------------
+--  Regle de nommage : On commence par le nom du package suivi du nom
+--                      du sous programme. Pour les entrées/sorties,
+--                      on prend le nom composé du package et du sous
+--                      programme et on y ajouter ENTREE_SORTIE à la fin.
+--
+--  Avantages : On peut activer/désactiver toutes les ENTREE_SORTIE en
+--                  une seule ligne.
+--              On peut activer/désactiver les log de tous les sous
+--                  programme du package en une seule ligne.
+--              On peut activer/désactiver tous les logs concernant
+--                  un sous programme en une seule ligne.
+-----------------------------------------------------------------------------
+
+--  PACKAGE_TEST_P.*=no
+--  PACKAGE_TEST_P.*=yes >&1
+--  Tous les logs
+
+--  PACKAGE_TEST_P.UNE_PROCEDURE=yes >&1
+--  Tous les log de la procédure Une_Procedure sauf ENTREE_SORTIE
+--  PACKAGE_TEST_P.UNE_FONCTION=yes >&1
+--  Tous les log de la fonction Une_Fonction sauf ENTREE_SORTIE
+
+--  PACKAGE_TEST_P.UNE_PROCEDURE.*=yes >&1
+--  Tous les log de la procédure Une_Procedure y compris ENTREE_SORTIE
+--  PACKAGE_TEST_P.UNE_FONCTION.*=yes >&1
+--  Tous les log de la fonction Une_Fonction y compris ENTREE_SORTIE
+
+--  PACKAGE_TEST_P.UNE_PROCEDURE.ENTREE_SORTIE=yes >&1
+--  Les logs ENTREE_SORTIE de la procédure Une_Procedure
+--  PACKAGE_TEST_P.UNE_FONCTION.ENTREE_SORTIE=yes >&1
+--  Les logs ENTREE_SORTIE de la fonction Une_Fonction
+
+--  *.ENTREE_SORTIE >&1
+--  Tous les log qui finissent par ENTREE_SORTIE
+
+--  *.EXCEPTIONS=yes >&1
+--  Quand on log des exceptions, affiche sur la sortie standard.
+
+-----------------------------------------------------------------------------
+--  Les options d'affichage des Logs.
+-----------------------------------------------------------------------------
+
+DEBUG.COLORS=yes
+--  Active la couleur. Uniquement si la cible est la sortie standard
+DEBUG.COUNT=yes
+--  Active le compte des messages.
+DEBUG.STACK_TRACE=no
+--  Affiche la stack d'adresses des appels. Il faut utiliser adr2line dessus.
+DEBUG.ABSOLUTE_TIME=yes
+--  Affiche l'heure devant les messages.
+DEBUG.ELAPSED_TIME=no
+--  Affiche le temps entre deux appels des logs.
+DEBUG.LOCATION=no
+--  Affiche la localisation exact dans le code.
+DEBUG.ENCLOSING_ENTITY=no
+--  Affiche le nom de l'entité appelante.
+DEBUG.MEMORY=no
+--  Affiche la quantité de mémoire utilisé.
+DEBUG.SPLIT_LINES=yes
+--  Si des sauts de lignes sont présent, l'indentation est conservée.
