@@ -47,6 +47,19 @@ run_prod: $(DEPEND_PROD)
 	$(RESLT_COMPIL_PROD) $(ARGUMENTS_APPLI)
 
 ###################
+.PHONY: resultat_build
+resultat_build:
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ]"
+	@echo " ─────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: resultat_build_prod
+resultat_build_prod:
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
+
+###################
 $(DOSSIER_MAKE)/makefile.conf.tmpl:
 
 ###################
