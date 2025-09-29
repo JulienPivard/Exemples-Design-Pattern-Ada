@@ -1,11 +1,10 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 07 février[02] 2025
+# Dernière modification : Lundi 29 septembre[09] 2025
 
 ###############
 # Partie Fixe #
 ###############
-
 NOM_DU_GPR	= build
 GPR		= gnat/$(NOM_DU_GPR).gpr
 
@@ -13,6 +12,7 @@ NOM_EXECUTABLE	= executable
 CHEMIN_OBJET	= obj
 CHEMIN_RESLT	= bin
 CHEMIN_ALI	= ali
+CHEMIN_EXE	= $(CHEMIN_RESLT)
 RESLT_COMPIL	= ./$(CHEMIN_RESLT)/$(MODE)/$(NOM_EXECUTABLE)
 
 #############################################
@@ -72,6 +72,10 @@ MODE_EXECUTION_PREUVE	= all
 
 # NIVEAU_OPTIMI = [defaut|0|1|2|3]
 NIVEAU_OPTIMI		= defaut
+
+# La verbosité de gprbuild au moment de parser le fichier gpr.
+# VERBOSITE_GPRBUILD = [rien|faible|moyen|haute]
+NIVEAU_VERBOSITE_GPRBUILD	= rien
 
 # Fixer les arguments qui seront donné en entré de l'application
 # lors de l'exécution

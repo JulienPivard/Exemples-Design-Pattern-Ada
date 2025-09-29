@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mercredi 04 décembre[12] 2024
+# Dernière modification : Lundi 29 septembre[09] 2025
 
 ###################
 # Point d'entrée #
@@ -8,13 +8,13 @@
 .PHONY: all
 all: compiler
 
-MAKEFILE_V	:= 3.2.2
+MAKEFILE_V	:= 3.3.1
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
 GNAT_BIN_MACOS			:= /usr/local/gnat/bin
 
-ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
+ifneq ($(GNAT_BIN_PERSO), )
     PATH		:= $(GNAT_BIN_PERSO):$(PATH)
     $(info  Utilisation de bin GNAT personnalisé [$(GNAT_BIN_PERSO)])
 else ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
@@ -27,16 +27,19 @@ endif
 
 $(info Valeur de GPR_CONFIG=[${GPR_CONFIG}])
 
+ifeq ($(NOM_EXECUTABLE), )
+    $(info makefile.conf:11: *** Le nom exécutable est vide)
+endif
 ifeq ($(CHEMIN_OBJET), )
-    $(info makefile.conf:11: *** Le nom du dossier des objets est vide)
+    $(info makefile.conf:13: *** Le nom du dossier des objets est vide)
     $(error Compilation impossible)
 endif
 ifeq ($(CHEMIN_RESLT), )
-    $(info makefile.conf:12: *** Le nom du dossier des exe/lib est vide)
+    $(info makefile.conf:14: *** Le nom du dossier des exe/lib est vide)
     $(error Compilation impossible)
 endif
 ifeq ($(CHEMIN_ALI), )
-    $(info makefile.conf:13: *** Le nom du dossier des ali est vide)
+    $(info makefile.conf:15: *** Le nom du dossier des ali est vide)
     $(error Compilation impossible)
 endif
 
@@ -45,7 +48,7 @@ endif
 ifeq ($(wildcard .git), )
     PRES_SOUS_MODULES	:=
 else
-    PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
+    PRES_SOUS_MODULES	:= $(shell $(GIT) submodule | cut -c 1-1 | tr -d "+ uU")
 endif
 
 ifeq ([$(PRES_SOUS_MODULES)], [])
@@ -59,10 +62,10 @@ $(info )
 ###################
 .PHONY: version
 version:
-	which $(COMPILATEUR)
-	which $(GNATMAKE)
-	which $(GNAT_GNAT)
-	which $(GNATLS)
+	$(WHICH) $(COMPILATEUR)
+	$(WHICH) $(GNATMAKE)
+	$(WHICH) $(GNAT_GNAT)
+	$(WHICH) $(GNATLS)
 	@echo " "
 	$(COMPILATEUR) --version
 	$(GNATMAKE) --version
@@ -77,37 +80,33 @@ version_makefile:
 ###################
 .PHONY: initialiser_sous_modules
 initialiser_sous_modules:
-	git submodule init
-	git submodule update
-	git submodule foreach git checkout master
+	$(GIT) submodule init
+	$(GIT) submodule update
+	$(GIT) submodule foreach $(GIT) checkout master
 
 ###################
 .PHONY: maj_sous_modules
 maj_sous_modules:
-	git submodule foreach git pull origin master
+	$(GIT) submodule foreach $(GIT) pull origin master
 	@echo
-	git submodule foreach git checkout master
+	$(GIT) submodule foreach $(GIT) checkout master
 	@echo
-	git submodule foreach git rebase master
+	$(GIT) submodule foreach $(GIT) rebase master
 	@echo
-	git submodule foreach git pull
+	$(GIT) submodule foreach $(GIT) pull
 	@echo
-	git submodule summary
+	$(GIT) submodule summary
 
 ###################
-.PHONY: build
-build: $(FAIRE_INITIALISATION)
-	which $(COMPILATEUR)
-	which $(GNATLS)
+.PHONY: avant_build
+avant_build: $(FAIRE_INITIALISATION)
+	$(WHICH) $(COMPILATEUR)
+	$(WHICH) $(GNATLS)
 	@echo " "
 	$(GNATLS) -v
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
 	@echo " │                  Lancement de la compilation                  │"
 	@echo " └───────────────────────────────────────────────────────────────┘"
-	$(CC) -P$(GPR) $(OPT_GPR)
-	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ]"
-	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: clean
@@ -128,7 +127,7 @@ distclean: clean
 	-$(RM) $(OPT_RM) "./$(CHEMIN_RESLT)"
 	@echo " ─────────────────────────────────────────────────────────────"
 
-ifeq ($(shell which cloc 2>/dev/null), )
+ifeq ($(shell $(WHICH) cloc 2>/dev/null), )
     TECHNIQUE_COMPTAGE	= avec_find
 else
     TECHNIQUE_COMPTAGE	= avec_cloc
