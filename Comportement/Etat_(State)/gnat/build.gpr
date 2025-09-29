@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 02 décembre[12] 2024
+--  Dernière modification : Mercredi 24 septembre[09] 2025
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -13,7 +13,14 @@ project Build is
          "tests_unitaire"
       );
 
-   type Niveau_Optimisation_T is ("defaut", "O0", "O1", "O2", "O3");
+   type Niveau_Optimisation_T is
+      (
+         "defaut",
+         "O0",
+         "O1",
+         "O2",
+         "O3"
+      );
 
    type Verbeux_T             is ("non", "oui");
    type Sorte_Avertissement_T is ("non", "oui");
@@ -53,150 +60,60 @@ project Build is
    --  for Target                    use "powerpc-wrs-vxworks";
    for Create_Missing_Dirs       use "True";
 
-   --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
-   --  gnaty : les options
-   --  3 : taille indentation
-   --  a : vérifie la casse
-   --  A : Préciser le numéro du tableau dans les attributs si multidimension
-   --  b : aucuns espaces en fin de ligne
-   --  B : Interdit and/or simple sauf cas particulier and then or else requis
-   --  c : style des commentaires avec deux espaces
-   --  d : Pas de fin de ligne windows
-   --  e : vérifie le nom des blocs et exit
-   --  f : Pas de tabulation verticale
-   --  h : pas de caractères tabulation
-   --  i : vérifie la position du then du if
-   --  k : vérifie la casse des mots réservé qui doivent être en minuscule
-   --  l : Vérifie la position de mots clef les uns par rapport aux autres
-   --  m : Taille maximum des lignes 79
-   --  n : Vérifie la casse des noms standard
-   --  O : Override doit être marqué
-   --  p : vérifie la casse des pragma
-   --  r : Vérifie que la casse des identificateurs est cohérente tout le long
-   --  s : Vérifie que tout corps possède une partie spécification séparée
-   --  S : Pas de code sur la même ligne que then ou else
-   --  t : Les espaces dans les lignes
-   --  u : vérifie les lignes vide
-   --  x : vérifie les parenthèses inutile
-   Options_Compiler :=
-      (
-         "-gnatef",
-         --  gnatef : est la pour afficher le chemin complet des
-         --           fichiers dans les messages erreurs et avertissements.
-         "-gnatf",
-         --  gnatf : Affiche toutes les erreurs.
-         "-gnatU",
-         --  gnatU : Permet de marquer les messages erreurs
-         --          avec le tag error:
-         "-gnat2012",
-         --  Active les fonctionnalité Ada 2012.
-         "-gnatyy",
-         --  Vérification du style utilisé (longueur ligne, espacement ...).
-         --  gnatyy : équivaut à 3aAbcefhiklmnprst
-         "-gnatyBdOSux",
-         "-gnatw.e",
-         --  gnatw.e : active tous les avertissements comme gnatwa, mais aussi
-         --            ceux qui sont considéré comme optionnel.
-         "-gnatw.Y",
-         --  gnatw.Y : désactive le message qui dit que la
-         --            spec nécessite un corps.
-         "-gnatw.N",
-         --  gnatw.N : désactive le message qui dit qu'une
-         --            variable a l'aspect Atomic
-         "-gnatW8",
-         --  gnatW8 : Pour que l'encodage du code source se fasse en UTF8
-         --           Similaire à ajouter le
-         --           pragma Wide_Character_Encoding (UTF8)
-         "-gnateE",
-         --  gnateE : Génère des informations supplémentaires
-         --           dans les exceptions
-         "-gnato13",
-         --  gnato : Vérification des dépassements numériques.
-         --          1 => Mode strict, pas de dépassements.
-         --          2 => Minimized Utilise la plus grande représentation
-         --               possible pour faire les calculs intermédiaire.
-         --          3 => Faire les calculs avec une précision infinie.
-         --          Le premier chiffre est donné pour le cas général, le
-         --          second est donné pour les assertions.
-         "-fstack-check",
-         --  fstack-check : Active les vérification de la stack pour
-         --                 éviter les stacks overflow.
-         "-gnatw.d",
-         --  gnatw.d : Ajoute un tag au message de warning et d'info
-         --            pour savoir quel réglages provoque le message.
-         "-gnatif"
-         --  gnatif : pour pouvoir utiliser les accents dans
-         --           les noms de variables.
-      );
-
-   case Verbeux is
-      when "oui" =>
-         Options_Compiler := Options_Compiler &
-            (
-               "-gnatu",
-               --  gnatu : Liste toutes les unitées utilisé
-               --          pour cette compilation
-               "-gnatv",
-               --  gnatv : Active le mode verbose
-               "-gnatR3"
-               --  gnatR : Pour afficher informations de représentation
-               --          pour les types et objets déclarés [0|1|2|3]
-               --  0 : Rien
-               --  1 : les informations de taille et d'alignement sont
-               --       listées pour les types tableau et de record
-               --       déclarés.
-               --  2 : les informations de taille et d'alignement sont
-               --       listées pour tous les types et objets déclarés.
-               --  3 : inclut des expressions symboliques pour les
-               --       valeurs qui sont calculées au moment de
-               --       l'exécution pour toute une variété de record
-            );
-      when "non" =>
-         null;
-   end case;
-
-   --  gnatel : Active les messages d'informations signalant les
-   --           ajout implicite de pragma Elaborate et
-   --           Elaborate_All dans le code.
-   case Afficher_Ordre_Elaboration is
-      when "oui" =>
-         Options_Compiler := Options_Compiler & ("-gnatel");
-      when "non" =>
-         null;
-   end case;
-
-   --  -gnatwe : Les avertissements deviennent des erreurs
-   case Warn_Deviennent_Erreurs is
-      when "oui" =>
-         Options_Compiler := Options_Compiler & ("-gnatwe");
-      when "non" =>
-         null;
-   end case;
-
-   --  En cas de
-   --    dyld: Library not loaded … Reason: Image not loaded sur macos
-   --  faire
-   --    otool -L <exefile>
-   --  puis
-   --    install_name_tool -change <@executable_path/lib.dylib>
-   --       </opt/local/lib/lib.dylib> <exefile>
-   --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
+   --  Uniquement pour Ada.
+   --  Vas créer des fichiers « sources » pour élaborer les interruptions
+   --  initialiser les variables globales ...
+   --  Configuration pour le binder
    ----------------------------------------------------------------------------
-   package Documentation is
-      for Ignored_Subprojects use ("gnatcoll");
-      for Documentation_Dir   use "../doc";
-   end Documentation;
-   ----------------------------------------------------------------------------
+   package Binder is
+      Options_Binder := ();
 
-   --  Pour un bon tuto
-   --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
-   ----------------------------------------------------------------------------
-   package Naming is
-      --  Pour lier le nom dans le code et le nom du fichier de spec
-      --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
-      --  Même chose mais pour le corps.
-      --for Body ("MyPack.MyChild") use "mypack.mychild.body";
-   end Naming;
+      case Verbeux is
+         when "oui" =>
+            --  -r : Affiche la liste des restrictions (pragma Restriction)
+            --       qui peuvent être appliqué aux unité courante.
+            Options_Binder := Options_Binder & ("-r");
+         when "non" =>
+            null;
+      end case;
+
+      case Mode_Compilation is
+         when "dev" =>
+            --  -E : Active le stockage de la pile d'appel
+            --       de l'exception.
+            Options_Binder := Options_Binder & ("-E");
+         when "debug" | "tests_unitaire" =>
+            --  -E : Active le stockage de la pile d'appel
+            --       de l'exception.
+            --  -Es : Active l'affichage lisible du tracé des
+            --        exceptions. Utile en conjonction avec -g
+            Options_Binder := Options_Binder & ("-E", "-Es");
+         when "release" =>
+            null;
+      end case;
+
+      case Afficher_La_Stack is
+         when "oui" =>
+            --  -u100 : Active l'enregistrement dynamique de
+            --          l'usage de la pile.
+            Options_Binder := Options_Binder & ("-u100");
+         when "non" =>
+            null;
+      end case;
+
+      case Afficher_Ordre_Elaboration is
+         when "oui" =>
+            --  -l : Affiche l'ordre d'élaboration choisi et fournis une
+            --       forme plus lisible
+            --  -e : Affiche la liste complète de l'ordre d'élaboration
+            --       choisi par le compilateur et la raison de cet ordre.
+            Options_Binder := Options_Binder & ("-l", "-e");
+         when "non" =>
+            null;
+      end case;
+
+      for Default_Switches ("Ada") use Options_Binder;
+   end Binder;
    ----------------------------------------------------------------------------
 
    --  Configuration pour gprbuild
@@ -229,9 +146,139 @@ project Build is
    end Builder;
    ----------------------------------------------------------------------------
 
+   --  Pour vérifier que les règles de codage sont bien suivis :
+   ----------------------------------------------------------------------------
+   package Check is
+      for Default_Switches ("Ada") use
+         ("-rules", "-from=./regles_de_codage");
+   end Check;
+   ----------------------------------------------------------------------------
+
    --  Configuration pour le compiler
    ----------------------------------------------------------------------------
    package Compiler is
+      --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
+      --  gnaty : les options
+      --  3 : taille indentation
+      --  a : vérifie la casse
+      --  A : Préciser le numéro du tableau dans les attributs si multidimension
+      --  b : aucuns espaces en fin de ligne
+      --  B : Interdit and/or simple sauf cas particulier and then or else requis
+      --  c : style des commentaires avec deux espaces
+      --  d : Pas de fin de ligne windows
+      --  e : vérifie le nom des blocs et exit
+      --  f : Pas de tabulation verticale
+      --  h : pas de caractères tabulation
+      --  i : vérifie la position du then du if
+      --  k : vérifie la casse des mots réservé qui doivent être en minuscule
+      --  l : Vérifie la position de mots clef les uns par rapport aux autres
+      --  m : Taille maximum des lignes 79
+      --  n : Vérifie la casse des noms standard
+      --  O : Override doit être marqué
+      --  p : vérifie la casse des pragma
+      --  r : Vérifie que la casse des identificateurs est cohérente tout le long
+      --  s : Vérifie que tout corps possède une partie spécification séparée
+      --  S : Pas de code sur la même ligne que then ou else
+      --  t : Les espaces dans les lignes
+      --  u : vérifie les lignes vide
+      --  x : vérifie les parenthèses inutile
+      Options_Compiler :=
+         (
+            "-gnatef",
+            --  gnatef : est la pour afficher le chemin complet des
+            --           fichiers dans les messages erreurs et avertissements.
+            "-gnatf",
+            --  gnatf : Affiche toutes les erreurs.
+            "-gnatU",
+            --  gnatU : Permet de marquer les messages erreurs
+            --          avec le tag error:
+            "-gnat2012",
+            --  Active les fonctionnalité Ada 2012.
+            "-gnatyy",
+            --  Vérification du style utilisé (longueur ligne, espacement ...).
+            --  gnatyy : équivaut à 3aAbcefhiklmnprst
+            "-gnatyBdOSux",
+            "-gnatw.e",
+            --  gnatw.e : active tous les avertissements comme gnatwa, mais aussi
+            --            ceux qui sont considéré comme optionnel.
+            "-gnatw.Y",
+            --  gnatw.Y : désactive le message qui dit que la
+            --            spec nécessite un corps.
+            "-gnatw.N",
+            --  gnatw.N : désactive le message qui dit qu'une
+            --            variable a l'aspect Atomic
+            "-gnatW8",
+            --  gnatW8 : Pour que l'encodage du code source se fasse en UTF8
+            --           Similaire à ajouter le
+            --           pragma Wide_Character_Encoding (UTF8)
+            "-gnateE",
+            --  gnateE : Génère des informations supplémentaires
+            --           dans les exceptions
+            "-gnato13",
+            --  gnato : Vérification des dépassements numériques.
+            --          1 => Mode strict, pas de dépassements.
+            --          2 => Minimized Utilise la plus grande représentation
+            --               possible pour faire les calculs intermédiaire.
+            --          3 => Faire les calculs avec une précision infinie.
+            --          Le premier chiffre est donné pour le cas général, le
+            --          second est donné pour les assertions.
+            "-fstack-check",
+            --  fstack-check : Active les vérification de la stack pour
+            --                 éviter les stacks overflow.
+            "-gnatw.d",
+            --  gnatw.d : Ajoute un tag au message de warning et d'info
+            --            pour savoir quel réglages provoque le message.
+            "-gnatif"
+            --  gnatif : pour pouvoir utiliser les accents dans
+            --           les noms de variables.
+         );
+
+      case Verbeux is
+         when "oui" =>
+            Options_Compiler := Options_Compiler &
+               (
+                  "-gnatu",
+                  --  gnatu : Liste toutes les unitées utilisé
+                  --          pour cette compilation
+                  "-gnatv",
+                  --  gnatv : Active le mode verbose
+                  "-gnatR3"
+                  --  gnatR : Pour afficher informations de représentation
+                  --          pour les types et objets déclarés [0|1|2|3]
+                  --  0 : Rien
+                  --  1 : les informations de taille et d'alignement sont
+                  --       listées pour les types tableau et de record
+                  --       déclarés.
+                  --  2 : les informations de taille et d'alignement sont
+                  --       listées pour tous les types et objets déclarés.
+                  --  3 : inclut des expressions symboliques pour les
+                  --       valeurs qui sont calculées au moment de
+                  --       l'exécution pour toute une variété de record
+               );
+         when "non" =>
+            --  gnatw.L : Supprime les messages qui listent les
+            --            héritages des aspects par les sous types.
+            Options_Compiler := Options_Compiler & ("-gnatw.L");
+      end case;
+
+      case Afficher_Ordre_Elaboration is
+         when "oui" =>
+            --  gnatel : Active les messages d'informations signalant
+            --           les ajout implicite de pragma Elaborate et
+            --           Elaborate_All dans le code.
+            Options_Compiler := Options_Compiler & ("-gnatel");
+         when "non" =>
+            null;
+      end case;
+
+      case Warn_Deviennent_Erreurs is
+         when "oui" =>
+            --  -gnatwe : Les avertissements deviennent des erreurs
+            Options_Compiler := Options_Compiler & ("-gnatwe");
+         when "non" =>
+            null;
+      end case;
+
       case Mode_Compilation is
          when "dev" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
@@ -286,8 +333,14 @@ project Build is
             Options_Compiler := Options_Compiler & ("-O3");
       end case;
 
-      for Default_Switches ("Ada")    use Options_Compiler;
-      for Local_Configuration_Pragmas use "./gnat.adc";
+      for Default_Switches ("Ada") use Options_Compiler;
+
+      case Mode_Compilation is
+         when "tests_unitaire"            =>
+            for Local_Configuration_Pragmas use "./gnat_test.adc";
+         when "dev" | "debug" | "release" =>
+            for Local_Configuration_Pragmas use "./gnat.adc";
+      end case;
    end Compiler;
    ----------------------------------------------------------------------------
 
@@ -310,12 +363,71 @@ project Build is
    end Cross_Reference;
    ----------------------------------------------------------------------------
 
-   --  Pour vérifier que les règles de codage sont bien suivis :
+   --  En cas de
+   --    dyld: Library not loaded … Reason: Image not loaded sur macos
+   --  faire
+   --    otool -L <exefile>
+   --  puis
+   --    install_name_tool -change <@executable_path/lib.dylib>
+   --       </opt/local/lib/lib.dylib> <exefile>
+   --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    ----------------------------------------------------------------------------
-   package Check is
-      for Default_Switches ("Ada") use
-         ("-rules", "-from=./regles_de_codage");
-   end Check;
+   package Documentation is
+      for Ignored_Subprojects use ("gnatcoll");
+      for Documentation_Dir   use "../doc";
+   end Documentation;
+   ----------------------------------------------------------------------------
+
+   --  Configuration pour GPS.
+   ----------------------------------------------------------------------------
+   package Ide is
+      for Vcs_Kind use "Git";
+   end Ide;
+   ----------------------------------------------------------------------------
+
+   ----------------------------------------------------------------------------
+   package Install is
+   end Install;
+   ----------------------------------------------------------------------------
+
+   --  Configuration pour le Linker
+   ----------------------------------------------------------------------------
+   package Linker is
+      Options_Linker := ();
+
+      case Mode_Compilation is
+         when "debug" =>
+            Options_Linker := Options_Linker & ("-g");
+
+         when "tests_unitaire" =>
+            --  --coverage : Ajout implicitement l'option -fprofile-arcs
+            --               qui permet de généré les *.gcda
+            Options_Linker := Options_Linker & ("-g", "--coverage");
+
+         when "release" | "dev" =>
+            null;
+      end case;
+
+      for Default_Switches ("Ada") use Options_Linker;
+   end Linker;
+   ----------------------------------------------------------------------------
+
+   --  Indique quel makefile utiliser.
+   ----------------------------------------------------------------------------
+   package Make is
+      for Makefile use "makefile";
+   end Make;
+   ----------------------------------------------------------------------------
+
+   --  Pour un bon tuto
+   --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
+   ----------------------------------------------------------------------------
+   package Naming is
+      --  Pour lier le nom dans le code et le nom du fichier de spec
+      --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
+      --  Même chose mais pour le corps.
+      --for Body ("MyPack.MyChild") use "mypack.mychild.body";
+   end Naming;
    ----------------------------------------------------------------------------
 
    --  Les options pour gnatprove
@@ -328,95 +440,6 @@ project Build is
    package Prove is
       for Default_Switches ("Ada") use ("--report=fail");
    end Prove;
-   ----------------------------------------------------------------------------
-
-   --  Uniquement pour Ada.
-   --  Vas créer des fichiers « sources » pour élaborer les interruptions
-   --  initialiser les variables globales ...
-   --  Configuration pour le binder
-   ----------------------------------------------------------------------------
-   package Binder is
-      Options_Binder := ();
-
-      case Verbeux is
-         when "oui" =>
-            --  -r : Affiche la liste des restrictions (pragma Restriction)
-            --       qui peuvent être appliqué aux unité courante.
-            Options_Binder := Options_Binder & ("-r");
-         when "non" =>
-            null;
-      end case;
-      -----------------------------------------------
-      case Mode_Compilation is
-         when "dev" =>
-            --  -E : Active le stockage de la pile d'appel
-            --       de l'exception.
-            Options_Binder := Options_Binder & ("-E");
-         when "debug" | "tests_unitaire" =>
-            --  -E : Active le stockage de la pile d'appel
-            --       de l'exception.
-            --  -Es : Active l'affichage lisible du tracé des
-            --        exceptions. Utile en conjonction avec -g
-            Options_Binder := Options_Binder & ("-E", "-Es");
-         when "release" =>
-            null;
-      end case;
-      -----------------------------------------------
-      case Afficher_La_Stack is
-         when "oui" =>
-            Options_Binder := Options_Binder &
-               (
-                  "-u100"
-                  --  -u100 : Active l'enregistrement dynamique de
-                  --          l'usage de la pile.
-               );
-         when "non" =>
-            null;
-      end case;
-      -----------------------------------------------
-      case Afficher_Ordre_Elaboration is
-         when "oui" =>
-            --  -l : Affiche l'ordre d'élaboration choisi et fournis une
-            --       forme plus lisible
-            --  -e : Affiche la liste complète de l'ordre d'élaboration
-            --       choisi par le compilateur et la raison de cet ordre.
-            Options_Binder := Options_Binder & ("-l", "-e");
-         when "non" =>
-            null;
-      end case;
-
-      for Default_Switches ("Ada") use Options_Binder;
-   end Binder;
-   ----------------------------------------------------------------------------
-
-   --  Configuration pour le Linker
-   ----------------------------------------------------------------------------
-   package Linker is
-      case Mode_Compilation is
-         when "debug" =>
-            for Default_Switches ("Ada") use ("-g");
-         when "tests_unitaire" =>
-            --  --coverage : Ajout implicitement l'option -fprofile-arcs
-            --               qui permet de généré les *.gcda
-            for Default_Switches ("Ada") use ("-g", "--coverage");
-         when "release" | "dev" =>
-            null;
-      end case;
-   end Linker;
-   ----------------------------------------------------------------------------
-
-   --  Configuration pour GPS.
-   ----------------------------------------------------------------------------
-   package Ide is
-      for Vcs_Kind use "Git";
-   end Ide;
-   ----------------------------------------------------------------------------
-
-   --  Indique quel makefile utiliser.
-   ----------------------------------------------------------------------------
-   package Make is
-      for Makefile use "makefile";
-   end Make;
    ----------------------------------------------------------------------------
 
 end Build;
