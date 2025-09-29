@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 25 septembre[09] 2025
+# Dernière modification : Lundi 29 septembre[09] 2025
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -37,15 +37,6 @@ else
 endif
 
 ###################
-$(DOSSIER_MAKE)/makefile.conf.tmpl:
-
-###################
-makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
-	$(COPIE) ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
-	$(CHANGE_DROITS) u+w ./makefile.conf
-	@echo " "
-
-###################
 .PHONY: run
 run: $(DEPEND)
 	$(RESLT_COMPIL) $(ARGUMENTS_APPLI)
@@ -56,20 +47,37 @@ run_prod: $(DEPEND_PROD)
 	$(RESLT_COMPIL_PROD) $(ARGUMENTS_APPLI)
 
 ###################
-.PHONY: compiler
-compiler: makefile.conf avant_build build
+.PHONY: resultat_build
+resultat_build:
 	@echo " ─────────────────────────────────────────────────────────────────"
 	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ]"
 	@echo " ─────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: resultat_build_prod
+resultat_build_prod:
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
+
+###################
+$(DOSSIER_MAKE)/makefile.conf.tmpl:
+
+###################
+makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
+	$(COPIE) ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
+	$(CHANGE_DROITS) u+w ./makefile.conf
+	@echo " "
+
+###################
+.PHONY: compiler
+compiler: makefile.conf avant_build build resultat_build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOM_APP) ] terminé"
 	@echo "  "
 
 ###################
 .PHONY: prod
-prod: makefile.conf avant_build build_prod
-	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
+prod: makefile.conf avant_build build_prod resultat_build_prod
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
