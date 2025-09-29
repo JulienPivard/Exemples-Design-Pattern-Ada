@@ -1,18 +1,25 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Dimanche 17 novembre[11] 2024
+--           Dernière modification : Lundi 29 septembre[09] 2025
 --                                                                          --
 ------------------------------------------------------------------------------
+with Ada.Command_Line;
+with Ada.Exceptions;
 with Ada.Text_IO;
 
 with GNAT.Source_Info;
 
-with Executeur_P;
 with Version_Compilateur_P;
 
+with Lettre_P;
+with Utilisateur_P;
+
 procedure Client is
+   U : Utilisateur_P.Utilisateur_T := Utilisateur_P.Creer;
 begin
+   Ada.Command_Line.Set_Exit_Status
+      (Code => Ada.Command_Line.Success);
 
    Ada.Text_IO.Put      (Item => "+---------------------+");
    Ada.Text_IO.Put_Line (Item => " - - - - - - - - - - - ");
@@ -29,11 +36,51 @@ begin
 
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   if Executeur_P.Verifier_Nombre_D_Arguments_Est_Valide then
-      Executeur_P.Executer;
-   end if;
+   --  Ada.Text_IO.Put      (Item => "Procédure : [");
+   --  Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
+   --  Ada.Text_IO.Put      (Item => "], une instance de : ");
+   --  Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.Put_Line (Item => "Démonstration du design pattern état.     ");
+   Ada.Text_IO.Put_Line (Item => "Objet avec un état interne qui change en  ");
+   Ada.Text_IO.Put_Line (Item => "fonction des actions effectué.            ");
+   Ada.Text_IO.Put_Line (Item => "Les transitions sont géré par             ");
+   Ada.Text_IO.Put_Line (Item => "un objet Transition et un tableau         ");
+   Ada.Text_IO.Put_Line (Item => "de correspondances.                       ");
+   Ada.Text_IO.Put_Line (Item => "------------------------------------------");
+   Ada.Text_IO.New_Line (Spacing => 1);
 
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_R);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_R);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_R);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_I);
+   U.Presser (Lettre => Lettre_P.Lettre_V);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+   U.Presser (Lettre => Lettre_P.Lettre_Esc);
+   U.Presser (Lettre => Lettre_P.Lettre_E);
+
+   pragma Unreferenced (U);
+
+   Ada.Text_IO.New_Line (Spacing => 2);
 exception
-   when Executeur_P.Valeur_Option_Incorrect_E =>
-      null;
+   when E : others =>
+      Ada.Text_IO.Put_Line
+         (Item => Ada.Exceptions.Exception_Information (X => E));
+      Ada.Command_Line.Set_Exit_Status
+         (Code => Ada.Command_Line.Failure);
 end Client;
