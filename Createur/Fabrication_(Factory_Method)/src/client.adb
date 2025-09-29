@@ -68,8 +68,10 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   Ada.Text_IO.Put_Line (Item => "- Avec la première fabrique :");
    Utiliser (Fabrique => F_1);
    Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.Put_Line (Item => "- Avec la seconde fabrique :");
    Utiliser (Fabrique => F_2);
 
    Ada.Text_IO.New_Line (Spacing => 2);
