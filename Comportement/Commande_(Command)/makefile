@@ -70,19 +70,14 @@ makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
 
 ###################
 .PHONY: compiler
-compiler: makefile.conf avant_build build
-	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ]"
-	@echo " ─────────────────────────────────────────────────────────────────"
+compiler: makefile.conf avant_build build resultat_build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOM_APP) ] terminé"
 	@echo "  "
 
 ###################
 .PHONY: prod
-prod: makefile.conf avant_build build_prod
-	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
+prod: makefile.conf avant_build build_prod resultat_build_prod
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
