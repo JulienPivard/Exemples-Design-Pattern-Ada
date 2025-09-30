@@ -74,6 +74,13 @@ is
          This     : in out Chaine_De_Responsabilite_T'Class;
          Contexte : in     Contexte_P.Action_T
       );
+   --  Lance l'exécution du premier maillon de la chaine de
+   --  responsabilité, passe au suivant quelque soit le
+   --  résultat de l'exécution.
+   --  @param This
+   --  Le maillon de la chaine de responsabilité.
+   --  @param Contexte
+   --  Le contexte de l'action à réaliser.
 
    function Gerer_Requete
       (
@@ -81,6 +88,15 @@ is
          Contexte : in     Contexte_P.Action_T
       )
       return Boolean;
+   --  Lance l'exécution du premier maillon de la chaine de
+   --  responsabilité, passe au suivant si le maillon répond
+   --  False. La fonction indique si au moins un des maillons
+   --  a réussi à s'exécuter.
+   --  @param This
+   --  Le maillon de la chaine de responsabilité.
+   --  @param Contexte
+   --  Le contexte de l'action à réaliser.
+   --  @return L'action a réussie.
 
    subtype Parent_T is Chaine_De_Responsabilite_T;
 
