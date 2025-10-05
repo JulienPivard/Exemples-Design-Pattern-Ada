@@ -48,6 +48,12 @@ La requete             -> src/contexte/contexte_p.ads
 
 ## Diagramme de classe de la version Ada
 
+Dans l'implémentation actuel, la récursivité oblige à utiliser
+le conteneur `Ada.Containers.Indefinite_Holders` pour exprimer
+la dépendance récursive. Il est possible de s'en passer en stockant
+tous les objet dans un tableau externe et en stockant la référence
+au suivant au lieu du pointeur. A voir dans une prochaine version.
+
 ```
                                      ┌────────────────────────────┐
 ┌────────┐                           │         <Interface>        │
