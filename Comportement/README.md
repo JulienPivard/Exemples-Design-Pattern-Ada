@@ -7,6 +7,31 @@ Implémentation en Ada des designs pattern de la catégorie comportement.
 
 [Chaine De Responsabilites](./Chaine_De_Responsabilites_(Chain_Of_Responsibility))
 
+```
+                                         ┌────────────────┐
+                                         │                │
+                                         ▼                │
+┌────────┐                  ┌─────────────────────────┐   │ Successeur
+│ Client │─────────────────▶│  Gestionnaire_Abstrait  │───┘
+└────────┘                  ├─────────────────────────┤
+                            │     Gerer_Requete ()    │
+                            └─────────────────────────┘
+                                         │
+                                         △
+                                        ╱ ╲
+                    ┌─────────────────────────────────────────┐
+                    │                                         │
+     ┌────────────────────────────┐             ┌───────────────────────────┐
+     │   Gestionnaire_Concret_1   │             │  Gestionnaire_Concret_2   │
+     ├────────────────────────────┤             ├───────────────────────────┤
+     │      Gerer_Requete ()      │             │      Gerer_Requete ()     │
+     └────────────────────────────┘             └───────────────────────────┘
+
+
+Edit/view: https://cascii.app/c668c
+
+```
+
 ## Commande (Command)
 
 [Commande](./Commande_(Command))
