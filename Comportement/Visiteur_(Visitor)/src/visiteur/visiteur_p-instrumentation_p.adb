@@ -14,7 +14,7 @@ is
    is
       pragma Unreferenced (Obj);
    begin
-      This.Nb_Elements := This.Nb_Elements + 1;
+      This.NB_Elements := This.NB_Elements + 1;
    end Visiter_Element_Nomme;
    ---------------------------------------------------------------------------
 
@@ -28,7 +28,7 @@ is
    is
       pragma Unreferenced (Obj);
    begin
-      This.Nb_Classes := This.Nb_Classes + 1;
+      This.NB_Classes := This.NB_Classes + 1;
    end Visiter_Code_Class;
    ---------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ is
    is
       pragma Unreferenced (Obj);
    begin
-      This.Nb_Packages := This.Nb_Packages + 1;
+      This.NB_Packages := This.NB_Packages + 1;
    end Visiter_Verif_Package;
    ---------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ is
    is
       pragma Unreferenced (Obj);
    begin
-      This.Nb_Operations := This.Nb_Operations + 1;
+      This.NB_Operations := This.NB_Operations + 1;
    end Visiter_Operation;
    ---------------------------------------------------------------------------
 
@@ -68,22 +68,22 @@ is
       Ada.Text_IO.Put_Line
          (
             Item => "Nombre de variables : ["  &
-               Nb_Elements_T'Image (This.Nb_Elements) & "]"
+               NB_Elements_T'Image (This.NB_Elements) & "]"
          );
       Ada.Text_IO.Put_Line
          (
             Item => "Nombre de classes : ["  &
-               Nb_Classes_T'Image (This.Nb_Classes) & "]"
+               NB_Classes_T'Image (This.NB_Classes) & "]"
          );
       Ada.Text_IO.Put_Line
          (
             Item => "Nombre de packages : ["  &
-               Nb_Packages_T'Image (This.Nb_Packages) & "]"
+               NB_Packages_T'Image (This.NB_Packages) & "]"
          );
       Ada.Text_IO.Put_Line
          (
             Item => "Nombre d'opérations : ["  &
-               Nb_Operations_T'Image (This.Nb_Operations) & "]"
+               NB_Operations_T'Image (This.NB_Operations) & "]"
          );
    end Afficher;
    ---------------------------------------------------------------------------

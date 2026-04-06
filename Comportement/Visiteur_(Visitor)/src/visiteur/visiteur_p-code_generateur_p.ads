@@ -16,7 +16,6 @@ is
    type Code_Generateur_T is new Visiteur_P.Visiteur_T with private;
    --  Descendant d'un visiteur.
 
-   ------------------------
    overriding
    procedure Visiter_Code_Class
       (

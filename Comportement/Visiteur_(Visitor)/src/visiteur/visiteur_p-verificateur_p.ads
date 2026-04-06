@@ -15,7 +15,6 @@ is
 
    type Verificateur_T is new Visiteur_P.Visiteur_T with private;
 
-   --------------------------
    overriding
    procedure Visiter_Verif_Package
       (
@@ -28,7 +27,6 @@ is
    --  @param Obj
    --  L'objet à visiter.
 
-   --------------------------
    overriding
    procedure Visiter_Operation
       (

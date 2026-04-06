@@ -15,7 +15,6 @@ is
 
    type Instrumentation_T is new Visiteur_P.Visiteur_T with private;
 
-   --------------------------
    overriding
    procedure Visiter_Element_Nomme
       (
@@ -28,7 +27,6 @@ is
    --  @param Obj
    --  L'objet à visiter.
 
-   --------------------------
    overriding
    procedure Visiter_Code_Class
       (
@@ -41,7 +39,6 @@ is
    --  @param Obj
    --  L'objet à visiter.
 
-   --------------------------
    overriding
    procedure Visiter_Verif_Package
       (
@@ -54,7 +51,6 @@ is
    --  @param Obj
    --  L'objet à visiter.
 
-   --------------------------
    overriding
    procedure Visiter_Operation
       (
@@ -67,7 +63,6 @@ is
    --  @param Obj
    --  L'objet à visiter.
 
-   --------------------------
    procedure Afficher
       (This : in     Instrumentation_T);
    --  Affiche le résultat du visiteur.
@@ -76,17 +71,17 @@ is
 
 private
 
-   type Nb_Elements_T   is range 0 .. 1_000;
-   type Nb_Classes_T    is range 0 .. 1_000;
-   type Nb_Packages_T   is range 0 .. 1_000;
-   type Nb_Operations_T is range 0 .. 1_000;
+   type NB_Elements_T   is range 0 .. 1_000;
+   type NB_Classes_T    is range 0 .. 1_000;
+   type NB_Packages_T   is range 0 .. 1_000;
+   type NB_Operations_T is range 0 .. 1_000;
 
    type Instrumentation_T is new Visiteur_P.Visiteur_T with
       record
-         Nb_Elements   : Nb_Elements_T   := Nb_Elements_T'First;
-         Nb_Classes    : Nb_Classes_T    := Nb_Classes_T'First;
-         Nb_Packages   : Nb_Packages_T   := Nb_Packages_T'First;
-         Nb_Operations : Nb_Operations_T := Nb_Operations_T'First;
+         NB_Elements   : NB_Elements_T   := NB_Elements_T'First;
+         NB_Classes    : NB_Classes_T    := NB_Classes_T'First;
+         NB_Packages   : NB_Packages_T   := NB_Packages_T'First;
+         NB_Operations : NB_Operations_T := NB_Operations_T'First;
       end record;
 
 end Visiteur_P.Instrumentation_P;
