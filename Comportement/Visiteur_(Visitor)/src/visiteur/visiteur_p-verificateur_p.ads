@@ -1,3 +1,5 @@
+with Uml_P;
+
 --  @summary
 --  Un visiteur concret.
 --  @description

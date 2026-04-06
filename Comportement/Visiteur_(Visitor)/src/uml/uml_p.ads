@@ -1,4 +1,4 @@
-limited with Visiteur_P;
+with Visiteur_P;
 
 --  @summary
 --  Un ensemble de classes pour l'exemple.

@@ -1,4 +1,4 @@
-with Uml_P;
+limited with Uml_P;
 
 --  @summary
 --  Le visiteur qui va se charger d'aller visiter la cible.
