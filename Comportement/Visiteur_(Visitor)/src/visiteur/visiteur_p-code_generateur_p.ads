@@ -16,6 +16,12 @@ is
    type Code_Generateur_T is new Visiteur_P.Visiteur_T with private;
    --  Descendant d'un visiteur.
 
+   not overriding
+   function Creer
+      return Code_Generateur_T;
+   --  Constructeur de visiteur.
+   --  @return Le visiteur.
+
    overriding
    procedure Visiter_Code_Class
       (

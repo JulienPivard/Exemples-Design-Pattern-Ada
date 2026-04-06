@@ -5,6 +5,17 @@ package body Visiteur_P.Verificateur_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
+   function Creer
+      return Verificateur_T
+   is
+   begin
+      return Resultat : constant Verificateur_T :=
+         Verificateur_T'(Visiteur_T with null record);
+   end Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    overriding
    procedure Visiter_Verif_Package
       (

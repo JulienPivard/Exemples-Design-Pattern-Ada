@@ -5,6 +5,17 @@ package body Visiteur_P.Code_Generateur_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
+   function Creer
+      return Code_Generateur_T
+   is
+   begin
+      return Resultat : constant Code_Generateur_T :=
+         Code_Generateur_T'(Visiteur_T with null record);
+   end Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    overriding
    procedure Visiter_Code_Class
       (

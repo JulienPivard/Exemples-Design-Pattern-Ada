@@ -15,6 +15,12 @@ is
 
    type Verificateur_T is new Visiteur_P.Visiteur_T with private;
 
+   not overriding
+   function Creer
+      return Verificateur_T;
+   --  Constructeur de visiteur.
+   --  @return Le visiteur.
+
    overriding
    procedure Visiter_Verif_Package
       (

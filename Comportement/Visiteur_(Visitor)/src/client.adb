@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Lundi 29 septembre[09] 2025
+--           Dernière modification : Lundi 06 avril[04] 2026
 --                                                                          --
 ------------------------------------------------------------------------------
 with Ada.Command_Line;
@@ -70,9 +70,12 @@ procedure Client is
    end Execution;
    ---------------------------------------------------------------------------
 
-   Gen  : Visiteur_P.Code_Generateur_P.Code_Generateur_T;  --  Un visiteur
-   Ver  : Visiteur_P.Verificateur_P.Verificateur_T;        --  Un visiteur
-   Inst : Visiteur_P.Instrumentation_P.Instrumentation_T;
+   Gen  : Visiteur_P.Code_Generateur_P.Code_Generateur_T :=
+      Visiteur_P.Code_Generateur_P.Creer;  --  Un visiteur
+   Ver  : Visiteur_P.Verificateur_P.Verificateur_T :=
+      Visiteur_P.Verificateur_P.Creer;        --  Un visiteur
+   Inst : Visiteur_P.Instrumentation_P.Instrumentation_T :=
+      Visiteur_P.Instrumentation_P.Creer;
 begin
    Ada.Command_Line.Set_Exit_Status
       (Code => Ada.Command_Line.Success);

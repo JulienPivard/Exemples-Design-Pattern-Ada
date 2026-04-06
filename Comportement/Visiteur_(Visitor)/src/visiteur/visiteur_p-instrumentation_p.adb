@@ -5,6 +5,23 @@ package body Visiteur_P.Instrumentation_P
 is
 
    ---------------------------------------------------------------------------
+   not overriding
+   function Creer
+      return Instrumentation_T
+   is
+   begin
+      return Resultat : constant Instrumentation_T := Instrumentation_T'
+         (
+            Visiteur_T with
+               NB_Elements   => NB_Elements_T'First,
+               NB_Classes    => NB_Classes_T'First,
+               NB_Packages   => NB_Packages_T'First,
+               NB_Operations => NB_Operations_T'First
+         );
+   end Creer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    overriding
    procedure Visiter_Element_Nomme
       (

@@ -8,7 +8,7 @@ limited with Uml_P;
 --  @group Visiteur
 package Visiteur_P is
 
-   type Visiteur_T is abstract tagged private;
+   type Visiteur_T (<>) is abstract tagged limited private;
    --  Un visiteur abstrait. Les classes qui en hérite pourront
    --  faire des opérations spécifique sur les objets visité.
    --  Par exemple un visiteur pourra faire de la génération de code
@@ -64,6 +64,6 @@ package Visiteur_P is
 
 private
 
-   type Visiteur_T is abstract tagged null record;
+   type Visiteur_T is abstract tagged limited null record;
 
 end Visiteur_P;

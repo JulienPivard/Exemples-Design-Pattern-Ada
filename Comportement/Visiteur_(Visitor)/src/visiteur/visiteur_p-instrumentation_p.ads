@@ -15,6 +15,12 @@ is
 
    type Instrumentation_T is new Visiteur_P.Visiteur_T with private;
 
+   not overriding
+   function Creer
+      return Instrumentation_T;
+   --  Constructeur de visiteur.
+   --  @return Le visiteur.
+
    overriding
    procedure Visiter_Element_Nomme
       (
