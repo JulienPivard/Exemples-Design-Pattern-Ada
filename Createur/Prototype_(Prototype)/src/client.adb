@@ -118,7 +118,6 @@ begin
    Test_De_L_Age        (P       => Po2);
 
    Ada.Text_IO.New_Line (Spacing => 2);
-
 exception
    when E : others =>
       Ada.Text_IO.Put_Line

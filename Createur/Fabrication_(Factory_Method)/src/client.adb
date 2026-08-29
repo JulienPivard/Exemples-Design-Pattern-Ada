@@ -77,7 +77,6 @@ begin
    Utiliser (Fabrique => F_2);
 
    Ada.Text_IO.New_Line (Spacing => 2);
-
 exception
    when E : others =>
       Ada.Text_IO.Put_Line

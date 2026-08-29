@@ -124,7 +124,6 @@ begin
    pragma Unreferenced (Inst);
 
    Ada.Text_IO.New_Line (Spacing => 2);
-
 exception
    when E : others =>
       Ada.Text_IO.Put_Line

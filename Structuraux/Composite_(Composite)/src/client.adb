@@ -196,7 +196,6 @@ begin
    Ada.Text_IO.Put_Line (Item => "Résultat = " & Resultat'Image);
 
    Ada.Text_IO.New_Line (Spacing => 2);
-
 exception
    when E : others =>
       Ada.Text_IO.Put_Line

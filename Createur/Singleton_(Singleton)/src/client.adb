@@ -90,7 +90,6 @@ begin
    end Bloc_Singleton_Protege;
 
    Ada.Text_IO.New_Line (Spacing => 2);
-
 exception
    when E : others =>
       Ada.Text_IO.Put_Line
