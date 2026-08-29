@@ -1,3 +1,5 @@
+pragma Spark_Mode (Off);
+
 generic
 
    type Etat_G_T is private;
@@ -10,7 +12,6 @@ generic
 package Observateur_G is
 
    pragma Pure;
-   pragma Spark_Mode (Off);
 
    type Observateur_T is interface;
    --  L'observateur.

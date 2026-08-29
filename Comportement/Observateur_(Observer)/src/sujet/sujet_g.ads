@@ -1,3 +1,5 @@
+pragma Spark_Mode (Off);
+
 with Observateur_G;
 
 generic
@@ -12,7 +14,6 @@ generic
 package Sujet_G is
 
    pragma Pure;
-   pragma Spark_Mode (Off);
 
    type Sujet_T is interface;
    --  Le sujet observé.
