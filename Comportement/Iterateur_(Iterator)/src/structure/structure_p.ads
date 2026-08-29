@@ -11,9 +11,9 @@ with Data_P;
 --  @group Itérateur
 package Structure_P
    with
-      Pure           => False,
+      Pure           => True,
       Preelaborate   => False,
-      Elaborate_Body => True,
+      Elaborate_Body => False,
       Spark_Mode     => Off
 is
 
@@ -113,7 +113,7 @@ is
    --  @return Un pointeur protégé sur la constante.
 
    type Modifieur_T
-      (Donnee : not null access Data_P.Element_T)
+      (Donnee : not null access          Data_P.Element_T)
    is limited private
       with Implicit_Dereference => Donnee;
    --  Accesseur protégeant le pointeur. Aucune déallocation
@@ -152,14 +152,21 @@ is
 
 private
 
-   type Table_Elements_T is array (Indice_T) of aliased Data_P.Element_T;
+   type Table_Elements_T is array (Indice_T) of access Data_P.Element_T;
    --  Le tableau des éléments stocké.
 
+   pragma Warnings
+      (
+         GNAT, Off,
+         Reason => "[-gnatw_a]"
+      );
    type Structure_T is tagged
       record
-         Elements : Table_Elements_T := Table_Elements_T'(others => 0);
+         Elements : Table_Elements_T :=
+            Table_Elements_T'(others => new Data_P.Element_T);
          --  Les éléments stocké dans un tableau.
       end record;
+   pragma Warnings (GNAT, On, Reason => "[-gnatw_a]");
 
    -------------------------------------------------
    --  Les définitions pour le pattern itérateur  --

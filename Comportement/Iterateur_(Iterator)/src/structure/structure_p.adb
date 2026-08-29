@@ -11,7 +11,7 @@ is
       return Data_P.Element_T
    is
    begin
-      return This.Elements (Position);
+      return This.Elements (Position).all;
    end Lire;
    ---------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ is
       )
    is
    begin
-      This.Elements (Position) := Valeur;
+      This.Elements (Position).all := Valeur;
    end Modifier_Element;
    ---------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ is
       return Accesseur_T
    is
    begin
-      return Accesseur_T'(Donnee => This.Elements (Curseur.Position)'Access);
+      return Accesseur_T'(Donnee => This.Elements (Curseur.Position));
    end Lire;
    ---------------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ is
       return Modifieur_T
    is
    begin
-      return Modifieur_T'(Donnee => This.Elements (Position)'Access);
+      return Modifieur_T'(Donnee => This.Elements (Position));
    end Lire_Ecrire;
    ---------------------------------------------------------------------------
 
