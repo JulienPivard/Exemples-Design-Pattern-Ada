@@ -1,5 +1,3 @@
-with Mem_P.Memento_P;
-
 --  @summary
 --  L'utilisateur du mémento.
 --  @description
