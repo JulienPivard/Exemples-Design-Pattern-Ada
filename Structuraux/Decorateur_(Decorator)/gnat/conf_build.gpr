@@ -1,9 +1,9 @@
---  Dernière modification : Mercredi 24 septembre[09] 2025
+--  Dernière modification : vendredi 21 août[08] 2026
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
 --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/elaboration_order_handling_in_gnat.html
-project Build is
+project Conf_Build is
 
    type Mode_Compilation_T    is
       (
@@ -141,7 +141,7 @@ project Build is
       --  for Global_Configuration_Pragmas use "./gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
-      for Executable ("client.adb") use "executable";
+      for Executable ("client.adb") use "exe_produit";
       --  for Executable_Suffix         use ".exe";
    end Builder;
    ----------------------------------------------------------------------------
@@ -373,8 +373,11 @@ project Build is
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    ----------------------------------------------------------------------------
    package Documentation is
-      for Ignored_Subprojects use ("gnatcoll");
-      for Documentation_Dir   use "../doc";
+      --  for Ignored_Subprojects use ("gnatcoll");
+      --  for Excluded_Project_Files use
+      --     ("vss_config.gpr",
+      --     "vss_gnat.gpr");
+      for Output_Dir ("html") use "../doc/html/";
    end Documentation;
    ----------------------------------------------------------------------------
 
@@ -442,4 +445,4 @@ project Build is
    end Prove;
    ----------------------------------------------------------------------------
 
-end Build;
+end Conf_Build;
