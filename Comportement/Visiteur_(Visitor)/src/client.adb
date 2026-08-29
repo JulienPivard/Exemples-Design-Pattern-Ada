@@ -1,9 +1,11 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Lundi 06 avril[04] 2026
+--           Dernière modification : Samedi 29 août[08] 2026
 --                                                                          --
 ------------------------------------------------------------------------------
+pragma Warning_As_Error ("[-gnatwj]");
+
 with Ada.Command_Line;
 with Ada.Exceptions;
 with Ada.Text_IO;
