@@ -8,3 +8,5 @@ with Valeurs_P;
 --  @group Observateur
 package Observateur_P is new Observateur_G
    (Etat_G_T => Valeurs_P.Table_Valeurs_T);
+
+pragma Pure (Observateur_P);

@@ -8,3 +8,5 @@ with Sujet_G;
 --  @group Observateur
 package Sujet_P is new Sujet_G
    (Observateur_G_P => Observateur_P);
+
+pragma Pure (Sujet_P);
