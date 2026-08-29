@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Samedi 29 août[08] 2026
+--           Dernière modification : samedi 29 août[08] 2026
 --                                                                          --
 ------------------------------------------------------------------------------
 pragma Warning_As_Error ("[-gnatwj]");

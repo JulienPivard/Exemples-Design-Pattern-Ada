@@ -68,8 +68,8 @@ pragma Restrictions (No_Implicit_Dynamic_Code);
 --  Aucune allocation de mémoire par un type pointeur anonyme.
 pragma Restrictions (No_Implicit_Heap_Allocations);
 --  pragma Restrictions (No_Local_Allocators);
---  Uniquement des allocations (new nom_type) globales sont
---  autorisées.
+--  Uniquement des allocations (new nom_type)
+--  globales sont autorisées.
 --  pragma Restrictions (No_Standard_Allocators_After_Elaboration);
 --  Les allocations mémoire ne sont autorisé que pendant l'élaboration.
 
