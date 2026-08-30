@@ -17,4 +17,9 @@ is
       (This : in out Commande_T)
    is abstract;
 
+   function Lire_Nom
+      (This : in     Commande_T)
+      return String
+   is abstract;
+
 end Commande_P;

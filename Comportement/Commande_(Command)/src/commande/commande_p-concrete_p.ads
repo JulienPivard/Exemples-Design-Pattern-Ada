@@ -19,6 +19,12 @@ is
       (This : in out Commande_Concrete_T);
    --  Va exécuter la commande.
 
+   overriding
+   function Lire_Nom
+      (This : in     Commande_Concrete_T)
+      return String;
+   --  Nom associé de la commande.
+
 private
 
    type Commande_Concrete_T is new Commande_T with

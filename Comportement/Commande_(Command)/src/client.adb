@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : samedi 29 août[08] 2026
+--           Dernière modification : Dimanche 30 août[08] 2026
 --                                                                          --
 ------------------------------------------------------------------------------
 pragma Warning_As_Error ("[-gnatwj]");
@@ -67,6 +67,7 @@ begin
    Ada.Text_IO.Put_Line (Item => "------------------------------------------");
    Ada.Text_IO.New_Line (Spacing => 1);
 
+   Ada.Text_IO.Put_Line (Item => C.Lire_Nom);
    Executer (Commande => C);
 
    pragma Unreferenced (C);
